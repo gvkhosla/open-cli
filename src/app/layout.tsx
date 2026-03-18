@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { SiteFooter } from "@/components/site-footer";
+import { siteConfig } from "@/lib/site";
 
 import "./globals.css";
 
@@ -16,8 +17,50 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Open CLI",
-  description: "Discover polished command-line tools, compare traction, and copy the fastest way to install and use them.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.name,
+    template: `%s · ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  keywords: [
+    "cli",
+    "command line tools",
+    "terminal apps",
+    "developer tools",
+    "open source cli",
+    "leaderboard",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: ["/twitter-image"],
+  },
+  icons: {
+    icon: "/icon",
+    apple: "/apple-icon",
+    shortcut: "/icon",
+  },
 };
 
 export default function RootLayout({

@@ -210,6 +210,12 @@ export function HomeView() {
             <div className="text-right">Score</div>
           </div>
 
+          {filteredClis.length === 0 ? (
+            <div className="py-8 text-sm text-white/42">
+              No CLIs matched your search. Try a tool name like gh or vercel, or search for something like deploy or AI.
+            </div>
+          ) : null}
+
           {filteredClis.map((cli, index) => (
             <Link
               key={cli.slug}

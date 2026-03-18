@@ -89,6 +89,12 @@ export default function LeaderboardPage() {
               <div className="text-right">Score</div>
             </div>
 
+            {filteredClis.length === 0 ? (
+              <div className="py-8 text-sm text-white/42">
+                No CLIs matched your search. Try a name like ollama or bun, or search for something like deploy or GitHub.
+              </div>
+            ) : null}
+
             {filteredClis.map((cli, index) => (
               <Link
                 key={cli.slug}
