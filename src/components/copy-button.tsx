@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
 type CopyButtonProps = {
   value: string;
   label?: string;
@@ -22,15 +25,18 @@ export function CopyButton({ value, label = "Copy", compact = false }: CopyButto
   }
 
   return (
-    <button
+    <Button
       type="button"
+      variant="outline"
+      size={compact ? "sm" : "default"}
       onClick={onCopy}
-      className={`inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-sm text-white/72 transition hover:border-white/18 hover:bg-white/[0.06] hover:text-white ${
-        compact ? "h-9 px-3" : "h-10 px-4"
-      }`}
+      className={cn(
+        "shrink-0 rounded-md border-white/10 bg-white/[0.03] text-white/68 shadow-none hover:border-[rgba(183,182,233,0.28)] hover:bg-white/[0.05] hover:text-white",
+        compact && "h-8 px-3",
+      )}
       aria-label={`Copy ${label.toLowerCase()}`}
     >
       {copied ? "Copied" : label}
-    </button>
+    </Button>
   );
 }

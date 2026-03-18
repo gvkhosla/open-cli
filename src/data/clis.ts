@@ -28,9 +28,9 @@ export const clis: CliEntry[] = [
     slug: "gh",
     name: "GitHub CLI",
     shortName: "gh",
-    tagline: "Manage repos, PRs, issues, and workflows without leaving your terminal.",
+    tagline: "Use GitHub from your terminal for repos, pull requests, issues, and actions.",
     description:
-      "GitHub CLI turns everyday GitHub tasks into a fast terminal workflow. It is one of the most approachable examples of a polished modern CLI: clear commands, sensible defaults, and strong docs.",
+      "GitHub CLI lets you do common GitHub work without opening the browser first. It is easy to install, easy to understand, and useful from the first command.",
     category: "Git",
     installWith: "brew",
     installCommand: "brew install gh",
@@ -55,9 +55,9 @@ export const clis: CliEntry[] = [
     slug: "vercel",
     name: "Vercel CLI",
     shortName: "vercel",
-    tagline: "Ship previews, deploy production, and manage projects from the command line.",
+    tagline: "Deploy projects, create previews, and manage Vercel from the command line.",
     description:
-      "Vercel CLI is a benchmark for productized developer tooling: it feels lightweight, fast, and obvious. It is ideal for showcasing how Open CLI can connect discovery to immediate action.",
+      "Vercel CLI is a good example of a clean product CLI. You can log in, link a project, and deploy quickly without much setup.",
     category: "Deploy",
     installWith: "npm",
     installCommand: "npm i -g vercel",
@@ -82,9 +82,9 @@ export const clis: CliEntry[] = [
     slug: "uv",
     name: "uv",
     shortName: "uv",
-    tagline: "A blazing-fast Python package manager and project runner.",
+    tagline: "Install Python packages, create projects, and run scripts very quickly.",
     description:
-      "uv represents the new generation of CLIs: opinionated, fast, and designed around real workflows. It is exactly the type of tool users expect to discover on a curated CLI leaderboard.",
+      "uv is one of the fastest ways to start and run Python projects. It is a good example here because the install step is short and the first command is easy to copy and try.",
     category: "Package Management",
     installWith: "brew",
     installCommand: "brew install uv",
@@ -109,9 +109,9 @@ export const clis: CliEntry[] = [
     slug: "pnpm",
     name: "pnpm",
     shortName: "pnpm",
-    tagline: "Space-efficient JavaScript package management built for modern monorepos.",
+    tagline: "Install JavaScript dependencies quickly, especially in larger projects and monorepos.",
     description:
-      "pnpm is a default pick for large TypeScript codebases and monorepos. On Open CLI, it fits perfectly into package management and productivity discovery.",
+      "pnpm is popular with JavaScript and TypeScript teams because it is fast and saves disk space. It is a practical tool for everyday development work.",
     category: "Package Management",
     installWith: "npm",
     installCommand: "npm i -g pnpm",
@@ -135,9 +135,9 @@ export const clis: CliEntry[] = [
     slug: "bun",
     name: "Bun",
     shortName: "bun",
-    tagline: "JavaScript runtime, package manager, and bundler in one fast toolkit.",
+    tagline: "Run JavaScript, install packages, and use one fast toolkit for common tasks.",
     description:
-      "Bun is both a runtime and an everyday CLI. It has a strong identity, great command ergonomics, and broad developer interest, which makes it a natural leaderboard entry.",
+      "Bun combines a runtime, package manager, and task runner in one CLI. That makes it easy for people to try because one install gives them several useful tools.",
     category: "Package Management",
     installWith: "curl",
     installCommand: "curl -fsSL https://bun.sh/install | bash",
@@ -161,9 +161,9 @@ export const clis: CliEntry[] = [
     slug: "deno",
     name: "Deno",
     shortName: "deno",
-    tagline: "A secure runtime with batteries-included tooling for TypeScript and JavaScript.",
+    tagline: "Run TypeScript or JavaScript with built-in tools for formatting, linting, and tasks.",
     description:
-      "Deno blends runtime, linting, formatting, and task execution into one CLI surface. It is a strong example of a tool that users can understand from a few focused commands.",
+      "Deno gives you a runtime and a few helpful tools in one place. It is easy to explain because the same CLI can run code, format files, and start tasks.",
     category: "Data",
     installWith: "brew",
     installCommand: "brew install deno",
@@ -187,9 +187,9 @@ export const clis: CliEntry[] = [
     slug: "wrangler",
     name: "Wrangler",
     shortName: "wrangler",
-    tagline: "Build and deploy Cloudflare Workers, queues, and storage from one CLI.",
+    tagline: "Build and deploy Cloudflare Workers and related cloud services from one CLI.",
     description:
-      "Wrangler is a well-scoped cloud CLI with a developer-friendly workflow. It deserves a high-utility spot in any curated cloud tools collection.",
+      "Wrangler helps you build, test, and deploy Cloudflare projects from Terminal. It is especially helpful if you want a simple path from local development to production.",
     category: "Cloud",
     installWith: "npm",
     installCommand: "npm i -g wrangler",
@@ -213,9 +213,9 @@ export const clis: CliEntry[] = [
     slug: "ollama",
     name: "Ollama",
     shortName: "ollama",
-    tagline: "Run and serve local LLMs with a dead-simple command-line interface.",
+    tagline: "Download, run, and serve local AI models with a simple CLI.",
     description:
-      "Ollama is one of the cleanest AI CLIs on the market. Install, run, and serve models with almost no setup friction. It is perfect for an Open CLI featured section.",
+      "Ollama makes local AI approachable. You install it, pull a model, and start using it with just a few commands.",
     category: "AI",
     installWith: "brew",
     installCommand: "brew install ollama",
@@ -339,6 +339,46 @@ export const clis: CliEntry[] = [
     trending: "+",
     trendingAmount: 4,
     useCases: ["Webhook testing", "Payments debugging", "Local dev"],
+  },
+];
+
+export type BuilderLaunch = {
+  name: string;
+  creator: string;
+  creatorUrl: string;
+  tagline: string;
+  installCommand: string;
+  href: string;
+  released: string;
+};
+
+export const builderLaunches: BuilderLaunch[] = [
+  {
+    name: "summarize",
+    creator: "Peter Steinberger",
+    creatorUrl: "https://github.com/steipete",
+    tagline: "Summarize links, files, and long-form content from the terminal.",
+    installCommand: "npm i -g @steipete/summarize",
+    href: "https://www.npmjs.com/package/@steipete/summarize",
+    released: "Latest",
+  },
+  {
+    name: "codex",
+    creator: "OpenAI",
+    creatorUrl: "https://openai.com",
+    tagline: "Run a coding agent in your terminal for real code tasks.",
+    installCommand: "npm i -g @openai/codex",
+    href: "https://www.npmjs.com/package/@openai/codex",
+    released: "Popular",
+  },
+  {
+    name: "traces",
+    creator: "Traces",
+    creatorUrl: "https://traces.sh",
+    tagline: "Capture and inspect terminal workflows with a lightweight CLI.",
+    installCommand: "npm i -g @traces-sh/traces",
+    href: "https://www.npmjs.com/package/@traces-sh/traces",
+    released: "New",
   },
 ];
 
