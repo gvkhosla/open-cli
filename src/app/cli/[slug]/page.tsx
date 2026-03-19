@@ -188,9 +188,7 @@ export default async function CliPage({ params }: CliPageProps) {
             <div>
               <div className="section-kicker">Why it stands out</div>
               <p className="mt-4 text-sm leading-7 text-white/48">
-                {cli.name} is here because it is easy to explain, easy to install, and representative of a real
-                terminal workflow people want to run. Open CLI is increasingly organized around both the tools
-                and the makers behind them.
+                A practical CLI with a clear install path and a useful first command.
               </p>
             </div>
 
