@@ -5,14 +5,7 @@ import { useMemo, useState } from "react";
 
 import { CliLogoMarquee } from "@/components/cli-logo-marquee";
 import { CopyButton } from "@/components/copy-button";
-import {
-  builderClis,
-  getSearchHighlights,
-  officialClis,
-  searchClis,
-  type BuilderLaunch,
-  type CliCategory,
-} from "@/data/clis";
+import { builderClis, getSearchHighlights, officialClis, searchClis, type BuilderLaunch, type CliCategory } from "@/data/clis";
 import { formatCompactNumber, formatMetric } from "@/lib/format";
 
 type DirectoryMode = "all" | "official" | "builders" | "agent-friendly";
@@ -45,11 +38,7 @@ const quickExamples: QuickExample[] = [
   },
 ];
 
-type HomeViewProps = {
-  builderLaunches: BuilderLaunch[];
-};
-
-export function HomeView({ builderLaunches }: HomeViewProps) {
+export function HomeView({}: { builderLaunches?: BuilderLaunch[] }) {
   const [search, setSearch] = useState("");
   const [mode] = useState<DirectoryMode>("all");
   const [category] = useState<CategoryFilter>("All");
@@ -121,61 +110,6 @@ export function HomeView({ builderLaunches }: HomeViewProps) {
       <section className="space-y-3">
         <div className="section-kicker">Available in the directory</div>
         <CliLogoMarquee />
-      </section>
-
-      <section className="space-y-4">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <div className="section-kicker">Latest from builders</div>
-            <h2 className="mt-3 text-2xl font-medium tracking-tight text-white">New tools from builders we follow.</h2>
-          </div>
-          <Link href="/submit" className="hidden text-sm text-white/42 transition hover:text-white sm:inline">
-            Submit a CLI →
-          </Link>
-        </div>
-
-        <div className="overflow-hidden border-y border-white/8">
-          {builderLaunches.map((launch) => (
-            <div
-              key={launch.name}
-              className="grid gap-2 border-b border-white/6 py-4 last:border-b-0 md:grid-cols-[140px_minmax(0,1fr)_220px] md:items-center md:gap-4"
-            >
-              <div>
-                <a
-                  href={launch.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-base font-medium text-white transition hover:text-[var(--accent-lilac)]"
-                >
-                  {launch.name}
-                </a>
-                <div className="mt-1 font-mono text-xs text-white/34">{launch.released}</div>
-              </div>
-              <div>
-                <p className="text-sm text-white/50">{launch.tagline}</p>
-              </div>
-              <div className="flex flex-col items-start gap-1 text-sm md:items-end">
-                <a
-                  href={launch.creatorUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-white/60 transition hover:text-[var(--accent-lilac)]"
-                >
-                  {launch.creator}
-                </a>
-                {launch.monthlyDownloads ? (
-                  <div className="font-mono text-xs text-white/34">
-                    {formatCompactNumber(launch.monthlyDownloads)} monthly
-                  </div>
-                ) : null}
-                {launch.stars ? (
-                  <div className="font-mono text-xs text-white/34">{formatCompactNumber(launch.stars)} stars</div>
-                ) : null}
-                <code className="font-mono text-xs text-white/34">{launch.installCommand}</code>
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
 
       <section className="space-y-4">
