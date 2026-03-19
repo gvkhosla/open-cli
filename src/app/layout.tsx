@@ -24,14 +24,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  keywords: [
-    "cli",
-    "command line tools",
-    "terminal apps",
-    "developer tools",
-    "open source cli",
-    "leaderboard",
-  ],
+  keywords: ["cli", "command line tools", "terminal apps", "developer tools", "open source cli"],
   alternates: {
     canonical: "/",
   },

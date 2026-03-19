@@ -87,7 +87,7 @@ That keeps the project easy to contribute to without adding a heavy backend.
 
 ## Links
 - Production: https://opencli.co
-- Official tools: https://opencli.co/official
+- Directory: https://opencli.co
 - Makers: https://opencli.co/makers
 - Submit: https://opencli.co/submit
 - GitHub: https://github.com/gvkhosla/open-cli

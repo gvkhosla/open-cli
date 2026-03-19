@@ -5,6 +5,20 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
+  async redirects() {
+    return [
+      {
+        source: "/official",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/leaderboard",
+        destination: "/",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

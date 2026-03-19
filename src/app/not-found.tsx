@@ -10,7 +10,7 @@ export default function NotFound() {
         <div className="section-kicker">404</div>
         <h1 className="mt-4 text-4xl font-medium tracking-tight text-white">That CLI could not be found.</h1>
         <p className="mt-4 max-w-lg text-white/56">
-          Try going back to the directory and searching for another CLI or opening the leaderboard.
+          Try going back to the directory and searching for another CLI.
         </p>
         <Link
           href="/"

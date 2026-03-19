@@ -132,9 +132,6 @@ export function HomeView({}: { builderLaunches?: BuilderLaunch[] }) {
             <h2 className="mt-3 text-2xl font-medium tracking-tight text-white">Search CLIs</h2>
           </div>
           <div className="flex flex-wrap gap-4 text-sm text-white/42">
-            <Link href="/official" className="transition hover:text-white">
-              Browse official tools →
-            </Link>
             <Link href="/makers" className="transition hover:text-white">
               Browse makers →
             </Link>

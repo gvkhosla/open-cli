@@ -9,9 +9,6 @@ export function SiteFooter() {
           <span>Open CLI</span>
         </div>
         <div className="flex flex-wrap gap-4 text-white/40">
-          <Link href="/official" className="transition hover:text-white/72">
-            Official
-          </Link>
           <Link href="/makers" className="transition hover:text-white/72">
             Makers
           </Link>
