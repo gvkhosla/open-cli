@@ -27,13 +27,10 @@ export default function OfficialPage() {
           <div className="space-y-4">
             <div className="section-kicker">Official</div>
             <h1 className="max-w-4xl text-4xl font-medium tracking-[-0.05em] text-white sm:text-5xl">
-              First-party CLIs from the makers who build the platforms themselves.
+              Official CLIs from the makers.
             </h1>
             <p className="max-w-3xl text-base leading-7 text-white/54">
-              This is the trust layer of Open CLI: official tools from companies and platform teams like GitHub,
-              Vercel, Cloudflare, Supabase, AWS, Docker, and more. The broader directory still includes indie
-              builders and small teams, but this page is the cleanest place to start when you want the maker’s
-              own CLI.
+              Start here if you want the first-party tool from the company that makes the platform.
             </p>
           </div>
 

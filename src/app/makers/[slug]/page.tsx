@@ -32,14 +32,14 @@ export async function generateMetadata({ params }: MakerPageProps): Promise<Meta
 
 function buildMakerSummary(name: string, type: string, official?: boolean, featuredBuilder?: boolean) {
   if (official) {
-    return `${name} is represented here as a first-party platform maker. This page groups the official CLIs they publish so people can quickly find the tool that comes straight from the source.`;
+    return `Official tools from ${name}.`;
   }
 
   if (featuredBuilder) {
-    return `${name} is one of the builders we want Open CLI to highlight more intentionally. This page groups the maker’s tools in one place so search does not favor only large companies.`;
+    return `A builder we follow. Browse tools from ${name} in one place.`;
   }
 
-  return `${name} is part of the broader open CLI ecosystem. This page makes it easier to browse tools by maker instead of only by package name or category.`;
+  return `Tools from ${name}.`;
 }
 
 export default async function MakerPage({ params }: MakerPageProps) {

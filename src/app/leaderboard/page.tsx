@@ -97,8 +97,7 @@ export default function LeaderboardPage() {
 
             {filteredClis.length === 0 ? (
               <div className="py-8 text-sm text-white/42">
-                No CLIs matched your search. Try a maker like GitHub or Peter Steinberger, or a job like deploy,
-                scrape, local models, shell utilities, or database.
+                No CLIs matched your search. Try a maker, a command, or a task like deploy, scrape, or postgres.
               </div>
             ) : null}
 

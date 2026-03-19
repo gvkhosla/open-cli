@@ -28,13 +28,10 @@ export default function MakersPage() {
           <div className="space-y-4">
             <div className="section-kicker">Makers</div>
             <h1 className="max-w-4xl text-4xl font-medium tracking-[-0.05em] text-white sm:text-5xl">
-              Explore the people, teams, and companies behind the tools.
+              Browse CLIs by maker.
             </h1>
             <p className="max-w-3xl text-base leading-7 text-white/54">
-              Open CLI is not just a list of binaries. It is also a directory of makers: large platform teams,
-              indie builders, and small devtools studios shipping useful terminal software. This is how tools
-              from Peter Steinberger, sharkdp, Simon Willison, Charmbracelet, and many others can sit beside
-              official platform CLIs without feeling lost.
+              Companies, small teams, and independent builders all ship great terminal tools. This page keeps them easy to find.
             </p>
           </div>
 

@@ -215,7 +215,7 @@ export function HomeView({ builderLaunches }: HomeViewProps) {
           <input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Search gh, Peter Steinberger, browser automation, postgres, deploy previews..."
+            placeholder="Search gh, deploy, postgres, browser automation..."
             className="h-12 w-full rounded-none border-x-0 border-t-0 border-b border-white/12 bg-transparent pl-11 pr-4 text-sm text-white outline-none placeholder:text-white/28 focus:border-[var(--accent-lilac)]"
           />
         </div>
@@ -317,8 +317,7 @@ export function HomeView({ builderLaunches }: HomeViewProps) {
         </div>
 
         <div className="text-sm text-white/36">
-          Open any CLI to see install commands, quick starts, trust signals, agent-readiness notes, and related
-          tools from the same maker or workflow.
+          Open any CLI to see install, quick start, verified data, and related tools.
         </div>
       </section>
     </div>
