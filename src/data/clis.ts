@@ -352,6 +352,11 @@ export type BuilderLaunch = {
   installCommand: string;
   href: string;
   released: string;
+  packageName?: string;
+  githubRepo?: string;
+  stars?: number | null;
+  monthlyDownloads?: number | null;
+  publishedAt?: string | null;
 };
 
 export const builderLaunches = builderLaunchesJson as BuilderLaunch[];

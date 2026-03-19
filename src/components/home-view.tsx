@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 
 import { CliLogoMarquee } from "@/components/cli-logo-marquee";
 import { CopyButton } from "@/components/copy-button";
-import { builderLaunches, leaderboardClis } from "@/data/clis";
+import { leaderboardClis, type BuilderLaunch } from "@/data/clis";
 import { formatCompactNumber } from "@/lib/format";
 
 type Mode = "all" | "trending";
@@ -37,7 +37,11 @@ const quickExamples: QuickExample[] = [
   },
 ];
 
-export function HomeView() {
+type HomeViewProps = {
+  builderLaunches: BuilderLaunch[];
+};
+
+export function HomeView({ builderLaunches }: HomeViewProps) {
   const [search, setSearch] = useState("");
   const [mode, setMode] = useState<Mode>("all");
   const [activeExample, setActiveExample] = useState<QuickExample>(quickExamples[0]);
@@ -161,6 +165,14 @@ export function HomeView() {
                 >
                   {launch.creator}
                 </a>
+                {launch.monthlyDownloads ? (
+                  <div className="font-mono text-xs text-white/34">
+                    {formatCompactNumber(launch.monthlyDownloads)} monthly
+                  </div>
+                ) : null}
+                {launch.stars ? (
+                  <div className="font-mono text-xs text-white/34">{formatCompactNumber(launch.stars)} stars</div>
+                ) : null}
                 <code className="font-mono text-xs text-white/34">{launch.installCommand}</code>
               </div>
             </div>

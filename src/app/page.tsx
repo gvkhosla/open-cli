@@ -1,12 +1,15 @@
 import { HomeView } from "@/components/home-view";
 import { SiteHeader } from "@/components/site-header";
+import { getBuilderLaunches } from "@/lib/builder-launches";
 
-export default function Home() {
+export default async function Home() {
+  const builderLaunches = await getBuilderLaunches();
+
   return (
     <>
       <SiteHeader />
       <main>
-        <HomeView />
+        <HomeView builderLaunches={builderLaunches} />
       </main>
     </>
   );

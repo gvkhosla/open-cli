@@ -37,6 +37,25 @@ Use this template when adding a new launch:
 You can also submit a launch from the site:
 - `https://opencli.co/submit`
 
+## Admin and Supabase
+
+Optional env vars:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `GITHUB_TOKEN`
+- `ADMIN_USERNAME`
+- `ADMIN_PASSWORD`
+
+Files:
+- Supabase schema: `supabase/schema.sql`
+- Env example: `.env.example`
+- Admin page: `https://opencli.co/admin`
+
+If Supabase is configured:
+- builder launches can be read from Supabase
+- launch submissions can be stored in Supabase
+- the admin page can sync npm + GitHub metadata into Supabase
+
 ## Links
 - Production: https://opencli.co
 - Submit: https://opencli.co/submit

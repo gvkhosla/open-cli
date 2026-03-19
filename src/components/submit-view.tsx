@@ -32,6 +32,8 @@ const initialState: SubmitFormState = {
 
 export function SubmitView() {
   const [form, setForm] = useState<SubmitFormState>(initialState);
+  const [submissionState, setSubmissionState] = useState<"idle" | "saving" | "success" | "error">("idle");
+  const [submissionMessage, setSubmissionMessage] = useState("");
 
   const jsonPayload = useMemo(() => {
     const payload = {
@@ -71,6 +73,35 @@ export function SubmitView() {
 
   function update<K extends keyof SubmitFormState>(key: K, value: SubmitFormState[K]) {
     setForm((current) => ({ ...current, [key]: value }));
+  }
+
+  async function saveSubmission() {
+    setSubmissionState("saving");
+    setSubmissionMessage("Saving submission...");
+
+    try {
+      const response = await fetch("/api/submissions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = (await response.json()) as { ok: boolean; error?: string };
+
+      if (!response.ok || !data.ok) {
+        setSubmissionState("error");
+        setSubmissionMessage(data.error || "Could not save submission.");
+        return;
+      }
+
+      setSubmissionState("success");
+      setSubmissionMessage("Saved. You can review it in /admin.");
+    } catch {
+      setSubmissionState("error");
+      setSubmissionMessage("Could not save submission.");
+    }
   }
 
   return (
@@ -204,11 +235,19 @@ export function SubmitView() {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <button
+                type="button"
+                onClick={saveSubmission}
+                className="inline-flex h-11 items-center justify-center rounded-md border border-[var(--accent-lilac)] bg-white/[0.03] px-4 text-sm text-white transition hover:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-60"
+                disabled={submissionState === "saving"}
+              >
+                {submissionState === "saving" ? "Saving..." : "Save to admin queue"}
+              </button>
               <a
                 href={issueUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-11 items-center justify-center rounded-md border border-[var(--accent-lilac)] bg-white/[0.03] px-4 text-sm text-white transition hover:bg-white/[0.05]"
+                className="inline-flex h-11 items-center justify-center rounded-md border border-white/10 px-4 text-sm text-white/72 transition hover:border-white/18 hover:text-white"
               >
                 Open GitHub issue
               </a>
@@ -220,6 +259,13 @@ export function SubmitView() {
                 Open repository
               </Link>
             </div>
+            {submissionMessage ? (
+              <div
+                className={`text-sm ${submissionState === "error" ? "text-[var(--accent-rose)]" : "text-white/46"}`}
+              >
+                {submissionMessage}
+              </div>
+            ) : null}
           </aside>
         </section>
       </main>
