@@ -3,8 +3,8 @@ import { NextResponse, type NextRequest } from "next/server";
 const ADMIN_COOKIE = "opencli_admin";
 
 export function middleware(request: NextRequest) {
-  const adminUser = process.env.ADMIN_USERNAME;
-  const adminPassword = process.env.ADMIN_PASSWORD;
+  const adminUser = process.env.ADMIN_USERNAME?.trim();
+  const adminPassword = process.env.ADMIN_PASSWORD?.trim();
 
   if (!adminUser || !adminPassword) {
     return NextResponse.next();

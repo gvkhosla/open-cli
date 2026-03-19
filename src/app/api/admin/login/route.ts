@@ -6,16 +6,15 @@ const ADMIN_COOKIE = "opencli_admin";
 export async function POST(request: Request) {
   const body = (await request.json()) as { username?: string; password?: string };
 
-  if (
-    body.username !== process.env.ADMIN_USERNAME ||
-    body.password !== process.env.ADMIN_PASSWORD ||
-    !process.env.ADMIN_PASSWORD
-  ) {
+  const adminUsername = process.env.ADMIN_USERNAME?.trim();
+  const adminPassword = process.env.ADMIN_PASSWORD?.trim();
+
+  if (body.username !== adminUsername || body.password !== adminPassword || !adminPassword) {
     return NextResponse.json({ ok: false, error: "Invalid credentials" }, { status: 401 });
   }
 
   const cookieStore = await cookies();
-  cookieStore.set(ADMIN_COOKIE, process.env.ADMIN_PASSWORD, {
+  cookieStore.set(ADMIN_COOKIE, adminPassword, {
     httpOnly: true,
     secure: true,
     sameSite: "lax",
