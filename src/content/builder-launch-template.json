@@ -1,0 +1,9 @@
+{
+  "name": "your-cli-name",
+  "creator": "Creator name",
+  "creatorUrl": "https://github.com/creator",
+  "tagline": "One short line that explains what the CLI does.",
+  "installCommand": "npm i -g your-package",
+  "href": "https://github.com/owner/repo",
+  "released": "New"
+}

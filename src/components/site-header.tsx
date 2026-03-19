@@ -3,6 +3,7 @@ import Link from "next/link";
 const navItems = [
   { href: "/", label: "Directory" },
   { href: "/leaderboard", label: "Leaderboard" },
+  { href: "/submit", label: "Submit" },
 ];
 
 export function SiteHeader() {

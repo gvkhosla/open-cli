@@ -127,7 +127,9 @@ export function HomeView() {
             <div className="section-kicker">Latest from builders</div>
             <h2 className="mt-3 text-2xl font-medium tracking-tight text-white">Latest tools from builders we follow.</h2>
           </div>
-          <span className="hidden text-sm text-white/34 sm:inline">Fresh launches from people like Peter Steinberger and other respected builders.</span>
+          <Link href="/submit" className="hidden text-sm text-white/42 transition hover:text-white sm:inline">
+            Submit a launch →
+          </Link>
         </div>
 
         <div className="overflow-hidden border-y border-white/8">

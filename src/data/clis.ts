@@ -1,3 +1,5 @@
+import builderLaunchesJson from "@/content/builder-launches.json";
+
 export type PackageManager = "brew" | "npm" | "cargo" | "pipx" | "curl" | "go";
 
 export type CliEntry = {
@@ -352,35 +354,7 @@ export type BuilderLaunch = {
   released: string;
 };
 
-export const builderLaunches: BuilderLaunch[] = [
-  {
-    name: "summarize",
-    creator: "Peter Steinberger",
-    creatorUrl: "https://github.com/steipete",
-    tagline: "Summarize links, files, and long-form content from the terminal.",
-    installCommand: "npm i -g @steipete/summarize",
-    href: "https://www.npmjs.com/package/@steipete/summarize",
-    released: "Latest",
-  },
-  {
-    name: "codex",
-    creator: "OpenAI",
-    creatorUrl: "https://openai.com",
-    tagline: "Run a coding agent in your terminal for real code tasks.",
-    installCommand: "npm i -g @openai/codex",
-    href: "https://www.npmjs.com/package/@openai/codex",
-    released: "Popular",
-  },
-  {
-    name: "traces",
-    creator: "Traces",
-    creatorUrl: "https://traces.sh",
-    tagline: "Capture and inspect terminal workflows with a lightweight CLI.",
-    installCommand: "npm i -g @traces-sh/traces",
-    href: "https://www.npmjs.com/package/@traces-sh/traces",
-    released: "New",
-  },
-];
+export const builderLaunches = builderLaunchesJson as BuilderLaunch[];
 
 export const categories = Array.from(new Set(clis.map((cli) => cli.category)));
 export const packageManagers = Array.from(new Set(clis.map((cli) => cli.installWith)));

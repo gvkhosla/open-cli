@@ -26,7 +26,19 @@ npm run dev
 ## Deploy
 Open CLI is deployed on Vercel and connected to GitHub for automatic production and preview deployments.
 
+## Content workflow
+
+Builder launches are stored in:
+- `src/content/builder-launches.json`
+
+Use this template when adding a new launch:
+- `src/content/builder-launch-template.json`
+
+You can also submit a launch from the site:
+- `https://opencli.co/submit`
+
 ## Links
 - Production: https://opencli.co
+- Submit: https://opencli.co/submit
 - Vercel project: https://open-cli.vercel.app
 - GitHub: https://github.com/gvkhosla/open-cli
