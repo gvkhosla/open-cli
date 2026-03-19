@@ -43,7 +43,8 @@
       "gh auth login",
       "gh repo clone vercel/next.js",
       "gh pr create --fill"
-    ]
+    ],
+    "brewFormula": "gh"
   },
   {
     "slug": "git-lfs",
@@ -75,7 +76,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "git-lfs"
   },
   {
     "slug": "vercel",
@@ -117,7 +119,8 @@
       "vercel login",
       "vercel link",
       "vercel --prod"
-    ]
+    ],
+    "npmPackage": "vercel"
   },
   {
     "slug": "turborepo",
@@ -151,7 +154,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "npmPackage": "turbo"
   },
   {
     "slug": "wrangler",
@@ -193,7 +197,8 @@
       "wrangler login",
       "wrangler dev",
       "wrangler deploy"
-    ]
+    ],
+    "npmPackage": "wrangler"
   },
   {
     "slug": "supabase",
@@ -235,7 +240,8 @@
       "supabase init",
       "supabase start",
       "supabase db reset"
-    ]
+    ],
+    "brewFormula": "supabase"
   },
   {
     "slug": "railway",
@@ -269,7 +275,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "npmPackage": "@railway/cli"
   },
   {
     "slug": "flyctl",
@@ -303,7 +310,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "flyctl"
   },
   {
     "slug": "netlify",
@@ -338,7 +346,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "npmPackage": "netlify-cli"
   },
   {
     "slug": "firebase",
@@ -374,7 +383,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "npmPackage": "firebase-tools"
   },
   {
     "slug": "aws-cli",
@@ -413,7 +423,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "awscli"
   },
   {
     "slug": "gcloud",
@@ -450,7 +461,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewCask": "gcloud-cli"
   },
   {
     "slug": "az",
@@ -487,7 +499,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "azure-cli"
   },
   {
     "slug": "docker",
@@ -525,7 +538,8 @@
     "requiresAuth": false,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewCask": "docker"
   },
   {
     "slug": "kubectl",
@@ -562,7 +576,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "kubernetes-cli"
   },
   {
     "slug": "helm",
@@ -596,7 +611,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "helm"
   },
   {
     "slug": "terraform",
@@ -637,7 +653,8 @@
       "terraform init",
       "terraform plan",
       "terraform apply"
-    ]
+    ],
+    "brewFormula": "terraform"
   },
   {
     "slug": "vault",
@@ -672,7 +689,8 @@
     "requiresAuth": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "vault"
   },
   {
     "slug": "consul",
@@ -706,7 +724,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "consul"
   },
   {
     "slug": "nomad",
@@ -739,7 +758,8 @@
     "supportsJsonOutput": true,
     "supportsNonInteractive": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "nomad"
   },
   {
     "slug": "pulumi",
@@ -775,7 +795,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "pulumi"
   },
   {
     "slug": "dagger",
@@ -810,7 +831,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "dagger"
   },
   {
     "slug": "prisma",
@@ -844,7 +866,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "npmPackage": "prisma"
   },
   {
     "slug": "turso",
@@ -879,7 +902,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "turso"
   },
   {
     "slug": "neonctl",
@@ -914,7 +938,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "neonctl"
   },
   {
     "slug": "pscale",
@@ -949,7 +974,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "pscale"
   },
   {
     "slug": "stripe",
@@ -984,7 +1010,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "stripe-cli"
   },
   {
     "slug": "sentry-cli",
@@ -1020,7 +1047,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "sentry-cli"
   },
   {
     "slug": "semgrep",
@@ -1056,7 +1084,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "semgrep"
   },
   {
     "slug": "datadog-ci",
@@ -1091,7 +1120,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "npmPackage": "@datadog/datadog-ci"
   },
   {
     "slug": "shopify",
@@ -1125,7 +1155,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "npmPackage": "@shopify/cli"
   },
   {
     "slug": "ngrok",
@@ -1159,7 +1190,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewCask": "ngrok"
   },
   {
     "slug": "tailscale",
@@ -1194,7 +1226,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "tailscale"
   },
   {
     "slug": "doppler",
@@ -1230,7 +1263,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "doppler"
   },
   {
     "slug": "claude-code",
@@ -1265,7 +1299,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": false,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "npmPackage": "@anthropic-ai/claude-code"
   },
   {
     "slug": "codex",
@@ -1300,7 +1335,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": false,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "npmPackage": "@openai/codex"
   },
   {
     "slug": "gemini-cli",
@@ -1335,7 +1371,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": false,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "npmPackage": "@google/gemini-cli"
   },
   {
     "slug": "uv",
@@ -1375,7 +1412,8 @@
       "uv init demo",
       "cd demo",
       "uv add httpx && uv run main.py"
-    ]
+    ],
+    "brewFormula": "uv"
   },
   {
     "slug": "ruff",
@@ -1409,7 +1447,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "ruff"
   },
   {
     "slug": "pnpm",
@@ -1443,7 +1482,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "npmPackage": "pnpm"
   },
   {
     "slug": "bun",
@@ -1509,7 +1549,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "deno"
   },
   {
     "slug": "pipx",
@@ -1542,7 +1583,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "pipx"
   },
   {
     "slug": "poetry",
@@ -1575,7 +1617,9 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "poetry",
+    "pypiPackage": "poetry"
   },
   {
     "slug": "hatch",
@@ -1608,7 +1652,9 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "pypiPackage": "hatch",
+    "brewFormula": "hatch"
   },
   {
     "slug": "mise",
@@ -1642,7 +1688,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "mise"
   },
   {
     "slug": "direnv",
@@ -1675,7 +1722,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": false,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "direnv"
   },
   {
     "slug": "just",
@@ -1709,7 +1757,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "just"
   },
   {
     "slug": "watchexec",
@@ -1742,7 +1791,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "watchexec"
   },
   {
     "slug": "starship",
@@ -1774,7 +1824,8 @@
     "supportsNonInteractive": false,
     "requiresNetwork": false,
     "ciFriendly": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "starship"
   },
   {
     "slug": "nushell",
@@ -1809,7 +1860,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "nushell"
   },
   {
     "slug": "atuin",
@@ -1841,7 +1893,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "atuin"
   },
   {
     "slug": "zoxide",
@@ -1872,7 +1925,8 @@
     ],
     "agentFriendly": false,
     "requiresNetwork": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "zoxide"
   },
   {
     "slug": "rg",
@@ -1909,7 +1963,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "ripgrep"
   },
   {
     "slug": "fd",
@@ -1943,7 +1998,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "fd"
   },
   {
     "slug": "bat",
@@ -1974,7 +2030,8 @@
     ],
     "supportsNonInteractive": true,
     "requiresNetwork": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "bat"
   },
   {
     "slug": "hyperfine",
@@ -2007,7 +2064,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "hyperfine"
   },
   {
     "slug": "fzf",
@@ -2038,7 +2096,8 @@
     ],
     "supportsNonInteractive": false,
     "requiresNetwork": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "fzf"
   },
   {
     "slug": "jq",
@@ -2076,7 +2135,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "jq"
   },
   {
     "slug": "yq",
@@ -2111,7 +2171,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "yq"
   },
   {
     "slug": "eza",
@@ -2143,7 +2204,8 @@
     ],
     "supportsNonInteractive": true,
     "requiresNetwork": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "eza"
   },
   {
     "slug": "yazi-cli",
@@ -2173,7 +2235,8 @@
     ],
     "supportsNonInteractive": false,
     "requiresNetwork": false,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "yazi"
   },
   {
     "slug": "broot",
@@ -2203,7 +2266,8 @@
     ],
     "supportsNonInteractive": false,
     "requiresNetwork": false,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "broot"
   },
   {
     "slug": "btm",
@@ -2234,7 +2298,8 @@
     ],
     "supportsNonInteractive": false,
     "requiresNetwork": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "bottom"
   },
   {
     "slug": "procs",
@@ -2265,7 +2330,8 @@
     ],
     "supportsNonInteractive": true,
     "requiresNetwork": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "procs"
   },
   {
     "slug": "sd",
@@ -2298,7 +2364,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "sd"
   },
   {
     "slug": "dust",
@@ -2329,7 +2396,8 @@
     ],
     "supportsNonInteractive": true,
     "requiresNetwork": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "dust"
   },
   {
     "slug": "duf",
@@ -2359,7 +2427,8 @@
     ],
     "supportsNonInteractive": true,
     "requiresNetwork": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "duf"
   },
   {
     "slug": "mprocs",
@@ -2391,7 +2460,8 @@
     "agentFriendly": true,
     "supportsNonInteractive": false,
     "requiresNetwork": false,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "mprocs"
   },
   {
     "slug": "tealdeer",
@@ -2425,7 +2495,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "tealdeer"
   },
   {
     "slug": "glow",
@@ -2456,7 +2527,8 @@
     ],
     "supportsNonInteractive": true,
     "requiresNetwork": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "glow"
   },
   {
     "slug": "gum",
@@ -2488,7 +2560,8 @@
     "agentFriendly": false,
     "supportsNonInteractive": false,
     "requiresNetwork": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "gum"
   },
   {
     "slug": "mods",
@@ -2522,7 +2595,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "mods"
   },
   {
     "slug": "pandoc",
@@ -2556,7 +2630,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "pandoc"
   },
   {
     "slug": "httpie",
@@ -2593,7 +2668,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "httpie"
   },
   {
     "slug": "xh",
@@ -2627,7 +2703,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "xh"
   },
   {
     "slug": "doggo",
@@ -2660,7 +2737,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "doggo"
   },
   {
     "slug": "ollama",
@@ -2701,7 +2779,8 @@
       "ollama pull llama3.2",
       "ollama run llama3.2",
       "ollama serve"
-    ]
+    ],
+    "brewFormula": "ollama"
   },
   {
     "slug": "aider",
@@ -2736,7 +2815,9 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": false,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "pypiPackage": "aider-chat",
+    "brewFormula": "aider"
   },
   {
     "slug": "goose",
@@ -2769,7 +2850,8 @@
     "supportsNonInteractive": false,
     "requiresAuth": true,
     "requiresNetwork": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "goose"
   },
   {
     "slug": "browser-use",
@@ -2803,7 +2885,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": true,
     "ciFriendly": false,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "pypiPackage": "browser-use"
   },
   {
     "slug": "firecrawl",
@@ -2837,7 +2920,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "npmPackage": "firecrawl"
   },
   {
     "slug": "playwright",
@@ -2871,7 +2955,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "npmPackage": "@playwright/test"
   },
   {
     "slug": "llm",
@@ -2907,7 +2992,9 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "pypiPackage": "llm",
+    "brewFormula": "llm"
   },
   {
     "slug": "summarize",
@@ -2940,7 +3027,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "npmPackage": "@steipete/summarize"
   },
   {
     "slug": "traces",
@@ -2973,7 +3061,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "npmPackage": "@traces-sh/traces"
   },
   {
     "slug": "sqlite-utils",
@@ -3008,7 +3097,9 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "pypiPackage": "sqlite-utils",
+    "brewFormula": "sqlite-utils"
   },
   {
     "slug": "duckdb",
@@ -3045,7 +3136,8 @@
     "requiresNetwork": false,
     "localFirst": true,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "duckdb"
   },
   {
     "slug": "pgcli",
@@ -3075,7 +3167,9 @@
     ],
     "supportsNonInteractive": false,
     "requiresNetwork": false,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "pypiPackage": "pgcli",
+    "brewFormula": "pgcli"
   },
   {
     "slug": "mycli",
@@ -3105,7 +3199,9 @@
     ],
     "supportsNonInteractive": false,
     "requiresNetwork": false,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "pypiPackage": "mycli",
+    "brewFormula": "mycli"
   },
   {
     "slug": "usql",
@@ -3138,7 +3234,9 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "usql",
+    "crateName": "usql"
   },
   {
     "slug": "litecli",
@@ -3168,7 +3266,9 @@
     ],
     "supportsNonInteractive": false,
     "requiresNetwork": false,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "pypiPackage": "litecli",
+    "brewFormula": "litecli"
   },
   {
     "slug": "csvkit",
@@ -3201,7 +3301,9 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "pypiPackage": "csvkit",
+    "brewFormula": "csvkit"
   },
   {
     "slug": "mlr",
@@ -3235,7 +3337,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "miller"
   },
   {
     "slug": "visidata",
@@ -3265,7 +3368,9 @@
     ],
     "supportsNonInteractive": false,
     "requiresNetwork": false,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "pypiPackage": "visidata",
+    "brewFormula": "visidata"
   },
   {
     "slug": "xsv",
@@ -3298,7 +3403,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "crateName": "xsv"
   },
   {
     "slug": "yt-dlp",
@@ -3331,7 +3437,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "yt-dlp"
   },
   {
     "slug": "ffmpeg",
@@ -3365,7 +3472,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "ffmpeg"
   },
   {
     "slug": "rclone",
@@ -3399,7 +3507,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "rclone"
   },
   {
     "slug": "trivy",
@@ -3435,7 +3544,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "trivy"
   },
   {
     "slug": "syft",
@@ -3471,7 +3581,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "syft"
   },
   {
     "slug": "grype",
@@ -3507,7 +3618,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "grype"
   },
   {
     "slug": "dive",
@@ -3540,7 +3652,8 @@
     "supportsNonInteractive": false,
     "requiresNetwork": false,
     "ciFriendly": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "dive"
   },
   {
     "slug": "k9s",
@@ -3570,7 +3683,8 @@
     ],
     "supportsNonInteractive": false,
     "requiresNetwork": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "k9s"
   },
   {
     "slug": "stern",
@@ -3604,7 +3718,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "stern"
   },
   {
     "slug": "lazydocker",
@@ -3634,7 +3749,8 @@
     ],
     "supportsNonInteractive": false,
     "requiresNetwork": false,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "lazydocker"
   },
   {
     "slug": "k6",
@@ -3668,7 +3784,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "k6"
   },
   {
     "slug": "lazygit",
@@ -3700,7 +3817,8 @@
     "featured": true,
     "supportsNonInteractive": false,
     "requiresNetwork": false,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "lazygit"
   },
   {
     "slug": "gitui",
@@ -3730,7 +3848,8 @@
     ],
     "supportsNonInteractive": false,
     "requiresNetwork": false,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "gitui"
   },
   {
     "slug": "jj",
@@ -3763,7 +3882,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "jj"
   },
   {
     "slug": "delta",
@@ -3794,7 +3914,8 @@
     ],
     "supportsNonInteractive": true,
     "requiresNetwork": false,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "git-delta"
   },
   {
     "slug": "difftastic",
@@ -3827,7 +3948,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "difftastic"
   },
   {
     "slug": "biome",
@@ -3861,7 +3983,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "npmPackage": "@biomejs/biome"
   },
   {
     "slug": "eslint",
@@ -3895,7 +4018,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "npmPackage": "eslint"
   },
   {
     "slug": "prettier",
@@ -3929,7 +4053,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "npmPackage": "prettier"
   },
   {
     "slug": "vitest",
@@ -3963,7 +4088,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "npmPackage": "vitest"
   },
   {
     "slug": "vite",
@@ -3996,7 +4122,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "npmPackage": "vite"
   },
   {
     "slug": "drizzle-kit",
@@ -4030,7 +4157,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "npmPackage": "drizzle-kit"
   },
   {
     "slug": "dbmate",
@@ -4064,7 +4192,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "high"
+    "destructivePotential": "high",
+    "brewFormula": "dbmate"
   },
   {
     "slug": "shellcheck",
@@ -4098,7 +4227,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "shellcheck"
   },
   {
     "slug": "shfmt",
@@ -4132,7 +4262,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "medium"
+    "destructivePotential": "medium",
+    "brewFormula": "shfmt"
   },
   {
     "slug": "fd-find",
@@ -4164,7 +4295,8 @@
     "supportsNonInteractive": true,
     "requiresNetwork": false,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "brewFormula": "fd"
   },
   {
     "slug": "oracle",
@@ -4200,7 +4332,8 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "npmPackage": "@steipete/oracle"
   },
   {
     "slug": "mcporter",
@@ -4236,6 +4369,7 @@
     "requiresAuth": false,
     "requiresNetwork": true,
     "ciFriendly": true,
-    "destructivePotential": "low"
+    "destructivePotential": "low",
+    "npmPackage": "mcporter"
   }
 ]

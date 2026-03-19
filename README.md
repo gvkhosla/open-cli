@@ -44,6 +44,7 @@ Curated by hand:
 - tags
 - use cases
 - agent-readiness notes
+- explicit package source fields like `npmPackage`, `brewFormula`, `brewCask`, `crateName`, and `pypiPackage`
 
 ### 2. Exact metrics
 Fetched by script and stored in git:
@@ -91,3 +92,4 @@ That keeps the project easy to contribute to without adding a heavy backend.
 - Makers: https://opencli.co/makers
 - Submit: https://opencli.co/submit
 - GitHub: https://github.com/gvkhosla/open-cli
+ttps://github.com/gvkhosla/open-cli

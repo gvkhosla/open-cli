@@ -47,6 +47,12 @@ type CliSeed = {
   website?: string;
   docs?: string;
   packageName?: string;
+  npmPackage?: string;
+  brewFormula?: string;
+  brewCask?: string;
+  crateName?: string;
+  pypiPackage?: string;
+  goPackage?: string;
   bestFor?: string;
   useThisIf?: string;
   skipIf?: string;
@@ -100,6 +106,12 @@ export type CliEntry = {
   docs: string;
   githubRepo: string;
   packageName?: string;
+  npmPackage?: string;
+  brewFormula?: string;
+  brewCask?: string;
+  crateName?: string;
+  pypiPackage?: string;
+  goPackage?: string;
   bestFor: string;
   useThisIf: string;
   skipIf: string;
@@ -299,6 +311,12 @@ function createCli(seed: CliSeed): CliEntry {
     docs: seed.docs ?? seed.website ?? `https://github.com/${seed.githubRepo}`,
     githubRepo: seed.githubRepo,
     packageName: seed.packageName,
+    npmPackage: seed.npmPackage,
+    brewFormula: seed.brewFormula,
+    brewCask: seed.brewCask,
+    crateName: seed.crateName,
+    pypiPackage: seed.pypiPackage,
+    goPackage: seed.goPackage,
     bestFor: buildBestFor(seed),
     useThisIf: buildUseThisIf(seed, maker),
     skipIf: buildSkipIf(seed),
