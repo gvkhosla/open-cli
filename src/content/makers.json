@@ -1,0 +1,671 @@
+[
+  {
+    "slug": "github",
+    "name": "GitHub",
+    "type": "org",
+    "url": "https://github.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "vercel",
+    "name": "Vercel",
+    "type": "org",
+    "url": "https://vercel.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "cloudflare",
+    "name": "Cloudflare",
+    "type": "org",
+    "url": "https://cloudflare.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "supabase",
+    "name": "Supabase",
+    "type": "org",
+    "url": "https://supabase.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "railway",
+    "name": "Railway",
+    "type": "org",
+    "url": "https://railway.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "flyio",
+    "name": "Fly.io",
+    "type": "org",
+    "url": "https://fly.io",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "netlify",
+    "name": "Netlify",
+    "type": "org",
+    "url": "https://netlify.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "firebase",
+    "name": "Firebase",
+    "type": "org",
+    "url": "https://firebase.google.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "aws",
+    "name": "AWS",
+    "type": "org",
+    "url": "https://aws.amazon.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "google-cloud",
+    "name": "Google Cloud",
+    "type": "org",
+    "url": "https://cloud.google.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "microsoft",
+    "name": "Microsoft",
+    "type": "org",
+    "url": "https://microsoft.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "docker",
+    "name": "Docker",
+    "type": "org",
+    "url": "https://docker.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "kubernetes",
+    "name": "Kubernetes",
+    "type": "org",
+    "url": "https://kubernetes.io",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "helm",
+    "name": "Helm",
+    "type": "org",
+    "url": "https://helm.sh",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "hashicorp",
+    "name": "HashiCorp",
+    "type": "org",
+    "url": "https://hashicorp.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "pulumi",
+    "name": "Pulumi",
+    "type": "org",
+    "url": "https://pulumi.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "dagger",
+    "name": "Dagger",
+    "type": "org",
+    "url": "https://dagger.io",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "prisma",
+    "name": "Prisma",
+    "type": "org",
+    "url": "https://prisma.io",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "turso",
+    "name": "Turso",
+    "type": "org",
+    "url": "https://turso.tech",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "neon",
+    "name": "Neon",
+    "type": "org",
+    "url": "https://neon.tech",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "planetscale",
+    "name": "PlanetScale",
+    "type": "org",
+    "url": "https://planetscale.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "stripe",
+    "name": "Stripe",
+    "type": "org",
+    "url": "https://stripe.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "sentry",
+    "name": "Sentry",
+    "type": "org",
+    "url": "https://sentry.io",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "semgrep",
+    "name": "Semgrep",
+    "type": "org",
+    "url": "https://semgrep.dev",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "datadog",
+    "name": "Datadog",
+    "type": "org",
+    "url": "https://datadoghq.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "shopify",
+    "name": "Shopify",
+    "type": "org",
+    "url": "https://shopify.dev",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "ngrok",
+    "name": "ngrok",
+    "type": "org",
+    "url": "https://ngrok.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "tailscale",
+    "name": "Tailscale",
+    "type": "org",
+    "url": "https://tailscale.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "doppler",
+    "name": "Doppler",
+    "type": "org",
+    "url": "https://doppler.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "anthropic",
+    "name": "Anthropic",
+    "type": "org",
+    "url": "https://anthropic.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "openai",
+    "name": "OpenAI",
+    "type": "org",
+    "url": "https://openai.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "google-gemini",
+    "name": "Google Gemini",
+    "type": "org",
+    "url": "https://gemini.google.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "astral",
+    "name": "Astral",
+    "type": "small-team",
+    "url": "https://astral.sh",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "pnpm",
+    "name": "pnpm",
+    "type": "small-team",
+    "url": "https://pnpm.io",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "oven",
+    "name": "Oven",
+    "type": "small-team",
+    "url": "https://bun.sh",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "denoland",
+    "name": "Deno",
+    "type": "small-team",
+    "url": "https://deno.com",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "pypa",
+    "name": "PyPA",
+    "type": "org",
+    "url": "https://pypa.io"
+  },
+  {
+    "slug": "poetry",
+    "name": "Poetry",
+    "type": "small-team",
+    "url": "https://python-poetry.org"
+  },
+  {
+    "slug": "hatch",
+    "name": "Hatch",
+    "type": "small-team",
+    "url": "https://hatch.pypa.io"
+  },
+  {
+    "slug": "jdx",
+    "name": "jdx",
+    "type": "individual",
+    "url": "https://github.com/jdx",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "direnv",
+    "name": "direnv",
+    "type": "small-team",
+    "url": "https://direnv.net"
+  },
+  {
+    "slug": "casey",
+    "name": "casey",
+    "type": "individual",
+    "url": "https://github.com/casey",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "watchexec",
+    "name": "watchexec",
+    "type": "small-team",
+    "url": "https://watchexec.github.io"
+  },
+  {
+    "slug": "starship",
+    "name": "Starship",
+    "type": "small-team",
+    "url": "https://starship.rs"
+  },
+  {
+    "slug": "nushell",
+    "name": "Nushell",
+    "type": "small-team",
+    "url": "https://nushell.sh",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "atuin",
+    "name": "Atuin",
+    "type": "small-team",
+    "url": "https://atuin.sh"
+  },
+  {
+    "slug": "ajeetdsouza",
+    "name": "Ajeet D'Souza",
+    "type": "individual",
+    "url": "https://github.com/ajeetdsouza",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "burnt-sushi",
+    "name": "BurntSushi",
+    "type": "individual",
+    "url": "https://github.com/BurntSushi",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "sharkdp",
+    "name": "sharkdp",
+    "type": "individual",
+    "url": "https://github.com/sharkdp",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "junegunn",
+    "name": "junegunn",
+    "type": "individual",
+    "url": "https://github.com/junegunn",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "jqlang",
+    "name": "jqlang",
+    "type": "small-team",
+    "url": "https://jqlang.org"
+  },
+  {
+    "slug": "mike-farah",
+    "name": "Mike Farah",
+    "type": "individual",
+    "url": "https://github.com/mikefarah",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "eza-community",
+    "name": "eza community",
+    "type": "small-team",
+    "url": "https://github.com/eza-community/eza"
+  },
+  {
+    "slug": "yazi",
+    "name": "Yazi",
+    "type": "small-team",
+    "url": "https://yazi-rs.github.io"
+  },
+  {
+    "slug": "canop",
+    "name": "Canop",
+    "type": "individual",
+    "url": "https://github.com/Canop"
+  },
+  {
+    "slug": "clement-tsang",
+    "name": "Clement Tsang",
+    "type": "individual",
+    "url": "https://github.com/ClementTsang"
+  },
+  {
+    "slug": "dalance",
+    "name": "dalance",
+    "type": "individual",
+    "url": "https://github.com/dalance"
+  },
+  {
+    "slug": "chmln",
+    "name": "chmln",
+    "type": "individual",
+    "url": "https://github.com/chmln"
+  },
+  {
+    "slug": "bootandy",
+    "name": "bootandy",
+    "type": "individual",
+    "url": "https://github.com/bootandy"
+  },
+  {
+    "slug": "muesli",
+    "name": "muesli",
+    "type": "individual",
+    "url": "https://github.com/muesli"
+  },
+  {
+    "slug": "pvolok",
+    "name": "Pavol Vargovcik",
+    "type": "individual",
+    "url": "https://github.com/pvolok"
+  },
+  {
+    "slug": "charmbracelet",
+    "name": "Charmbracelet",
+    "type": "small-team",
+    "url": "https://charm.sh",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "pandoc",
+    "name": "Pandoc",
+    "type": "small-team",
+    "url": "https://pandoc.org"
+  },
+  {
+    "slug": "httpie",
+    "name": "HTTPie",
+    "type": "small-team",
+    "url": "https://httpie.io"
+  },
+  {
+    "slug": "ducaale",
+    "name": "ducaale",
+    "type": "individual",
+    "url": "https://github.com/ducaale"
+  },
+  {
+    "slug": "mr-karan",
+    "name": "MrKaran",
+    "type": "individual",
+    "url": "https://github.com/mr-karan"
+  },
+  {
+    "slug": "ollama",
+    "name": "Ollama",
+    "type": "small-team",
+    "url": "https://ollama.com",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "aider",
+    "name": "aider",
+    "type": "small-team",
+    "url": "https://aider.chat",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "block",
+    "name": "Block",
+    "type": "org",
+    "url": "https://block.xyz"
+  },
+  {
+    "slug": "browser-use",
+    "name": "browser-use",
+    "type": "small-team",
+    "url": "https://browser-use.com",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "firecrawl",
+    "name": "Firecrawl",
+    "type": "small-team",
+    "url": "https://firecrawl.dev",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "simon-willison",
+    "name": "Simon Willison",
+    "type": "individual",
+    "url": "https://simonwillison.net",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "duckdb",
+    "name": "DuckDB",
+    "type": "small-team",
+    "url": "https://duckdb.org"
+  },
+  {
+    "slug": "dbcli",
+    "name": "dbcli",
+    "type": "small-team",
+    "url": "https://www.dbcli.com"
+  },
+  {
+    "slug": "xo",
+    "name": "xo",
+    "type": "small-team",
+    "url": "https://github.com/xo"
+  },
+  {
+    "slug": "wireservice",
+    "name": "Wireservice",
+    "type": "small-team",
+    "url": "https://csvkit.readthedocs.io"
+  },
+  {
+    "slug": "johnkerl",
+    "name": "John Kerl",
+    "type": "individual",
+    "url": "https://github.com/johnkerl"
+  },
+  {
+    "slug": "visidata",
+    "name": "VisiData",
+    "type": "small-team",
+    "url": "https://www.visidata.org"
+  },
+  {
+    "slug": "yt-dlp",
+    "name": "yt-dlp",
+    "type": "small-team",
+    "url": "https://github.com/yt-dlp/yt-dlp"
+  },
+  {
+    "slug": "ffmpeg",
+    "name": "FFmpeg",
+    "type": "small-team",
+    "url": "https://ffmpeg.org"
+  },
+  {
+    "slug": "aquasecurity",
+    "name": "Aqua Security",
+    "type": "org",
+    "url": "https://aquasec.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "anchore",
+    "name": "Anchore",
+    "type": "org",
+    "url": "https://anchore.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "derailed",
+    "name": "Derailed",
+    "type": "small-team",
+    "url": "https://github.com/derailed"
+  },
+  {
+    "slug": "grafana",
+    "name": "Grafana",
+    "type": "org",
+    "url": "https://grafana.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "biome",
+    "name": "Biome",
+    "type": "small-team",
+    "url": "https://biomejs.dev"
+  },
+  {
+    "slug": "eslint",
+    "name": "ESLint",
+    "type": "small-team",
+    "url": "https://eslint.org"
+  },
+  {
+    "slug": "prettier",
+    "name": "Prettier",
+    "type": "small-team",
+    "url": "https://prettier.io"
+  },
+  {
+    "slug": "vitest",
+    "name": "Vitest",
+    "type": "small-team",
+    "url": "https://vitest.dev"
+  },
+  {
+    "slug": "vite",
+    "name": "Vite",
+    "type": "small-team",
+    "url": "https://vite.dev"
+  },
+  {
+    "slug": "drizzle-team",
+    "name": "Drizzle Team",
+    "type": "small-team",
+    "url": "https://orm.drizzle.team"
+  },
+  {
+    "slug": "amacneil",
+    "name": "amacneil",
+    "type": "individual",
+    "url": "https://github.com/amacneil"
+  },
+  {
+    "slug": "steipete",
+    "name": "Peter Steinberger",
+    "type": "individual",
+    "url": "https://github.com/steipete",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "traces",
+    "name": "Traces",
+    "type": "small-team",
+    "url": "https://traces.sh"
+  },
+  {
+    "slug": "rclone",
+    "name": "rclone",
+    "type": "small-team",
+    "url": "https://rclone.org"
+  },
+  {
+    "slug": "koalaman",
+    "name": "koalaman",
+    "type": "individual",
+    "url": "https://github.com/koalaman"
+  },
+  {
+    "slug": "mvdan",
+    "name": "mvdan",
+    "type": "individual",
+    "url": "https://github.com/mvdan"
+  },
+  {
+    "slug": "jesse-duffield",
+    "name": "Jesse Duffield",
+    "type": "individual",
+    "url": "https://github.com/jesseduffield",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "extrawurst",
+    "name": "extrawurst",
+    "type": "individual",
+    "url": "https://github.com/extrawurst"
+  },
+  {
+    "slug": "jujutsu",
+    "name": "Jujutsu",
+    "type": "small-team",
+    "url": "https://github.com/jj-vcs/jj",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "dandavison",
+    "name": "Dan Davison",
+    "type": "individual",
+    "url": "https://github.com/dandavison",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "sourcefrog",
+    "name": "Sourcefrog",
+    "type": "small-team",
+    "url": "https://github.com/Wilfred/difftastic"
+  },
+  {
+    "slug": "tldr",
+    "name": "tealdeer",
+    "type": "small-team",
+    "url": "https://github.com/tealdeer-rs/tealdeer"
+  }
+]

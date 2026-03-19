@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 
 import { SiteHeader } from "@/components/site-header";
 import { categories, getSearchHighlights, searchClis, type CliCategory } from "@/data/clis";
-import { formatCompactNumber } from "@/lib/format";
+import { formatCompactNumber, formatMetric } from "@/lib/format";
 
 type DirectoryMode = "all" | "official" | "builders" | "agent-friendly";
 type CategoryFilter = "All" | CliCategory;
@@ -88,12 +88,11 @@ export default function LeaderboardPage() {
           </div>
 
           <div className="overflow-hidden border-y border-white/8">
-            <div className="hidden grid-cols-[64px_minmax(0,1.3fr)_160px_120px_120px] gap-4 border-b border-white/8 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-white/38 md:grid">
+            <div className="hidden grid-cols-[64px_minmax(0,1.3fr)_160px_220px] gap-4 border-b border-white/8 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-white/38 md:grid">
               <div>#</div>
               <div>CLI</div>
               <div>Maker</div>
-              <div>Adoption</div>
-              <div className="text-right">Score</div>
+              <div className="text-right">Verified data</div>
             </div>
 
             {filteredClis.length === 0 ? (
@@ -107,7 +106,7 @@ export default function LeaderboardPage() {
               <Link
                 key={cli.slug}
                 href={`/cli/${cli.slug}`}
-                className="grid gap-2 border-b border-white/6 py-4 transition last:border-b-0 hover:bg-white/[0.02] md:grid-cols-[64px_minmax(0,1.3fr)_160px_120px_120px] md:items-center md:gap-4"
+                className="grid gap-2 border-b border-white/6 py-4 transition last:border-b-0 hover:bg-white/[0.02] md:grid-cols-[64px_minmax(0,1.3fr)_160px_220px] md:items-center md:gap-4"
               >
                 <div className="font-mono text-sm text-white/34">{String(index + 1).padStart(2, "0")}</div>
                 <div>
@@ -135,10 +134,13 @@ export default function LeaderboardPage() {
                   </div>
                 </div>
                 <div className="text-sm text-white/52">{cli.makerName}</div>
-                <div className="text-sm text-white/52">{formatCompactNumber(cli.monthlyDownloads)}</div>
-                <div className="flex items-center justify-between md:justify-end md:gap-4">
-                  <span className="text-sm text-[var(--accent-peach)]">+{cli.trendingAmount}%</span>
-                  <span className="text-base font-medium text-white">{cli.score}</span>
+                <div className="text-sm text-white/52 md:text-right">
+                  {cli.githubStars !== null ? <div>{formatCompactNumber(cli.githubStars)} GitHub stars</div> : null}
+                  {formatMetric(cli.metricValue, cli.metricLabel) ? (
+                    <div className="mt-1 font-mono text-xs text-white/34">{formatMetric(cli.metricValue, cli.metricLabel)}</div>
+                  ) : (
+                    <div className="mt-1 font-mono text-xs text-white/28">No exact install metric yet</div>
+                  )}
                 </div>
               </Link>
             ))}

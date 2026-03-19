@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { SiteHeader } from "@/components/site-header";
 import { makers, officialClis } from "@/data/clis";
-import { formatCompactNumber } from "@/lib/format";
+import { formatCompactNumber, formatMetric } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "Official CLIs • Open CLI",
@@ -83,12 +83,12 @@ export default function OfficialPage() {
                         <div className="text-base font-medium text-white">{cli.shortName}</div>
                         <div className="mt-1 text-xs text-white/36">{cli.name}</div>
                       </div>
-                      <div className="font-mono text-xs text-white/36">{formatCompactNumber(cli.score)}</div>
+                      <div className="font-mono text-xs text-white/36">{cli.githubStars !== null ? formatCompactNumber(cli.githubStars) : "—"}</div>
                     </div>
                     <p className="mt-3 text-sm leading-6 text-white/52">{cli.tagline}</p>
-                    <div className="mt-4 flex items-center justify-between gap-3 text-xs text-white/34">
-                      <span>{formatCompactNumber(cli.monthlyDownloads)} adoption</span>
-                      <span>{formatCompactNumber(cli.stars)} stars</span>
+                    <div className="mt-4 space-y-1 text-xs text-white/34">
+                      {formatMetric(cli.metricValue, cli.metricLabel) ? <div>{formatMetric(cli.metricValue, cli.metricLabel)}</div> : <div>No exact install metric yet</div>}
+                      <div>{cli.githubStars !== null ? `${formatCompactNumber(cli.githubStars)} GitHub stars` : "GitHub stars unavailable"}</div>
                     </div>
                   </Link>
                 ))}

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 import { SiteHeader } from "@/components/site-header";
 import { getClisByMaker, getMakerBySlug, makers } from "@/data/clis";
-import { formatCompactNumber } from "@/lib/format";
+import { formatCompactNumber, formatMetric } from "@/lib/format";
 
 type MakerPageProps = {
   params: Promise<{ slug: string }>;
@@ -96,7 +96,7 @@ export default async function MakerPage({ params }: MakerPageProps) {
             <div>
               <div className="text-sm text-white/36">Combined stars</div>
               <div className="mt-1 text-2xl font-medium text-white">
-                {formatCompactNumber(makerClis.reduce((sum, cli) => sum + cli.stars, 0))}
+                {formatCompactNumber(makerClis.reduce((sum, cli) => sum + (cli.githubStars ?? 0), 0))}
               </div>
             </div>
           </div>
@@ -120,8 +120,8 @@ export default async function MakerPage({ params }: MakerPageProps) {
                   <code className="mt-2 block font-mono text-xs text-white/34">{cli.installCommand}</code>
                 </div>
                 <div className="text-sm text-white/38 md:text-right">
-                  <div>{formatCompactNumber(cli.monthlyDownloads)} adoption</div>
-                  <div>{formatCompactNumber(cli.stars)} stars</div>
+                  <div>{cli.githubStars !== null ? `${formatCompactNumber(cli.githubStars)} stars` : "Stars unavailable"}</div>
+                  <div>{formatMetric(cli.metricValue, cli.metricLabel) ?? "No exact install metric yet"}</div>
                 </div>
               </Link>
             ))}

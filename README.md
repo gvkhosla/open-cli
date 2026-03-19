@@ -2,18 +2,17 @@
 
 [opencli.co](https://opencli.co) is a curated directory of command-line tools.
 
-It helps people:
-- discover useful terminal apps
-- compare popularity and momentum
-- copy install commands
-- understand what to run first
-- spot new launches from respected builders
+It is built around a simple idea:
+- find a useful CLI
+- copy the install command
+- run the first real command
+- understand who built it
+- see exact source-labeled metrics when available
 
 ## Stack
 - Next.js
 - TypeScript
 - Tailwind CSS
-- shadcn/ui
 - Vercel
 
 ## Local development
@@ -23,45 +22,72 @@ npm install
 npm run dev
 ```
 
-## Deploy
-Open CLI is deployed on Vercel and connected to GitHub for automatic production and preview deployments.
+## Core content files
 
-## Content workflow
+- Makers: `src/content/makers.json`
+- CLI directory: `src/content/clis.json`
+- Exact metrics cache: `src/content/cli-metrics.json`
+- Builder launches: `src/content/builder-launches.json`
 
-Builder launches are stored in:
-- `src/content/builder-launches.json`
+## Data philosophy
 
-Use this template when adding a new launch:
-- `src/content/builder-launch-template.json`
+Open CLI keeps two kinds of data separate:
 
-You can also submit a launch from the site:
-- `https://opencli.co/submit`
+### 1. Editorial data
+Curated by hand:
+- name
+- maker
+- category
+- install command
+- docs links
+- aliases
+- tags
+- use cases
+- agent-readiness notes
 
-## Admin and Supabase
+### 2. Exact metrics
+Fetched by script and stored in git:
+- GitHub stars
+- latest release activity
+- license
+- npm weekly downloads
+- Homebrew installs (30d)
+- crates recent downloads
 
-Optional env vars:
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`
-- `GITHUB_TOKEN`
-- `ADMIN_USERNAME`
-- `ADMIN_PASSWORD`
+If Open CLI cannot fetch an exact install metric for a tool, it does not invent one.
 
-Files:
-- Supabase schema: `supabase/schema.sql`
-- Env example: `.env.example`
-- Admin page: `https://opencli.co/admin`
+## Refresh metrics
 
-If Supabase is configured:
-- builder launches can be read from Supabase
-- launch submissions can be stored in Supabase
-- the admin page can sync npm + GitHub metadata into Supabase
+```bash
+npm run sync:metrics
+```
 
-If `ADMIN_USERNAME` and `ADMIN_PASSWORD` are set:
-- `/admin` is protected behind a login page
-- `/api/sync-launches` is protected too
+This updates `src/content/cli-metrics.json` using:
+- GitHub API
+- npm downloads API
+- Homebrew formula API
+- crates.io API
+
+The script prefers `GITHUB_TOKEN`, and falls back to `gh auth token` if available.
+
+## Discover more builder-made CLIs
+
+```bash
+npm run discover:maker -- steipete
+```
+
+This prints candidate repos and npm packages for a maker so you can review them before adding them to the directory.
+
+## Submit a CLI
+
+Use the public submit flow:
+- https://opencli.co/submit
+
+That keeps the project easy to contribute to without adding a heavy backend.
 
 ## Links
 - Production: https://opencli.co
+- Official tools: https://opencli.co/official
+- Makers: https://opencli.co/makers
 - Submit: https://opencli.co/submit
-- Vercel project: https://open-cli.vercel.app
 - GitHub: https://github.com/gvkhosla/open-cli

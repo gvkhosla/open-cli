@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { CopyButton } from "@/components/copy-button";
 import { SiteHeader } from "@/components/site-header";
 import { clis, getCliBySlug, getRelatedClis } from "@/data/clis";
-import { formatCompactNumber } from "@/lib/format";
+import { formatCompactNumber, formatMetric } from "@/lib/format";
 
 type CliPageProps = {
   params: Promise<{ slug: string }>;
@@ -93,20 +93,25 @@ export default async function CliPage({ params }: CliPageProps) {
 
           <div className="space-y-4 border-l border-white/8 pl-0 lg:pl-6">
             <div>
-              <div className="text-sm text-white/36">Score</div>
-              <div className="mt-1 text-3xl font-medium text-white">{cli.score}</div>
-            </div>
-            <div>
               <div className="text-sm text-white/36">GitHub stars</div>
-              <div className="mt-1 text-3xl font-medium text-white">{formatCompactNumber(cli.stars)}</div>
+              <div className="mt-1 text-3xl font-medium text-white">
+                {cli.githubStars !== null ? formatCompactNumber(cli.githubStars) : "—"}
+              </div>
             </div>
             <div>
-              <div className="text-sm text-white/36">Adoption signal</div>
-              <div className="mt-1 text-3xl font-medium text-white">{formatCompactNumber(cli.monthlyDownloads)}</div>
+              <div className="text-sm text-white/36">Verified install metric</div>
+              <div className="mt-1 text-lg text-white">
+                {formatMetric(cli.metricValue, cli.metricLabel) ?? "Not available yet"}
+              </div>
+              {cli.metricSource ? <div className="mt-1 text-xs text-white/34">Source: {cli.metricSource}</div> : null}
             </div>
             <div>
-              <div className="text-sm text-white/36">Maker</div>
-              <div className="mt-1 text-lg text-white">{cli.makerName}</div>
+              <div className="text-sm text-white/36">Latest release activity</div>
+              <div className="mt-1 text-lg text-white">{cli.latestRelease ? new Date(cli.latestRelease).toLocaleDateString() : "Unknown"}</div>
+            </div>
+            <div>
+              <div className="text-sm text-white/36">License</div>
+              <div className="mt-1 text-lg text-white">{cli.license ?? "Unknown"}</div>
             </div>
           </div>
         </section>

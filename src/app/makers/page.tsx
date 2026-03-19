@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { SiteHeader } from "@/components/site-header";
 import { featuredMakers, getClisByMaker, makers } from "@/data/clis";
-import { formatCompactNumber } from "@/lib/format";
+import { formatCompactNumber, formatMetric } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "Makers • Open CLI",
@@ -76,7 +76,9 @@ export default function MakersPage() {
                   {clis.map((cli) => (
                     <div key={cli.slug} className="flex items-center justify-between gap-3">
                       <span>{cli.shortName}</span>
-                      <span className="font-mono text-xs text-white/30">{formatCompactNumber(cli.monthlyDownloads)}</span>
+                      <span className="font-mono text-xs text-white/30">
+                        {formatMetric(cli.metricValue, cli.metricLabel) ?? (cli.githubStars !== null ? `${formatCompactNumber(cli.githubStars)}★` : "—")}
+                      </span>
                     </div>
                   ))}
                 </div>

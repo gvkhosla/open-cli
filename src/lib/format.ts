@@ -5,6 +5,14 @@ export function formatCompactNumber(value: number) {
   }).format(value);
 }
 
+export function formatMetric(value: number | null, label: string | null) {
+  if (value === null || !label) {
+    return null;
+  }
+
+  return `${formatCompactNumber(value)} ${label}`;
+}
+
 export function titleCase(value: string) {
   return value.replace(/(^|\s)\S/g, (char) => char.toUpperCase());
 }

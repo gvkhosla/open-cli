@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync:metrics": "node scripts/sync-cli-metrics.mjs",
+    "discover:maker": "node scripts/discover-maker-clis.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.99.2",
