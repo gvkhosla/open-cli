@@ -5,10 +5,11 @@ import { useMemo, useState } from "react";
 
 import { CliLogoMarquee } from "@/components/cli-logo-marquee";
 import { CopyButton } from "@/components/copy-button";
-import { leaderboardClis, type BuilderLaunch } from "@/data/clis";
+import { builderClis, categories, officialClis, searchClis, type BuilderLaunch, type CliCategory } from "@/data/clis";
 import { formatCompactNumber } from "@/lib/format";
 
-type Mode = "all" | "trending";
+type DirectoryMode = "all" | "official" | "builders" | "agent-friendly";
+type CategoryFilter = "All" | CliCategory;
 type QuickExample = {
   id: string;
   label: string;
@@ -37,32 +38,25 @@ const quickExamples: QuickExample[] = [
   },
 ];
 
+const modeOptions: Array<{ value: DirectoryMode; label: string }> = [
+  { value: "all", label: "All" },
+  { value: "official", label: "Official" },
+  { value: "builders", label: "Builders" },
+  { value: "agent-friendly", label: "Agent-friendly" },
+];
+
 type HomeViewProps = {
   builderLaunches: BuilderLaunch[];
 };
 
 export function HomeView({ builderLaunches }: HomeViewProps) {
   const [search, setSearch] = useState("");
-  const [mode, setMode] = useState<Mode>("all");
+  const [mode, setMode] = useState<DirectoryMode>("all");
+  const [category, setCategory] = useState<CategoryFilter>("All");
   const [activeExample, setActiveExample] = useState<QuickExample>(quickExamples[0]);
 
-  const filteredClis = useMemo(() => {
-    const base = [...leaderboardClis].sort((a, b) => {
-      if (mode === "trending") {
-        return b.trendingAmount - a.trendingAmount;
-      }
-
-      return b.score - a.score;
-    });
-
-    return base.filter((cli) => {
-      const haystack = [cli.name, cli.shortName, cli.tagline, cli.category, ...cli.useCases]
-        .join(" ")
-        .toLowerCase();
-
-      return haystack.includes(search.toLowerCase());
-    });
-  }, [mode, search]);
+  const filteredClis = useMemo(() => searchClis(search, { mode, category }), [category, mode, search]);
+  const categoryOptions = useMemo(() => ["All", ...categories] as CategoryFilter[], []);
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pt-8">
@@ -70,19 +64,24 @@ export function HomeView({ builderLaunches }: HomeViewProps) {
         <div className="space-y-4">
           <div className="section-kicker">The Open CLI Ecosystem</div>
           <h1 className="max-w-4xl text-5xl font-medium tracking-[-0.06em] text-white sm:text-6xl lg:text-7xl lg:leading-[0.95]">
-            Find terminal apps you can install in seconds and use right away.
+            Find the right CLI for the job, from official tools to indie builder gems.
           </h1>
-          <p className="max-w-2xl text-lg leading-8 text-white/56">
-            A CLI is just an app you use in Terminal. Type one command to install it. Type another to run
-            it. That is often faster than clicking through a website or dashboard.
+          <p className="max-w-3xl text-lg leading-8 text-white/56">
+            Open CLI is a curated directory of terminal tools. Search by task, company, builder, package, or
+            binary name, then copy the install command and run the first useful command right away.
           </p>
+          <div className="flex flex-wrap gap-4 pt-2 font-mono text-xs uppercase tracking-[0.18em] text-white/34">
+            <span>{formatCompactNumber(filteredClis.length)} matching now</span>
+            <span>{formatCompactNumber(officialClis.length)} official</span>
+            <span>{formatCompactNumber(builderClis.length)} from builders</span>
+          </div>
         </div>
 
         <div className="panel-texture rounded-[20px] border border-white/8 p-4">
           <div className="section-kicker">Try it now</div>
           <p className="mt-3 text-sm leading-6 text-white/48">
-            These are example CLIs, not a recommendation for one stack. Switch between GitHub, Vercel, and
-            uv to see how different tools are installed and started.
+            Switch between a few different kinds of CLIs to see how quickly you can install something and get
+            to the first meaningful command.
           </p>
 
           <div className="mt-4 flex gap-2 font-mono text-xs text-white/46">
@@ -129,10 +128,10 @@ export function HomeView({ builderLaunches }: HomeViewProps) {
         <div className="flex items-end justify-between gap-4">
           <div>
             <div className="section-kicker">Latest from builders</div>
-            <h2 className="mt-3 text-2xl font-medium tracking-tight text-white">Latest tools from builders we follow.</h2>
+            <h2 className="mt-3 text-2xl font-medium tracking-tight text-white">New tools from builders we follow.</h2>
           </div>
           <Link href="/submit" className="hidden text-sm text-white/42 transition hover:text-white sm:inline">
-            Submit a launch →
+            Submit a CLI →
           </Link>
         </div>
 
@@ -181,7 +180,17 @@ export function HomeView({ builderLaunches }: HomeViewProps) {
       </section>
 
       <section className="space-y-4">
-        <div className="section-kicker">CLI Leaderboard</div>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <div className="section-kicker">Directory</div>
+            <h2 className="mt-3 text-2xl font-medium tracking-tight text-white">
+              Search by task, maker, binary, package, or what you want your agent to do.
+            </h2>
+          </div>
+          <Link href="/official" className="text-sm text-white/42 transition hover:text-white">
+            Browse official tools →
+          </Link>
+        </div>
 
         <div className="relative">
           <span className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-4 text-white/24">
@@ -190,61 +199,90 @@ export function HomeView({ builderLaunches }: HomeViewProps) {
           <input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Search by name, company, or what you want to do..."
+            placeholder="Search gh, Peter Steinberger, browser automation, postgres, deploy previews..."
             className="h-12 w-full rounded-none border-x-0 border-t-0 border-b border-white/12 bg-transparent pl-11 pr-4 text-sm text-white outline-none placeholder:text-white/28 focus:border-[var(--accent-lilac)]"
           />
         </div>
 
-        <div className="flex gap-4 font-mono text-sm text-white/48">
-          <button
-            type="button"
-            onClick={() => setMode("all")}
-            className={`border-b pb-1 transition ${
-              mode === "all" ? "border-white text-white" : "border-transparent hover:text-white"
-            }`}
-          >
-            All Time
-          </button>
-          <button
-            type="button"
-            onClick={() => setMode("trending")}
-            className={`border-b pb-1 transition ${
-              mode === "trending" ? "border-[var(--accent-peach)] text-white" : "border-transparent hover:text-white"
-            }`}
-          >
-            Trending
-          </button>
+        <div className="flex flex-wrap gap-2 font-mono text-xs text-white/48">
+          {modeOptions.map((option) => (
+            <button
+              key={option.value}
+              type="button"
+              onClick={() => setMode(option.value)}
+              className={`rounded-full border px-3 py-1.5 transition ${
+                mode === option.value
+                  ? "border-[var(--accent-lilac)] text-white"
+                  : "border-white/8 hover:border-white/16 hover:text-white"
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap gap-2 font-mono text-xs text-white/42">
+          {categoryOptions.map((option) => (
+            <button
+              key={option}
+              type="button"
+              onClick={() => setCategory(option)}
+              className={`rounded-full border px-3 py-1.5 transition ${
+                category === option
+                  ? "border-[var(--accent-peach)] text-white"
+                  : "border-white/8 hover:border-white/16 hover:text-white"
+              }`}
+            >
+              {option}
+            </button>
+          ))}
         </div>
 
         <div className="overflow-hidden border-y border-white/8">
-          <div className="hidden grid-cols-[64px_minmax(0,1fr)_140px_120px] gap-4 border-b border-white/8 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-white/38 md:grid">
+          <div className="hidden grid-cols-[64px_minmax(0,1.2fr)_180px_120px] gap-4 border-b border-white/8 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-white/38 md:grid">
             <div>#</div>
             <div>CLI</div>
-            <div>Downloads</div>
+            <div>Maker</div>
             <div className="text-right">Score</div>
           </div>
 
           {filteredClis.length === 0 ? (
             <div className="py-8 text-sm text-white/42">
-              No CLIs matched your search. Try a tool name like gh or vercel, or search for something like deploy or AI.
+              No CLIs matched your search yet. Try a tool name, a builder, or a job like scrape, deploy, git,
+              browser automation, or local models.
             </div>
           ) : null}
 
-          {filteredClis.map((cli, index) => (
+          {filteredClis.slice(0, 40).map((cli, index) => (
             <Link
               key={cli.slug}
               href={`/cli/${cli.slug}`}
-              className="grid gap-2 border-b border-white/6 py-4 transition last:border-b-0 hover:bg-white/[0.02] md:grid-cols-[64px_minmax(0,1fr)_140px_120px] md:items-center md:gap-4"
+              className="grid gap-2 border-b border-white/6 py-4 transition last:border-b-0 hover:bg-white/[0.02] md:grid-cols-[64px_minmax(0,1.2fr)_180px_120px] md:items-center md:gap-4"
             >
               <div className="font-mono text-sm text-white/34">{String(index + 1).padStart(2, "0")}</div>
               <div>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <span className="text-base font-medium text-white">{cli.shortName}</span>
                   <span className="font-mono text-xs text-white/32">{cli.name}</span>
+                  {cli.official ? (
+                    <span className="rounded-full border border-white/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.16em] text-white/46">
+                      Official
+                    </span>
+                  ) : null}
+                  {cli.agentFriendly ? (
+                    <span className="rounded-full border border-white/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.16em] text-white/46">
+                      Agent
+                    </span>
+                  ) : null}
                 </div>
                 <p className="mt-1 text-sm text-white/44">{cli.tagline}</p>
               </div>
-              <div className="text-sm text-white/52">{formatCompactNumber(cli.monthlyDownloads)}</div>
+              <div>
+                <div className="text-sm text-white/58">{cli.makerName}</div>
+                <div className="mt-1 font-mono text-xs text-white/32">
+                  {formatCompactNumber(cli.monthlyDownloads)} adoption
+                </div>
+              </div>
               <div className="flex items-center justify-between md:justify-end md:gap-4">
                 <span className="text-sm text-[var(--accent-peach)]">+{cli.trendingAmount}%</span>
                 <span className="text-base font-medium text-white">{cli.score}</span>
@@ -254,7 +292,8 @@ export function HomeView({ builderLaunches }: HomeViewProps) {
         </div>
 
         <div className="text-sm text-white/36">
-          Open any CLI to see how to install it, what to run first, and a few simple example commands.
+          Open any CLI to see install commands, quick starts, trust signals, agent-readiness notes, and related
+          tools from the same maker or workflow.
         </div>
       </section>
     </div>
