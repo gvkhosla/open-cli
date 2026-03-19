@@ -47,6 +47,9 @@ type CliSeed = {
   website?: string;
   docs?: string;
   packageName?: string;
+  bestFor?: string;
+  useThisIf?: string;
+  skipIf?: string;
   useCases: string[];
   aliases?: string[];
   keywords?: string[];
@@ -97,6 +100,10 @@ export type CliEntry = {
   docs: string;
   githubRepo: string;
   packageName?: string;
+  bestFor: string;
+  useThisIf: string;
+  skipIf: string;
+  whatHappensNext: string;
   featured?: boolean;
   agentFriendly: boolean;
   supportsJsonOutput: boolean;
@@ -154,6 +161,108 @@ function buildDescription(seed: CliSeed, maker: Maker) {
   return `${seed.name} comes from ${maker.name} and is useful for ${useCases}. ${buildTagline(seed)}`;
 }
 
+function toSentenceList(values: string[], limit = 2) {
+  const items = values
+    .slice(0, limit)
+    .map((value) => value.toLowerCase())
+    .filter(Boolean);
+
+  if (items.length === 0) {
+    return "terminal work";
+  }
+
+  if (items.length === 1) {
+    return items[0];
+  }
+
+  if (items.length === 2) {
+    return `${items[0]} and ${items[1]}`;
+  }
+
+  return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
+}
+
+function categoryWorkflowLabel(category: CliCategory) {
+  switch (category) {
+    case "AI":
+      return "AI workflows";
+    case "Browser Automation":
+      return "browser automation";
+    case "Cloud":
+      return "cloud workflows";
+    case "Containers / Infra":
+      return "infra work";
+    case "Data":
+      return "data workflows";
+    case "Database":
+      return "database work";
+    case "Deploy":
+      return "deploy workflows";
+    case "Docs / Content":
+      return "docs and content workflows";
+    case "Git":
+      return "git workflows";
+    case "Observability":
+      return "observability work";
+    case "Package Management":
+      return "package and build workflows";
+    case "Productivity":
+      return "productivity workflows";
+    case "Scraping":
+      return "scraping workflows";
+    case "Security":
+      return "security workflows";
+    case "Shell Utilities":
+      return "shell workflows";
+    default:
+      return "terminal workflows";
+  }
+}
+
+function buildBestFor(seed: CliSeed) {
+  return seed.bestFor ?? `Best for ${toSentenceList(seed.useCases)}.`;
+}
+
+function buildUseThisIf(seed: CliSeed, maker: Maker) {
+  if (seed.useThisIf) {
+    return seed.useThisIf;
+  }
+
+  if (maker.officialPlatformMaker) {
+    return `Use this if you want ${maker.name}'s own CLI for ${toSentenceList(seed.useCases)}.`;
+  }
+
+  if (seed.agentFriendly) {
+    return `Use this if you want ${toSentenceList(seed.useCases)} in a scriptable terminal workflow.`;
+  }
+
+  return `Use this if you want ${toSentenceList(seed.useCases)} without leaving the terminal.`;
+}
+
+function buildSkipIf(seed: CliSeed) {
+  if (seed.skipIf) {
+    return seed.skipIf;
+  }
+
+  if (seed.destructivePotential === "high") {
+    return "Skip this if you want a lower-risk CLI to learn on first.";
+  }
+
+  if (seed.requiresAuth) {
+    return "Skip this if you need something that works without signing in.";
+  }
+
+  if (seed.requiresNetwork ?? true) {
+    return "Skip this if you want a tool that mostly works offline.";
+  }
+
+  return `Skip this if you need something outside ${categoryWorkflowLabel(seed.category)}.`;
+}
+
+function buildWhatHappensNext(seed: CliSeed) {
+  return `After the first command, you can ${toSentenceList(seed.useCases, 3)}.`;
+}
+
 function popularityValue(cli: CliEntry) {
   return (cli.metricValue ?? 0) + (cli.githubStars ?? 0);
 }
@@ -190,6 +299,10 @@ function createCli(seed: CliSeed): CliEntry {
     docs: seed.docs ?? seed.website ?? `https://github.com/${seed.githubRepo}`,
     githubRepo: seed.githubRepo,
     packageName: seed.packageName,
+    bestFor: buildBestFor(seed),
+    useThisIf: buildUseThisIf(seed, maker),
+    skipIf: buildSkipIf(seed),
+    whatHappensNext: buildWhatHappensNext(seed),
     featured: seed.featured,
     agentFriendly: seed.agentFriendly ?? false,
     supportsJsonOutput: seed.supportsJsonOutput ?? false,
@@ -263,6 +376,23 @@ export function getRelatedClis(cli: CliEntry, limit = 4) {
       return { candidate, score };
     })
     .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || popularityValue(b.candidate) - popularityValue(a.candidate))
+    .slice(0, limit)
+    .map((item) => item.candidate);
+}
+
+export function getAlternativeClis(cli: CliEntry, limit = 3) {
+  return clis
+    .filter((candidate) => candidate.slug !== cli.slug && candidate.category === cli.category)
+    .map((candidate) => {
+      let score = 0;
+      if (candidate.makerSlug !== cli.makerSlug) score += 4;
+      score += candidate.useCases.filter((useCase) => cli.useCases.includes(useCase)).length * 2;
+      score += candidate.tags.filter((tag) => cli.tags.includes(tag)).length;
+      score += Math.min(6, Math.round((candidate.metricValue ?? 0) / 100000));
+      score += Math.min(4, Math.round((candidate.githubStars ?? 0) / 10000));
+      return { candidate, score };
+    })
     .sort((a, b) => b.score - a.score || popularityValue(b.candidate) - popularityValue(a.candidate))
     .slice(0, limit)
     .map((item) => item.candidate);

@@ -4,8 +4,8 @@ import { notFound } from "next/navigation";
 
 import { CopyButton } from "@/components/copy-button";
 import { SiteHeader } from "@/components/site-header";
-import { clis, getCliBySlug, getRelatedClis } from "@/data/clis";
-import { formatCompactNumber, formatMetric } from "@/lib/format";
+import { clis, getAlternativeClis, getCliBySlug, getRelatedClis } from "@/data/clis";
+import { formatCompactNumber } from "@/lib/format";
 
 type CliPageProps = {
   params: Promise<{ slug: string }>;
@@ -40,6 +40,15 @@ function AgentSignal({ label, value }: { label: string; value: string }) {
   );
 }
 
+function DecisionCard({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-[16px] border border-white/8 bg-[#0b0c0e]/65 p-4">
+      <div className="text-xs uppercase tracking-[0.16em] text-white/28">{label}</div>
+      <p className="mt-3 text-sm leading-7 text-white/68">{value}</p>
+    </div>
+  );
+}
+
 export default async function CliPage({ params }: CliPageProps) {
   const { slug } = await params;
   const cli = getCliBySlug(slug);
@@ -49,6 +58,7 @@ export default async function CliPage({ params }: CliPageProps) {
   }
 
   const relatedClis = getRelatedClis(cli);
+  const alternativeClis = getAlternativeClis(cli);
 
   return (
     <>
@@ -80,6 +90,7 @@ export default async function CliPage({ params }: CliPageProps) {
                 {cli.makerName}
               </Link>
             </div>
+            <p className="text-base font-medium text-[var(--accent-peach)]">{cli.bestFor}</p>
             <p className="max-w-3xl text-lg leading-8 text-white/56">{cli.description}</p>
 
             <div className="flex flex-wrap gap-2 pt-1">
@@ -93,17 +104,22 @@ export default async function CliPage({ params }: CliPageProps) {
 
           <div className="space-y-4 border-l border-white/8 pl-0 lg:pl-6">
             <div>
-              <div className="text-sm text-white/36">GitHub stars</div>
-              <div className="mt-1 text-3xl font-medium text-white">
-                {cli.githubStars !== null ? formatCompactNumber(cli.githubStars) : "—"}
-              </div>
+              <div className="text-sm text-white/36">Primary metric</div>
+              {cli.metricValue !== null && cli.metricLabel ? (
+                <>
+                  <div className="mt-1 text-3xl font-medium text-[var(--accent-peach)]">{formatCompactNumber(cli.metricValue)}</div>
+                  <div className="mt-1 font-mono text-xs uppercase tracking-[0.18em] text-[#d8ab86]">{cli.metricLabel}</div>
+                </>
+              ) : (
+                <div className="mt-1 text-lg text-white">Exact install metric not available yet</div>
+              )}
+              {cli.metricSource ? <div className="mt-2 text-xs text-white/34">Source: {cli.metricSource}</div> : null}
             </div>
             <div>
-              <div className="text-sm text-white/36">Verified install metric</div>
-              <div className="mt-1 text-lg text-white">
-                {formatMetric(cli.metricValue, cli.metricLabel) ?? "Not available yet"}
+              <div className="text-sm text-white/36">GitHub stars</div>
+              <div className="mt-1 text-2xl font-medium text-white">
+                {cli.githubStars !== null ? formatCompactNumber(cli.githubStars) : "—"}
               </div>
-              {cli.metricSource ? <div className="mt-1 text-xs text-white/34">Source: {cli.metricSource}</div> : null}
             </div>
             <div>
               <div className="text-sm text-white/36">Latest release activity</div>
@@ -114,6 +130,12 @@ export default async function CliPage({ params }: CliPageProps) {
               <div className="mt-1 text-lg text-white">{cli.license ?? "Unknown"}</div>
             </div>
           </div>
+        </section>
+
+        <section className="grid gap-4 md:grid-cols-3">
+          <DecisionCard label="Use this if" value={cli.useThisIf} />
+          <DecisionCard label="Skip this if" value={cli.skipIf} />
+          <DecisionCard label="What happens next" value={cli.whatHappensNext} />
         </section>
 
         <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_300px]">
@@ -136,6 +158,7 @@ export default async function CliPage({ params }: CliPageProps) {
                 </code>
                 <CopyButton compact value={cli.quickStart} label="Copy run" />
               </div>
+              <p className="mt-3 text-sm text-white/44">{cli.whatHappensNext}</p>
             </div>
 
             <div>
@@ -187,10 +210,22 @@ export default async function CliPage({ params }: CliPageProps) {
 
             <div>
               <div className="section-kicker">Why it stands out</div>
-              <p className="mt-4 text-sm leading-7 text-white/48">
-                A practical CLI with a clear install path and a useful first command.
-              </p>
+              <p className="mt-4 text-sm leading-7 text-white/48">{cli.bestFor}</p>
             </div>
+
+            {alternativeClis.length > 0 ? (
+              <div>
+                <div className="section-kicker">Alternatives</div>
+                <div className="mt-4 space-y-3 border-y border-white/8 py-3">
+                  {alternativeClis.map((alternative) => (
+                    <Link key={alternative.slug} href={`/cli/${alternative.slug}`} className="block transition hover:text-white">
+                      <div className="text-sm text-white">{alternative.shortName}</div>
+                      <div className="mt-1 text-sm text-white/42">{alternative.bestFor}</div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
 
             {relatedClis.length > 0 ? (
               <div>

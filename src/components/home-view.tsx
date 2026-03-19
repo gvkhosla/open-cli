@@ -38,6 +38,15 @@ const quickExamples: QuickExample[] = [
   },
 ];
 
+const taskShortcuts = [
+  "deploy",
+  "git",
+  "postgres",
+  "browser automation",
+  "local models",
+  "scrape",
+];
+
 export function HomeView({}: { builderLaunches?: BuilderLaunch[] }) {
   const [search, setSearch] = useState("");
   const [mode] = useState<DirectoryMode>("all");
@@ -153,6 +162,21 @@ export function HomeView({}: { builderLaunches?: BuilderLaunch[] }) {
           />
         </div>
 
+        <div className="flex flex-wrap items-center gap-2 text-sm text-white/40">
+          <span className="mr-1 text-white/28">Try:</span>
+          {taskShortcuts.map((shortcut) => (
+            <button
+              key={shortcut}
+              type="button"
+              onClick={() => setSearch(shortcut)}
+              className="rounded-full border border-white/8 px-3 py-1.5 font-mono text-xs text-white/46 transition hover:border-white/16 hover:text-white"
+            >
+              {shortcut}
+            </button>
+          ))}
+        </div>
+
+        <div className="text-xs text-white/28">Ranked by exact install or adoption metric when available.</div>
 
         <div className="overflow-hidden border-y border-white/8">
           <div className="hidden grid-cols-[64px_minmax(0,1.2fr)_220px_140px] gap-4 border-b border-white/8 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-white/38 md:grid">
@@ -191,7 +215,7 @@ export function HomeView({}: { builderLaunches?: BuilderLaunch[] }) {
                     </span>
                   ) : null}
                 </div>
-                <p className="mt-1 text-sm text-white/44">{cli.tagline}</p>
+                <p className="mt-1 text-sm text-white/44">{cli.bestFor}</p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {getSearchHighlights(cli, search).map((highlight) => (
                     <span key={highlight} className="rounded-full border border-white/8 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-white/34">
@@ -226,7 +250,7 @@ export function HomeView({}: { builderLaunches?: BuilderLaunch[] }) {
         </div>
 
         <div className="text-sm text-white/36">
-          Open any CLI to see install, quick start, verified data, and related tools.
+          Open any CLI to see install, fit, quick start, verified data, and alternatives.
         </div>
       </section>
     </div>
