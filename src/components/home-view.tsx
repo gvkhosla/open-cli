@@ -7,7 +7,6 @@ import { CliLogoMarquee } from "@/components/cli-logo-marquee";
 import { CopyButton } from "@/components/copy-button";
 import {
   builderClis,
-  categories,
   getSearchHighlights,
   officialClis,
   searchClis,
@@ -46,25 +45,17 @@ const quickExamples: QuickExample[] = [
   },
 ];
 
-const modeOptions: Array<{ value: DirectoryMode; label: string }> = [
-  { value: "all", label: "All" },
-  { value: "official", label: "Official" },
-  { value: "builders", label: "Builders" },
-  { value: "agent-friendly", label: "Agent-friendly" },
-];
-
 type HomeViewProps = {
   builderLaunches: BuilderLaunch[];
 };
 
 export function HomeView({ builderLaunches }: HomeViewProps) {
   const [search, setSearch] = useState("");
-  const [mode, setMode] = useState<DirectoryMode>("all");
-  const [category, setCategory] = useState<CategoryFilter>("All");
+  const [mode] = useState<DirectoryMode>("all");
+  const [category] = useState<CategoryFilter>("All");
   const [activeExample, setActiveExample] = useState<QuickExample>(quickExamples[0]);
 
   const filteredClis = useMemo(() => searchClis(search, { mode, category }), [category, mode, search]);
-  const categoryOptions = useMemo(() => ["All", ...categories] as CategoryFilter[], []);
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pt-8">
@@ -191,9 +182,7 @@ export function HomeView({ builderLaunches }: HomeViewProps) {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="section-kicker">Directory</div>
-            <h2 className="mt-3 text-2xl font-medium tracking-tight text-white">
-              Search by task, maker, binary, package, or what you want your agent to do.
-            </h2>
+            <h2 className="mt-3 text-2xl font-medium tracking-tight text-white">Search CLIs</h2>
           </div>
           <div className="flex flex-wrap gap-4 text-sm text-white/42">
             <Link href="/official" className="transition hover:text-white">
@@ -220,39 +209,6 @@ export function HomeView({ builderLaunches }: HomeViewProps) {
           />
         </div>
 
-        <div className="flex flex-wrap gap-2 font-mono text-xs text-white/48">
-          {modeOptions.map((option) => (
-            <button
-              key={option.value}
-              type="button"
-              onClick={() => setMode(option.value)}
-              className={`rounded-full border px-3 py-1.5 transition ${
-                mode === option.value
-                  ? "border-[var(--accent-lilac)] text-white"
-                  : "border-white/8 hover:border-white/16 hover:text-white"
-              }`}
-            >
-              {option.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap gap-2 font-mono text-xs text-white/42">
-          {categoryOptions.map((option) => (
-            <button
-              key={option}
-              type="button"
-              onClick={() => setCategory(option)}
-              className={`rounded-full border px-3 py-1.5 transition ${
-                category === option
-                  ? "border-[var(--accent-peach)] text-white"
-                  : "border-white/8 hover:border-white/16 hover:text-white"
-              }`}
-            >
-              {option}
-            </button>
-          ))}
-        </div>
 
         <div className="overflow-hidden border-y border-white/8">
           <div className="hidden grid-cols-[64px_minmax(0,1.2fr)_220px_140px] gap-4 border-b border-white/8 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-white/38 md:grid">
