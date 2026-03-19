@@ -1,8 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function AdminActions() {
+  const router = useRouter();
   const [state, setState] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState<string>("");
 
@@ -30,16 +32,31 @@ export function AdminActions() {
     }
   }
 
+  async function signOut() {
+    await fetch("/api/admin/login", { method: "DELETE" });
+    router.push("/admin/login");
+    router.refresh();
+  }
+
   return (
     <div className="space-y-3">
-      <button
-        type="button"
-        onClick={runSync}
-        className="inline-flex h-10 items-center justify-center rounded-md border border-[var(--accent-lilac)] bg-white/[0.03] px-4 text-sm text-white transition hover:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-60"
-        disabled={state === "loading"}
-      >
-        {state === "loading" ? "Syncing..." : "Sync latest launch data"}
-      </button>
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <button
+          type="button"
+          onClick={runSync}
+          className="inline-flex h-10 items-center justify-center rounded-md border border-[var(--accent-lilac)] bg-white/[0.03] px-4 text-sm text-white transition hover:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-60"
+          disabled={state === "loading"}
+        >
+          {state === "loading" ? "Syncing..." : "Sync latest launch data"}
+        </button>
+        <button
+          type="button"
+          onClick={signOut}
+          className="inline-flex h-10 items-center justify-center rounded-md border border-white/10 px-4 text-sm text-white/72 transition hover:border-white/18 hover:text-white"
+        >
+          Sign out
+        </button>
+      </div>
       {message ? (
         <div
           className={`text-sm ${

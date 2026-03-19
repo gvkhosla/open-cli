@@ -1,13 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-function unauthorizedResponse() {
-  return new NextResponse("Authentication required", {
-    status: 401,
-    headers: {
-      "WWW-Authenticate": 'Basic realm="Open CLI Admin"',
-    },
-  });
-}
+const ADMIN_COOKIE = "opencli_admin";
 
 export function middleware(request: NextRequest) {
   const adminUser = process.env.ADMIN_USERNAME;
@@ -17,20 +10,26 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const authHeader = request.headers.get("authorization");
-  if (!authHeader?.startsWith("Basic ")) {
-    return unauthorizedResponse();
+  const pathname = request.nextUrl.pathname;
+  const isLoginPage = pathname === "/admin/login";
+  const isLoginApi = pathname === "/api/admin/login";
+
+  if (isLoginPage || isLoginApi) {
+    return NextResponse.next();
   }
 
-  const encoded = authHeader.split(" ")[1] ?? "";
-  const decoded = atob(encoded);
-  const [username, password] = decoded.split(":");
-
-  if (username !== adminUser || password !== adminPassword) {
-    return unauthorizedResponse();
+  const cookie = request.cookies.get(ADMIN_COOKIE)?.value;
+  if (cookie === adminPassword) {
+    return NextResponse.next();
   }
 
-  return NextResponse.next();
+  if (pathname.startsWith("/api/")) {
+    return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  }
+
+  const loginUrl = new URL("/admin/login", request.url);
+  loginUrl.searchParams.set("next", pathname);
+  return NextResponse.redirect(loginUrl);
 }
 
 export const config = {

@@ -56,6 +56,10 @@ If Supabase is configured:
 - launch submissions can be stored in Supabase
 - the admin page can sync npm + GitHub metadata into Supabase
 
+If `ADMIN_USERNAME` and `ADMIN_PASSWORD` are set:
+- `/admin` is protected behind a login page
+- `/api/sync-launches` is protected too
+
 ## Links
 - Production: https://opencli.co
 - Submit: https://opencli.co/submit
