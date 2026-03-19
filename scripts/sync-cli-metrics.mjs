@@ -83,23 +83,16 @@ function inferCargoCrate(cli) {
   }
 
   const cargoCommand = cli.installCommand.match(/cargo install\s+([^\s]+)/);
-  if (cargoCommand) {
-    return cargoCommand[1];
-  }
-
-  return null;
+  return cargoCommand?.[1] ?? null;
 }
 
 function extractBrewInstall(cli) {
-  const explicitFormula = cli.brewFormula;
-  const explicitCask = cli.brewCask;
-
-  if (explicitCask) {
-    return { kind: "cask", token: explicitCask };
+  if (cli.brewCask) {
+    return { kind: "cask", token: cli.brewCask };
   }
 
-  if (explicitFormula) {
-    return { kind: "formula", token: explicitFormula };
+  if (cli.brewFormula) {
+    return { kind: "formula", token: cli.brewFormula };
   }
 
   const match = cli.installCommand.match(/brew install(\s+--cask)?\s+([^\s]+)/);
@@ -116,11 +109,9 @@ function extractBrewInstall(cli) {
 let brewIndexPromise = null;
 
 function addBrewLookup(map, key, value) {
-  if (!key) {
-    return;
+  if (key) {
+    map.set(key.toLowerCase(), value);
   }
-
-  map.set(key.toLowerCase(), value);
 }
 
 async function getBrewIndex() {
@@ -138,24 +129,15 @@ async function getBrewIndex() {
         const entry = { kind: "formula", token: item.name };
         addBrewLookup(formula, item.name, entry);
         addBrewLookup(formula, item.full_name, entry);
-
-        for (const alias of item.aliases ?? []) {
-          addBrewLookup(formula, alias, entry);
-        }
-
-        for (const oldName of item.oldnames ?? []) {
-          addBrewLookup(formula, oldName, entry);
-        }
+        for (const alias of item.aliases ?? []) addBrewLookup(formula, alias, entry);
+        for (const oldName of item.oldnames ?? []) addBrewLookup(formula, oldName, entry);
       }
 
       for (const item of casks ?? []) {
         const entry = { kind: "cask", token: item.token };
         addBrewLookup(cask, item.token, entry);
         addBrewLookup(cask, item.full_token, entry);
-
-        for (const oldToken of item.old_tokens ?? []) {
-          addBrewLookup(cask, oldToken, entry);
-        }
+        for (const oldToken of item.old_tokens ?? []) addBrewLookup(cask, oldToken, entry);
       }
 
       return { formula, cask };
@@ -258,6 +240,64 @@ async function fetchCrateMetric(crate) {
   };
 }
 
+async function fetchPyPiMetric(packageName) {
+  const encoded = encodeURIComponent(packageName);
+  const data = await fetchJson(`https://pypistats.org/api/packages/${encoded}/recent`);
+  const downloads = data?.data?.last_week;
+
+  if (typeof downloads !== "number") {
+    return null;
+  }
+
+  return {
+    metricLabel: "PyPI weekly downloads",
+    metricValue: downloads,
+    metricSource: "pypistats",
+  };
+}
+
+async function fetchDockerMetric(image) {
+  const encoded = image.split("/").map(encodeURIComponent).join("/");
+  const data = await fetchJson(`https://hub.docker.com/v2/repositories/${encoded}/`);
+  const pulls = data?.pull_count;
+
+  if (typeof pulls !== "number") {
+    return null;
+  }
+
+  return {
+    metricLabel: "Docker pulls",
+    metricValue: pulls,
+    metricSource: "docker-hub",
+  };
+}
+
+async function fetchGitHubReleaseMetric(repo) {
+  const releases = await fetchJson(`https://api.github.com/repos/${repo}/releases?per_page=10`, { headers: githubHeaders });
+  if (!Array.isArray(releases)) {
+    return null;
+  }
+
+  const release = releases.find(
+    (item) => !item?.draft && !item?.prerelease && Array.isArray(item?.assets) && item.assets.length > 0,
+  );
+
+  if (!release) {
+    return null;
+  }
+
+  const downloads = release.assets.reduce((sum, asset) => sum + (asset?.download_count ?? 0), 0);
+  if (downloads <= 0) {
+    return null;
+  }
+
+  return {
+    metricLabel: "GitHub release downloads (latest)",
+    metricValue: downloads,
+    metricSource: "github",
+  };
+}
+
 async function buildMetric(cli) {
   const github = await fetchGitHubMetrics(cli.githubRepo);
   let metric = null;
@@ -265,6 +305,8 @@ async function buildMetric(cli) {
   const npmPackage = inferNpmPackage(cli);
   const brewPackage = await resolveBrewPackage(cli);
   const cargoCrate = inferCargoCrate(cli);
+  const pypiPackage = cli.pypiPackage ?? null;
+  const dockerImage = cli.dockerImage ?? null;
 
   if (npmPackage) {
     metric = await fetchNpmMetric(npmPackage);
@@ -276,6 +318,18 @@ async function buildMetric(cli) {
 
   if (!metric && cargoCrate) {
     metric = await fetchCrateMetric(cargoCrate);
+  }
+
+  if (!metric && pypiPackage) {
+    metric = await fetchPyPiMetric(pypiPackage);
+  }
+
+  if (!metric && dockerImage) {
+    metric = await fetchDockerMetric(dockerImage);
+  }
+
+  if (!metric) {
+    metric = await fetchGitHubReleaseMetric(cli.githubRepo);
   }
 
   return {

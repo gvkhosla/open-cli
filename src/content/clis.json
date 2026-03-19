@@ -690,7 +690,8 @@
     "requiresNetwork": false,
     "ciFriendly": true,
     "destructivePotential": "high",
-    "brewFormula": "vault"
+    "brewFormula": "vault",
+    "dockerImage": "hashicorp/vault"
   },
   {
     "slug": "consul",
@@ -725,7 +726,8 @@
     "requiresNetwork": false,
     "ciFriendly": true,
     "destructivePotential": "medium",
-    "brewFormula": "consul"
+    "brewFormula": "consul",
+    "dockerImage": "hashicorp/consul"
   },
   {
     "slug": "nomad",
@@ -759,7 +761,8 @@
     "supportsNonInteractive": true,
     "ciFriendly": true,
     "destructivePotential": "high",
-    "brewFormula": "nomad"
+    "brewFormula": "nomad",
+    "dockerImage": "hashicorp/nomad"
   },
   {
     "slug": "pulumi",

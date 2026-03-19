@@ -53,6 +53,7 @@ type CliSeed = {
   crateName?: string;
   pypiPackage?: string;
   goPackage?: string;
+  dockerImage?: string;
   bestFor?: string;
   useThisIf?: string;
   skipIf?: string;

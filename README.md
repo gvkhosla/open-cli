@@ -44,7 +44,7 @@ Curated by hand:
 - tags
 - use cases
 - agent-readiness notes
-- explicit package source fields like `npmPackage`, `brewFormula`, `brewCask`, `crateName`, and `pypiPackage`
+- explicit package source fields like `npmPackage`, `brewFormula`, `brewCask`, `crateName`, `pypiPackage`, and `dockerImage`
 
 ### 2. Exact metrics
 Fetched by script and stored in git:
@@ -66,8 +66,12 @@ npm run sync:metrics
 This updates `src/content/cli-metrics.json` using:
 - GitHub API
 - npm downloads API
-- Homebrew formula API
+- Homebrew formula and cask APIs
 - crates.io API
+- pypistats API
+- Docker Hub API
+
+The sync script prefers explicit package source fields when they are present, and falls back to install-command inference, PyPI download stats, Docker pulls, and latest GitHub release downloads when needed.
 
 The script prefers `GITHUB_TOKEN`, and falls back to `gh auth token` if available.
 
@@ -92,4 +96,3 @@ That keeps the project easy to contribute to without adding a heavy backend.
 - Makers: https://opencli.co/makers
 - Submit: https://opencli.co/submit
 - GitHub: https://github.com/gvkhosla/open-cli
-ttps://github.com/gvkhosla/open-cli
