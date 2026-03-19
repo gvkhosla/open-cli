@@ -169,7 +169,7 @@ export function HomeView({}: { builderLaunches?: BuilderLaunch[] }) {
             </div>
           ) : null}
 
-          {filteredClis.slice(0, 40).map((cli, index) => (
+          {filteredClis.map((cli, index) => (
             <Link
               key={cli.slug}
               href={`/cli/${cli.slug}`}
