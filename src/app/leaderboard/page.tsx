@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 
 import { SiteHeader } from "@/components/site-header";
 import { categories, getSearchHighlights, searchClis, type CliCategory } from "@/data/clis";
-import { formatCompactNumber, formatMetric } from "@/lib/format";
+import { formatCompactNumber } from "@/lib/format";
 
 type DirectoryMode = "all" | "official" | "builders" | "agent-friendly";
 type CategoryFilter = "All" | CliCategory;
@@ -22,7 +22,20 @@ export default function LeaderboardPage() {
   const [mode, setMode] = useState<DirectoryMode>("all");
   const [category, setCategory] = useState<CategoryFilter>("All");
 
-  const filteredClis = useMemo(() => searchClis(search, { mode, category }), [category, mode, search]);
+  const filteredClis = useMemo(() => {
+    const results = searchClis(search, { mode, category });
+
+    if (search.trim()) {
+      return results;
+    }
+
+    return [...results].sort(
+      (a, b) =>
+        (b.metricValue ?? -1) - (a.metricValue ?? -1) ||
+        (b.githubStars ?? 0) - (a.githubStars ?? 0) ||
+        a.name.localeCompare(b.name),
+    );
+  }, [category, mode, search]);
   const categoryOptions = useMemo(() => ["All", ...categories] as CategoryFilter[], []);
 
   return (
@@ -92,7 +105,7 @@ export default function LeaderboardPage() {
               <div>#</div>
               <div>CLI</div>
               <div>Maker</div>
-              <div className="text-right">Verified data</div>
+              <div className="text-right">Primary metric</div>
             </div>
 
             {filteredClis.length === 0 ? (
@@ -133,13 +146,22 @@ export default function LeaderboardPage() {
                   </div>
                 </div>
                 <div className="text-sm text-white/52">{cli.makerName}</div>
-                <div className="text-sm text-white/52 md:text-right">
-                  {cli.githubStars !== null ? <div>{formatCompactNumber(cli.githubStars)} GitHub stars</div> : null}
-                  {formatMetric(cli.metricValue, cli.metricLabel) ? (
-                    <div className="mt-1 font-mono text-xs text-white/34">{formatMetric(cli.metricValue, cli.metricLabel)}</div>
+                <div className="text-sm md:text-right">
+                  {cli.metricValue !== null && cli.metricLabel ? (
+                    <div>
+                      <div className="text-base font-medium text-[var(--accent-peach)]">
+                        {formatCompactNumber(cli.metricValue)}
+                      </div>
+                      <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-[#d8ab86]">
+                        {cli.metricLabel}
+                      </div>
+                    </div>
                   ) : (
-                    <div className="mt-1 font-mono text-xs text-white/28">No exact install metric yet</div>
+                    <div className="font-mono text-xs text-white/28">No exact install metric yet</div>
                   )}
+                  {cli.githubStars !== null ? (
+                    <div className="mt-2 text-xs text-white/30">{formatCompactNumber(cli.githubStars)} GitHub stars</div>
+                  ) : null}
                 </div>
               </Link>
             ))}
