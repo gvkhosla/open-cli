@@ -47,6 +47,9 @@ export default function OfficialPage() {
                 Official CLIs: <span className="text-white">{officialClis.length}</span>
               </div>
               <div>
+                Browse by maker: <Link href="/makers" className="text-white underline underline-offset-4">see all makers</Link>
+              </div>
+              <div>
                 Community path: <Link href="/submit" className="text-white underline underline-offset-4">submit a CLI</Link>
               </div>
             </div>

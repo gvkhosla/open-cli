@@ -5,7 +5,15 @@ import { useMemo, useState } from "react";
 
 import { CliLogoMarquee } from "@/components/cli-logo-marquee";
 import { CopyButton } from "@/components/copy-button";
-import { builderClis, categories, officialClis, searchClis, type BuilderLaunch, type CliCategory } from "@/data/clis";
+import {
+  builderClis,
+  categories,
+  getSearchHighlights,
+  officialClis,
+  searchClis,
+  type BuilderLaunch,
+  type CliCategory,
+} from "@/data/clis";
 import { formatCompactNumber } from "@/lib/format";
 
 type DirectoryMode = "all" | "official" | "builders" | "agent-friendly";
@@ -187,9 +195,17 @@ export function HomeView({ builderLaunches }: HomeViewProps) {
               Search by task, maker, binary, package, or what you want your agent to do.
             </h2>
           </div>
-          <Link href="/official" className="text-sm text-white/42 transition hover:text-white">
-            Browse official tools →
-          </Link>
+          <div className="flex flex-wrap gap-4 text-sm text-white/42">
+            <Link href="/official" className="transition hover:text-white">
+              Browse official tools →
+            </Link>
+            <Link href="/makers" className="transition hover:text-white">
+              Browse makers →
+            </Link>
+            <Link href="/submit" className="transition hover:text-white">
+              Submit a CLI →
+            </Link>
+          </div>
         </div>
 
         <div className="relative">
@@ -276,6 +292,13 @@ export function HomeView({ builderLaunches }: HomeViewProps) {
                   ) : null}
                 </div>
                 <p className="mt-1 text-sm text-white/44">{cli.tagline}</p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {getSearchHighlights(cli, search).map((highlight) => (
+                    <span key={highlight} className="rounded-full border border-white/8 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-white/34">
+                      {highlight}
+                    </span>
+                  ))}
+                </div>
               </div>
               <div>
                 <div className="text-sm text-white/58">{cli.makerName}</div>

@@ -76,9 +76,9 @@ export default async function CliPage({ params }: CliPageProps) {
             </div>
             <div className="text-sm text-white/42">
               by{" "}
-              <a href={cli.makerUrl} target="_blank" rel="noreferrer" className="transition hover:text-white">
+              <Link href={`/makers/${cli.makerSlug}`} className="transition hover:text-white">
                 {cli.makerName}
-              </a>
+              </Link>
             </div>
             <p className="max-w-3xl text-lg leading-8 text-white/56">{cli.description}</p>
 

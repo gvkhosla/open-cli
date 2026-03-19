@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { SiteHeader } from "@/components/site-header";
-import { categories, searchClis, type CliCategory } from "@/data/clis";
+import { categories, getSearchHighlights, searchClis, type CliCategory } from "@/data/clis";
 import { formatCompactNumber } from "@/lib/format";
 
 type DirectoryMode = "all" | "official" | "builders" | "agent-friendly";
@@ -126,6 +126,13 @@ export default function LeaderboardPage() {
                     ) : null}
                   </div>
                   <p className="mt-1 text-sm text-white/44">{cli.tagline}</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {getSearchHighlights(cli, search).map((highlight) => (
+                      <span key={highlight} className="rounded-full border border-white/8 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-white/34">
+                        {highlight}
+                      </span>
+                    ))}
+                  </div>
                 </div>
                 <div className="text-sm text-white/52">{cli.makerName}</div>
                 <div className="text-sm text-white/52">{formatCompactNumber(cli.monthlyDownloads)}</div>

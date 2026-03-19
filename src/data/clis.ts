@@ -5306,6 +5306,7 @@ export const packageManagers = Array.from(new Set(clis.map((cli) => cli.installW
 export const featuredClis = clis.filter((cli) => cli.featured);
 export const officialClis = clis.filter((cli) => cli.official);
 export const builderClis = clis.filter((cli) => !cli.official);
+export const featuredMakers = makers.filter((maker) => maker.featuredBuilder || maker.officialPlatformMaker);
 export const leaderboardClis = [...clis].sort((a, b) => b.score - a.score);
 
 export function getCliBySlug(slug: string) {
@@ -5314,6 +5315,10 @@ export function getCliBySlug(slug: string) {
 
 export function getMakerBySlug(slug: string) {
   return makers.find((maker) => maker.slug === slug);
+}
+
+export function getClisByMaker(slug: string) {
+  return clis.filter((cli) => cli.makerSlug === slug).sort((a, b) => b.score - a.score || b.monthlyDownloads - a.monthlyDownloads);
 }
 
 export function getRelatedClis(cli: CliEntry, limit = 4) {
@@ -5404,4 +5409,52 @@ export function searchClis(query: string, options: CliSearchOptions = {}) {
     .map((cli) => ({ cli, searchScore: scoreQueryMatch(cli, query) }))
     .sort((a, b) => b.searchScore - a.searchScore || b.cli.score - a.cli.score)
     .map((item) => item.cli);
+}
+
+export function getSearchHighlights(cli: CliEntry, query: string) {
+  const trimmed = query.trim().toLowerCase();
+
+  if (!trimmed) {
+    return [cli.official ? "Official tool" : `Maker: ${cli.makerName}`, cli.agentFriendly ? "Good for agent workflows" : cli.category];
+  }
+
+  const highlights: string[] = [];
+  const terms = trimmed.split(/\s+/).filter(Boolean);
+  const aliasMatch = cli.aliases.find((alias) => alias.toLowerCase().includes(trimmed) || terms.some((term) => alias.toLowerCase().includes(term)));
+  const useCaseMatch = cli.useCases.find((useCase) => useCase.toLowerCase().includes(trimmed) || terms.some((term) => useCase.toLowerCase().includes(term)));
+  const keywordMatch = cli.keywords.find((keyword) => keyword.toLowerCase().includes(trimmed) || terms.some((term) => keyword.toLowerCase().includes(term)));
+
+  if (cli.slug === trimmed || cli.shortName.toLowerCase() === trimmed || cli.name.toLowerCase() === trimmed) {
+    highlights.push("Exact name match");
+  }
+
+  if (cli.makerName.toLowerCase().includes(trimmed) || terms.some((term) => cli.makerName.toLowerCase().includes(term))) {
+    highlights.push(`Maker: ${cli.makerName}`);
+  }
+
+  if (aliasMatch) {
+    highlights.push(`Alias: ${aliasMatch}`);
+  }
+
+  if (cli.githubRepo.toLowerCase().includes(trimmed) || terms.some((term) => cli.githubRepo.toLowerCase().includes(term))) {
+    highlights.push(`Repo: ${cli.githubRepo}`);
+  }
+
+  if (useCaseMatch) {
+    highlights.push(`Use case: ${useCaseMatch}`);
+  } else if (keywordMatch) {
+    highlights.push(`Task: ${keywordMatch}`);
+  } else if (cli.category.toLowerCase().includes(trimmed) || terms.some((term) => cli.category.toLowerCase().includes(term))) {
+    highlights.push(`Category: ${cli.category}`);
+  }
+
+  if (cli.official && highlights.length < 3) {
+    highlights.push("Official tool");
+  }
+
+  if (cli.agentFriendly && highlights.length < 3) {
+    highlights.push("Good for agent workflows");
+  }
+
+  return Array.from(new Set(highlights)).slice(0, 3);
 }
