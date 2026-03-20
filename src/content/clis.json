@@ -4374,5 +4374,50 @@
     "ciFriendly": true,
     "destructivePotential": "low",
     "npmPackage": "mcporter"
+  },
+  {
+    "slug": "tempo",
+    "name": "Tempo CLI",
+    "shortName": "tempo",
+    "maker": "tempo",
+    "category": "Wallet / Payments",
+    "installWith": "curl",
+    "installCommand": "curl -fsSL https://tempo.xyz/install | bash",
+    "quickStart": "tempo wallet login && tempo wallet services --search ai",
+    "githubRepo": "tempoxyz/tempo",
+    "website": "https://docs.tempo.xyz/cli/",
+    "docs": "https://docs.tempo.xyz/wallet/use-with-agents",
+    "useCases": [
+      "Wallet access",
+      "Service discovery",
+      "Paid HTTP requests"
+    ],
+    "aliases": [
+      "tempo wallet",
+      "tempo request"
+    ],
+    "keywords": [
+      "wallet cli machine payments mpp stablecoins paid api requests"
+    ],
+    "tags": [
+      "official",
+      "agent-friendly"
+    ],
+    "featured": true,
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": false,
+    "destructivePotential": "medium",
+    "bestFor": "Best for giving an agent wallet access, service discovery, and paid HTTP requests.",
+    "useThisIf": "Use this if you want an agent to discover services, preview costs, and make paid requests with a real wallet context.",
+    "skipIf": "Skip this if you do not want wallet setup, authentication, or payment-bearing requests in the loop yet.",
+    "exampleWorkflow": [
+      "tempo wallet login",
+      "tempo wallet whoami",
+      "tempo wallet services --search ai",
+      "tempo request --dry-run https://example.com"
+    ]
   }
 ]

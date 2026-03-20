@@ -2,6 +2,7 @@ import builderLaunchesJson from "@/content/builder-launches.json";
 import cliMetricsJson from "@/content/cli-metrics.json";
 import cliSeedsJson from "@/content/clis.json";
 import makersJson from "@/content/makers.json";
+import { detectCapabilityMatches, normalizeIntentText } from "@/lib/capabilities";
 
 export type PackageManager = "brew" | "npm" | "cargo" | "pipx" | "curl" | "go";
 export type MakerType = "org" | "individual" | "small-team";
@@ -113,6 +114,7 @@ export type CliEntry = {
   crateName?: string;
   pypiPackage?: string;
   goPackage?: string;
+  dockerImage?: string;
   bestFor: string;
   useThisIf: string;
   skipIf: string;
@@ -318,6 +320,7 @@ function createCli(seed: CliSeed): CliEntry {
     crateName: seed.crateName,
     pypiPackage: seed.pypiPackage,
     goPackage: seed.goPackage,
+    dockerImage: seed.dockerImage,
     bestFor: buildBestFor(seed),
     useThisIf: buildUseThisIf(seed, maker),
     skipIf: buildSkipIf(seed),
@@ -417,25 +420,67 @@ export function getAlternativeClis(cli: CliEntry, limit = 3) {
     .map((item) => item.candidate);
 }
 
-function scoreQueryMatch(cli: CliEntry, query: string) {
-  const trimmed = query.trim().toLowerCase();
+function uniqueNormalized(values: Array<string | undefined | null>) {
+  return Array.from(new Set(values.map((value) => normalizeIntentText(value ?? "")).filter(Boolean)));
+}
 
-  if (!trimmed) {
+const intentSlugBoosts = [
+  { terms: ["github", "pull request", "pr", "issue", "workflow"], slugs: ["gh", "lazygit", "gitui"] },
+  { terms: ["deploy", "preview", "production", "nextjs", "next js"], slugs: ["vercel", "railway", "flyctl", "wrangler", "netlify"] },
+  { terms: ["postgres", "postgresql"], slugs: ["pgcli", "usql", "supabase", "dbmate"] },
+  { terms: ["sqlite"], slugs: ["sqlite-utils", "litecli", "usql", "duckdb"] },
+  { terms: ["browser", "automation", "playwright", "scrape"], slugs: ["browser-use", "playwright", "firecrawl"] },
+  { terms: ["wallet", "tempo", "mpp", "paid requests"], slugs: ["tempo"] },
+];
+
+function getExpandedQueryTerms(query: string) {
+  const normalized = normalizeIntentText(query);
+  const directTerms = normalized.split(/\s+/).filter(Boolean);
+  const matchedCapabilities = detectCapabilityMatches(query)
+    .filter((item) => item.score >= 6)
+    .slice(0, 2);
+
+  const capabilityTerms = matchedCapabilities.flatMap((item) => item.capability.searchTerms.map((term) => normalizeIntentText(term)));
+
+  return {
+    normalized,
+    directTerms,
+    expandedTerms: Array.from(new Set([...directTerms, ...capabilityTerms])).filter(Boolean),
+    matchedCapabilities,
+  };
+}
+
+function scoreQueryMatch(cli: CliEntry, query: string) {
+  const { normalized, directTerms, expandedTerms, matchedCapabilities } = getExpandedQueryTerms(query);
+
+  if (!normalized) {
     return popularityValue(cli);
   }
 
-  const terms = trimmed.split(/\s+/).filter(Boolean);
-  const exactHaystacks = [
+  const exactHaystacks = uniqueNormalized([
     cli.slug,
-    cli.shortName.toLowerCase(),
-    cli.name.toLowerCase(),
-    cli.binaryName.toLowerCase(),
-    cli.makerName.toLowerCase(),
-    ...cli.aliases.map((value) => value.toLowerCase()),
-  ];
-  const broadHaystacks = [
+    cli.shortName,
+    cli.name,
+    cli.binaryName,
+    cli.makerName,
+    cli.githubRepo,
+    cli.packageName,
+    cli.npmPackage,
+    cli.brewFormula,
+    cli.brewCask,
+    cli.crateName,
+    cli.pypiPackage,
+    cli.goPackage,
+    cli.dockerImage,
+    ...cli.aliases,
+  ]);
+
+  const broadHaystacks = uniqueNormalized([
     cli.tagline,
     cli.description,
+    cli.bestFor,
+    cli.useThisIf,
+    cli.skipIf,
     cli.category,
     cli.makerName,
     cli.githubRepo,
@@ -443,23 +488,83 @@ function scoreQueryMatch(cli: CliEntry, query: string) {
     ...cli.keywords,
     ...cli.tags,
     ...cli.aliases,
-  ].map((value) => value.toLowerCase());
+  ]);
 
+  const broadText = ` ${broadHaystacks.join(" ")} `;
   let score = 0;
 
-  if (exactHaystacks.includes(trimmed)) score += 120;
-  if (cli.slug.includes(trimmed) || cli.shortName.toLowerCase().includes(trimmed)) score += 60;
-  if (cli.name.toLowerCase().includes(trimmed)) score += 40;
-  if (cli.makerName.toLowerCase().includes(trimmed)) score += 30;
-  if (cli.githubRepo.toLowerCase().includes(trimmed)) score += 24;
+  if (exactHaystacks.includes(normalized)) score += 180;
+  if (normalizeIntentText(cli.name) === normalized) score += 120;
+  if (broadText.includes(` ${normalized} `)) score += 90;
+  else if (broadText.includes(normalized)) score += 48;
 
-  for (const term of terms) {
-    if (exactHaystacks.includes(term)) score += 20;
-    if (broadHaystacks.some((value) => value.includes(term))) score += 8;
+  let directMatches = 0;
+
+  for (const term of expandedTerms) {
+    if (term.length < 2) continue;
+
+    if (exactHaystacks.includes(term)) {
+      score += 26;
+      if (directTerms.includes(term)) directMatches += 1;
+      continue;
+    }
+
+    const useCaseMatch = cli.useCases.some((value) => normalizeIntentText(value).includes(term));
+    const keywordMatch = cli.keywords.some((value) => normalizeIntentText(value).includes(term));
+    const broadMatch = broadText.includes(` ${term} `) || broadText.includes(term);
+
+    if (useCaseMatch) {
+      score += 18;
+      if (directTerms.includes(term)) directMatches += 1;
+      continue;
+    }
+
+    if (keywordMatch) {
+      score += 14;
+      if (directTerms.includes(term)) directMatches += 1;
+      continue;
+    }
+
+    if (broadMatch) {
+      score += term.length > 4 ? 10 : 6;
+      if (directTerms.includes(term)) directMatches += 1;
+    }
   }
 
-  if (cli.official) score += 4;
-  if (cli.agentFriendly) score += 3;
+  if (directTerms.length > 1 && directMatches >= Math.min(directTerms.length, 2)) {
+    score += 22;
+  }
+
+  for (const match of matchedCapabilities) {
+    const preferredIndex = match.capability.candidateSlugs.indexOf(cli.slug);
+
+    if (preferredIndex >= 0) {
+      score += Math.max(16, 42 - preferredIndex * 4) + match.score * 2;
+    } else if (match.capability.categories.includes(cli.category)) {
+      score += 12 + match.score;
+    }
+  }
+
+  for (const boost of intentSlugBoosts) {
+    const matched = boost.terms.some((term) => normalized.includes(term));
+    if (!matched) continue;
+
+    const boostIndex = boost.slugs.indexOf(cli.slug);
+    if (boostIndex >= 0) {
+      score += Math.max(10, 28 - boostIndex * 4);
+    }
+  }
+
+  if (normalized.includes("postgres") && cli.slug === "pgcli") score += 40;
+  if (normalized.includes("sqlite") && cli.slug === "sqlite-utils") score += 24;
+  if ((normalized.includes("github") || normalized.includes("pull request")) && cli.slug === "gh") score += 18;
+  if ((normalized.includes("nextjs") || normalized.includes("next js")) && cli.slug === "vercel") score += 18;
+  if ((normalized.includes("wallet") || normalized.includes("mpp")) && cli.slug === "tempo") score += 18;
+
+  if ((normalized.includes("agent") || normalized.includes("automation")) && cli.agentFriendly) score += 10;
+  if ((normalized.includes("official") || normalized.includes("first party")) && cli.official) score += 10;
+  if ((normalized.includes("json") || normalized.includes("structured")) && cli.supportsJsonOutput) score += 8;
+  if ((normalized.includes("local") || normalized.includes("offline")) && cli.localFirst) score += 8;
 
   return score + Math.min(12, Math.round((cli.githubStars ?? 0) / 10000));
 }
@@ -488,7 +593,10 @@ export function searchClis(query: string, options: CliSearchOptions = {}) {
 }
 
 export function getSearchHighlights(cli: CliEntry, query: string) {
-  const trimmed = query.trim().toLowerCase();
+  const trimmed = normalizeIntentText(query);
+  const capabilityMatch = detectCapabilityMatches(query).find(
+    (item) => item.capability.candidateSlugs.includes(cli.slug) || item.capability.categories.includes(cli.category),
+  );
 
   if (!trimmed) {
     return [
@@ -525,6 +633,10 @@ export function getSearchHighlights(cli: CliEntry, query: string) {
     highlights.push(`Task: ${keywordMatch}`);
   } else if (cli.category.toLowerCase().includes(trimmed) || terms.some((term) => cli.category.toLowerCase().includes(term))) {
     highlights.push(`Category: ${cli.category}`);
+  }
+
+  if (capabilityMatch && highlights.length < 3) {
+    highlights.push(`Capability: ${capabilityMatch.capability.label}`);
   }
 
   if (cli.metricLabel && highlights.length < 3) {

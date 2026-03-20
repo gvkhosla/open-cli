@@ -1,60 +1,28 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 import { CliLogoMarquee } from "@/components/cli-logo-marquee";
-import { CopyButton } from "@/components/copy-button";
-import { builderClis, getSearchHighlights, officialClis, searchClis, type BuilderLaunch, type CliCategory } from "@/data/clis";
+import { SuperchargeAgent } from "@/components/supercharge-agent";
+import { builderClis, getSearchHighlights, officialClis, searchClis } from "@/data/clis";
 import { formatCompactNumber } from "@/lib/format";
 
-type DirectoryMode = "all" | "official" | "builders" | "agent-friendly";
-type CategoryFilter = "All" | CliCategory;
-type QuickExample = {
-  id: string;
-  label: string;
-  install: string;
-  run: string;
-};
-
-const quickExamples: QuickExample[] = [
-  {
-    id: "gh",
-    label: "gh",
-    install: "brew install gh",
-    run: "gh auth login",
-  },
-  {
-    id: "vercel",
-    label: "vercel",
-    install: "npm i -g vercel",
-    run: "vercel login",
-  },
-  {
-    id: "uv",
-    label: "uv",
-    install: "brew install uv",
-    run: "uv init demo && uv run main.py",
-  },
-];
-
 const taskShortcuts = [
-  "deploy",
-  "git",
-  "postgres",
+  "review github pull requests",
+  "deploy my app",
+  "inspect postgres schema",
   "browser automation",
   "local models",
-  "scrape",
+  "tempo wallet paid requests",
 ];
 
-export function HomeView({}: { builderLaunches?: BuilderLaunch[] }) {
+export function HomeView() {
   const [search, setSearch] = useState("");
-  const [mode] = useState<DirectoryMode>("all");
-  const [category] = useState<CategoryFilter>("All");
-  const [activeExample, setActiveExample] = useState<QuickExample>(quickExamples[0]);
+  const directoryRef = useRef<HTMLElement | null>(null);
 
   const filteredClis = useMemo(() => {
-    const results = searchClis(search, { mode, category });
+    const results = searchClis(search, { mode: "all", category: "All" });
 
     if (search.trim()) {
       return results;
@@ -66,79 +34,32 @@ export function HomeView({}: { builderLaunches?: BuilderLaunch[] }) {
         (b.githubStars ?? 0) - (a.githubStars ?? 0) ||
         a.name.localeCompare(b.name),
     );
-  }, [category, mode, search]);
+  }, [search]);
+
+  function handleUseRecommendation(query: string) {
+    setSearch(query);
+    directoryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pt-8">
-      <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-start lg:gap-12">
-        <div className="space-y-4">
-          <div className="section-kicker">The Open CLI Ecosystem</div>
-          <h1 className="max-w-4xl text-5xl font-medium tracking-[-0.06em] text-white sm:text-6xl lg:text-7xl lg:leading-[0.95]">
-            Find the right CLI for the job, from official tools to indie builder gems.
-          </h1>
-          <p className="max-w-3xl text-lg leading-8 text-white/56">
-            Open CLI is a curated directory of terminal tools. Search by task, company, builder, package, or
-            binary name, then copy the install command and run the first useful command right away.
-          </p>
-          <div className="flex flex-wrap gap-4 pt-2 font-mono text-xs uppercase tracking-[0.18em] text-white/34">
-            <span>{formatCompactNumber(filteredClis.length)} matching now</span>
-            <span>{formatCompactNumber(officialClis.length)} official</span>
-            <span>{formatCompactNumber(builderClis.length)} from builders</span>
-          </div>
-        </div>
-
-        <div className="panel-texture rounded-[20px] border border-white/8 p-4">
-          <div className="section-kicker">Try it now</div>
-          <p className="mt-3 text-sm leading-6 text-white/48">
-            Switch between a few different kinds of CLIs to see how quickly you can install something and get
-            to the first meaningful command.
-          </p>
-
-          <div className="mt-4 flex gap-2 font-mono text-xs text-white/46">
-            {quickExamples.map((example) => (
-              <button
-                key={example.id}
-                type="button"
-                onClick={() => setActiveExample(example)}
-                className={`rounded-full border px-2.5 py-1 transition ${
-                  activeExample.id === example.id
-                    ? "border-[var(--accent-lilac)] text-white"
-                    : "border-white/8 hover:border-white/16 hover:text-white/82"
-                }`}
-              >
-                {example.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-4 overflow-hidden rounded-[14px] border border-white/10 bg-[#0b0c0e]/90">
-            <div className="flex items-center justify-between gap-4 px-4 py-4">
-              <code className="overflow-x-auto font-mono text-sm text-white/84">
-                <span className="text-white/28">$</span> {activeExample.install}
-              </code>
-              <CopyButton compact value={activeExample.install} />
-            </div>
-            <div className="h-px bg-white/8" />
-            <div className="flex items-center justify-between gap-4 px-4 py-4">
-              <code className="overflow-x-auto font-mono text-sm text-white/68">
-                <span className="text-white/28">$</span> {activeExample.run}
-              </code>
-              <CopyButton compact value={activeExample.run} label="Copy run" />
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pt-8">
+      <SuperchargeAgent onUseRecommendation={handleUseRecommendation} />
 
       <section className="space-y-3">
         <div className="section-kicker">Available in the directory</div>
         <CliLogoMarquee />
       </section>
 
-      <section className="space-y-4">
+      <section ref={directoryRef} id="directory" className="space-y-4 scroll-mt-24">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
+          <div className="space-y-3">
             <div className="section-kicker">Directory</div>
-            <h2 className="mt-3 text-2xl font-medium tracking-tight text-white">Search CLIs</h2>
+            <h2 className="text-2xl font-medium tracking-tight text-white">Search CLIs</h2>
+            <div className="flex flex-wrap gap-4 font-mono text-xs uppercase tracking-[0.18em] text-white/34">
+              <span>{formatCompactNumber(filteredClis.length)} matching now</span>
+              <span>{formatCompactNumber(officialClis.length)} official</span>
+              <span>{formatCompactNumber(builderClis.length)} from builders</span>
+            </div>
           </div>
           <div className="flex flex-wrap gap-4 text-sm text-white/42">
             <Link href="/makers" className="transition hover:text-white">
@@ -157,7 +78,7 @@ export function HomeView({}: { builderLaunches?: BuilderLaunch[] }) {
           <input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Search gh, deploy, postgres, browser automation..."
+            placeholder="Search by task, prompt, maker, or command..."
             className="h-12 w-full rounded-none border-x-0 border-t-0 border-b border-white/12 bg-transparent pl-11 pr-4 text-sm text-white outline-none placeholder:text-white/28 focus:border-[var(--accent-lilac)]"
           />
         </div>
@@ -176,7 +97,9 @@ export function HomeView({}: { builderLaunches?: BuilderLaunch[] }) {
           ))}
         </div>
 
-        <div className="text-xs text-white/28">Ranked by exact install or adoption metric when available.</div>
+        <div className="text-xs text-white/28">
+          Search understands tasks, prompts, makers, package names, and agent-oriented workflows now.
+        </div>
 
         <div className="overflow-hidden border-y border-white/8">
           <div className="hidden grid-cols-[64px_minmax(0,1.2fr)_220px_140px] gap-4 border-b border-white/8 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-white/38 md:grid">
@@ -188,8 +111,8 @@ export function HomeView({}: { builderLaunches?: BuilderLaunch[] }) {
 
           {filteredClis.length === 0 ? (
             <div className="py-8 text-sm text-white/42">
-              No CLIs matched your search yet. Try a tool name, a builder, or a job like scrape, deploy, git,
-              browser automation, or local models.
+              No CLIs matched yet. Try a real task like “deploy my app”, “inspect postgres schema”, or
+              “tempo wallet paid requests”.
             </div>
           ) : null}
 
@@ -218,7 +141,10 @@ export function HomeView({}: { builderLaunches?: BuilderLaunch[] }) {
                 <p className="mt-1 text-sm text-white/44">{cli.bestFor}</p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {getSearchHighlights(cli, search).map((highlight) => (
-                    <span key={highlight} className="rounded-full border border-white/8 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-white/34">
+                    <span
+                      key={highlight}
+                      className="rounded-full border border-white/8 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-white/34"
+                    >
                       {highlight}
                     </span>
                   ))}

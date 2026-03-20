@@ -667,5 +667,12 @@
     "name": "tealdeer",
     "type": "small-team",
     "url": "https://github.com/tealdeer-rs/tealdeer"
+  },
+  {
+    "slug": "tempo",
+    "name": "Tempo",
+    "type": "org",
+    "url": "https://tempo.xyz",
+    "officialPlatformMaker": true
   }
 ]
