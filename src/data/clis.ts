@@ -162,120 +162,144 @@ const cliSeeds = cliSeedsJson as CliSeed[];
 const cliMetrics = cliMetricsJson as Record<string, CliMetric>;
 const makersBySlug = new Map(makerSeeds.map((maker) => [maker.slug, maker]));
 
-function buildTagline(seed: CliSeed) {
-  if (seed.tagline) {
-    return seed.tagline;
-  }
+/* ─── Copy generators ───
+ *
+ * These produce the prose users see. The goal is natural, specific
+ * copy that reads like a human curator wrote it — not like a chatbot
+ * stringing together array values.
+ *
+ * Pattern inspired by skills.sh: lead with what the tool DOES in
+ * one verb-forward sentence. Never start with the tool name.
+ */
 
-  const useCases = seed.useCases.slice(0, 3).join(", ").toLowerCase();
-  return `${seed.name} helps with ${useCases} from the terminal.`;
-}
-
-function buildDescription(seed: CliSeed, maker: Maker) {
-  const useCases = seed.useCases.slice(0, 3).join(", ").toLowerCase();
-  return `${seed.name} comes from ${maker.name} and is useful for ${useCases}. ${buildTagline(seed)}`;
-}
-
-function toSentenceList(values: string[], limit = 2) {
-  const items = values
-    .slice(0, limit)
-    .map((value) => value.toLowerCase())
-    .filter(Boolean);
-
-  if (items.length === 0) {
-    return "terminal work";
-  }
-
-  if (items.length === 1) {
-    return items[0];
-  }
-
-  if (items.length === 2) {
-    return `${items[0]} and ${items[1]}`;
-  }
-
+function formatUseCaseList(useCases: string[], limit = 3) {
+  const items = useCases.slice(0, limit).map((s) => s.toLowerCase());
+  if (items.length === 0) return "common terminal tasks";
+  if (items.length === 1) return items[0];
+  if (items.length === 2) return `${items[0]} and ${items[1]}`;
   return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
 }
 
-function categoryWorkflowLabel(category: CliCategory) {
-  switch (category) {
-    case "AI":
-      return "AI workflows";
-    case "Browser Automation":
-      return "browser automation";
-    case "Cloud":
-      return "cloud workflows";
-    case "Containers / Infra":
-      return "infra work";
-    case "Data":
-      return "data workflows";
-    case "Database":
-      return "database work";
-    case "Deploy":
-      return "deploy workflows";
-    case "Docs / Content":
-      return "docs and content workflows";
-    case "Git":
-      return "git workflows";
-    case "Observability":
-      return "observability work";
-    case "Package Management":
-      return "package and build workflows";
-    case "Productivity":
-      return "productivity workflows";
-    case "Scraping":
-      return "scraping workflows";
-    case "Security":
-      return "security workflows";
-    case "Shell Utilities":
-      return "shell workflows";
-    default:
-      return "terminal workflows";
+function categoryNoun(category: CliCategory) {
+  const map: Record<CliCategory, string> = {
+    AI: "AI models and inference",
+    "Browser Automation": "browser automation",
+    Cloud: "cloud infrastructure",
+    "Containers / Infra": "containers and infrastructure",
+    Data: "data processing",
+    Database: "databases",
+    Deploy: "deployments",
+    "Docs / Content": "docs and content",
+    Git: "git workflows",
+    Observability: "observability",
+    "Package Management": "packages and builds",
+    Productivity: "productivity workflows",
+    Scraping: "web scraping",
+    Security: "security scanning",
+    "Shell Utilities": "shell utilities",
+  };
+  return map[category] ?? "terminal workflows";
+}
+
+function buildTagline(seed: CliSeed) {
+  if (seed.tagline) return seed.tagline;
+
+  // "{Use case}, {use case}, and {use case} from the terminal."
+  // e.g. "Pull requests, issue triage, and GitHub Actions from the terminal."
+  const items = seed.useCases.slice(0, 3);
+  if (items.length === 0) return `A CLI for ${categoryNoun(seed.category)}.`;
+  if (items.length === 1) return `${items[0]} from the terminal.`;
+  if (items.length === 2) return `${items[0]} and ${items[1].toLowerCase()} from the terminal.`;
+  return `${items[0]}, ${items[1].toLowerCase()}, and ${items[2].toLowerCase()} from the terminal.`;
+}
+
+function buildDescription(seed: CliSeed, maker: Maker) {
+  const parts: string[] = [];
+
+  if (maker.officialPlatformMaker) {
+    parts.push(`The official CLI from ${maker.name}.`);
+    parts.push(buildTagline(seed));
+  } else {
+    parts.push(buildTagline(seed));
+    parts.push(`Built by ${maker.name}.`);
   }
+
+  if (seed.exampleWorkflow && seed.exampleWorkflow.length > 0) {
+    parts.push(`Start with \`${seed.exampleWorkflow[0]}\` and go from there.`);
+  }
+
+  if (seed.agentFriendly && seed.supportsJsonOutput) {
+    parts.push("Supports structured output — good for scripts and agents.");
+  }
+
+  if (seed.localFirst) {
+    parts.push("Runs entirely on your machine.");
+  }
+
+  return parts.join(" ");
 }
 
 function buildBestFor(seed: CliSeed) {
-  return seed.bestFor ?? `Best for ${toSentenceList(seed.useCases)}.`;
+  if (seed.bestFor) return seed.bestFor;
+  return `${formatUseCaseList(seed.useCases)} from the terminal.`;
 }
 
+// Makers where "You're on X" makes sense — they ARE the platform.
+const platformMakers = new Set([
+  "github", "vercel", "cloudflare", "supabase", "railway", "fly",
+  "netlify", "docker", "hashicorp", "kubernetes", "stripe",
+  "aws", "google-cloud", "digitalocean", "mongodb",
+]);
+
 function buildUseThisIf(seed: CliSeed, maker: Maker) {
-  if (seed.useThisIf) {
-    return seed.useThisIf;
+  if (seed.useThisIf) return seed.useThisIf;
+
+  if (maker.officialPlatformMaker && platformMakers.has(maker.slug)) {
+    return `You're on ${maker.name} and want the official terminal experience.`;
   }
 
-  if (maker.officialPlatformMaker) {
-    return `Use this if you want ${maker.name}'s own CLI for ${toSentenceList(seed.useCases)}.`;
+  if (seed.localFirst) {
+    return `You want ${categoryNoun(seed.category)} that runs entirely on your machine.`;
   }
 
-  if (seed.agentFriendly) {
-    return `Use this if you want ${toSentenceList(seed.useCases)} in a scriptable terminal workflow.`;
+  if (seed.agentFriendly && seed.supportsJsonOutput) {
+    return `You want ${categoryNoun(seed.category)} you can script with structured output.`;
   }
 
-  return `Use this if you want ${toSentenceList(seed.useCases)} without leaving the terminal.`;
+  if (seed.ciFriendly) {
+    return `You need ${categoryNoun(seed.category)} in both local dev and CI.`;
+  }
+
+  return `You work with ${categoryNoun(seed.category)} and want a fast terminal interface.`;
 }
 
 function buildSkipIf(seed: CliSeed) {
-  if (seed.skipIf) {
-    return seed.skipIf;
+  if (seed.skipIf) return seed.skipIf;
+
+  if (seed.destructivePotential === "high" && seed.requiresAuth) {
+    return "You're not comfortable with a tool that can write to production.";
   }
 
-  if (seed.destructivePotential === "high") {
-    return "Skip this if you want a lower-risk CLI to learn on first.";
+  if (seed.requiresAuth && seed.requiresNetwork) {
+    return "You need something that works offline or without an account.";
   }
 
   if (seed.requiresAuth) {
-    return "Skip this if you need something that works without signing in.";
+    return "You need a tool that works without an account.";
   }
 
-  if (seed.requiresNetwork ?? true) {
-    return "Skip this if you want a tool that mostly works offline.";
+  if (!seed.supportsNonInteractive) {
+    return "You need fully non-interactive usage for CI.";
   }
 
-  return `Skip this if you need something outside ${categoryWorkflowLabel(seed.category)}.`;
+  return `You don't work with ${categoryNoun(seed.category)}.`;
 }
 
 function buildWhatHappensNext(seed: CliSeed) {
-  return `After the first command, you can ${toSentenceList(seed.useCases, 3)}.`;
+  if (seed.exampleWorkflow && seed.exampleWorkflow.length >= 2) {
+    return `Run \`${seed.exampleWorkflow[1]}\` to see it in action.`;
+  }
+  return `Run \`${seed.quickStart}\` and see what comes back.`;
 }
 
 function popularityValue(cli: CliEntry) {

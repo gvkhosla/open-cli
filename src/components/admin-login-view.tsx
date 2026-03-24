@@ -62,7 +62,7 @@ export function AdminLoginView({ nextPath }: AdminLoginViewProps) {
               <input
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
-                className="h-11 w-full border-b border-white/12 bg-transparent px-0 text-white outline-none focus:border-[var(--accent-lilac)]"
+                className="h-11 w-full rounded-xl border border-white/10 bg-white/[0.02] px-3.5 text-white outline-none focus:border-white/18 focus:bg-white/[0.03]"
               />
             </label>
             <label className="space-y-2 text-sm text-white/60">
@@ -71,17 +71,17 @@ export function AdminLoginView({ nextPath }: AdminLoginViewProps) {
                 type="password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
-                className="h-11 w-full border-b border-white/12 bg-transparent px-0 text-white outline-none focus:border-[var(--accent-lilac)]"
+                className="h-11 w-full rounded-xl border border-white/10 bg-white/[0.02] px-3.5 text-white outline-none focus:border-white/18 focus:bg-white/[0.03]"
               />
             </label>
             <button
               type="submit"
               disabled={status === "loading"}
-              className="inline-flex h-11 w-full items-center justify-center rounded-md border border-[var(--accent-lilac)] bg-white/[0.03] px-4 text-sm text-white transition hover:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex h-11 w-full items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-4 text-sm text-white transition hover:border-white/16 hover:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {status === "loading" ? "Signing in..." : "Sign in"}
             </button>
-            {message ? <div className="text-sm text-[var(--accent-rose)]">{message}</div> : null}
+            {message ? <div className="text-sm text-red-400/82">{message}</div> : null}
           </form>
         </div>
       </main>

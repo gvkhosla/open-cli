@@ -44,7 +44,7 @@ export function AdminActions() {
         <button
           type="button"
           onClick={runSync}
-          className="inline-flex h-10 items-center justify-center rounded-md border border-[var(--accent-lilac)] bg-white/[0.03] px-4 text-sm text-white transition hover:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] px-4 text-sm text-white transition hover:border-white/16 hover:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-60"
           disabled={state === "loading"}
         >
           {state === "loading" ? "Syncing..." : "Sync latest launch data"}
@@ -60,7 +60,7 @@ export function AdminActions() {
       {message ? (
         <div
           className={`text-sm ${
-            state === "error" ? "text-[var(--accent-rose)]" : "text-white/46"
+            state === "error" ? "text-red-400/82" : "text-white/46"
           }`}
         >
           {message}

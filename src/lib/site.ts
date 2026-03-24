@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Open CLI",
   description:
-    "Find terminal apps you can install in seconds and use right away. Discover useful CLIs, compare momentum, and copy the first command to run.",
+    "Search for the right CLI by job, compare the strongest options, and copy the first safe command to run.",
   url: "https://opencli.co",
   ogImage: "https://opencli.co/opengraph-image",
   links: {

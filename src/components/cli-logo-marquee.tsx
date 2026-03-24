@@ -40,18 +40,18 @@ function LogoBadge({ item }: { item: LogoItem }) {
   return (
     <Link
       href={item.href}
-      className="group/logo flex h-14 min-w-14 shrink-0 items-center justify-center rounded-xl border border-white/8 bg-white/[0.02] px-4 transition hover:border-[rgba(183,182,233,0.28)] hover:bg-white/[0.04]"
+      className="group/logo relative flex h-12 min-w-12 shrink-0 items-center justify-center rounded-xl border border-white/8 bg-white/[0.02] px-3.5 transition-colors duration-200 hover:border-white/14 hover:bg-white/[0.05]"
       aria-label={item.name}
       title={item.name}
     >
-      <div className="relative flex items-center justify-center text-white/68 transition group-hover/logo:text-white">
+      <div className="relative flex items-center justify-center text-white/56 transition-colors duration-200 group-hover/logo:text-white/84">
         {item.icon ? (
-          <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-current">
+          <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[18px] w-[18px] fill-current">
             <path d={item.icon.path} />
           </svg>
         ) : null}
         {item.label ? (
-          <span className="absolute -bottom-2.5 -right-3 rounded-full border border-white/8 bg-[#0b0c0e] px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-[0.18em] text-white/48 transition group-hover/logo:text-[var(--accent-peach)]">
+          <span className="absolute -bottom-2.5 -right-3 rounded-full border border-white/8 bg-[#0b0c0e] px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-[0.18em] text-white/42 transition group-hover/logo:border-white/14 group-hover/logo:text-white/62">
             {item.label}
           </span>
         ) : null}
@@ -64,9 +64,9 @@ export function CliLogoMarquee() {
   const marqueeItems = [...logoItems, ...logoItems];
 
   return (
-    <div className="relative overflow-hidden rounded-[18px] border border-white/8 bg-[#0b0c0e] px-3 py-3">
-      <div className="absolute left-0 top-0 bottom-0 z-10 w-10 bg-gradient-to-r from-[#08090b] to-transparent" />
-      <div className="absolute right-0 top-0 bottom-0 z-10 w-10 bg-gradient-to-l from-[#08090b] to-transparent" />
+    <div className="relative overflow-hidden rounded-[18px] border border-white/8 bg-[#0b0d10] px-3 py-3">
+      <div className="absolute left-0 top-0 bottom-0 z-10 w-12 bg-gradient-to-r from-[#0b0d10] to-transparent" />
+      <div className="absolute right-0 top-0 bottom-0 z-10 w-12 bg-gradient-to-l from-[#0b0d10] to-transparent" />
       <div className="marquee-track relative flex w-max gap-2">
         {marqueeItems.map((item, index) => (
           <LogoBadge key={`${item.name}-${index}`} item={item} />

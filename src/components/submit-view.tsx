@@ -34,6 +34,7 @@ export function SubmitView() {
   const [form, setForm] = useState<SubmitFormState>(initialState);
   const [submissionState, setSubmissionState] = useState<"idle" | "saving" | "success" | "error">("idle");
   const [submissionMessage, setSubmissionMessage] = useState("");
+  const [showJson, setShowJson] = useState(false);
 
   const jsonPayload = useMemo(() => {
     const payload = {
@@ -46,7 +47,6 @@ export function SubmitView() {
       href: form.href || templateJson.href,
       released: form.released || templateJson.released,
     };
-
     return JSON.stringify(payload, null, 2);
   }, [form]);
 
@@ -61,13 +61,7 @@ export function SubmitView() {
       jsonPayload,
       "```",
     ].join("\n");
-
-    const params = new URLSearchParams({
-      title,
-      body,
-      labels: "launch-submission",
-    });
-
+    const params = new URLSearchParams({ title, body, labels: "launch-submission" });
     return `${siteConfig.links.github}/issues/new?${params.toString()}`;
   }, [form.name, form.notes, jsonPayload]);
 
@@ -77,198 +71,187 @@ export function SubmitView() {
 
   async function saveSubmission() {
     setSubmissionState("saving");
-    setSubmissionMessage("Saving submission...");
-
+    setSubmissionMessage("");
     try {
       const response = await fetch("/api/submissions", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-
       const data = (await response.json()) as { ok: boolean; error?: string };
-
       if (!response.ok || !data.ok) {
         setSubmissionState("error");
-        setSubmissionMessage(data.error || "Could not save submission.");
+        setSubmissionMessage(data.error || "Could not save. Try again or use the GitHub issue link.");
         return;
       }
-
       setSubmissionState("success");
-      setSubmissionMessage("Saved. You can review it in /admin.");
+      setSubmissionMessage("Saved. We’ll review it shortly.");
     } catch {
       setSubmissionState("error");
-      setSubmissionMessage("Could not save submission.");
+      setSubmissionMessage("Network error. Try again or open a GitHub issue instead.");
     }
   }
+
+  const inputCls =
+    "h-11 w-full rounded-xl border border-white/10 bg-white/[0.02] px-3.5 text-white outline-none placeholder:text-white/24 transition-colors focus:border-white/18 focus:bg-white/[0.03]";
+
+  const canSubmit = form.name.trim() && form.href.trim();
 
   return (
     <>
       <SiteHeader />
       <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-8 sm:px-6 lg:px-8">
-        <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start lg:gap-12">
+        <nav className="flex items-center gap-2 text-sm text-white/34">
+          <Link href="/" className="transition hover:text-white">open-cli</Link>
+          <svg className="h-3 w-3 text-white/20" fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="1.5"><path d="M4 2l4 4-4 4" /></svg>
+          <span className="text-white/52">submit</span>
+        </nav>
+
+        <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
           <div className="space-y-4">
-            <div className="section-kicker">Submit a CLI launch</div>
-            <h1 className="max-w-3xl text-4xl font-medium tracking-[-0.05em] text-white sm:text-5xl">
-              Share a new tool from a builder you think should be featured.
+            <div className="section-kicker">Submit</div>
+            <h1 className="max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl">
+              Add a CLI to the directory.
             </h1>
-            <p className="max-w-2xl text-base leading-7 text-white/54">
-              Fill out the basics, copy the JSON, or open a prefilled GitHub issue. This keeps the workflow
-              simple while the site is still curated by hand.
+            <p className="max-w-2xl text-[15px] leading-7 text-white/48 sm:text-base">
+              If a useful CLI is missing, send the basics here. Keep it short and factual — name, link, install command, and why it matters.
             </p>
           </div>
 
-          <div className="panel-texture rounded-[20px] border border-white/8 p-4">
-            <div className="section-kicker">Current content workflow</div>
-            <ol className="mt-4 space-y-3 text-sm leading-6 text-white/50">
-              <li>
-                1. New launches live in <code className="font-mono text-white/68">src/content/builder-launches.json</code>.
-              </li>
-              <li>
-                2. Use <code className="font-mono text-white/68">src/content/builder-launch-template.json</code> as the schema.
-              </li>
-              <li>3. Submit via GitHub issue now, or open a PR later when you want direct content edits.</li>
-            </ol>
+          <div className="rounded-[20px] border border-white/8 bg-[#0b0d10] p-4 sm:p-5">
+            <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/28">What helps most</div>
+            <ul className="mt-3 space-y-2.5 text-sm leading-6 text-white/48">
+              <li>• A working project or docs link</li>
+              <li>• A real install command</li>
+              <li>• A one-line explanation of what the tool is good at</li>
+              <li>• Notes only if they add something useful</li>
+            </ul>
           </div>
         </section>
 
-        <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_420px]">
-          <div className="space-y-4">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <label className="space-y-2 text-sm text-white/60">
-                <span>CLI name</span>
-                <input
-                  value={form.name}
-                  onChange={(event) => update("name", event.target.value)}
-                  placeholder="summarize"
-                  className="h-11 w-full border-b border-white/12 bg-transparent px-0 text-white outline-none placeholder:text-white/28 focus:border-[var(--accent-lilac)]"
-                />
-              </label>
-              <label className="space-y-2 text-sm text-white/60">
-                <span>Release label</span>
-                <select
-                  value={form.released}
-                  onChange={(event) => update("released", event.target.value)}
-                  className="h-11 w-full border-b border-white/12 bg-transparent px-0 text-white outline-none focus:border-[var(--accent-lilac)]"
-                >
-                  <option className="bg-[#08090b]" value="New">New</option>
-                  <option className="bg-[#08090b]" value="Latest">Latest</option>
-                  <option className="bg-[#08090b]" value="Popular">Popular</option>
+        <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+          <div className="rounded-[22px] border border-white/8 bg-[#0b0d10] p-5 sm:p-6">
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field label="CLI name *">
+                <input value={form.name} onChange={(event) => update("name", event.target.value)} placeholder="e.g. summarize" className={inputCls} />
+              </Field>
+              <Field label="Project link *">
+                <input value={form.href} onChange={(event) => update("href", event.target.value)} placeholder="https://github.com/owner/repo" className={inputCls} />
+              </Field>
+            </div>
+
+            <div className="mt-5 grid gap-5 sm:grid-cols-2">
+              <Field label="One-line description">
+                <input value={form.tagline} onChange={(event) => update("tagline", event.target.value)} placeholder="What does it do in one sentence?" className={inputCls} />
+              </Field>
+              <Field label="Install command">
+                <input value={form.installCommand} onChange={(event) => update("installCommand", event.target.value)} placeholder="npm i -g my-tool" className={inputCls} />
+              </Field>
+            </div>
+
+            <div className="mt-5 grid gap-5 sm:grid-cols-2">
+              <Field label="Creator">
+                <input value={form.creator} onChange={(event) => update("creator", event.target.value)} placeholder="Name or handle" className={inputCls} />
+              </Field>
+              <Field label="Creator link">
+                <input value={form.creatorUrl} onChange={(event) => update("creatorUrl", event.target.value)} placeholder="https://…" className={inputCls} />
+              </Field>
+            </div>
+
+            <div className="mt-5 grid gap-5 sm:grid-cols-2">
+              <Field label="Release status">
+                <select value={form.released} onChange={(event) => update("released", event.target.value)} className={inputCls}>
+                  <option className="bg-[#050505]" value="New">New</option>
+                  <option className="bg-[#050505]" value="Latest">Latest</option>
+                  <option className="bg-[#050505]" value="Popular">Popular</option>
                 </select>
-              </label>
+              </Field>
+              <Field label="Why should this be included?">
+                <textarea
+                  value={form.notes}
+                  onChange={(event) => update("notes", event.target.value)}
+                  placeholder="Who is it for? What makes it worth listing?"
+                  rows={3}
+                  className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-3.5 py-3 text-white outline-none placeholder:text-white/24 transition-colors focus:border-white/18 focus:bg-white/[0.03]"
+                />
+              </Field>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              <label className="space-y-2 text-sm text-white/60">
-                <span>Creator</span>
-                <input
-                  value={form.creator}
-                  onChange={(event) => update("creator", event.target.value)}
-                  placeholder="Peter Steinberger"
-                  className="h-11 w-full border-b border-white/12 bg-transparent px-0 text-white outline-none placeholder:text-white/28 focus:border-[var(--accent-lilac)]"
-                />
-              </label>
-              <label className="space-y-2 text-sm text-white/60">
-                <span>Creator link</span>
-                <input
-                  value={form.creatorUrl}
-                  onChange={(event) => update("creatorUrl", event.target.value)}
-                  placeholder="https://github.com/steipete"
-                  className="h-11 w-full border-b border-white/12 bg-transparent px-0 text-white outline-none placeholder:text-white/28 focus:border-[var(--accent-lilac)]"
-                />
-              </label>
-            </div>
-
-            <label className="space-y-2 text-sm text-white/60">
-              <span>One-line description</span>
-              <input
-                value={form.tagline}
-                onChange={(event) => update("tagline", event.target.value)}
-                placeholder="Summarize links, files, and long-form content from the terminal."
-                className="h-11 w-full border-b border-white/12 bg-transparent px-0 text-white outline-none placeholder:text-white/28 focus:border-[var(--accent-lilac)]"
-              />
-            </label>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <label className="space-y-2 text-sm text-white/60">
-                <span>Install command</span>
-                <input
-                  value={form.installCommand}
-                  onChange={(event) => update("installCommand", event.target.value)}
-                  placeholder="npm i -g @steipete/summarize"
-                  className="h-11 w-full border-b border-white/12 bg-transparent px-0 text-white outline-none placeholder:text-white/28 focus:border-[var(--accent-lilac)]"
-                />
-              </label>
-              <label className="space-y-2 text-sm text-white/60">
-                <span>Project link</span>
-                <input
-                  value={form.href}
-                  onChange={(event) => update("href", event.target.value)}
-                  placeholder="https://github.com/owner/repo"
-                  className="h-11 w-full border-b border-white/12 bg-transparent px-0 text-white outline-none placeholder:text-white/28 focus:border-[var(--accent-lilac)]"
-                />
-              </label>
-            </div>
-
-            <label className="space-y-2 text-sm text-white/60">
-              <span>Notes</span>
-              <textarea
-                value={form.notes}
-                onChange={(event) => update("notes", event.target.value)}
-                placeholder="Why is this worth featuring? Who is it for?"
-                rows={4}
-                className="w-full border border-white/10 bg-[#0b0c0e]/70 px-3 py-3 text-white outline-none placeholder:text-white/28 focus:border-[var(--accent-lilac)]"
-              />
-            </label>
-          </div>
-
-          <aside className="space-y-4">
-            <div className="section-kicker">JSON preview</div>
-            <div className="overflow-hidden rounded-[14px] border border-white/10 bg-[#0b0c0e]/90">
-              <div className="flex items-center justify-between border-b border-white/8 px-4 py-3">
-                <div className="font-mono text-xs uppercase tracking-[0.18em] text-white/42">builder-launches.json</div>
-                <CopyButton compact value={jsonPayload} label="Copy JSON" />
-              </div>
-              <pre className="overflow-x-auto p-4 font-mono text-xs leading-6 text-white/72">{jsonPayload}</pre>
-            </div>
-
-            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+            <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-white/8 pt-5">
               <button
                 type="button"
                 onClick={saveSubmission}
-                className="inline-flex h-11 items-center justify-center rounded-md border border-[var(--accent-lilac)] bg-white/[0.03] px-4 text-sm text-white transition hover:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-60"
-                disabled={submissionState === "saving"}
+                disabled={!canSubmit || submissionState === "saving"}
+                className="inline-flex h-10 items-center gap-2 rounded-full bg-white px-5 text-sm font-medium text-black transition hover:bg-white/92 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {submissionState === "saving" ? "Saving..." : "Save to admin queue"}
+                {submissionState === "saving" ? (
+                  <><div className="spinner" style={{ borderTopColor: "#000" }} /> Saving…</>
+                ) : submissionState === "success" ? (
+                  <>
+                    <svg className="h-4 w-4 text-emerald-600" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth="1.5"><path d="M3 8.5l3.5 3.5L13 4.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    Saved
+                  </>
+                ) : (
+                  "Submit for review"
+                )}
               </button>
+
               <a
                 href={issueUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-11 items-center justify-center rounded-md border border-white/10 px-4 text-sm text-white/72 transition hover:border-white/18 hover:text-white"
+                className="inline-flex h-10 items-center gap-1.5 rounded-full border border-white/10 px-5 text-sm text-white/58 transition hover:border-white/18 hover:text-white"
               >
-                Open GitHub issue
+                Or open GitHub issue
+                <svg className="h-3 w-3" fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="1.5"><path d="M2 10L10 2M10 2H4M10 2v6" /></svg>
               </a>
-              <Link
-                href={siteConfig.links.github}
-                target="_blank"
-                className="inline-flex h-11 items-center justify-center rounded-md border border-white/10 px-4 text-sm text-white/72 transition hover:border-white/18 hover:text-white"
-              >
-                Open repository
-              </Link>
             </div>
+
             {submissionMessage ? (
-              <div
-                className={`text-sm ${submissionState === "error" ? "text-[var(--accent-rose)]" : "text-white/46"}`}
-              >
+              <div className={`mt-4 rounded-xl border px-4 py-3 text-sm ${
+                submissionState === "error"
+                  ? "border-red-500/18 bg-red-500/8 text-red-400/82"
+                  : "border-emerald-500/18 bg-emerald-500/8 text-emerald-400/82"
+              }`}>
                 {submissionMessage}
               </div>
             ) : null}
+          </div>
+
+          <aside className="space-y-5">
+            <div className="rounded-[20px] border border-white/8 bg-[#0b0d10] p-4 sm:p-5">
+              <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/28">JSON preview</div>
+              <button
+                type="button"
+                onClick={() => setShowJson(!showJson)}
+                className="mt-3 inline-flex items-center gap-2 text-sm text-white/46 transition hover:text-white/72"
+              >
+                <svg className={`h-3 w-3 transition-transform ${showJson ? "rotate-90" : ""}`} fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="1.5"><path d="M4 2l4 4-4 4" /></svg>
+                {showJson ? "Hide" : "Show"} payload
+              </button>
+
+              {showJson ? (
+                <div className="mt-3 overflow-hidden rounded-xl border border-white/8 bg-white/[0.02]">
+                  <div className="flex items-center justify-between border-b border-white/8 px-4 py-2.5">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/30">builder-launches.json</span>
+                    <CopyButton compact value={jsonPayload} label="Copy JSON" />
+                  </div>
+                  <pre className="max-h-64 overflow-auto p-4 font-mono text-xs leading-6 text-white/58">{jsonPayload}</pre>
+                </div>
+              ) : null}
+            </div>
           </aside>
         </section>
       </main>
     </>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="space-y-2 text-sm">
+      <span className="text-white/44">{label}</span>
+      {children}
+    </label>
   );
 }
