@@ -1,0 +1,16 @@
+name: Sync launches
+
+on:
+  schedule:
+    - cron: "0 */10 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger launch sync
+        run: |
+          curl --fail --show-error --silent \
+            -X POST \
+            https://opencli.co/api/sync-launches
