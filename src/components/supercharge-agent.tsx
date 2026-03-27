@@ -1,28 +1,16 @@
 export function SuperchargeAgent() {
   return (
-    <section className="rounded-[24px] border border-white/8 bg-[#0b0d10]/88 px-6 py-7 sm:px-8 sm:py-8">
-      <div className="max-w-3xl space-y-4">
+    <section className="ui-panel relative overflow-hidden rounded-[32px] px-6 py-10 shadow-[0_20px_48px_rgba(0,0,0,0.14)] sm:px-8 sm:py-14">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),transparent_36%)]" />
+      <div className="relative max-w-[46rem] space-y-5">
         <div className="section-kicker">Open CLI</div>
-        <div className="space-y-3">
-          <h1 className="max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl sm:leading-[1.02]">
-            Find the right CLI, then run the first safe command.
-          </h1>
-          <p className="max-w-2xl text-[15px] leading-7 text-white/52 sm:text-base">
-            Search by job, not tool name. Open CLI gives you a clear recommendation, a verify step, and a reusable workflow pack without turning the homepage into another catalog wall.
-          </p>
-        </div>
-
-        <div className="flex flex-wrap gap-2 pt-1">
-          <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/48">
-            Task-first recommendations
-          </span>
-          <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/48">
-            Install + verify commands
-          </span>
-          <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/48">
-            Workflow packs for agents
-          </span>
-        </div>
+        <h1 className="ui-title-xl max-w-[12ch] tracking-[-0.075em]">
+          Choose the right CLI for the job.
+        </h1>
+        <p className="ui-body max-w-[40rem] sm:text-[17px]">
+          Describe the task in plain English. Open CLI recommends the best fit, explains the tradeoffs,
+          and shows the first safe commands to run.
+        </p>
       </div>
     </section>
   );

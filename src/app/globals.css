@@ -99,9 +99,10 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at top center, rgba(255, 255, 255, 0.035), transparent 22%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 18%),
-    #050505;
+    radial-gradient(circle at top center, rgba(132, 154, 194, 0.12), transparent 24%),
+    radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.045), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 18%),
+    #0b1016;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
@@ -110,7 +111,7 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 12%, transparent 88%, rgba(255, 255, 255, 0.012));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 12%, transparent 88%, rgba(255, 255, 255, 0.014));
 }
 
 body::after {
@@ -131,7 +132,7 @@ body::after {
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(255, 255, 255, 0.48);
 }
 
 .panel-texture {
@@ -141,6 +142,82 @@ body::after {
 
 a {
   text-decoration: none;
+}
+
+.ui-panel {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #151d26;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.ui-panel-soft {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.ui-panel-faint {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ui-title-xl {
+  color: white;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+.ui-title-lg {
+  color: white;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.ui-title-md {
+  color: white;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  font-size: 1.125rem;
+}
+
+.ui-body {
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.ui-body-strong {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.ui-meta {
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.ui-meta-faint {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.ui-label {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.ui-code {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 @keyframes marquee {
@@ -261,13 +338,13 @@ a {
   height: 22px;
   padding: 0 6px;
   border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.07);
   font-family: var(--font-geist-mono), monospace;
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.58);
   line-height: 1;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 /* ── Mobile menu overlay ── */
@@ -291,7 +368,7 @@ a {
 
 /* ── Gradient text utility ── */
 .gradient-text {
-  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.72) 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.84) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

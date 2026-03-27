@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { href: "/", label: "Directory" },
+  { href: "/", label: "Home" },
   { href: "/makers", label: "Makers" },
   { href: "/submit", label: "Submit" },
 ];
@@ -38,9 +38,9 @@ export function SiteHeader() {
     <>
       <header
         className={cn(
-          "sticky top-0 z-50 border-b bg-[rgba(5,5,5,0.9)] backdrop-blur-xl transition-[border-color,box-shadow] duration-300",
+          "sticky top-0 z-50 border-b bg-[rgba(18,24,32,0.8)] backdrop-blur-xl transition-[border-color,box-shadow] duration-300",
           scrolled
-            ? "border-white/10 shadow-[0_8px_28px_rgba(0,0,0,0.32)]"
+            ? "border-white/8 shadow-[0_8px_28px_rgba(0,0,0,0.22)]"
             : "border-white/6"
         )}
       >
@@ -51,7 +51,7 @@ export function SiteHeader() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-1 sm:flex">
+          <nav className="hidden items-center gap-5 sm:flex">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
@@ -59,10 +59,8 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "rounded-full px-3.5 py-1.5 text-sm transition-all duration-200",
-                    isActive
-                      ? "border border-white/10 bg-white/[0.04] text-white"
-                      : "text-white/52 hover:bg-white/[0.04] hover:text-white/90"
+                    "text-sm transition-colors duration-200",
+                    isActive ? "text-white" : "text-white/58 hover:text-white/90"
                   )}
                 >
                   {item.label}
@@ -103,7 +101,7 @@ export function SiteHeader() {
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setMobileOpen(false)}
           />
-          <nav className="mobile-menu-enter absolute right-0 top-0 flex h-full w-72 flex-col border-l border-white/8 bg-[#0a0b0d]/98 pt-20 backdrop-blur-xl">
+          <nav className="mobile-menu-enter absolute right-0 top-0 flex h-full w-72 flex-col border-l border-white/10 bg-[#151d26]/98 pt-20 backdrop-blur-xl">
             <div className="flex flex-col gap-1 px-4">
               {navItems.map((item) => {
                 const isActive = pathname === item.href;

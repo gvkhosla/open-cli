@@ -48,9 +48,9 @@ export function CopyButton({ value, label = "Copy", compact = false }: CopyButto
       size={compact ? "sm" : "default"}
       onClick={onCopy}
       className={cn(
-        "group/copy shrink-0 gap-1.5 rounded-lg border-white/10 bg-white/[0.03] text-white/64 shadow-none transition-all duration-200 hover:border-white/16 hover:bg-white/[0.05] hover:text-white",
-        compact && "h-8 px-3",
-        copied && "border-white/16 bg-white/[0.06] text-white hover:border-white/16 hover:text-white",
+        "group/copy shrink-0 gap-1.5 rounded-full border-white/10 bg-white/[0.03] text-white/62 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transition-all duration-200 hover:border-white/16 hover:bg-white/[0.06] hover:text-white",
+        compact && "h-8 px-3.5",
+        copied && "border-white/16 bg-white/[0.07] text-white hover:border-white/16 hover:text-white",
       )}
       aria-label={`Copy ${label.toLowerCase()}`}
     >

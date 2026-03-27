@@ -4,11 +4,11 @@ import { notFound } from "next/navigation";
 
 import { CopyButton } from "@/components/copy-button";
 import { SiteHeader } from "@/components/site-header";
-import { WorkflowPackActions } from "@/components/workflow-pack-actions";
-import { clis, getAlternativeClis, getCliBySlug } from "@/data/clis";
+import { SkillPackActions } from "@/components/skill-pack-actions";
+import { clis, getAlternativeClis, getCliBySlug, type CliEntry } from "@/data/clis";
 import { buildCliAudit } from "@/lib/audits";
-import { formatCompactNumber } from "@/lib/format";
-import { buildWorkflowPackForCli } from "@/lib/supercharge";
+import { formatCompactNumber, titleCase } from "@/lib/format";
+import { buildSkillPackForCli } from "@/lib/supercharge";
 
 type CliPageProps = { params: Promise<{ slug: string }> };
 
@@ -32,196 +32,232 @@ function formatReleaseDate(value: string | null) {
   });
 }
 
+function buildWhenToApply(cli: CliEntry) {
+  const items = [
+    cli.bestFor,
+    cli.useThisIf,
+    ...cli.useCases.slice(0, 3).map((useCase) => `You need ${useCase.toLowerCase()}.`),
+  ];
+
+  return Array.from(new Set(items)).slice(0, 5);
+}
+
+function buildSummaryBullets(cli: CliEntry, whyReasons: string[]) {
+  return [
+    ...whyReasons,
+    cli.agentFriendly ? "Good fit for coding-agent workflows and repeatable scripts." : "Best treated as a human-first terminal tool.",
+    cli.supportsJsonOutput ? "Structured output is available for automation and parsing." : "Output is mostly text-first, so verify results before scripting around it.",
+  ].slice(0, 5);
+}
+
+function buildQuickReference(cli: CliEntry, verifyCommand: string) {
+  return [
+    { label: "Install", value: cli.installCommand },
+    { label: "Verify", value: verifyCommand },
+    { label: "First real command", value: cli.quickStart },
+  ];
+}
+
+function metricRows(cli: CliEntry, releaseDate: string | null) {
+  return [
+    cli.metricValue !== null && cli.metricLabel ? { label: cli.metricLabel, value: formatCompactNumber(cli.metricValue) } : null,
+    cli.githubRepo ? { label: "Repository", value: cli.githubRepo } : null,
+    cli.githubStars !== null ? { label: "GitHub stars", value: formatCompactNumber(cli.githubStars) } : null,
+    releaseDate ? { label: "First seen", value: releaseDate } : null,
+  ].filter(Boolean) as Array<{ label: string; value: string }>;
+}
+
 export default async function CliPage({ params }: CliPageProps) {
   const { slug } = await params;
   const cli = getCliBySlug(slug);
   if (!cli) notFound();
 
   const alternatives = getAlternativeClis(cli);
-  const pack = buildWorkflowPackForCli(cli);
+  const pack = buildSkillPackForCli(cli);
   const audit = buildCliAudit(cli);
   const releaseDate = formatReleaseDate(cli.latestRelease);
+  const whenToApply = buildWhenToApply(cli);
+  const summaryBullets = buildSummaryBullets(cli, pack.whyReasons);
+  const quickReference = buildQuickReference(cli, pack.verifyCommand);
+  const sidebarMetrics = metricRows(cli, releaseDate);
 
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pt-8">
-        <nav className="flex items-center gap-1.5 font-mono text-sm text-white/34">
-          <Link href="/" className="transition hover:text-white">open-cli</Link>
+      <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pt-8">
+        <nav className="flex items-center gap-1.5 font-mono text-sm text-white/46">
+          <Link href="/" className="transition hover:text-white">skills</Link>
           <span>/</span>
           <Link href={`/makers/${cli.makerSlug}`} className="transition hover:text-white">{cli.makerSlug}</Link>
           <span>/</span>
-          <span className="text-white/52">{cli.slug}</span>
+          <span className="text-white/64">{cli.slug}</span>
         </nav>
 
-        <section className="grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_360px] lg:items-start">
-          <div className="space-y-5">
-            <div className="space-y-4">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <h1 className="text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl">{cli.shortName}</h1>
-                {cli.official ? <Pill tone="good" label="Official" /> : null}
-                {cli.agentFriendly ? <Pill tone="default" label="Scriptable" /> : null}
-                <Pill tone="subtle" label={cli.category} />
-              </div>
-              <div className="max-w-3xl space-y-3">
-                <p className="text-lg leading-8 text-white/74">{cli.tagline}</p>
-                <p className="text-[15px] leading-7 text-white/48">{cli.description}</p>
-              </div>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-3">
-              <SummaryTile label="Best for" value={cli.bestFor} />
-              <SummaryTile label="Choose this if" value={cli.useThisIf} />
-              <SummaryTile label="Skip if" value={cli.skipIf} subdued />
-            </div>
-          </div>
-
-          <div className="rounded-[22px] border border-white/8 bg-[#0b0d10] p-4 sm:p-5">
-            <div className="space-y-4">
-              <div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/28">Install</div>
-                <div className="mt-2 flex items-center gap-2">
-                  <code className="flex-1 overflow-x-auto rounded-xl border border-white/10 bg-white/[0.03] px-3 py-3 font-mono text-sm text-white/78">
-                    <span className="select-none text-white/20">$ </span>
-                    {cli.installCommand}
-                  </code>
-                  <CopyButton compact value={cli.installCommand} label="Copy install" />
+        <section className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_250px] lg:items-start">
+          <article className="min-w-0 space-y-8">
+            <header className="space-y-4">
+              <div className="space-y-2">
+                <h1 className="text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl">{cli.slug}</h1>
+                <div className="flex flex-wrap items-center gap-2 text-xs text-white/40">
+                  {cli.official ? <InlineTag>official</InlineTag> : null}
+                  {cli.agentFriendly ? <InlineTag>scriptable</InlineTag> : null}
+                  <InlineTag>{cli.category.toLowerCase()}</InlineTag>
                 </div>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-                <CommandCard label="Verify" command={pack.verifyCommand} description={pack.verifySignal} />
-                <CommandCard label="First real command" command={cli.quickStart} />
+              <div className="ui-code flex items-center gap-2 rounded-xl px-3 py-3">
+                <code className="min-w-0 flex-1 overflow-x-auto font-mono text-sm text-white/88">
+                  <span className="select-none text-white/34">$ </span>
+                  {cli.installCommand}
+                </code>
+                <CopyButton compact value={cli.installCommand} label="Copy install" />
               </div>
 
-              <div className="border-t border-white/8 pt-4">
-                <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/28">Workflow pack</div>
-                <p className="mt-2 text-sm leading-6 text-white/46">
-                  Export a compact brief with install, verify, and safe-start guidance for this CLI.
-                </p>
-                <div className="mt-3">
-                  <WorkflowPackActions
-                    markdown={pack.markdown}
-                    fileName={pack.fileName}
-                    copyLabel="Copy workflow pack"
-                    downloadLabel="Download pack"
-                  />
-                </div>
+              <div className="ui-panel-soft rounded-2xl p-4 sm:p-5">
+                <div className="ui-label">Summary</div>
+                <p className="mt-3 text-sm leading-6 text-white/80">{cli.tagline}</p>
+                <ul className="mt-3 space-y-2 text-sm leading-6 text-white/66">
+                  {summaryBullets.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white/30" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-          </div>
-        </section>
+            </header>
 
-        <section className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
-          <div className="space-y-8">
-            <SurfaceSection title="Why this one works">
-              <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-                <div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/28">Why it fits</div>
-                  <ul className="mt-3 space-y-2.5 text-sm leading-6 text-white/58">
-                    {pack.whyReasons.map((reason) => (
-                      <li key={reason} className="flex items-start gap-2.5">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white/46" />
-                        <span>{reason}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/28">Watch out for</div>
-                  <ul className="mt-3 space-y-2.5 text-sm leading-6 text-white/52">
-                    {pack.watchouts.map((watchout) => (
-                      <li key={watchout} className="flex items-start gap-2.5">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white/28" />
-                        <span>{watchout}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            <section className="space-y-3">
+              <div className="ui-label">{pack.fileName}</div>
+              <h2 className="text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">{titleCase(cli.shortName)} guide</h2>
+              <p className="ui-body max-w-3xl">{cli.description}</p>
+              <p className="ui-body max-w-3xl">
+                Open CLI packages the install path, verify step, and safe-start workflow so this tool can move from “interesting CLI” to something you can actually use.
+              </p>
+            </section>
+
+            <DocSection title="When to apply">
+              <ul className="space-y-2 text-sm leading-6 text-white/70">
+                {whenToApply.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5">
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white/28" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </DocSection>
+
+            <DocSection title="Quick reference">
+              <div className="space-y-2.5">
+                {quickReference.map((item) => (
+                  <ReferenceRow key={item.label} label={item.label} value={item.value} />
+                ))}
               </div>
-            </SurfaceSection>
+            </DocSection>
+
+            <DocSection title="Why this tool">
+              <ul className="space-y-2 text-sm leading-6 text-white/70">
+                {pack.whyReasons.map((reason) => (
+                  <li key={reason} className="flex items-start gap-2.5">
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white/28" />
+                    <span>{reason}</span>
+                  </li>
+                ))}
+              </ul>
+            </DocSection>
+
+            <DocSection title="Watch-outs">
+              <ul className="space-y-2 text-sm leading-6 text-white/68">
+                {pack.watchouts.map((watchout) => (
+                  <li key={watchout} className="flex items-start gap-2.5">
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white/22" />
+                    <span>{watchout}</span>
+                  </li>
+                ))}
+              </ul>
+            </DocSection>
 
             {cli.exampleWorkflow.length > 0 ? (
-              <SurfaceSection title="Example workflow" subtitle="A practical starting sequence you can copy one command at a time.">
+              <DocSection title="Example workflow">
                 <div className="space-y-2.5">
                   {cli.exampleWorkflow.map((command, index) => (
-                    <div key={command} className="flex items-center justify-between gap-3 rounded-xl border border-white/8 bg-white/[0.02] px-4 py-3">
-                      <code className="min-w-0 flex-1 overflow-x-auto font-mono text-sm text-white/74">
-                        <span className="select-none text-white/24">{index + 1}. </span>
+                    <div key={command} className="ui-code flex items-center justify-between gap-3 rounded-xl px-4 py-3">
+                      <code className="min-w-0 flex-1 overflow-x-auto font-mono text-sm text-white/88">
+                        <span className="select-none text-white/40">{index + 1}. </span>
                         {command}
                       </code>
                       <CopyButton compact value={command} label="Copy" />
                     </div>
                   ))}
                 </div>
-              </SurfaceSection>
+              </DocSection>
             ) : null}
 
-            <SurfaceSection title="Safe start" subtitle="Use this sequence to confirm the tool works before you depend on it.">
-              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            <DocSection title="Safe start">
+              <div className="grid gap-3 sm:grid-cols-2">
                 {pack.firstSteps.map((step, index) => (
-                  <div key={`${step}-${index}`} className="rounded-xl border border-white/8 bg-white/[0.02] p-4">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/24">Step {index + 1}</div>
-                    <p className="mt-2 text-sm leading-6 text-white/58">{step}</p>
+                  <div key={`${step}-${index}`} className="ui-panel-soft rounded-xl p-4">
+                    <div className="ui-label">Step {index + 1}</div>
+                    <p className="mt-2 text-sm leading-6 text-white/72">{step}</p>
                   </div>
                 ))}
               </div>
-            </SurfaceSection>
+            </DocSection>
 
             {alternatives.length > 0 ? (
-              <SurfaceSection title="Alternatives worth considering" subtitle="Use these when your constraints differ from the default recommendation.">
+              <DocSection title="Alternatives worth considering">
                 <div className="space-y-2.5">
                   {alternatives.map((alternative) => (
                     <Link
                       key={alternative.slug}
                       href={`/cli/${alternative.slug}`}
-                      className="group flex items-start justify-between gap-4 rounded-xl border border-white/8 bg-white/[0.02] px-4 py-3.5 transition hover:border-white/14 hover:bg-white/[0.04]"
+                      className="group flex items-start justify-between gap-4 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 transition hover:border-white/16 hover:bg-white/[0.06]"
                     >
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-medium text-white">{alternative.shortName}</span>
-                          <span className="text-xs text-white/28">{alternative.name}</span>
-                        </div>
-                        <p className="mt-1 text-sm leading-6 text-white/46">{alternative.tagline}</p>
+                      <div>
+                        <div className="text-sm font-medium text-white/88">{alternative.shortName}</div>
+                        <p className="mt-1 text-sm leading-6 text-white/58">{alternative.tagline}</p>
                       </div>
-                      <svg className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-white/18 transition group-hover:translate-x-0.5 group-hover:text-white/36" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
-                        <path d="M1 7h12M8 2l5 5-5 5" />
-                      </svg>
+                      <ArrowIcon className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-white/20 transition group-hover:translate-x-0.5 group-hover:text-white/42" />
                     </Link>
                   ))}
                 </div>
-              </SurfaceSection>
+              </DocSection>
             ) : null}
-          </div>
+          </article>
 
-          <aside className="space-y-5">
-            <SidebarPanel title="Quick facts">
-              <FactRow label="Maker" value={cli.makerName} />
-              {cli.metricValue !== null && cli.metricLabel ? (
-                <FactRow label={cli.metricLabel} value={formatCompactNumber(cli.metricValue)} />
-              ) : null}
-              {cli.githubStars !== null ? <FactRow label="GitHub stars" value={formatCompactNumber(cli.githubStars)} /> : null}
-              {cli.license ? <FactRow label="License" value={cli.license} /> : null}
-              {releaseDate ? <FactRow label="Updated" value={releaseDate} /> : null}
-            </SidebarPanel>
+          <aside className="space-y-8 lg:sticky lg:top-20">
+            <SidebarGroup title={cli.metricLabel ? titleCase(cli.metricLabel) : "Stats"}>
+              {sidebarMetrics.map((row) => (
+                <SidebarMetric key={row.label} label={row.label} value={row.value} mono={row.label !== "Repository"} />
+              ))}
+            </SidebarGroup>
 
-            <SidebarPanel title="Trust and automation">
-              <div className="flex flex-wrap gap-2">
-                {audit.badges.map((badge) => (
-                  <span key={badge} className="rounded-full border border-white/8 bg-white/[0.03] px-2.5 py-1 text-[10px] uppercase tracking-[0.16em] text-white/42">
-                    {badge}
-                  </span>
-                ))}
+            <SidebarGroup title="Security audits">
+              <SidebarStatus label="Installability" value={audit.installability.note} tone="pass" />
+              <SidebarStatus label="Source trust" value={audit.sourceTrust.note} tone={audit.sourceTrust.level === "low" ? "muted" : "pass"} />
+              <SidebarStatus label="Automation" value={audit.automation.note} tone={audit.automation.level === "poor" ? "muted" : "pass"} />
+              <SidebarStatus label="Risk" value={audit.risk.note} tone={audit.risk.level === "high" ? "muted" : "pass"} />
+            </SidebarGroup>
+
+            <SidebarGroup title="Open CLI pack">
+              <div className="space-y-3">
+                <ReferenceRow label="Verify" value={pack.verifyCommand} compact />
+                <ReferenceRow label="Safe mode" value={pack.safeModeLabel} compact />
+                <ReferenceRow label="Ask before" value={pack.askBefore.join(", ")} compact />
+                <SkillPackActions
+                  skillMarkdown={pack.skillMarkdown}
+                  fileName={pack.fileName}
+                  agentsMarkdown={pack.agentsMarkdown}
+                  harnessJson={pack.harnessJson}
+                  copyLabel="Copy SKILL.md"
+                  downloadLabel="Download SKILL.md"
+                  showSecondary
+                />
               </div>
-              <div className="mt-4 space-y-2.5">
-                <Signal label="JSON output" on={cli.supportsJsonOutput} />
-                <Signal label="Non-interactive" on={cli.supportsNonInteractive} />
-                <Signal label="CI-friendly" on={cli.ciFriendly} />
-              </div>
-            </SidebarPanel>
+            </SidebarGroup>
 
-            <SidebarPanel title="Links">
-              <div className="space-y-2">
+            <SidebarGroup title="Links">
+              <div className="space-y-2.5">
                 {[
                   { href: cli.website, label: "Website" },
                   { href: cli.github, label: "GitHub" },
@@ -232,16 +268,14 @@ export default async function CliPage({ params }: CliPageProps) {
                     href={link.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="group flex items-center justify-between rounded-lg border border-white/8 bg-white/[0.02] px-3 py-2.5 text-sm text-white/52 transition hover:border-white/14 hover:bg-white/[0.04] hover:text-white"
+                    className="group flex items-center justify-between text-sm text-white/72 transition hover:text-white"
                   >
-                    {link.label}
-                    <svg className="h-3 w-3 text-white/20 transition group-hover:text-white/40" fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M2 10L10 2M10 2H4M10 2v6" />
-                    </svg>
+                    <span>{link.label}</span>
+                    <ExternalIcon className="h-3 w-3 text-white/24 transition group-hover:text-white/48" />
                   </a>
                 ))}
               </div>
-            </SidebarPanel>
+            </SidebarGroup>
           </aside>
         </section>
       </main>
@@ -249,83 +283,98 @@ export default async function CliPage({ params }: CliPageProps) {
   );
 }
 
-function Pill({ label, tone = "default" }: { label: string; tone?: "default" | "good" | "subtle" }) {
-  const tones = {
-    default: "border-white/10 bg-white/[0.03] text-white/48",
-    good: "border-white/10 bg-white/[0.03] text-white/48",
-    subtle: "border-white/8 bg-transparent text-white/38",
-  } as const;
-
+function DocSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <span className={`inline-flex items-center rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] ${tones[tone]}`}>
-      {label}
-    </span>
-  );
-}
-
-function SummaryTile({ label, value, subdued = false }: { label: string; value: string; subdued?: boolean }) {
-  return (
-    <div className="rounded-[18px] border border-white/8 bg-[#0b0d10] p-4">
-      <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/28">{label}</div>
-      <p className={`mt-2 text-sm leading-6 ${subdued ? "text-white/44" : "text-white/58"}`}>{value}</p>
-    </div>
-  );
-}
-
-function CommandCard({ label, command, description }: { label: string; command: string; description?: string }) {
-  return (
-    <div className="rounded-xl border border-white/8 bg-white/[0.02] p-3.5">
-      <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/28">{label}</div>
-      <div className="mt-2 flex items-center gap-2">
-        <code className="min-w-0 flex-1 overflow-x-auto font-mono text-sm text-white/74">
-          <span className="select-none text-white/20">$ </span>
-          {command}
-        </code>
-        <CopyButton compact value={command} label="Copy" />
-      </div>
-      {description ? <p className="mt-2 text-xs leading-5 text-white/34">{description}</p> : null}
-    </div>
-  );
-}
-
-function SurfaceSection({ title, subtitle, children }: { title: string; subtitle?: string; children: React.ReactNode }) {
-  return (
-    <section className="rounded-[22px] border border-white/8 bg-[#0b0d10] p-5 sm:p-6">
-      <div className="mb-4">
-        <h2 className="text-lg font-medium tracking-[-0.02em] text-white">{title}</h2>
-        {subtitle ? <p className="mt-1 text-sm leading-6 text-white/42">{subtitle}</p> : null}
-      </div>
+    <section className="space-y-3">
+      <h3 className="text-[1.65rem] font-medium tracking-[-0.03em] text-white">{title}</h3>
       {children}
     </section>
   );
 }
 
-function SidebarPanel({ title, children }: { title: string; children: React.ReactNode }) {
+function InlineTag({ children }: { children: React.ReactNode }) {
   return (
-    <section className="rounded-[20px] border border-white/8 bg-[#0b0d10] p-4 sm:p-5">
-      <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/28">{title}</div>
-      <div className="mt-3">{children}</div>
+    <span className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-white/48">
+      {children}
+    </span>
+  );
+}
+
+function ReferenceRow({
+  label,
+  value,
+  compact = false,
+}: {
+  label: string;
+  value: string;
+  compact?: boolean;
+}) {
+  return (
+    <div className={`ui-code rounded-xl px-3 ${compact ? "py-2.5" : "py-3"}`}>
+      <div className="flex items-start justify-between gap-3">
+        <span className="ui-label pt-0.5">{label}</span>
+        <code className="max-w-[70%] text-right font-mono text-sm text-white/88">{value}</code>
+      </div>
+    </div>
+  );
+}
+
+function SidebarGroup({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="space-y-4">
+      <div className="ui-label">{title}</div>
+      <div className="space-y-3">{children}</div>
     </section>
   );
 }
 
-function FactRow({ label, value }: { label: string; value: string }) {
+function SidebarMetric({ label, value, mono = false }: { label: string; value: string; mono?: boolean }) {
   return (
-    <div className="flex items-center justify-between gap-3 border-b border-white/6 py-2.5 text-sm last:border-b-0 last:pb-0 first:pt-0">
-      <span className="text-white/40">{label}</span>
-      <span className="font-mono text-right text-white/72">{value}</span>
+    <div className="space-y-1">
+      <div className="ui-label">{label}</div>
+      <div className={mono ? "font-mono text-sm text-white/82" : "text-sm text-white/72"}>{value}</div>
     </div>
   );
 }
 
-function Signal({ label, on }: { label: string; on: boolean }) {
+function SidebarStatus({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: string;
+  tone: "pass" | "muted";
+}) {
   return (
-    <div className="flex items-center justify-between text-sm">
-      <span className="text-white/42">{label}</span>
-      <span className={`inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] ${on ? "text-white/68" : "text-white/26"}`}>
-        <span className={`h-1.5 w-1.5 rounded-full ${on ? "bg-white/70" : "bg-white/16"}`} />
-        {on ? "Yes" : "No"}
+    <div className="flex items-start justify-between gap-3 text-sm">
+      <div>
+        <div className="ui-label">{label}</div>
+        <div className="mt-1 text-white/68">{value}</div>
+      </div>
+      <span
+        className={`mt-0.5 rounded-sm px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] ${
+          tone === "pass" ? "bg-emerald-500/18 text-emerald-200" : "bg-white/[0.06] text-white/46"
+        }`}
+      >
+        {tone === "pass" ? "Pass" : "Note"}
       </span>
     </div>
+  );
+}
+
+function ArrowIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
+      <path d="M1 7h12M8 2l5 5-5 5" />
+    </svg>
+  );
+}
+
+function ExternalIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="1.5">
+      <path d="M2 10L10 2M10 2H4M10 2v6" />
+    </svg>
   );
 }

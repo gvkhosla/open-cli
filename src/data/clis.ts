@@ -142,7 +142,11 @@ export type CliEntry = {
   metricAsOf: string | null;
 };
 
+export type BuilderLaunchStatus = "pending" | "approved" | "rejected";
+export type BuilderLaunchSource = "manual" | "discovered";
+
 export type BuilderLaunch = {
+  id?: string;
   name: string;
   creator: string;
   creatorUrl: string;
@@ -155,6 +159,10 @@ export type BuilderLaunch = {
   stars?: number | null;
   monthlyDownloads?: number | null;
   publishedAt?: string | null;
+  status?: BuilderLaunchStatus;
+  source?: BuilderLaunchSource;
+  auditScore?: number | null;
+  createdAt?: string | null;
 };
 
 const makerSeeds = makersJson as Maker[];

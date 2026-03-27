@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/site-header";
 import { getDirectoryResults, getDirectoryStats } from "@/lib/directory";
 
 export default function Home() {
-  const initialDirectory = getDirectoryResults("", 24);
+  const initialDirectory = getDirectoryResults("", 125);
 
   return (
     <>

@@ -1,5 +1,6 @@
 import { clis, searchClis, type CliEntry } from "@/data/clis";
 import { capabilityDefinitions, detectCapabilityMatches, getCapabilityBySlug, type CapabilityDefinition } from "@/lib/capabilities";
+import { skillOverrides, type SkillOutputMode } from "@/lib/skill-overrides";
 
 export type SuperchargeCliSummary = {
   slug: string;
@@ -17,7 +18,7 @@ export type SuperchargeAlternative = {
   reason: string;
 };
 
-export type WorkflowPack = {
+export type SkillPack = {
   cliSlug: string;
   cliShortName: string;
   cliName: string;
@@ -27,11 +28,18 @@ export type WorkflowPack = {
   verifyCommand: string;
   verifySignal: string;
   firstSteps: string[];
+  safeCommands: string[];
+  askBefore: string[];
+  preferredOutput: SkillOutputMode;
+  safeModeLabel: string;
   whyReasons: string[];
   watchouts: string[];
+  prompts: string[];
   loopName: string;
   loopSteps: string[];
-  markdown: string;
+  skillMarkdown: string;
+  agentsMarkdown: string;
+  harnessJson: string;
   fileName: string;
 };
 
@@ -48,7 +56,7 @@ export type SuperchargeRecommendation = {
   setupSteps: string[];
   verifyCommand: string;
   verifySignal: string;
-  workflowPack: WorkflowPack;
+  skillPack: SkillPack;
   skillTitle: string;
   skillFileName: string;
   skillBody: string;
@@ -80,6 +88,8 @@ const verifyOverrides: Record<string, { command: string; signal: string }> = {
   docker: { command: "docker version", signal: "Docker responds and the daemon is reachable." },
   tempo: { command: "tempo wallet whoami", signal: "Tempo prints the active wallet or prompts you to log in first." },
 };
+
+const RISKY_COMMAND_PATTERN = /(deploy|--prod|delete|destroy|remove|rm\b|drop|reset|rollback|merge|close|push|apply|fund|transfer|write|publish)/i;
 
 function defaultVerify(cli: CliEntry) {
   if (cli.requiresAuth) {
@@ -217,19 +227,87 @@ function buildAlternativeReason(primary: CliEntry, alternative: CliEntry) {
   return `Choose this if you care more about ${stripBestFor(alternative.bestFor)}.`;
 }
 
-function buildWorkflowPackMarkdown(
+function getPreferredOutput(cli: CliEntry): SkillOutputMode {
+  const override = skillOverrides[cli.slug]?.preferredOutput;
+  if (override) return override;
+  if (cli.supportsJsonOutput) return "json";
+  if (cli.supportsNonInteractive) return "mixed";
+  return "text";
+}
+
+function buildAskBefore(cli: CliEntry) {
+  const override = skillOverrides[cli.slug]?.askBefore;
+  if (override?.length) {
+    return override.slice(0, 4);
+  }
+
+  if (cli.destructivePotential === "high") {
+    return ["delete or destroy resources", "production changes", "mutations with side effects"];
+  }
+
+  if (cli.destructivePotential === "medium") {
+    return ["write actions", "state changes", "closing or merging work"];
+  }
+
+  return ["destructive or irreversible actions"];
+}
+
+function buildSafeModeLabel(cli: CliEntry) {
+  if (cli.destructivePotential !== "low" || cli.requiresAuth) {
+    return "Read-only first";
+  }
+
+  if (cli.supportsJsonOutput) {
+    return "Structured output first";
+  }
+
+  return "Verify before automation";
+}
+
+function buildSafeCommands(cli: CliEntry, verify: { command: string; signal: string }) {
+  const override = skillOverrides[cli.slug]?.safeCommands;
+  if (override?.length) {
+    return override.slice(0, 4);
+  }
+
+  const exampleCommands = cli.exampleWorkflow.filter((command) => !RISKY_COMMAND_PATTERN.test(command));
+
+  return Array.from(new Set([verify.command, `${cli.shortName} --help`, ...exampleCommands])).slice(0, 4);
+}
+
+function buildPromptSuggestions(cli: CliEntry, capability: CapabilityDefinition) {
+  const override = skillOverrides[cli.slug]?.suggestedPrompts;
+  if (override?.length) {
+    return override.slice(0, 3);
+  }
+
+  return [
+    capability.samplePrompt,
+    `Use ${cli.shortName} in read-only mode first, summarize what you find, and ask before any action with side effects.`,
+    cli.supportsJsonOutput
+      ? `Use ${cli.shortName} with machine-readable output when possible and return a concise summary.`
+      : `Use ${cli.shortName} carefully, prefer inspection commands first, and explain any risky step before running it.`,
+  ].slice(0, 3);
+}
+
+function buildSkillMarkdown(
   cli: CliEntry,
   capability: CapabilityDefinition,
   verify: { command: string; signal: string },
   whyReasons: string[],
   watchouts: string[],
   firstSteps: string[],
+  safeCommands: string[],
+  askBefore: string[],
+  preferredOutput: SkillOutputMode,
+  prompts: string[],
 ) {
   return [
-    `# Workflow Pack: ${capability.label} with ${cli.shortName}`,
+    `# SKILL.md — ${cli.shortName}`,
     "",
-    `Use ${cli.shortName} for ${stripBestFor(cli.bestFor)}.`,
+    `Use \`${cli.shortName}\` for ${stripBestFor(cli.bestFor)}.`,
     `Maker: ${cli.makerName}`,
+    `Capability: ${capability.label}`,
     "",
     "## Install",
     cli.installCommand,
@@ -242,15 +320,78 @@ function buildWorkflowPackMarkdown(
     "## Safe start",
     ...firstSteps.map((step, index) => `${index + 1}. ${step}`),
     "",
+    "## Safe commands",
+    ...safeCommands.map((command) => `- ${command}`),
+    "",
+    "## Preferred output",
+    preferredOutput === "json"
+      ? "Prefer JSON or machine-readable output whenever the CLI supports it."
+      : preferredOutput === "mixed"
+        ? "Prefer non-interactive commands first and switch to machine-readable output where available."
+        : "Treat the output as human-oriented text and verify results before automating around it.",
+    "",
+    "## Ask before",
+    ...askBefore.map((rule) => `- ${rule}`),
+    "",
     "## Why this tool",
     ...whyReasons.map((reason) => `- ${reason}`),
     "",
     "## Watch out for",
     ...watchouts.map((watchout) => `- ${watchout}`),
     "",
-    "## Suggested loop",
+    "## Suggested prompts",
+    ...prompts.map((prompt) => `- ${prompt}`),
+    "",
+    `## ${capability.loopName}`,
     ...capability.loopSteps.map((step, index) => `${index + 1}. ${step}`),
   ].join("\n");
+}
+
+function buildAgentsMarkdown(cli: CliEntry, verify: { command: string; signal: string }, askBefore: string[], preferredOutput: SkillOutputMode) {
+  const outputLine =
+    preferredOutput === "json"
+      ? "Prefer JSON output when possible."
+      : preferredOutput === "mixed"
+        ? "Prefer non-interactive commands first and use structured output when available."
+        : "Treat output as plain text and verify before automating around it.";
+
+  return [
+    `## ${cli.name} (${cli.shortName})`,
+    `- Install: \`${cli.installCommand}\``,
+    `- Verify: \`${verify.command}\``,
+    `- ${outputLine}`,
+    "- Start with read-only or low-risk commands first.",
+    `- Ask before ${askBefore.join(", ")}.`,
+  ].join("\n");
+}
+
+function buildHarnessJson(
+  cli: CliEntry,
+  verify: { command: string; signal: string },
+  firstSteps: string[],
+  safeCommands: string[],
+  askBefore: string[],
+  preferredOutput: SkillOutputMode,
+  watchouts: string[],
+  prompts: string[],
+) {
+  return JSON.stringify(
+    {
+      slug: cli.slug,
+      title: `${cli.name} skill pack`,
+      installCommand: cli.installCommand,
+      verifyCommand: verify.command,
+      verifySignal: verify.signal,
+      safeStart: firstSteps,
+      safeCommands,
+      preferredOutput,
+      askBefore,
+      watchouts,
+      prompts,
+    },
+    null,
+    2,
+  );
 }
 
 function chooseCandidates(capability: CapabilityDefinition, prompt: string) {
@@ -283,7 +424,7 @@ function getDefaultCapabilityForCli(cli: CliEntry) {
   );
 }
 
-export function buildWorkflowPackForCli(cli: CliEntry, capability = getDefaultCapabilityForCli(cli)): WorkflowPack {
+export function buildSkillPackForCli(cli: CliEntry, capability = getDefaultCapabilityForCli(cli)): SkillPack {
   const verify = getVerifyStep(cli);
   const whyReasons = buildWhyReasons(cli, capability, verify);
   const watchouts = buildWatchouts(cli);
@@ -294,23 +435,45 @@ export function buildWorkflowPackForCli(cli: CliEntry, capability = getDefaultCa
     `Start with \`${cli.quickStart}\`.`,
     ...setupSteps,
   ].slice(0, 4);
+  const safeCommands = buildSafeCommands(cli, verify);
+  const askBefore = buildAskBefore(cli);
+  const preferredOutput = getPreferredOutput(cli);
+  const prompts = buildPromptSuggestions(cli, capability);
 
   return {
     cliSlug: cli.slug,
     cliShortName: cli.shortName,
     cliName: cli.name,
-    title: `${cli.shortName} pack`,
+    title: `${cli.shortName} skill pack`,
     summary: `Use ${cli.shortName} for ${stripBestFor(cli.bestFor)}.`,
     installCommand: cli.installCommand,
     verifyCommand: verify.command,
     verifySignal: verify.signal,
     firstSteps,
+    safeCommands,
+    askBefore,
+    preferredOutput,
+    safeModeLabel: buildSafeModeLabel(cli),
     whyReasons,
     watchouts,
+    prompts,
     loopName: capability.loopName,
     loopSteps: capability.loopSteps,
-    markdown: buildWorkflowPackMarkdown(cli, capability, verify, whyReasons, watchouts, firstSteps),
-    fileName: `${capability.slug}-${cli.slug}-workflow-pack.md`,
+    skillMarkdown: buildSkillMarkdown(
+      cli,
+      capability,
+      verify,
+      whyReasons,
+      watchouts,
+      firstSteps,
+      safeCommands,
+      askBefore,
+      preferredOutput,
+      prompts,
+    ),
+    agentsMarkdown: buildAgentsMarkdown(cli, verify, askBefore, preferredOutput),
+    harnessJson: buildHarnessJson(cli, verify, firstSteps, safeCommands, askBefore, preferredOutput, watchouts, prompts),
+    fileName: `${capability.slug}-${cli.slug}-SKILL.md`,
   };
 }
 
@@ -325,7 +488,7 @@ export function buildSuperchargeRecommendation(prompt: string, preferredCapabili
     return null;
   }
 
-  const workflowPack = buildWorkflowPackForCli(primary, capability);
+  const skillPack = buildSkillPackForCli(primary, capability);
   const alternatives = candidates
     .filter((cli) => cli.slug !== primary.slug)
     .slice(0, 3)
@@ -344,19 +507,19 @@ export function buildSuperchargeRecommendation(prompt: string, preferredCapabili
     primary: summarizeCli(primary),
     alternatives,
     rationale: buildRationale(primary, capability, {
-      command: workflowPack.verifyCommand,
-      signal: workflowPack.verifySignal,
+      command: skillPack.verifyCommand,
+      signal: skillPack.verifySignal,
     }),
-    whyReasons: workflowPack.whyReasons,
-    watchouts: workflowPack.watchouts,
-    setupSteps: workflowPack.firstSteps,
-    verifyCommand: workflowPack.verifyCommand,
-    verifySignal: workflowPack.verifySignal,
-    workflowPack,
-    skillTitle: workflowPack.title,
-    skillFileName: workflowPack.fileName,
-    skillBody: workflowPack.markdown,
-    loopName: workflowPack.loopName,
-    loopSteps: workflowPack.loopSteps,
+    whyReasons: skillPack.whyReasons,
+    watchouts: skillPack.watchouts,
+    setupSteps: skillPack.firstSteps,
+    verifyCommand: skillPack.verifyCommand,
+    verifySignal: skillPack.verifySignal,
+    skillPack,
+    skillTitle: skillPack.title,
+    skillFileName: skillPack.fileName,
+    skillBody: skillPack.skillMarkdown,
+    loopName: skillPack.loopName,
+    loopSteps: skillPack.loopSteps,
   };
 }

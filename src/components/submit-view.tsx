@@ -93,7 +93,7 @@ export function SubmitView() {
   }
 
   const inputCls =
-    "h-11 w-full rounded-xl border border-white/10 bg-white/[0.02] px-3.5 text-white outline-none placeholder:text-white/24 transition-colors focus:border-white/18 focus:bg-white/[0.03]";
+    "h-11 w-full rounded-xl border border-white/12 bg-white/[0.05] px-3.5 text-white/96 outline-none placeholder:text-white/44 transition-colors focus:border-white/18 focus:bg-white/[0.07]";
 
   const canSubmit = form.name.trim() && form.href.trim();
 
@@ -101,7 +101,7 @@ export function SubmitView() {
     <>
       <SiteHeader />
       <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-8 sm:px-6 lg:px-8">
-        <nav className="flex items-center gap-2 text-sm text-white/34">
+        <nav className="flex items-center gap-2 text-sm text-white/50">
           <Link href="/" className="transition hover:text-white">open-cli</Link>
           <svg className="h-3 w-3 text-white/20" fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="1.5"><path d="M4 2l4 4-4 4" /></svg>
           <span className="text-white/52">submit</span>
@@ -110,17 +110,17 @@ export function SubmitView() {
         <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
           <div className="space-y-4">
             <div className="section-kicker">Submit</div>
-            <h1 className="max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl">
+            <h1 className="ui-title-lg max-w-3xl">
               Add a CLI to the directory.
             </h1>
-            <p className="max-w-2xl text-[15px] leading-7 text-white/48 sm:text-base">
+            <p className="ui-body max-w-2xl">
               If a useful CLI is missing, send the basics here. Keep it short and factual — name, link, install command, and why it matters.
             </p>
           </div>
 
-          <div className="rounded-[20px] border border-white/8 bg-[#0b0d10] p-4 sm:p-5">
-            <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/28">What helps most</div>
-            <ul className="mt-3 space-y-2.5 text-sm leading-6 text-white/48">
+          <div className="ui-panel rounded-[20px] p-4 sm:p-5">
+            <div className="ui-label">What helps most</div>
+            <ul className="mt-3 space-y-2.5 text-sm leading-6 text-white/64">
               <li>• A working project or docs link</li>
               <li>• A real install command</li>
               <li>• A one-line explanation of what the tool is good at</li>
@@ -130,7 +130,7 @@ export function SubmitView() {
         </section>
 
         <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
-          <div className="rounded-[22px] border border-white/8 bg-[#0b0d10] p-5 sm:p-6">
+          <div className="ui-panel rounded-[22px] p-5 sm:p-6">
             <div className="grid gap-5 sm:grid-cols-2">
               <Field label="CLI name *">
                 <input value={form.name} onChange={(event) => update("name", event.target.value)} placeholder="e.g. summarize" className={inputCls} />
@@ -172,7 +172,7 @@ export function SubmitView() {
                   onChange={(event) => update("notes", event.target.value)}
                   placeholder="Who is it for? What makes it worth listing?"
                   rows={3}
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.02] px-3.5 py-3 text-white outline-none placeholder:text-white/24 transition-colors focus:border-white/18 focus:bg-white/[0.03]"
+                  className="w-full rounded-xl border border-white/12 bg-white/[0.05] px-3.5 py-3 text-white/96 outline-none placeholder:text-white/44 transition-colors focus:border-white/18 focus:bg-white/[0.07]"
                 />
               </Field>
             </div>
@@ -219,24 +219,24 @@ export function SubmitView() {
           </div>
 
           <aside className="space-y-5">
-            <div className="rounded-[20px] border border-white/8 bg-[#0b0d10] p-4 sm:p-5">
-              <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/28">JSON preview</div>
+            <div className="ui-panel rounded-[20px] p-4 sm:p-5">
+              <div className="ui-label">JSON preview</div>
               <button
                 type="button"
                 onClick={() => setShowJson(!showJson)}
-                className="mt-3 inline-flex items-center gap-2 text-sm text-white/46 transition hover:text-white/72"
+                className="mt-3 inline-flex items-center gap-2 text-sm text-white/62 transition hover:text-white"
               >
                 <svg className={`h-3 w-3 transition-transform ${showJson ? "rotate-90" : ""}`} fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="1.5"><path d="M4 2l4 4-4 4" /></svg>
                 {showJson ? "Hide" : "Show"} payload
               </button>
 
               {showJson ? (
-                <div className="mt-3 overflow-hidden rounded-xl border border-white/8 bg-white/[0.02]">
-                  <div className="flex items-center justify-between border-b border-white/8 px-4 py-2.5">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/30">builder-launches.json</span>
+                <div className="ui-panel-soft mt-3 overflow-hidden rounded-xl">
+                  <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/46">builder-launches.json</span>
                     <CopyButton compact value={jsonPayload} label="Copy JSON" />
                   </div>
-                  <pre className="max-h-64 overflow-auto p-4 font-mono text-xs leading-6 text-white/58">{jsonPayload}</pre>
+                  <pre className="max-h-64 overflow-auto p-4 font-mono text-xs leading-6 text-white/74">{jsonPayload}</pre>
                 </div>
               ) : null}
             </div>
@@ -250,7 +250,7 @@ export function SubmitView() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="space-y-2 text-sm">
-      <span className="text-white/44">{label}</span>
+      <span className="text-white/62">{label}</span>
       {children}
     </label>
   );

@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { DialRoot } from "dialkit";
 
 import { SiteFooter } from "@/components/site-footer";
 import { siteConfig } from "@/lib/site";
 
-import "dialkit/styles.css";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -53,9 +51,9 @@ export const metadata: Metadata = {
     images: ["/twitter-image"],
   },
   icons: {
-    icon: "/icon",
+    icon: [{ url: "/icon", type: "image/png", sizes: "64x64" }, { url: "/favicon.ico", sizes: "any" }],
     apple: "/apple-icon",
-    shortcut: "/icon",
+    shortcut: "/favicon.ico",
   },
 };
 
@@ -71,7 +69,6 @@ export default function RootLayout({
           {children}
           <SiteFooter />
         </div>
-        <DialRoot />
       </body>
     </html>
   );
