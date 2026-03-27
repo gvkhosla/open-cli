@@ -1,0 +1,357 @@
+[
+  {
+    "id": "deploy-to-vercel",
+    "source": "vercel-labs/agent-skills",
+    "skillId": "deploy-to-vercel",
+    "title": "Deploy to Vercel",
+    "categories": ["Deploy", "Cloud"],
+    "makers": ["vercel"],
+    "tags": ["deploy", "preview", "vercel"],
+    "oneLiner": "Preview-first deployment workflow for Vercel projects."
+  },
+  {
+    "id": "vercel-react-best-practices",
+    "source": "vercel-labs/agent-skills",
+    "skillId": "vercel-react-best-practices",
+    "title": "Vercel React Best Practices",
+    "categories": ["Deploy", "Package Management"],
+    "makers": ["vercel"],
+    "tags": ["react", "frontend", "vercel"],
+    "oneLiner": "Best practices for shipping React apps on Vercel."
+  },
+  {
+    "id": "next-best-practices",
+    "source": "vercel-labs/next-skills",
+    "skillId": "next-best-practices",
+    "title": "Next Best Practices",
+    "categories": ["Deploy", "Package Management", "Docs / Content"],
+    "makers": ["vercel"],
+    "tags": ["next.js", "react", "fullstack"],
+    "oneLiner": "Use modern Next.js patterns that pair well with deployment workflows."
+  },
+  {
+    "id": "supabase-postgres-best-practices",
+    "source": "supabase/agent-skills",
+    "skillId": "supabase-postgres-best-practices",
+    "title": "Supabase Postgres Best Practices",
+    "categories": ["Database", "Data"],
+    "makers": ["supabase"],
+    "tags": ["postgres", "sql", "supabase"],
+    "oneLiner": "Schema, query, and migration guidance for Postgres workflows on Supabase."
+  },
+  {
+    "id": "neon-postgres",
+    "source": "neondatabase/agent-skills",
+    "skillId": "neon-postgres",
+    "title": "Neon Postgres",
+    "categories": ["Database", "Data"],
+    "makers": ["neon"],
+    "tags": ["postgres", "sql", "serverless"],
+    "oneLiner": "Serverless Postgres patterns that fit Neon database workflows."
+  },
+  {
+    "id": "playwright-cli",
+    "source": "microsoft/playwright-cli",
+    "skillId": "playwright-cli",
+    "title": "Playwright CLI",
+    "categories": ["Browser Automation"],
+    "makers": ["microsoft"],
+    "tags": ["playwright", "browser", "testing"],
+    "oneLiner": "Practical browser automation and test flows built around Playwright."
+  },
+  {
+    "id": "playwright-best-practices",
+    "source": "currents-dev/playwright-best-practices-skill",
+    "skillId": "playwright-best-practices",
+    "title": "Playwright Best Practices",
+    "categories": ["Browser Automation"],
+    "tags": ["playwright", "testing", "e2e"],
+    "oneLiner": "Reliable patterns for exploring, writing, and maintaining browser tests."
+  },
+  {
+    "id": "webapp-testing",
+    "source": "anthropics/skills",
+    "skillId": "webapp-testing",
+    "title": "Webapp Testing",
+    "categories": ["Browser Automation"],
+    "tags": ["testing", "qa", "browser"],
+    "oneLiner": "Test web applications methodically before you automate bigger flows."
+  },
+  {
+    "id": "docker-expert",
+    "source": "sickn33/antigravity-awesome-skills",
+    "skillId": "docker-expert",
+    "title": "Docker Expert",
+    "categories": ["Containers / Infra"],
+    "makers": ["docker"],
+    "tags": ["docker", "containers", "images"],
+    "oneLiner": "Sharper container workflows for images, builds, and runtime debugging."
+  },
+  {
+    "id": "azure-kubernetes",
+    "source": "microsoft/azure-skills",
+    "skillId": "azure-kubernetes",
+    "title": "Azure Kubernetes",
+    "categories": ["Cloud", "Containers / Infra"],
+    "makers": ["microsoft"],
+    "tags": ["azure", "kubernetes", "aks"],
+    "oneLiner": "Kubernetes workflows tuned for Azure and cluster operations."
+  },
+  {
+    "id": "azure-observability",
+    "source": "microsoft/azure-skills",
+    "skillId": "azure-observability",
+    "title": "Azure Observability",
+    "categories": ["Observability", "Cloud"],
+    "makers": ["microsoft"],
+    "tags": ["azure", "logs", "monitoring"],
+    "oneLiner": "Logging and monitoring guidance for cloud systems and deployments."
+  },
+  {
+    "id": "azure-ai",
+    "source": "microsoft/azure-skills",
+    "skillId": "azure-ai",
+    "title": "Azure AI",
+    "categories": ["AI", "Cloud"],
+    "makers": ["microsoft"],
+    "tags": ["azure", "ai", "models"],
+    "oneLiner": "AI workflow guidance for model-backed apps and cloud tooling."
+  },
+  {
+    "id": "pnpm",
+    "source": "antfu/skills",
+    "skillId": "pnpm",
+    "title": "pnpm",
+    "categories": ["Package Management"],
+    "tags": ["pnpm", "monorepo", "packages"],
+    "oneLiner": "Package-management patterns that fit fast JS and monorepo workflows."
+  },
+  {
+    "id": "vite",
+    "source": "antfu/skills",
+    "skillId": "vite",
+    "title": "Vite",
+    "categories": ["Package Management"],
+    "tags": ["vite", "frontend", "bundler"],
+    "oneLiner": "Faster dev-server and bundling patterns for modern frontend projects."
+  },
+  {
+    "id": "vitest",
+    "source": "antfu/skills",
+    "skillId": "vitest",
+    "title": "Vitest",
+    "categories": ["Package Management"],
+    "tags": ["vitest", "testing", "frontend"],
+    "oneLiner": "Testing guidance for Vitest-powered JavaScript projects."
+  },
+  {
+    "id": "workflow-automation",
+    "source": "supercent-io/skills-template",
+    "skillId": "workflow-automation",
+    "title": "Workflow Automation",
+    "categories": ["Productivity", "Shell Utilities", "Cloud", "Deploy"],
+    "tags": ["automation", "workflows", "agents"],
+    "oneLiner": "Turn repeated CLI sequences into cleaner, more reliable agent workflows."
+  },
+  {
+    "id": "deployment-automation",
+    "source": "supercent-io/skills-template",
+    "skillId": "deployment-automation",
+    "title": "Deployment Automation",
+    "categories": ["Deploy", "Cloud", "Containers / Infra"],
+    "tags": ["deploy", "release", "automation"],
+    "oneLiner": "Safer deployment routines with approvals, checks, and repeatable steps."
+  },
+  {
+    "id": "monitoring-observability",
+    "source": "supercent-io/skills-template",
+    "skillId": "monitoring-observability",
+    "title": "Monitoring & Observability",
+    "categories": ["Observability", "Cloud", "Containers / Infra"],
+    "tags": ["monitoring", "metrics", "alerts"],
+    "oneLiner": "Use metrics, traces, and health checks to understand what your CLI changed."
+  },
+  {
+    "id": "log-analysis",
+    "source": "supercent-io/skills-template",
+    "skillId": "log-analysis",
+    "title": "Log Analysis",
+    "categories": ["Observability", "Data"],
+    "tags": ["logs", "debugging", "analysis"],
+    "oneLiner": "Analyze logs quickly and turn noisy output into clear next steps."
+  },
+  {
+    "id": "database-schema-design",
+    "source": "supercent-io/skills-template",
+    "skillId": "database-schema-design",
+    "title": "Database Schema Design",
+    "categories": ["Database", "Data"],
+    "tags": ["database", "schema", "sql"],
+    "oneLiner": "Use better schema and migration decisions when a CLI touches databases."
+  },
+  {
+    "id": "data-analysis",
+    "source": "supercent-io/skills-template",
+    "skillId": "data-analysis",
+    "title": "Data Analysis",
+    "categories": ["Data", "Database"],
+    "tags": ["analysis", "csv", "data"],
+    "oneLiner": "Turn query output and flat files into usable insights faster."
+  },
+  {
+    "id": "security-best-practices",
+    "source": "supercent-io/skills-template",
+    "skillId": "security-best-practices",
+    "title": "Security Best Practices",
+    "categories": ["Security", "Wallet / Payments", "Cloud"],
+    "tags": ["security", "auth", "secrets"],
+    "oneLiner": "Add safer defaults when a CLI touches secrets, auth, or sensitive systems."
+  },
+  {
+    "id": "technical-writing",
+    "source": "supercent-io/skills-template",
+    "skillId": "technical-writing",
+    "title": "Technical Writing",
+    "categories": ["Docs / Content", "Productivity"],
+    "tags": ["docs", "writing", "guides"],
+    "oneLiner": "Document commands, outputs, and workflows in a way other people can reuse."
+  },
+  {
+    "id": "api-documentation",
+    "source": "supercent-io/skills-template",
+    "skillId": "api-documentation",
+    "title": "API Documentation",
+    "categories": ["Docs / Content", "Wallet / Payments", "Cloud"],
+    "tags": ["api", "docs", "integrations"],
+    "oneLiner": "Translate API-heavy CLI work into clearer integration docs and examples."
+  },
+  {
+    "id": "git-workflow",
+    "source": "supercent-io/skills-template",
+    "skillId": "git-workflow",
+    "title": "Git Workflow",
+    "categories": ["Git"],
+    "tags": ["git", "branches", "prs"],
+    "oneLiner": "Use cleaner branches, reviews, and merge flows around Git-based CLIs."
+  },
+  {
+    "id": "code-review",
+    "source": "supercent-io/skills-template",
+    "skillId": "code-review",
+    "title": "Code Review",
+    "categories": ["Git", "Security", "Package Management"],
+    "tags": ["review", "quality", "changes"],
+    "oneLiner": "Add a structured review pass before trusting generated or risky changes."
+  },
+  {
+    "id": "backend-testing",
+    "source": "supercent-io/skills-template",
+    "skillId": "backend-testing",
+    "title": "Backend Testing",
+    "categories": ["Package Management", "Database", "Containers / Infra"],
+    "tags": ["testing", "backend", "services"],
+    "oneLiner": "Backstop CLI-driven changes with stronger validation and test coverage."
+  },
+  {
+    "id": "debugging",
+    "source": "supercent-io/skills-template",
+    "skillId": "debugging",
+    "title": "Debugging",
+    "categories": ["Shell Utilities", "Observability", "Security"],
+    "tags": ["debugging", "triage", "root cause"],
+    "oneLiner": "Use the CLI output as evidence, not guesses, when debugging failures."
+  },
+  {
+    "id": "codebase-search",
+    "source": "supercent-io/skills-template",
+    "skillId": "codebase-search",
+    "title": "Codebase Search",
+    "categories": ["Shell Utilities", "Git", "Data"],
+    "tags": ["search", "ripgrep", "navigation"],
+    "oneLiner": "Search large projects systematically before changing code or config."
+  },
+  {
+    "id": "environment-setup",
+    "source": "supercent-io/skills-template",
+    "skillId": "environment-setup",
+    "title": "Environment Setup",
+    "categories": ["Package Management", "Shell Utilities"],
+    "tags": ["setup", "tooling", "local-dev"],
+    "oneLiner": "Get local toolchains installed and repeatable before deeper automation."
+  },
+  {
+    "id": "prompt-engineering",
+    "source": "inferen-sh/skills",
+    "skillId": "prompt-engineering",
+    "title": "Prompt Engineering",
+    "categories": ["AI"],
+    "tags": ["prompts", "models", "agents"],
+    "oneLiner": "Use sharper prompts so AI CLIs and agents produce more reliable results."
+  },
+  {
+    "id": "ai-automation-workflows",
+    "source": "inferen-sh/skills",
+    "skillId": "ai-automation-workflows",
+    "title": "AI Automation Workflows",
+    "categories": ["AI", "Productivity"],
+    "tags": ["automation", "agents", "ai"],
+    "oneLiner": "Turn model-backed tools into repeatable loops instead of one-off prompts."
+  },
+  {
+    "id": "web-search",
+    "source": "inferen-sh/skills",
+    "skillId": "web-search",
+    "title": "Web Search",
+    "categories": ["Scraping", "Data", "AI"],
+    "tags": ["search", "research", "web"],
+    "oneLiner": "Use web research deliberately before scraping or summarizing results."
+  },
+  {
+    "id": "firecrawl-search",
+    "source": "firecrawl/cli",
+    "skillId": "firecrawl-search",
+    "title": "Firecrawl Search",
+    "categories": ["Scraping", "Data"],
+    "makers": ["firecrawl"],
+    "tags": ["search", "crawl", "web"],
+    "oneLiner": "Search the web with structured output before scraping deeper pages."
+  },
+  {
+    "id": "firecrawl-scrape",
+    "source": "firecrawl/cli",
+    "skillId": "firecrawl-scrape",
+    "title": "Firecrawl Scrape",
+    "categories": ["Scraping", "Data"],
+    "makers": ["firecrawl"],
+    "tags": ["scrape", "extract", "web"],
+    "oneLiner": "Extract cleaner content from pages without rebuilding the scraping flow yourself."
+  },
+  {
+    "id": "firecrawl-crawl",
+    "source": "firecrawl/cli",
+    "skillId": "firecrawl-crawl",
+    "title": "Firecrawl Crawl",
+    "categories": ["Scraping", "Data"],
+    "makers": ["firecrawl"],
+    "tags": ["crawl", "sites", "web"],
+    "oneLiner": "Crawl multi-page sites systematically once search or scrape proves useful."
+  },
+  {
+    "id": "better-auth-best-practices",
+    "source": "better-auth/skills",
+    "skillId": "better-auth-best-practices",
+    "title": "Better Auth Best Practices",
+    "categories": ["Security", "Wallet / Payments"],
+    "tags": ["auth", "sessions", "security"],
+    "oneLiner": "Sharper auth and identity guidance for tools that touch accounts or money."
+  },
+  {
+    "id": "mcp-builder",
+    "source": "anthropics/skills",
+    "skillId": "mcp-builder",
+    "title": "MCP Builder",
+    "categories": ["AI", "Productivity"],
+    "tags": ["mcp", "tools", "agents"],
+    "oneLiner": "Turn useful CLI capabilities into reusable agent-accessible tool layers."
+  }
+]

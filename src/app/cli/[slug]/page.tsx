@@ -132,7 +132,7 @@ export default async function CliPage({ params }: CliPageProps) {
               <h2 className="text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">{titleCase(cli.shortName)} guide</h2>
               <p className="ui-body max-w-3xl">{cli.description}</p>
               <p className="ui-body max-w-3xl">
-                Open CLI packages the install path, verify step, and safe-start workflow so this tool can move from “interesting CLI” to something you can actually use.
+                Open CLI packages the install path, verify step, and safe-start workflow so this tool can move from “interesting CLI” to something you can actually use. It also integrates with skills.sh so each CLI comes with the right companion skills, not just a binary and a docs link.
               </p>
             </section>
 
@@ -152,6 +152,56 @@ export default async function CliPage({ params }: CliPageProps) {
                 {quickReference.map((item) => (
                   <ReferenceRow key={item.label} label={item.label} value={item.value} />
                 ))}
+              </div>
+            </DocSection>
+
+            <DocSection title="Integrates with skills.sh">
+              <div className="space-y-3">
+                <p className="text-sm leading-6 text-white/66">
+                  Open CLI recommends the skills.sh companions that make <span className="text-white/84">{cli.shortName}</span> more useful in agent workflows. Install the CLI here, then add the right workflow skills there.
+                </p>
+                <div className="space-y-3">
+                  {pack.companionSkills.map((skill) => (
+                    <div key={skill.id} className="ui-panel-soft rounded-2xl p-4 sm:p-5">
+                      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                        <div className="space-y-2.5">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <h4 className="text-lg font-medium text-white">{skill.title}</h4>
+                            <span className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-white/48">
+                              {skill.confidenceLabel}
+                            </span>
+                          </div>
+                          <p className="text-sm leading-6 text-white/64">{skill.whyItPairs}</p>
+                        </div>
+                        <a
+                          href={skill.skillsUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 text-sm text-white/62 transition hover:text-white"
+                        >
+                          View on skills.sh
+                          <ExternalIcon className="h-3 w-3" />
+                        </a>
+                      </div>
+
+                      <div className="ui-code mt-4 flex items-center gap-2 rounded-xl px-3 py-3">
+                        <code className="min-w-0 flex-1 overflow-x-auto font-mono text-sm text-white/88">
+                          <span className="select-none text-white/34">$ </span>
+                          {skill.installCommand}
+                        </code>
+                        <CopyButton compact value={skill.installCommand} label="Copy skills.sh install" />
+                      </div>
+
+                      <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
+                        <div className="ui-panel-faint rounded-xl p-4">
+                          <div className="ui-label">Starter prompt</div>
+                          <p className="mt-2 text-sm leading-6 text-white/70">{skill.starterPrompt}</p>
+                        </div>
+                        <CopyButton compact value={skill.starterPrompt} label="Copy prompt" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </DocSection>
 
@@ -237,6 +287,24 @@ export default async function CliPage({ params }: CliPageProps) {
               <SidebarStatus label="Source trust" value={audit.sourceTrust.note} tone={audit.sourceTrust.level === "low" ? "muted" : "pass"} />
               <SidebarStatus label="Automation" value={audit.automation.note} tone={audit.automation.level === "poor" ? "muted" : "pass"} />
               <SidebarStatus label="Risk" value={audit.risk.note} tone={audit.risk.level === "high" ? "muted" : "pass"} />
+            </SidebarGroup>
+
+            <SidebarGroup title="skills.sh integration">
+              <div className="space-y-3">
+                {pack.companionSkills.slice(0, 1).map((skill) => (
+                  <div key={skill.id} className="space-y-3 rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                    <div>
+                      <div className="text-sm font-medium text-white/88">{skill.title}</div>
+                      <div className="mt-1 text-xs text-white/50">{skill.confidenceLabel}</div>
+                    </div>
+                    <ReferenceRow label="Install" value={skill.installCommand} compact />
+                    <a href={skill.skillsUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-white/62 transition hover:text-white">
+                      Open on skills.sh
+                      <ExternalIcon className="h-3 w-3" />
+                    </a>
+                  </div>
+                ))}
+              </div>
             </SidebarGroup>
 
             <SidebarGroup title="Open CLI pack">

@@ -1,5 +1,6 @@
 import { clis, searchClis, type CliEntry } from "@/data/clis";
 import { capabilityDefinitions, detectCapabilityMatches, getCapabilityBySlug, type CapabilityDefinition } from "@/lib/capabilities";
+import { resolveCompanionSkillsForCli, type CompanionSkill } from "@/lib/skill-links";
 import { skillOverrides, type SkillOutputMode } from "@/lib/skill-overrides";
 
 export type SuperchargeCliSummary = {
@@ -37,6 +38,7 @@ export type SkillPack = {
   prompts: string[];
   loopName: string;
   loopSteps: string[];
+  companionSkills: CompanionSkill[];
   skillMarkdown: string;
   agentsMarkdown: string;
   harnessJson: string;
@@ -56,6 +58,7 @@ export type SuperchargeRecommendation = {
   setupSteps: string[];
   verifyCommand: string;
   verifySignal: string;
+  companionSkills: CompanionSkill[];
   skillPack: SkillPack;
   skillTitle: string;
   skillFileName: string;
@@ -290,6 +293,24 @@ function buildPromptSuggestions(cli: CliEntry, capability: CapabilityDefinition)
   ].slice(0, 3);
 }
 
+function buildCompanionSkillSection(companionSkills: CompanionSkill[]) {
+  if (companionSkills.length === 0) return [] as string[];
+
+  return [
+    "## skills.sh integration",
+    "Open CLI integrates this CLI with companion skills from skills.sh so you can add the right workflow, not just the binary.",
+    ...companionSkills.flatMap((skill) => [
+      `### ${skill.title}`,
+      `- ${skill.confidenceLabel}`,
+      `- Install: \`${skill.installCommand}\``,
+      `- skills.sh: ${skill.skillsUrl}`,
+      `- Why: ${skill.whyItPairs}`,
+      `- Starter prompt: ${skill.starterPrompt}`,
+      "",
+    ]),
+  ];
+}
+
 function buildSkillMarkdown(
   cli: CliEntry,
   capability: CapabilityDefinition,
@@ -301,6 +322,7 @@ function buildSkillMarkdown(
   askBefore: string[],
   preferredOutput: SkillOutputMode,
   prompts: string[],
+  companionSkills: CompanionSkill[],
 ) {
   return [
     `# SKILL.md — ${cli.shortName}`,
@@ -342,12 +364,19 @@ function buildSkillMarkdown(
     "## Suggested prompts",
     ...prompts.map((prompt) => `- ${prompt}`),
     "",
+    ...buildCompanionSkillSection(companionSkills),
     `## ${capability.loopName}`,
     ...capability.loopSteps.map((step, index) => `${index + 1}. ${step}`),
   ].join("\n");
 }
 
-function buildAgentsMarkdown(cli: CliEntry, verify: { command: string; signal: string }, askBefore: string[], preferredOutput: SkillOutputMode) {
+function buildAgentsMarkdown(
+  cli: CliEntry,
+  verify: { command: string; signal: string },
+  askBefore: string[],
+  preferredOutput: SkillOutputMode,
+  companionSkills: CompanionSkill[],
+) {
   const outputLine =
     preferredOutput === "json"
       ? "Prefer JSON output when possible."
@@ -362,6 +391,12 @@ function buildAgentsMarkdown(cli: CliEntry, verify: { command: string; signal: s
     `- ${outputLine}`,
     "- Start with read-only or low-risk commands first.",
     `- Ask before ${askBefore.join(", ")}.`,
+    ...(companionSkills.length > 0
+      ? [
+          "- Open CLI integrates this CLI with skills.sh companion skills:",
+          ...companionSkills.map((skill) => `  - ${skill.title}: \`${skill.installCommand}\``),
+        ]
+      : []),
   ].join("\n");
 }
 
@@ -374,6 +409,7 @@ function buildHarnessJson(
   preferredOutput: SkillOutputMode,
   watchouts: string[],
   prompts: string[],
+  companionSkills: CompanionSkill[],
 ) {
   return JSON.stringify(
     {
@@ -388,6 +424,13 @@ function buildHarnessJson(
       askBefore,
       watchouts,
       prompts,
+      companionSkills: companionSkills.map((skill) => ({
+        title: skill.title,
+        confidence: skill.confidence,
+        installCommand: skill.installCommand,
+        skillsUrl: skill.skillsUrl,
+        starterPrompt: skill.starterPrompt,
+      })),
     },
     null,
     2,
@@ -429,6 +472,7 @@ export function buildSkillPackForCli(cli: CliEntry, capability = getDefaultCapab
   const whyReasons = buildWhyReasons(cli, capability, verify);
   const watchouts = buildWatchouts(cli);
   const setupSteps = buildSetupSteps(cli, capability);
+  const companionSkills = resolveCompanionSkillsForCli(cli);
   const firstSteps = [
     `Install ${cli.shortName}.`,
     `Run \`${verify.command}\` first.`,
@@ -459,6 +503,7 @@ export function buildSkillPackForCli(cli: CliEntry, capability = getDefaultCapab
     prompts,
     loopName: capability.loopName,
     loopSteps: capability.loopSteps,
+    companionSkills,
     skillMarkdown: buildSkillMarkdown(
       cli,
       capability,
@@ -470,9 +515,10 @@ export function buildSkillPackForCli(cli: CliEntry, capability = getDefaultCapab
       askBefore,
       preferredOutput,
       prompts,
+      companionSkills,
     ),
-    agentsMarkdown: buildAgentsMarkdown(cli, verify, askBefore, preferredOutput),
-    harnessJson: buildHarnessJson(cli, verify, firstSteps, safeCommands, askBefore, preferredOutput, watchouts, prompts),
+    agentsMarkdown: buildAgentsMarkdown(cli, verify, askBefore, preferredOutput, companionSkills),
+    harnessJson: buildHarnessJson(cli, verify, firstSteps, safeCommands, askBefore, preferredOutput, watchouts, prompts, companionSkills),
     fileName: `${capability.slug}-${cli.slug}-SKILL.md`,
   };
 }
@@ -515,6 +561,7 @@ export function buildSuperchargeRecommendation(prompt: string, preferredCapabili
     setupSteps: skillPack.firstSteps,
     verifyCommand: skillPack.verifyCommand,
     verifySignal: skillPack.verifySignal,
+    companionSkills: skillPack.companionSkills,
     skillPack,
     skillTitle: skillPack.title,
     skillFileName: skillPack.fileName,

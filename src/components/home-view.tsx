@@ -156,6 +156,11 @@ function RecommendationPanel({
               <p className="max-w-2xl text-[15px] leading-7 text-white/72 sm:text-[17px] sm:leading-8">
                 {recommendation.rationale}
               </p>
+              {recommendation.companionSkills[0] ? (
+                <p className="max-w-2xl text-sm leading-6 text-white/56">
+                  Open CLI integrates this recommendation with skills.sh — start with <span className="text-white/82">{recommendation.companionSkills[0].title}</span> once the CLI is installed.
+                </p>
+              ) : null}
             </div>
           </div>
 
@@ -222,6 +227,33 @@ function RecommendationPanel({
               ))}
             </ul>
           </RecommendationDetail>
+
+          {recommendation.companionSkills.length > 0 ? (
+            <RecommendationDetail title="Integrates with skills.sh">
+              <div className="space-y-3">
+                {recommendation.companionSkills.map((skill) => (
+                  <div key={skill.id} className="rounded-[18px] border border-white/10 bg-white/[0.04] px-3.5 py-3">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div>
+                        <div className="text-sm font-medium text-white/88">{skill.title}</div>
+                        <p className="mt-1 text-sm leading-6 text-white/58">{skill.whyItPairs}</p>
+                      </div>
+                      <a href={skill.skillsUrl} target="_blank" rel="noreferrer" className="text-xs text-white/48 transition hover:text-white/78">
+                        skills.sh ↗
+                      </a>
+                    </div>
+                    <div className="mt-3 flex items-center gap-2">
+                      <code className="flex-1 overflow-x-auto rounded-2xl border border-white/10 bg-white/[0.045] px-3 py-3 font-mono text-xs text-white/84 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+                        <span className="select-none text-white/20">$ </span>
+                        {skill.installCommand}
+                      </code>
+                      <CopyButton compact value={skill.installCommand} label="Copy skill install" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </RecommendationDetail>
+          ) : null}
 
           {recommendation.alternatives.length > 0 ? (
             <RecommendationDetail title="Alternatives">
