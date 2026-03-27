@@ -77,7 +77,10 @@ function extractGithubRepo(input: string | undefined) {
 
 function pickCreator(searchItem: NpmSearchObject, pkg: NpmRegistryPackage) {
   if (typeof pkg.author === "string" && pkg.author.trim()) return pkg.author.trim();
-  if (pkg.author?.name?.trim()) return pkg.author.name.trim();
+
+  const author = typeof pkg.author === "object" && pkg.author ? pkg.author : null;
+  if (author?.name?.trim()) return author.name.trim();
+
   if (searchItem.package.publisher?.username?.trim()) return searchItem.package.publisher.username.trim();
   if (pkg.maintainers?.[0]?.name?.trim()) return pkg.maintainers[0].name.trim();
   return "Unknown";
@@ -215,7 +218,7 @@ async function auditCandidate(searchItem: NpmSearchObject): Promise<AuditedLaunc
   return {
     name: packageName.replace(/^@/, ""),
     creator,
-    creatorUrl: repositoryUrl ?? pkg.homepage ?? undefined,
+    creatorUrl: repositoryUrl ?? pkg.homepage ?? href,
     tagline: description.charAt(0).toUpperCase() + description.slice(1),
     installCommand: `npm i -g ${packageName}`,
     href,
