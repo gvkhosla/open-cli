@@ -80,6 +80,8 @@ export default async function CliPage({ params }: CliPageProps) {
   const summaryBullets = buildSummaryBullets(cli, pack.whyReasons);
   const quickReference = buildQuickReference(cli, pack.verifyCommand);
   const sidebarMetrics = metricRows(cli, releaseDate);
+  const primaryCompanionSkill = pack.companionSkills[0] ?? null;
+  const secondaryCompanionSkills = pack.companionSkills.slice(1);
 
   return (
     <>
@@ -155,55 +157,72 @@ export default async function CliPage({ params }: CliPageProps) {
               </div>
             </DocSection>
 
-            <DocSection title="Integrates with skills.sh">
-              <div className="space-y-3">
-                <p className="text-sm leading-6 text-white/66">
-                  Open CLI recommends the skills.sh companions that make <span className="text-white/84">{cli.shortName}</span> more useful in agent workflows. Install the CLI here, then add the right workflow skills there.
-                </p>
-                <div className="space-y-3">
-                  {pack.companionSkills.map((skill) => (
-                    <div key={skill.id} className="ui-panel-soft rounded-2xl p-4 sm:p-5">
-                      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                        <div className="space-y-2.5">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <h4 className="text-lg font-medium text-white">{skill.title}</h4>
-                            <span className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-white/48">
-                              {skill.confidenceLabel}
-                            </span>
-                          </div>
-                          <p className="text-sm leading-6 text-white/64">{skill.whyItPairs}</p>
+            {primaryCompanionSkill ? (
+              <DocSection title="Open CLI × skills.sh">
+                <div className="space-y-4">
+                  <p className="text-sm leading-6 text-white/66">
+                    Open CLI integrates <span className="text-white/84">{cli.shortName}</span> with the right skills.sh companions so you get the tool and the workflow together.
+                  </p>
+
+                  <div className="ui-panel-soft rounded-2xl p-4 sm:p-5">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                      <div className="space-y-2">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h4 className="text-lg font-medium text-white">{primaryCompanionSkill.title}</h4>
+                          <span className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-white/48">
+                            {primaryCompanionSkill.confidenceLabel}
+                          </span>
                         </div>
-                        <a
-                          href={skill.skillsUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-2 text-sm text-white/62 transition hover:text-white"
-                        >
-                          View on skills.sh
-                          <ExternalIcon className="h-3 w-3" />
-                        </a>
+                        <p className="text-sm leading-6 text-white/64">{primaryCompanionSkill.whyItPairs}</p>
                       </div>
 
-                      <div className="ui-code mt-4 flex items-center gap-2 rounded-xl px-3 py-3">
-                        <code className="min-w-0 flex-1 overflow-x-auto font-mono text-sm text-white/88">
-                          <span className="select-none text-white/34">$ </span>
-                          {skill.installCommand}
-                        </code>
-                        <CopyButton compact value={skill.installCommand} label="Copy skills.sh install" />
-                      </div>
+                      <a
+                        href={primaryCompanionSkill.skillsUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 text-sm text-white/62 transition hover:text-white"
+                      >
+                        View on skills.sh
+                        <ExternalIcon className="h-3 w-3" />
+                      </a>
+                    </div>
 
-                      <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
-                        <div className="ui-panel-faint rounded-xl p-4">
-                          <div className="ui-label">Starter prompt</div>
-                          <p className="mt-2 text-sm leading-6 text-white/70">{skill.starterPrompt}</p>
-                        </div>
-                        <CopyButton compact value={skill.starterPrompt} label="Copy prompt" />
+                    <div className="ui-code mt-4 flex items-center gap-2 rounded-xl px-3 py-3">
+                      <code className="min-w-0 flex-1 overflow-x-auto font-mono text-sm text-white/88">
+                        <span className="select-none text-white/34">$ </span>
+                        {primaryCompanionSkill.installCommand}
+                      </code>
+                      <CopyButton compact value={primaryCompanionSkill.installCommand} label="Copy skills.sh install" />
+                    </div>
+
+                    <div className="ui-panel-faint mt-4 rounded-xl p-4">
+                      <div className="ui-label">Starter prompt</div>
+                      <p className="mt-2 text-sm leading-6 text-white/70">{primaryCompanionSkill.starterPrompt}</p>
+                    </div>
+                  </div>
+
+                  {secondaryCompanionSkills.length > 0 ? (
+                    <div className="space-y-2">
+                      <div className="ui-label">Also useful from skills.sh</div>
+                      <div className="flex flex-wrap gap-2">
+                        {secondaryCompanionSkills.map((skill) => (
+                          <a
+                            key={skill.id}
+                            href={skill.skillsUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-white/64 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white"
+                          >
+                            <span>{skill.title}</span>
+                            <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-white/38">skills.sh</span>
+                          </a>
+                        ))}
                       </div>
                     </div>
-                  ))}
+                  ) : null}
                 </div>
-              </div>
-            </DocSection>
+              </DocSection>
+            ) : null}
 
             <DocSection title="Why this tool">
               <ul className="space-y-2 text-sm leading-6 text-white/70">
@@ -287,24 +306,6 @@ export default async function CliPage({ params }: CliPageProps) {
               <SidebarStatus label="Source trust" value={audit.sourceTrust.note} tone={audit.sourceTrust.level === "low" ? "muted" : "pass"} />
               <SidebarStatus label="Automation" value={audit.automation.note} tone={audit.automation.level === "poor" ? "muted" : "pass"} />
               <SidebarStatus label="Risk" value={audit.risk.note} tone={audit.risk.level === "high" ? "muted" : "pass"} />
-            </SidebarGroup>
-
-            <SidebarGroup title="skills.sh integration">
-              <div className="space-y-3">
-                {pack.companionSkills.slice(0, 1).map((skill) => (
-                  <div key={skill.id} className="space-y-3 rounded-xl border border-white/10 bg-white/[0.04] p-4">
-                    <div>
-                      <div className="text-sm font-medium text-white/88">{skill.title}</div>
-                      <div className="mt-1 text-xs text-white/50">{skill.confidenceLabel}</div>
-                    </div>
-                    <ReferenceRow label="Install" value={skill.installCommand} compact />
-                    <a href={skill.skillsUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-white/62 transition hover:text-white">
-                      Open on skills.sh
-                      <ExternalIcon className="h-3 w-3" />
-                    </a>
-                  </div>
-                ))}
-              </div>
             </SidebarGroup>
 
             <SidebarGroup title="Open CLI pack">

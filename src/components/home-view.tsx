@@ -120,6 +120,7 @@ function RecommendationPanel({
     recommendation.primary.metricValue !== null && recommendation.primary.metricLabel
       ? `${formatCompactNumber(recommendation.primary.metricValue)} ${recommendation.primary.metricLabel.toLowerCase()}`
       : null;
+  const primaryCompanionSkill = recommendation.companionSkills[0] ?? null;
 
   return (
     <motion.section
@@ -205,6 +206,38 @@ function RecommendationPanel({
           </div>
         </motion.div>
 
+        {primaryCompanionSkill ? (
+          <motion.div variants={PANEL_STAGGER.item} className="ui-panel-soft rounded-[24px] p-4 sm:p-5">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+              <div className="max-w-3xl space-y-2">
+                <div className="ui-label">Open CLI × skills.sh</div>
+                <div className="text-sm font-medium text-white/88">{primaryCompanionSkill.title}</div>
+                <p className="text-sm leading-6 text-white/62">
+                  Open CLI integrates this recommendation with the right skills.sh companion so you install the tool and the workflow together.
+                </p>
+              </div>
+              <a
+                href={primaryCompanionSkill.skillsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-white/58 transition hover:text-white"
+              >
+                View on skills.sh
+                <svg className="h-3 w-3" fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M2 10L10 2M10 2H4M10 2v6" />
+                </svg>
+              </a>
+            </div>
+            <div className="mt-3 flex items-center gap-2">
+              <code className="flex-1 overflow-x-auto rounded-2xl border border-white/10 bg-white/[0.045] px-3 py-3 font-mono text-xs text-white/84 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+                <span className="select-none text-white/20">$ </span>
+                {primaryCompanionSkill.installCommand}
+              </code>
+              <CopyButton compact value={primaryCompanionSkill.installCommand} label="Copy skills.sh install" />
+            </div>
+          </motion.div>
+        ) : null}
+
         <motion.div variants={PANEL_STAGGER.item} className="space-y-3">
           <RecommendationDetail title="Why this fits" defaultOpen>
             <ul className="space-y-2">
@@ -227,33 +260,6 @@ function RecommendationPanel({
               ))}
             </ul>
           </RecommendationDetail>
-
-          {recommendation.companionSkills.length > 0 ? (
-            <RecommendationDetail title="Integrates with skills.sh">
-              <div className="space-y-3">
-                {recommendation.companionSkills.map((skill) => (
-                  <div key={skill.id} className="rounded-[18px] border border-white/10 bg-white/[0.04] px-3.5 py-3">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div>
-                        <div className="text-sm font-medium text-white/88">{skill.title}</div>
-                        <p className="mt-1 text-sm leading-6 text-white/58">{skill.whyItPairs}</p>
-                      </div>
-                      <a href={skill.skillsUrl} target="_blank" rel="noreferrer" className="text-xs text-white/48 transition hover:text-white/78">
-                        skills.sh ↗
-                      </a>
-                    </div>
-                    <div className="mt-3 flex items-center gap-2">
-                      <code className="flex-1 overflow-x-auto rounded-2xl border border-white/10 bg-white/[0.045] px-3 py-3 font-mono text-xs text-white/84 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
-                        <span className="select-none text-white/20">$ </span>
-                        {skill.installCommand}
-                      </code>
-                      <CopyButton compact value={skill.installCommand} label="Copy skill install" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </RecommendationDetail>
-          ) : null}
 
           {recommendation.alternatives.length > 0 ? (
             <RecommendationDetail title="Alternatives">
