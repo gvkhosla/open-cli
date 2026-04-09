@@ -37,22 +37,26 @@ export function SiteHeader() {
 
   return (
     <>
-      <header
-        className={cn(
-          "sticky top-0 z-50 border-b bg-[rgba(18,24,32,0.8)] backdrop-blur-xl transition-[border-color,box-shadow] duration-300",
-          scrolled
-            ? "border-white/8 shadow-[0_8px_28px_rgba(0,0,0,0.22)]"
-            : "border-white/6"
-        )}
-      >
-        <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" onClick={() => setMobileOpen(false)} className="group inline-flex items-center gap-3 text-sm text-white/88 transition hover:text-white">
-            <span className="inline-flex h-2.5 w-2.5 rounded-full bg-white/88 transition group-hover:bg-white" />
-            <span className="text-[14px] font-medium tracking-[-0.02em] text-white/94">Open CLI</span>
+      <header className="sticky top-0 z-50 px-4 pt-3 sm:px-6 lg:px-8">
+        <div
+          className={cn(
+            "mx-auto flex h-14 w-full max-w-6xl items-center justify-between rounded-full border bg-[rgba(10,14,20,0.82)] px-4 backdrop-blur-xl transition-[border-color,box-shadow,background] duration-300 sm:px-5",
+            scrolled
+              ? "border-white/12 shadow-[0_12px_30px_rgba(0,0,0,0.3)]"
+              : "border-white/8 shadow-[0_8px_20px_rgba(0,0,0,0.16)]"
+          )}
+        >
+          <Link href="/" onClick={() => setMobileOpen(false)} className="group inline-flex items-center gap-3 text-sm text-white transition hover:text-white">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-[13px] font-semibold text-white">
+              O
+            </span>
+            <div className="flex flex-col leading-none">
+              <span className="text-[14px] font-medium tracking-[-0.02em] text-white">Open CLI</span>
+              <span className="text-[11px] text-white/52">Search by job or tool</span>
+            </div>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden items-center gap-5 sm:flex">
+          <nav className="hidden items-center gap-1 rounded-full border border-white/8 bg-white/[0.03] p-1 sm:flex">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
@@ -60,8 +64,8 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "text-sm transition-colors duration-200",
-                    isActive ? "text-white" : "text-white/58 hover:text-white/90"
+                    "rounded-full px-3 py-1.5 text-sm transition-colors duration-200",
+                    isActive ? "bg-white text-black" : "text-white/62 hover:bg-white/[0.06] hover:text-white"
                   )}
                 >
                   {item.label}
@@ -75,7 +79,7 @@ export function SiteHeader() {
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            className="relative z-50 flex h-9 w-9 items-center justify-center rounded-lg text-white/60 transition hover:bg-white/[0.06] hover:text-white sm:hidden"
+            className="relative z-50 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/70 transition hover:bg-white/[0.08] hover:text-white sm:hidden"
           >
             <div className="flex w-4 flex-col items-center gap-[5px]">
               <span
@@ -102,7 +106,7 @@ export function SiteHeader() {
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setMobileOpen(false)}
           />
-          <nav className="mobile-menu-enter absolute right-0 top-0 flex h-full w-72 flex-col border-l border-white/10 bg-[#151d26]/98 pt-20 backdrop-blur-xl">
+          <nav className="mobile-menu-enter absolute right-0 top-0 flex h-full w-72 flex-col border-l border-white/10 bg-[#0d141c]/98 pt-20 backdrop-blur-xl">
             <div className="flex flex-col gap-1 px-4">
               {navItems.map((item) => {
                 const isActive = pathname === item.href;
