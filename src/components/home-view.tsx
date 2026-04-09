@@ -447,7 +447,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
     : `Browse ${formatCompactNumber(directoryStats.total)} tools`;
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 pb-16 pt-8 sm:px-6 lg:px-8 lg:pt-12">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pt-8">
       <motion.div
         initial={{ opacity: 0, y: 14, scale: 0.99 }}
         animate={{ opacity: 1, y: polish.hero.y, scale: polish.hero.scale }}
@@ -456,21 +456,21 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
         <SuperchargeAgent stats={directoryStats} />
       </motion.div>
 
-      <section id="directory" className="scroll-mt-20 space-y-5">
+      <section id="directory" className="scroll-mt-20 space-y-4">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: polish.search.y }}
           transition={{ ...motionTransition, delay: HOME_REVEAL.search }}
-          className={`ui-panel overflow-hidden rounded-[30px] transition-all duration-300 ${
+          className={`ui-panel overflow-hidden rounded-[26px] transition-all duration-300 ${
             isFocused
-              ? "border-white/16 shadow-[0_16px_44px_rgba(0,0,0,0.24)]"
-              : "border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+              ? "border-white/16 shadow-[0_14px_36px_rgba(0,0,0,0.22)]"
+              : "border-white/10 shadow-[0_6px_22px_rgba(0,0,0,0.12)]"
           }`}
           style={{ borderRadius: polish.search.radius }}
         >
-          <div className="border-b border-white/6 px-5 pb-3 pt-4 sm:px-6 sm:pb-4 sm:pt-5">
-            <div className="ui-label">Search by job or tool</div>
-            <p className="mt-1 text-sm leading-6 text-white/48">Describe the task or type a specific CLI name.</p>
+          <div className="border-b border-white/6 px-5 pb-3 pt-4 sm:px-6">
+            <div className="ui-label">Search</div>
+            <p className="mt-1 text-sm leading-6 text-white/56">Task, workflow, or exact CLI name.</p>
           </div>
 
           <div className="p-3 sm:p-4">
@@ -493,7 +493,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                   setSearch(event.target.value);
                   setLimit(event.target.value.trim() ? 40 : 125);
                 }}
-                placeholder="Deploy an app, inspect a schema, or type “basecamp”…"
+                placeholder="deploy app, review PRs, basecamp…"
                 className="h-16 w-full rounded-[24px] border border-transparent bg-transparent pl-12 pr-28 text-[16px] text-white/96 outline-none placeholder:text-white/40 sm:pl-14 sm:pr-32 sm:text-[17px]"
               />
               <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-5 sm:pr-6">
@@ -513,9 +513,9 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
             </div>
           </div>
 
-          <div className="border-t border-white/6 px-5 py-3 sm:px-6 sm:py-4">
+          <div className="border-t border-white/6 px-5 py-3 sm:px-6">
             {!hasQuery ? (
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/46">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/50">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/28">Tasks</span>
                   {promptSuggestions.map((suggestion) => (
