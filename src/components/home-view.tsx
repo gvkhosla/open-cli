@@ -8,7 +8,6 @@ import { CliLogoMarquee } from "@/components/cli-logo-marquee";
 import { CopyButton } from "@/components/copy-button";
 import { SkillPackActions } from "@/components/skill-pack-actions";
 import { SuperchargeAgent } from "@/components/supercharge-agent";
-import { Button } from "@/components/ui/button";
 import type { DirectorySearchResponse, DirectoryStats } from "@/lib/directory";
 import { formatCompactNumber } from "@/lib/format";
 import type { SuperchargeRecommendation } from "@/lib/supercharge";
@@ -448,7 +447,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
     : `Browse ${formatCompactNumber(directoryStats.total)} tools`;
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 pb-20 pt-8 sm:px-6 lg:px-8 lg:pt-12">
+    <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 pb-16 pt-8 sm:px-6 lg:px-8 lg:pt-12">
       <motion.div
         initial={{ opacity: 0, y: 14, scale: 0.99 }}
         animate={{ opacity: 1, y: polish.hero.y, scale: polish.hero.scale }}
@@ -462,27 +461,24 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: polish.search.y }}
           transition={{ ...motionTransition, delay: HOME_REVEAL.search }}
-          className={`ui-panel overflow-hidden rounded-[32px] transition-all duration-300 ${
+          className={`ui-panel overflow-hidden rounded-[30px] transition-all duration-300 ${
             isFocused
-              ? "border-white/18 shadow-[0_20px_48px_rgba(0,0,0,0.28)]"
-              : "border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.18)]"
+              ? "border-white/16 shadow-[0_16px_44px_rgba(0,0,0,0.24)]"
+              : "border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
           }`}
           style={{ borderRadius: polish.search.radius }}
         >
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/6 px-5 pb-4 pt-5 sm:px-6">
-            <div>
-              <div className="ui-label">Search the directory</div>
-              <p className="mt-1 text-sm leading-6 text-white/62">Find by task, workflow, or exact CLI name.</p>
-            </div>
-            {!hasQuery ? <kbd className="kbd">/</kbd> : null}
+          <div className="border-b border-white/6 px-5 pb-3 pt-4 sm:px-6 sm:pb-4 sm:pt-5">
+            <div className="ui-label">Search by job or tool</div>
+            <p className="mt-1 text-sm leading-6 text-white/48">Describe the task or type a specific CLI name.</p>
           </div>
 
           <div className="p-3 sm:p-4">
             <div
-              className={`ui-panel-soft relative rounded-[26px] transition-all duration-300 ${
+              className={`ui-panel-soft relative rounded-[24px] transition-all duration-300 ${
                 isFocused
-                  ? "border-white/18 bg-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_0_1px_rgba(255,255,255,0.04)]"
-                  : "bg-white/[0.04]"
+                  ? "border-white/16 bg-white/[0.07] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_0_1px_rgba(255,255,255,0.04)]"
+                  : ""
               }`}
             >
               <span className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-5 text-white/34 sm:pl-6">
@@ -497,57 +493,53 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                   setSearch(event.target.value);
                   setLimit(event.target.value.trim() ? 40 : 125);
                 }}
-                placeholder="Deploy an app, inspect a schema, or type basecamp…"
+                placeholder="Deploy an app, inspect a schema, or type “basecamp”…"
                 className="h-16 w-full rounded-[24px] border border-transparent bg-transparent pl-12 pr-28 text-[16px] text-white/96 outline-none placeholder:text-white/40 sm:pl-14 sm:pr-32 sm:text-[17px]"
               />
               <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-5 sm:pr-6">
-                {isLoading ? <div className="spinner" /> : null}
+                {isLoading && <div className="spinner" />}
                 {hasQuery ? (
-                  <Button
+                  <button
                     type="button"
-                    variant="outline"
-                    size="sm"
                     onClick={handleClearSearch}
-                    className="rounded-full border-white/10 bg-white/[0.04] px-3 text-white/72 hover:bg-white/[0.08] hover:text-white"
+                    className="rounded-full border border-white/10 px-2.5 py-1 text-[11px] text-white/52 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white"
                   >
                     Clear
-                  </Button>
-                ) : null}
+                  </button>
+                ) : (
+                  <kbd className="kbd">/</kbd>
+                )}
               </div>
             </div>
           </div>
 
-          <div className="border-t border-white/6 px-5 py-4 sm:px-6">
+          <div className="border-t border-white/6 px-5 py-3 sm:px-6 sm:py-4">
             {!hasQuery ? (
-              <div className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/46">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/36">Try a task</span>
+                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/28">Tasks</span>
                   {promptSuggestions.map((suggestion) => (
-                    <Button
+                    <button
                       key={suggestion}
                       type="button"
-                      variant="ghost"
-                      size="sm"
                       onClick={() => handleSuggestion(suggestion)}
-                      className="rounded-full px-3 text-white/74 hover:bg-white/[0.06] hover:text-white"
+                      className="rounded-full px-2.5 py-1 transition hover:bg-white/[0.05] hover:text-white"
                     >
                       {suggestion}
-                    </Button>
+                    </button>
                   ))}
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/36">Or jump to</span>
+                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/28">Tools</span>
                   {toolSuggestions.map((suggestion) => (
-                    <Button
+                    <button
                       key={suggestion}
                       type="button"
-                      variant="outline"
-                      size="sm"
                       onClick={() => handleSuggestion(suggestion)}
-                      className="rounded-full border-white/10 bg-white/[0.03] px-3 font-mono text-[12px] text-white/78 hover:bg-white/[0.07] hover:text-white"
+                      className="rounded-full border border-white/8 bg-white/[0.03] px-2.5 py-1 font-mono text-[12px] text-white/56 transition hover:border-white/14 hover:bg-white/[0.06] hover:text-white"
                     >
                       {suggestion}
-                    </Button>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -556,19 +548,21 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                 {categoryChips.map((category) => {
                   const isActive = category === activeCategory;
                   return (
-                    <Button
+                    <button
                       key={category}
                       type="button"
-                      variant={isActive ? "secondary" : "ghost"}
-                      size="sm"
                       onClick={() => {
                         setActiveCategory(category);
                         setLimit(24);
                       }}
-                      className={isActive ? "rounded-full bg-white text-black hover:bg-white/90" : "rounded-full text-white/72 hover:bg-white/[0.06] hover:text-white"}
+                      className={`rounded-full px-3 py-1.5 text-xs transition ${
+                        isActive
+                          ? "bg-white text-black"
+                          : "text-white/58 hover:bg-white/[0.05] hover:text-white"
+                      }`}
                     >
                       {category}
-                    </Button>
+                    </button>
                   );
                 })}
               </div>
@@ -610,55 +604,39 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
         </div>
 
         {showCatalog ? (
-          <div className="space-y-4">
-            {directory.results.length === 0 ? (
-              <div className="ui-panel-faint rounded-[28px] px-5 py-16 text-center">
-                <div className="mx-auto flex max-w-sm flex-col items-center justify-center">
-                  <SearchIcon className="h-6 w-6 text-white/24" />
-                  <p className="mt-4 text-sm text-white/72">No CLIs match that description.</p>
-                  <p className="mt-1 text-xs text-white/52">Try a different phrase or broaden your category filter.</p>
+          <div className="space-y-3">
+            <div className="ui-panel-faint overflow-hidden rounded-[24px]">
+              {directory.results.length === 0 ? (
+                <div className="flex flex-col items-center justify-center px-5 py-16 text-center">
+                  <SearchIcon className="h-6 w-6 text-white/18" />
+                  <p className="mt-4 text-sm text-white/64">No CLIs match that description.</p>
+                  <p className="mt-1 text-xs text-white/42">Try a different phrase or broaden your category filter.</p>
                 </div>
-              </div>
-            ) : (
-              <div className="grid gap-3 lg:grid-cols-2">
-                {directory.results.map((cli) => (
+              ) : (
+                directory.results.map((cli) => (
                   <Link
                     key={cli.slug}
                     href={`/cli/${cli.slug}`}
-                    className="directory-row ui-panel-faint group rounded-[26px] p-5 transition-all hover:-translate-y-0.5 hover:border-white/14 hover:bg-white/[0.045]"
+                    className="directory-row grid gap-2 border-b border-white/6 px-5 py-4 transition-colors last:border-b-0 hover:bg-white/[0.025] md:grid-cols-[minmax(0,1.3fr)_160px_90px] md:items-center md:gap-4"
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-lg font-semibold tracking-[-0.03em] text-white group-hover:text-white">{cli.shortName}</span>
-                          {cli.official ? (
-                            <span className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] text-white/60">
-                              official
-                            </span>
-                          ) : null}
-                          {cli.agentFriendly ? (
-                            <span className="rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] text-white/48">
-                              agent-friendly
-                            </span>
-                          ) : null}
-                        </div>
-                        <p className="mt-2 text-sm leading-6 text-white/74">{cli.tagline}</p>
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-[15px] font-medium text-white">{cli.shortName}</span>
+                        {cli.official ? <span className="text-[11px] text-white/42">official</span> : null}
                       </div>
-                      <div className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 text-xs font-mono text-white/62">
-                        {cli.githubStars !== null ? `${formatCompactNumber(cli.githubStars)} ★` : "—"}
-                      </div>
-                    </div>
-
-                    <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/62">
-                      <span>{cli.makerName}</span>
+                      <p className="mt-1 truncate text-sm text-white/62">{cli.tagline}</p>
                       {cli.highlights.length > 0 ? (
-                        <span className="text-white/44">{cli.highlights.slice(0, 2).join(" · ")}</span>
+                        <p className="mt-1.5 truncate text-xs text-white/42">{cli.highlights.slice(0, 2).join(" · ")}</p>
                       ) : null}
                     </div>
+                    <div className="text-sm text-white/54">{cli.makerName}</div>
+                    <div className="text-right text-sm font-mono text-white/48">
+                      {cli.githubStars !== null ? formatCompactNumber(cli.githubStars) : "—"}
+                    </div>
                   </Link>
-                ))}
-              </div>
-            )}
+                ))
+              )}
+            </div>
 
             <div className="flex items-center gap-3 px-1">
               {!showingAll && directory.results.length > 0 ? (

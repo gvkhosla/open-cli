@@ -8,33 +8,26 @@ type SuperchargeAgentProps = {
 
 export function SuperchargeAgent({ stats }: SuperchargeAgentProps) {
   return (
-    <section className="ui-panel overflow-hidden rounded-[32px] border-white/10 bg-[#0d141c] px-6 py-8 shadow-[0_24px_64px_rgba(0,0,0,0.24)] sm:px-8 sm:py-10">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_360px] lg:items-end">
-        <div className="space-y-5">
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="section-kicker">Open CLI</div>
-            <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-white/56">
-              Directory
-            </span>
-          </div>
-
-          <div className="space-y-3">
-            <h1 className="ui-title-xl max-w-[11ch] text-white">
-              Find the right CLI without the guesswork.
-            </h1>
-            <p className="max-w-[40rem] text-[15px] leading-7 text-white/78 sm:text-base">
-              Search by task when you are exploring, or type a tool name when you already know what you want.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2.5 text-sm text-white/72">
-            <HeroChip>Task-based search</HeroChip>
-            <HeroChip>Direct CLI lookup</HeroChip>
-            <HeroChip>Safe first commands</HeroChip>
-          </div>
+    <section className="ui-panel relative overflow-hidden rounded-[34px] px-6 py-8 shadow-[0_20px_48px_rgba(0,0,0,0.16)] sm:px-8 sm:py-10">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.05),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.025),transparent_42%)]" />
+      <div className="relative space-y-6">
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="section-kicker">Open CLI</div>
+          <span className="rounded-full border border-white/10 bg-white/[0.045] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-white/42">
+            Live directory
+          </span>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+        <div className="max-w-[52rem] space-y-3">
+          <h1 className="ui-title-xl max-w-[13ch] tracking-[-0.075em]">
+            Choose the right CLI faster.
+          </h1>
+          <p className="max-w-[38rem] text-sm leading-6 text-white/46 sm:text-[15px]">
+            Search by task or jump straight to a known tool.
+          </p>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-3">
           <HeroStat label="Tools indexed" value={String(stats.total)} />
           <HeroStat label="Official platforms" value={String(stats.official)} />
           <HeroStat label="Builder-made" value={String(stats.builders)} />
@@ -46,17 +39,9 @@ export function SuperchargeAgent({ stats }: SuperchargeAgentProps) {
 
 function HeroStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[24px] border border-white/10 bg-white/[0.035] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
-      <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/50">{label}</div>
-      <div className="mt-2 text-3xl font-semibold tracking-[-0.05em] text-white">{value}</div>
+    <div className="rounded-[22px] border border-white/10 bg-white/[0.035] px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.035)]">
+      <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/34">{label}</div>
+      <div className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-white">{value}</div>
     </div>
-  );
-}
-
-function HeroChip({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs text-white/72">
-      {children}
-    </span>
   );
 }
