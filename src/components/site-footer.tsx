@@ -31,6 +31,7 @@ export function SiteFooter() {
             <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">Explore</div>
             <nav className="flex flex-col gap-2 text-sm text-white/56">
               <Link href="/" className="transition hover:text-white/70">Recommendations</Link>
+              <Link href="/pretext" className="transition hover:text-white/70">Pretext demos</Link>
               <Link href="/makers" className="transition hover:text-white/70">Makers</Link>
               <Link href="/submit" className="transition hover:text-white/70">Submit a tool</Link>
             </nav>

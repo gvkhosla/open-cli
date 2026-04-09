@@ -2,6 +2,7 @@ import path from "path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  transpilePackages: ["@chenglou/pretext"],
   turbopack: {
     root: path.join(__dirname),
   },

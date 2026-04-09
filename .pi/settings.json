@@ -1,0 +1,9 @@
+{
+  "sessionDir": ".pi/sessions",
+  "compaction": {
+    "enabled": true
+  },
+  "steeringMode": "one-at-a-time",
+  "followUpMode": "one-at-a-time",
+  "packages": []
+}
