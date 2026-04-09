@@ -46,6 +46,7 @@ export type SkillPack = {
 };
 
 export type SuperchargeRecommendation = {
+  matchType: "direct" | "intent";
   capability: {
     slug: string;
     label: string;
@@ -527,6 +528,7 @@ export function buildSuperchargeRecommendation(prompt: string, preferredCapabili
   const directCapability = preferredCapabilitySlug ? getCapabilityBySlug(preferredCapabilitySlug) : null;
   const directCliMatch = findDirectCliMatch(prompt);
   const detectedCapability = detectCapabilityMatches(prompt)[0]?.capability;
+  const matchType = directCliMatch ? "direct" : "intent";
   const capability = directCliMatch
     ? getDefaultCapabilityForCli(directCliMatch)
     : detectedCapability ?? directCapability ?? capabilityDefinitions[0];
@@ -556,6 +558,7 @@ export function buildSuperchargeRecommendation(prompt: string, preferredCapabili
     }));
 
   return {
+    matchType,
     capability: {
       slug: capability.slug,
       label: capability.label,

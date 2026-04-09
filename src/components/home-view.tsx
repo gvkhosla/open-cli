@@ -121,6 +121,11 @@ function RecommendationPanel({
       ? `${formatCompactNumber(recommendation.primary.metricValue)} ${recommendation.primary.metricLabel.toLowerCase()}`
       : null;
   const primaryCompanionSkill = recommendation.companionSkills[0] ?? null;
+  const matchLabel = recommendation.matchType === "direct" ? "Direct match" : "Best fit for task";
+  const matchDescription =
+    recommendation.matchType === "direct"
+      ? "Matched from the CLI name you typed."
+      : "Matched from the job you described.";
 
   return (
     <motion.section
@@ -142,7 +147,10 @@ function RecommendationPanel({
       >
         <motion.div variants={PANEL_STAGGER.item} className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-3xl space-y-3">
-            <div className="ui-label">Best fit</div>
+            <div className="space-y-1">
+              <div className="ui-label">{matchLabel}</div>
+              <p className="text-xs leading-5 text-white/42">{matchDescription}</p>
+            </div>
             <div className="space-y-2.5">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                 <h2 className="text-3xl font-semibold tracking-[-0.05em] text-white sm:text-[2.7rem] sm:leading-none">
