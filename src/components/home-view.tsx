@@ -467,8 +467,8 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
           style={{ borderRadius: polish.search.radius }}
         >
           <div className="border-b border-white/6 px-5 pb-3 pt-4 sm:px-6 sm:pb-4 sm:pt-5">
-            <div className="ui-label">Describe the job</div>
-            <p className="mt-1 text-sm leading-6 text-white/48">Start with the task, not the tool name.</p>
+            <div className="ui-label">Search by job or tool</div>
+            <p className="mt-1 text-sm leading-6 text-white/48">Describe the task or type a specific CLI name.</p>
           </div>
 
           <div className="p-3 sm:p-4">
