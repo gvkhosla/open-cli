@@ -1,4 +1,4 @@
-import { clis, searchClis, type CliEntry } from "@/data/clis";
+import { clis, findDirectCliMatch, searchClis, type CliEntry } from "@/data/clis";
 import { capabilityDefinitions, detectCapabilityMatches, getCapabilityBySlug, type CapabilityDefinition } from "@/lib/capabilities";
 import { resolveCompanionSkillsForCli, type CompanionSkill } from "@/lib/skill-links";
 import { skillOverrides, type SkillOutputMode } from "@/lib/skill-overrides";
@@ -525,9 +525,19 @@ export function buildSkillPackForCli(cli: CliEntry, capability = getDefaultCapab
 
 export function buildSuperchargeRecommendation(prompt: string, preferredCapabilitySlug?: string): SuperchargeRecommendation | null {
   const directCapability = preferredCapabilitySlug ? getCapabilityBySlug(preferredCapabilitySlug) : null;
+  const directCliMatch = findDirectCliMatch(prompt);
   const detectedCapability = detectCapabilityMatches(prompt)[0]?.capability;
-  const capability = detectedCapability ?? directCapability ?? capabilityDefinitions[0];
-  const candidates = chooseCandidates(capability, prompt);
+  const capability = directCliMatch
+    ? getDefaultCapabilityForCli(directCliMatch)
+    : detectedCapability ?? directCapability ?? capabilityDefinitions[0];
+  const candidates = directCliMatch
+    ? [
+        directCliMatch,
+        ...searchClis(prompt).filter(
+          (cli) => cli.slug !== directCliMatch.slug && (cli.category === directCliMatch.category || cli.makerSlug === directCliMatch.makerSlug),
+        ),
+      ]
+    : chooseCandidates(capability, prompt);
   const primary = candidates[0];
 
   if (!primary) {

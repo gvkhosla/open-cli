@@ -482,20 +482,12 @@ function getExpandedQueryTerms(query: string) {
   };
 }
 
-function scoreQueryMatch(cli: CliEntry, query: string) {
-  const { normalized, directTerms, expandedTerms, matchedCapabilities } = getExpandedQueryTerms(query);
-
-  if (!normalized) {
-    return popularityValue(cli);
-  }
-
-  const exactHaystacks = uniqueNormalized([
+function getPrimaryIdentifiers(cli: CliEntry) {
+  return uniqueNormalized([
     cli.slug,
     cli.shortName,
     cli.name,
     cli.binaryName,
-    cli.makerName,
-    cli.githubRepo,
     cli.packageName,
     cli.npmPackage,
     cli.brewFormula,
@@ -503,8 +495,79 @@ function scoreQueryMatch(cli: CliEntry, query: string) {
     cli.crateName,
     cli.pypiPackage,
     cli.goPackage,
+  ]);
+}
+
+function getSecondaryIdentifiers(cli: CliEntry) {
+  return uniqueNormalized([
+    cli.githubRepo,
     cli.dockerImage,
     ...cli.aliases,
+  ]);
+}
+
+function getDirectCliMatchScore(cli: CliEntry, query: string) {
+  const normalized = normalizeIntentText(query);
+
+  if (!normalized) {
+    return 0;
+  }
+
+  const primaryIdentifiers = getPrimaryIdentifiers(cli);
+  const secondaryIdentifiers = getSecondaryIdentifiers(cli);
+  const normalizedName = normalizeIntentText(cli.name);
+  let score = 0;
+
+  if (primaryIdentifiers.includes(normalized)) score += 320;
+  if (normalizedName === normalized) score += 120;
+
+  if (normalized.length >= 2 && primaryIdentifiers.some((value) => value.startsWith(normalized))) {
+    score += 220;
+  }
+
+  if (normalized.length >= 3 && secondaryIdentifiers.some((value) => value.startsWith(normalized))) {
+    score += 110;
+  }
+
+  if (normalized.length >= 4 && secondaryIdentifiers.some((value) => value.includes(normalized))) {
+    score += 40;
+  }
+
+  return score;
+}
+
+export function findDirectCliMatch(query: string) {
+  const normalized = normalizeIntentText(query);
+
+  if (normalized.length < 2) {
+    return null;
+  }
+
+  const best = clis
+    .map((cli) => ({ cli, score: getDirectCliMatchScore(cli, normalized) }))
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || popularityValue(b.cli) - popularityValue(a.cli))[0];
+
+  if (!best) {
+    return null;
+  }
+
+  return best.score >= 110 ? best.cli : null;
+}
+
+function scoreQueryMatch(cli: CliEntry, query: string) {
+  const { normalized, directTerms, expandedTerms, matchedCapabilities } = getExpandedQueryTerms(query);
+
+  if (!normalized) {
+    return popularityValue(cli);
+  }
+
+  const primaryIdentifiers = getPrimaryIdentifiers(cli);
+  const secondaryIdentifiers = getSecondaryIdentifiers(cli);
+  const exactHaystacks = uniqueNormalized([
+    ...primaryIdentifiers,
+    ...secondaryIdentifiers,
+    cli.makerName,
   ]);
 
   const broadHaystacks = uniqueNormalized([
@@ -523,7 +586,7 @@ function scoreQueryMatch(cli: CliEntry, query: string) {
   ]);
 
   const broadText = ` ${broadHaystacks.join(" ")} `;
-  let score = 0;
+  let score = getDirectCliMatchScore(cli, normalized);
 
   if (exactHaystacks.includes(normalized)) score += 180;
   if (normalizeIntentText(cli.name) === normalized) score += 120;
@@ -535,7 +598,13 @@ function scoreQueryMatch(cli: CliEntry, query: string) {
   for (const term of expandedTerms) {
     if (term.length < 2) continue;
 
-    if (exactHaystacks.includes(term)) {
+    if (primaryIdentifiers.includes(term)) {
+      score += 34;
+      if (directTerms.includes(term)) directMatches += 1;
+      continue;
+    }
+
+    if (secondaryIdentifiers.includes(term) || exactHaystacks.includes(term)) {
       score += 26;
       if (directTerms.includes(term)) directMatches += 1;
       continue;
