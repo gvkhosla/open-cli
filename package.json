@@ -11,7 +11,6 @@
     "discover:maker": "node scripts/discover-maker-clis.mjs"
   },
   "dependencies": {
-    "@chenglou/pretext": "^0.0.2",
     "@phosphor-icons/react": "^2.1.10",
     "@supabase/supabase-js": "^2.99.2",
     "class-variance-authority": "^0.7.1",
