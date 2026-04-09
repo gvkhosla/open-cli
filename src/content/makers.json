@@ -63,6 +63,13 @@
     "officialPlatformMaker": true
   },
   {
+    "slug": "basecamp",
+    "name": "Basecamp",
+    "type": "org",
+    "url": "https://basecamp.com",
+    "officialPlatformMaker": true
+  },
+  {
     "slug": "google-cloud",
     "name": "Google Cloud",
     "type": "org",

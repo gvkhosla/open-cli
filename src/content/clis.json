@@ -4376,6 +4376,54 @@
     "npmPackage": "mcporter"
   },
   {
+    "slug": "basecamp",
+    "name": "Basecamp CLI",
+    "shortName": "basecamp",
+    "maker": "basecamp",
+    "category": "Productivity",
+    "installWith": "curl",
+    "installCommand": "curl -fsSL https://basecamp.com/install-cli | bash",
+    "quickStart": "basecamp auth login && basecamp projects list",
+    "tagline": "Manage projects, todos, messages, and more from the terminal.",
+    "githubRepo": "basecamp/basecamp-cli",
+    "website": "https://basecamp.com/agents",
+    "docs": "https://github.com/basecamp/basecamp-cli",
+    "goPackage": "github.com/basecamp/basecamp-cli/cmd/basecamp",
+    "bestFor": "Project management workflows, todos, messages, and search inside Basecamp from the terminal.",
+    "useThisIf": "You're on Basecamp and want the official CLI for project management workflows and agent-driven automation.",
+    "skipIf": "You don't use Basecamp or you need something that works offline without authentication.",
+    "useCases": [
+      "Projects",
+      "Todos",
+      "Messages"
+    ],
+    "aliases": [
+      "basecamp cli"
+    ],
+    "keywords": [
+      "project management todos messages cards campfire search"
+    ],
+    "tags": [
+      "official",
+      "agent-friendly",
+      "json-output",
+      "ci-friendly"
+    ],
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "medium",
+    "exampleWorkflow": [
+      "basecamp auth login",
+      "basecamp projects list",
+      "basecamp todos list --in 12345",
+      "basecamp search \"authentication\""
+    ]
+  },
+  {
     "slug": "tempo",
     "name": "Tempo CLI",
     "shortName": "tempo",

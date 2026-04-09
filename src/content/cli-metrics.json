@@ -1115,6 +1115,15 @@
     "metricSource": "npm",
     "metricAsOf": "2026-03-20T06:58:12.389Z"
   },
+  "basecamp": {
+    "githubStars": 144,
+    "latestRelease": "2026-04-08T23:44:25Z",
+    "license": "MIT",
+    "metricLabel": "GitHub release downloads (latest)",
+    "metricValue": 3096,
+    "metricSource": "github",
+    "metricAsOf": "2026-04-09T00:00:00.000Z"
+  },
   "tempo": {
     "githubStars": 879,
     "latestRelease": "2026-03-20T06:31:56Z",
