@@ -161,6 +161,27 @@ export const capabilityDefinitions: CapabilityDefinition[] = [
       "Ask before funding, transfers, or any action with real money implications.",
     ],
   },
+  {
+    slug: "project-management",
+    label: "Project Management",
+    blurb: "Let your agent work with projects, todos, messages, and team coordination safely.",
+    samplePrompt: "Use Basecamp to inspect my projects, summarize outstanding todos, and ask before creating or completing anything.",
+    searchTerms: ["basecamp", "project management", "projects", "todo", "todos", "task", "tasks", "messages", "campfire", "schedule", "check-in", "checkin", "cards"],
+    categories: ["Productivity"],
+    candidateSlugs: ["basecamp"],
+    setupChecklist: [
+      "Install the project-management CLI and make sure it is on your PATH.",
+      "Authenticate before asking the agent to inspect projects or team data.",
+      "Start with read-only listing and search commands before creating or completing work.",
+    ],
+    loopName: "Project management loop",
+    loopSteps: [
+      "Confirm the active account and accessible projects.",
+      "List projects, todos, messages, or cards and summarize the current state.",
+      "Propose the next action with clear project context.",
+      "Ask before creating, editing, completing, or posting anything.",
+    ],
+  },
 ];
 
 export function normalizeIntentText(value: string) {
