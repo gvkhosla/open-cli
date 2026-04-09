@@ -20,6 +20,8 @@ const promptSuggestions = [
   "run local models",
 ] as const;
 
+const toolSuggestions = ["basecamp", "vercel", "gh", "claude"] as const;
+
 const categoryChips = ["All", "Git", "Deploy", "Database", "Browser Automation", "AI", "Wallet / Payments"] as const;
 
 type HomeViewProps = {
@@ -451,7 +453,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
         animate={{ opacity: 1, y: polish.hero.y, scale: polish.hero.scale }}
         transition={{ ...motionTransition, delay: HOME_REVEAL.hero }}
       >
-        <SuperchargeAgent />
+        <SuperchargeAgent stats={directoryStats} />
       </motion.div>
 
       <section id="directory" className="scroll-mt-20 space-y-5">
@@ -491,7 +493,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                   setSearch(event.target.value);
                   setLimit(event.target.value.trim() ? 40 : 125);
                 }}
-                placeholder="Deploy Next.js app, review PRs, inspect Postgres…"
+                placeholder="Deploy an app, inspect a schema, or type “basecamp”…"
                 className="h-16 w-full rounded-[24px] border border-transparent bg-transparent pl-12 pr-28 text-[16px] text-white/96 outline-none placeholder:text-white/40 sm:pl-14 sm:pr-32 sm:text-[17px]"
               />
               <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-5 sm:pr-6">
@@ -513,18 +515,33 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
 
           <div className="border-t border-white/6 px-5 py-3 sm:px-6 sm:py-4">
             {!hasQuery ? (
-              <div className="flex flex-wrap items-center gap-2 text-sm text-white/46">
-                <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/28">Examples</span>
-                {promptSuggestions.map((suggestion) => (
-                  <button
-                    key={suggestion}
-                    type="button"
-                    onClick={() => handleSuggestion(suggestion)}
-                    className="rounded-full px-2.5 py-1 transition hover:bg-white/[0.05] hover:text-white"
-                  >
-                    {suggestion}
-                  </button>
-                ))}
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/46">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/28">Tasks</span>
+                  {promptSuggestions.map((suggestion) => (
+                    <button
+                      key={suggestion}
+                      type="button"
+                      onClick={() => handleSuggestion(suggestion)}
+                      className="rounded-full px-2.5 py-1 transition hover:bg-white/[0.05] hover:text-white"
+                    >
+                      {suggestion}
+                    </button>
+                  ))}
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/28">Tools</span>
+                  {toolSuggestions.map((suggestion) => (
+                    <button
+                      key={suggestion}
+                      type="button"
+                      onClick={() => handleSuggestion(suggestion)}
+                      className="rounded-full border border-white/8 bg-white/[0.03] px-2.5 py-1 font-mono text-[12px] text-white/56 transition hover:border-white/14 hover:bg-white/[0.06] hover:text-white"
+                    >
+                      {suggestion}
+                    </button>
+                  ))}
+                </div>
               </div>
             ) : (
               <div className="flex flex-wrap items-center gap-2">
@@ -600,7 +617,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                   <Link
                     key={cli.slug}
                     href={`/cli/${cli.slug}`}
-                    className="grid gap-2 border-b border-white/6 px-5 py-4 transition-colors last:border-b-0 hover:bg-white/[0.025] md:grid-cols-[minmax(0,1.3fr)_160px_90px] md:items-center md:gap-4"
+                    className="directory-row grid gap-2 border-b border-white/6 px-5 py-4 transition-colors last:border-b-0 hover:bg-white/[0.025] md:grid-cols-[minmax(0,1.3fr)_160px_90px] md:items-center md:gap-4"
                   >
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
