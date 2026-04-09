@@ -9,7 +9,7 @@ import { CopyButton } from "@/components/copy-button";
 import { SkillPackActions } from "@/components/skill-pack-actions";
 import { SuperchargeAgent } from "@/components/supercharge-agent";
 import type { DirectorySearchResponse, DirectoryStats } from "@/lib/directory";
-import { formatCompactNumber } from "@/lib/format";
+import { formatCompactNumber, formatMetric } from "@/lib/format";
 import type { SuperchargeRecommendation } from "@/lib/supercharge";
 
 const promptSuggestions = [
@@ -605,7 +605,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
 
         {showCatalog ? (
           <div className="space-y-3">
-            <div className="ui-panel-faint overflow-hidden rounded-[24px]">
+            <div className="ui-panel-faint overflow-hidden rounded-[22px]">
               {directory.results.length === 0 ? (
                 <div className="flex flex-col items-center justify-center px-5 py-16 text-center">
                   <SearchIcon className="h-6 w-6 text-white/18" />
@@ -613,28 +613,36 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                   <p className="mt-1 text-xs text-white/42">Try a different phrase or broaden your category filter.</p>
                 </div>
               ) : (
-                directory.results.map((cli) => (
-                  <Link
-                    key={cli.slug}
-                    href={`/cli/${cli.slug}`}
-                    className="directory-row grid gap-2 border-b border-white/6 px-5 py-4 transition-colors last:border-b-0 hover:bg-white/[0.025] md:grid-cols-[minmax(0,1.3fr)_160px_90px] md:items-center md:gap-4"
-                  >
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-[15px] font-medium text-white">{cli.shortName}</span>
-                        {cli.official ? <span className="text-[11px] text-white/42">official</span> : null}
+                <>
+                  <div className="hidden border-b border-white/6 px-5 py-2.5 md:grid md:grid-cols-[minmax(0,1.5fr)_140px_150px] md:items-center md:gap-4">
+                    <div className="ui-label">Tool</div>
+                    <div className="ui-label">Maker</div>
+                    <div className="ui-label text-right">Signal</div>
+                  </div>
+                  {directory.results.map((cli) => (
+                    <Link
+                      key={cli.slug}
+                      href={`/cli/${cli.slug}`}
+                      className="directory-row grid gap-2 border-b border-white/6 px-5 py-3.5 transition-colors last:border-b-0 hover:bg-white/[0.022] md:grid-cols-[minmax(0,1.5fr)_140px_150px] md:items-center md:gap-4"
+                    >
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-[15px] font-medium text-white">{cli.shortName}</span>
+                          {cli.official ? <span className="text-[10px] uppercase tracking-[0.14em] text-white/38">official</span> : null}
+                          {cli.agentFriendly ? <span className="text-[10px] uppercase tracking-[0.14em] text-white/30">agent</span> : null}
+                        </div>
+                        <p className="mt-1 truncate text-sm text-white/68">{cli.tagline}</p>
+                        {cli.highlights.length > 0 ? (
+                          <p className="mt-1 truncate text-xs text-white/40">{cli.highlights[0]}</p>
+                        ) : null}
                       </div>
-                      <p className="mt-1 truncate text-sm text-white/62">{cli.tagline}</p>
-                      {cli.highlights.length > 0 ? (
-                        <p className="mt-1.5 truncate text-xs text-white/42">{cli.highlights.slice(0, 2).join(" · ")}</p>
-                      ) : null}
-                    </div>
-                    <div className="text-sm text-white/54">{cli.makerName}</div>
-                    <div className="text-right text-sm font-mono text-white/48">
-                      {cli.githubStars !== null ? formatCompactNumber(cli.githubStars) : "—"}
-                    </div>
-                  </Link>
-                ))
+                      <div className="text-sm text-white/54 md:text-[13px]">{cli.makerName}</div>
+                      <div className="text-left text-sm font-mono text-white/48 md:text-right">
+                        {formatMetric(cli.metricValue, cli.metricLabel) ?? (cli.githubStars !== null ? `${formatCompactNumber(cli.githubStars)} ★` : "—")}
+                      </div>
+                    </Link>
+                  ))}
+                </>
               )}
             </div>
 
