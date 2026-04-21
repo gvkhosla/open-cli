@@ -6,8 +6,8 @@ import { AnimatePresence, motion } from "motion/react";
 
 import { CliLogoMarquee } from "@/components/cli-logo-marquee";
 import { CopyButton } from "@/components/copy-button";
-import { SkillPackActions } from "@/components/skill-pack-actions";
 import { SuperchargeAgent } from "@/components/supercharge-agent";
+import { packageManagers } from "@/data/clis";
 import type { DirectorySearchResponse, DirectoryStats } from "@/lib/directory";
 import { formatCompactNumber, formatMetric } from "@/lib/format";
 import type { SuperchargeRecommendation } from "@/lib/supercharge";
@@ -23,6 +23,7 @@ const promptSuggestions = [
 const toolSuggestions = ["basecamp", "vercel", "gh", "claude"] as const;
 
 const categoryChips = ["All", "Git", "Deploy", "Database", "Browser Automation", "AI", "Wallet / Payments"] as const;
+const packageManagerChips = ["All", ...packageManagers] as const;
 
 type HomeViewProps = {
   initialDirectory: DirectorySearchResponse;
@@ -122,7 +123,6 @@ function RecommendationPanel({
     recommendation.primary.metricValue !== null && recommendation.primary.metricLabel
       ? `${formatCompactNumber(recommendation.primary.metricValue)} ${recommendation.primary.metricLabel.toLowerCase()}`
       : null;
-  const primaryCompanionSkill = recommendation.companionSkills[0] ?? null;
   const matchLabel = recommendation.matchType === "direct" ? "Direct match" : "Best fit for task";
   const matchDescription =
     recommendation.matchType === "direct"
@@ -147,106 +147,54 @@ function RecommendationPanel({
         transition={transition}
         className="relative space-y-5 sm:space-y-6"
       >
-        <motion.div variants={PANEL_STAGGER.item} className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-          <div className="max-w-3xl space-y-3">
-            <div className="space-y-1">
-              <div className="ui-label">{matchLabel}</div>
-              <p className="text-xs leading-5 text-white/42">{matchDescription}</p>
-            </div>
-            <div className="space-y-2.5">
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-                <h2 className="text-3xl font-semibold tracking-[-0.05em] text-white sm:text-[2.7rem] sm:leading-none">
-                  {recommendation.primary.shortName}
-                </h2>
-                <div className="flex flex-wrap items-center gap-2 text-[12px] text-white/46 sm:text-sm">
-                  <span>{recommendation.capability.label}</span>
-                  {primaryMetric ? <span className="text-white/34">• {primaryMetric}</span> : null}
-                  {isLoading ? <span className="text-white/34">• updating</span> : null}
-                </div>
-              </div>
-              <p className="max-w-2xl text-[15px] leading-7 text-white/72 sm:text-[17px] sm:leading-8">
-                {recommendation.rationale}
-              </p>
-              {recommendation.companionSkills[0] ? (
-                <p className="max-w-2xl text-sm leading-6 text-white/56">
-                  Open CLI integrates this recommendation with skills.sh — start with <span className="text-white/82">{recommendation.companionSkills[0].title}</span> once the CLI is installed.
-                </p>
-              ) : null}
+        <motion.div variants={PANEL_STAGGER.item} className="space-y-3">
+          <div className="space-y-1">
+            <div className="ui-label">{matchLabel}</div>
+            <p className="text-xs leading-5 text-white/42">{matchDescription}</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <h2 className="text-3xl font-semibold tracking-[-0.05em] text-white sm:text-[2.7rem] sm:leading-none">
+              {recommendation.primary.shortName}
+            </h2>
+            <div className="flex flex-wrap items-center gap-2 text-[12px] text-white/46 sm:text-sm">
+              <span>{recommendation.capability.label}</span>
+              {primaryMetric ? <span className="text-white/34">• {primaryMetric}</span> : null}
+              {isLoading ? <span className="text-white/34">• updating</span> : null}
             </div>
           </div>
-
-          <motion.div variants={PANEL_STAGGER.item}>
-            <SkillPackActions
-              skillMarkdown={recommendation.skillPack.skillMarkdown}
-              fileName={recommendation.skillPack.fileName}
-              copyLabel="Copy SKILL.md"
-              downloadLabel="Download SKILL.md"
-            />
-          </motion.div>
+          <p className="max-w-2xl text-[15px] leading-7 text-white/72 sm:text-[17px] sm:leading-8">
+            {recommendation.rationale}
+          </p>
         </motion.div>
 
-        <motion.div variants={PANEL_STAGGER.item} className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
-          <div className="ui-panel-soft overflow-hidden rounded-[24px]">
-            <CommandRow
-              label="Install"
-              command={recommendation.primary.installCommand}
-              copyLabel="Copy install"
-            />
-            <CommandRow
-              label="Verify"
-              command={recommendation.verifyCommand}
-              copyLabel="Copy verify"
-              description={recommendation.verifySignal}
-              bordered
-            />
-          </div>
-
-          <div className="ui-panel-soft rounded-[24px] p-4 sm:p-5">
-            <div className="ui-label">Start here</div>
-            <ol className="mt-3 space-y-3 text-sm leading-6 text-white/68">
-              {recommendation.loopSteps.slice(0, 3).map((step, index) => (
-                <li key={`${recommendation.loopName}-${index}`} className="flex items-start gap-3">
-                  <span className="inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-white/12 bg-white/[0.06] text-[10px] text-white/58">
-                    {index + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
+        <motion.div variants={PANEL_STAGGER.item} className="ui-panel-soft overflow-hidden rounded-[24px]">
+          <CommandRow
+            label="Install"
+            command={recommendation.primary.installCommand}
+            copyLabel="Copy install"
+          />
+          <CommandRow
+            label="Verify"
+            command={recommendation.verifyCommand}
+            copyLabel="Copy verify"
+            description={recommendation.verifySignal}
+            bordered
+          />
         </motion.div>
 
-        {primaryCompanionSkill ? (
-          <motion.div variants={PANEL_STAGGER.item} className="ui-panel-soft rounded-[24px] p-4 sm:p-5">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-              <div className="max-w-3xl space-y-2">
-                <div className="ui-label">Open CLI × skills.sh</div>
-                <div className="text-sm font-medium text-white/88">{primaryCompanionSkill.title}</div>
-                <p className="text-sm leading-6 text-white/62">
-                  Open CLI integrates this recommendation with the right skills.sh companion so you install the tool and the workflow together.
-                </p>
-              </div>
-              <a
-                href={primaryCompanionSkill.skillsUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-white/58 transition hover:text-white"
-              >
-                View on skills.sh
-                <svg className="h-3 w-3" fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M2 10L10 2M10 2H4M10 2v6" />
-                </svg>
-              </a>
-            </div>
-            <div className="mt-3 flex items-center gap-2">
-              <code className="flex-1 overflow-x-auto rounded-2xl border border-white/10 bg-white/[0.045] px-3 py-3 font-mono text-xs text-white/84 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
-                <span className="select-none text-white/20">$ </span>
-                {primaryCompanionSkill.installCommand}
-              </code>
-              <CopyButton compact value={primaryCompanionSkill.installCommand} label="Copy skills.sh install" />
-            </div>
-          </motion.div>
-        ) : null}
+        <motion.div variants={PANEL_STAGGER.item} className="ui-panel-soft rounded-[24px] p-4 sm:p-5">
+          <div className="ui-label">Quick start</div>
+          <ol className="mt-3 space-y-3 text-sm leading-6 text-white/68">
+            {recommendation.loopSteps.slice(0, 3).map((step, index) => (
+              <li key={`${recommendation.loopName}-${index}`} className="flex items-start gap-3">
+                <span className="inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-white/12 bg-white/[0.06] text-[10px] text-white/58">
+                  {index + 1}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </motion.div>
 
         <motion.div variants={PANEL_STAGGER.item} className="space-y-3">
           <RecommendationDetail title="Why this fits" defaultOpen>
@@ -337,6 +285,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
   const [recommendation, setRecommendation] = useState<SuperchargeRecommendation | null>(null);
   const [limit, setLimit] = useState(initialDirectory.results.length || 125);
   const [activeCategory, setActiveCategory] = useState<(typeof categoryChips)[number]>("All");
+  const [activePackageManager, setActivePackageManager] = useState<(typeof packageManagerChips)[number]>("All");
   const [isLoading, setIsLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [showCatalog, setShowCatalog] = useState(true);
@@ -373,7 +322,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
     const timeout = window.setTimeout(async () => {
       setIsLoading(true);
 
-      const searchParams = new URLSearchParams({ q: search, limit: String(limit), category: activeCategory });
+      const searchParams = new URLSearchParams({ q: search, limit: String(limit), category: activeCategory, pm: activePackageManager });
       const recommendationParams = new URLSearchParams({ q: search });
 
       try {
@@ -406,7 +355,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
       cancelled = true;
       window.clearTimeout(timeout);
     };
-  }, [activeCategory, limit, search]);
+  }, [activeCategory, activePackageManager, limit, search]);
 
   function handleSuggestion(value: string) {
     setSearch(value);
@@ -419,6 +368,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
     setSearch("");
     setLimit(125);
     setActiveCategory("All");
+    setActivePackageManager("All");
     setRecommendation(null);
   }
 
@@ -432,6 +382,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
         setSearch("");
         setLimit(125);
         setActiveCategory("All");
+        setActivePackageManager("All");
         setRecommendation(null);
         inputRef.current?.blur();
       }
@@ -447,7 +398,10 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
     : `Browse ${formatCompactNumber(directoryStats.total)} tools`;
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pt-8">
+    <div className="relative mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 pb-16 pt-8 sm:px-6 lg:px-8 lg:pt-10">
+      {/* Subtle grid background */}
+      <div className="absolute inset-0 -z-10 bg-grid-pattern opacity-50" />
+
       <motion.div
         initial={{ opacity: 0, y: 14, scale: 0.99 }}
         animate={{ opacity: 1, y: polish.hero.y, scale: polish.hero.scale }}
@@ -456,14 +410,21 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
         <SuperchargeAgent stats={directoryStats} />
       </motion.div>
 
-      <section id="directory" className="scroll-mt-20 space-y-4">
+      {/* Section divider */}
+      <div className="flex items-center gap-4 py-2">
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <span className="text-[10px] uppercase tracking-[0.2em] text-white/25">Directory</span>
+        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      </div>
+
+      <section id="directory" className="scroll-mt-20 space-y-5">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: polish.search.y }}
           transition={{ ...motionTransition, delay: HOME_REVEAL.search }}
           className={`ui-panel overflow-hidden rounded-[26px] transition-all duration-300 ${
             isFocused
-              ? "border-white/16 shadow-[0_14px_36px_rgba(0,0,0,0.22)]"
+              ? "border-cyan-500/20 shadow-[0_14px_36px_rgba(0,0,0,0.22),0_0_0_1px_rgba(34,211,238,0.08)]"
               : "border-white/10 shadow-[0_6px_22px_rgba(0,0,0,0.12)]"
           }`}
           style={{ borderRadius: polish.search.radius }}
@@ -544,27 +505,53 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                 </div>
               </div>
             ) : (
-              <div className="flex flex-wrap items-center gap-2">
-                {categoryChips.map((category) => {
-                  const isActive = category === activeCategory;
-                  return (
-                    <button
-                      key={category}
-                      type="button"
-                      onClick={() => {
-                        setActiveCategory(category);
-                        setLimit(24);
-                      }}
-                      className={`rounded-full px-3 py-1.5 text-xs transition ${
-                        isActive
-                          ? "bg-white text-black"
-                          : "text-white/58 hover:bg-white/[0.05] hover:text-white"
-                      }`}
-                    >
-                      {category}
-                    </button>
-                  );
-                })}
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/28">Category</span>
+                  {categoryChips.map((category) => {
+                    const isActive = category === activeCategory;
+                    return (
+                      <button
+                        key={category}
+                        type="button"
+                        onClick={() => {
+                          setActiveCategory(category);
+                          setLimit(24);
+                        }}
+                        className={`rounded-full px-3 py-1.5 text-xs transition ${
+                          isActive
+                            ? "bg-white text-black"
+                            : "text-white/58 hover:bg-white/[0.05] hover:text-white"
+                        }`}
+                      >
+                        {category}
+                      </button>
+                    );
+                  })}
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/28">Install</span>
+                  {packageManagerChips.map((pm) => {
+                    const isActive = pm === activePackageManager;
+                    return (
+                      <button
+                        key={pm}
+                        type="button"
+                        onClick={() => {
+                          setActivePackageManager(pm);
+                          setLimit(24);
+                        }}
+                        className={`rounded-full px-2.5 py-1 text-[11px] font-mono transition ${
+                          isActive
+                            ? "border border-white/16 bg-white text-black"
+                            : "border border-white/8 text-white/50 hover:border-white/14 hover:text-white"
+                        }`}
+                      >
+                        {pm}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             )}
           </div>
@@ -572,7 +559,10 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
 
         {!hasQuery ? (
           <div className="space-y-3">
-            <div className="ui-label px-1">Popular tools</div>
+            <div className="flex items-center gap-2 px-1">
+              <div className="ui-label">Popular tools</div>
+              <div className="h-px flex-1 bg-gradient-to-r from-white/8 to-transparent" />
+            </div>
             <CliLogoMarquee />
           </div>
         ) : null}
@@ -589,9 +579,16 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
           ) : null}
         </AnimatePresence>
 
-        <div className="flex items-center justify-between gap-3 px-1 pt-1">
-          <div className="text-sm text-white/44">
-            {hasQuery ? `${directory.total} option${directory.total !== 1 ? "s" : ""} found` : "Curated recommendations for real jobs."}
+        <div className="flex items-center justify-between gap-3 px-1 pt-2">
+          <div className="flex items-center gap-2 text-sm text-white/44">
+            {hasQuery ? (
+              <>
+                <span className="inline-flex h-1.5 w-1.5 rounded-full bg-cyan-400/60" />
+                {directory.total} option{directory.total !== 1 ? "s" : ""} found
+              </>
+            ) : (
+              "Curated recommendations for real jobs."
+            )}
           </div>
           <button
             type="button"
@@ -614,18 +611,18 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                 </div>
               ) : (
                 <>
-                  <div className="hidden border-b border-white/6 px-5 py-2.5 md:grid md:grid-cols-[minmax(0,1.5fr)_140px_150px] md:items-center md:gap-4">
+                  <div className="hidden border-b border-white/6 px-5 py-2.5 md:grid md:grid-cols-[minmax(0,1.5fr)_140px_100px_80px] md:items-center md:gap-4">
                     <div className="ui-label">Tool</div>
                     <div className="ui-label">Maker</div>
+                    <div className="ui-label">Install</div>
                     <div className="ui-label text-right">Signal</div>
                   </div>
                   {directory.results.map((cli) => (
-                    <Link
+                    <div
                       key={cli.slug}
-                      href={`/cli/${cli.slug}`}
-                      className="directory-row grid gap-2 border-b border-white/6 px-5 py-3.5 transition-colors last:border-b-0 hover:bg-white/[0.022] md:grid-cols-[minmax(0,1.5fr)_140px_150px] md:items-center md:gap-4"
+                      className="directory-row grid gap-2 border-b border-white/6 px-5 py-3.5 transition-colors last:border-b-0 hover:bg-white/[0.022] md:grid-cols-[minmax(0,1.5fr)_140px_100px_80px] md:items-center md:gap-4"
                     >
-                      <div className="min-w-0">
+                      <Link href={`/cli/${cli.slug}`} className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="text-[15px] font-medium text-white">{cli.shortName}</span>
                           {cli.official ? <span className="text-[10px] uppercase tracking-[0.14em] text-white/38">official</span> : null}
@@ -635,12 +632,15 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                         {cli.highlights.length > 0 ? (
                           <p className="mt-1 truncate text-xs text-white/40">{cli.highlights[0]}</p>
                         ) : null}
+                      </Link>
+                      <Link href={`/cli/${cli.slug}`} className="text-sm text-white/54 md:text-[13px]">{cli.makerName}</Link>
+                      <div className="flex items-center">
+                        <CopyButton compact value={cli.installCommand} label="Copy install" />
                       </div>
-                      <div className="text-sm text-white/54 md:text-[13px]">{cli.makerName}</div>
                       <div className="text-left text-sm font-mono text-white/48 md:text-right">
                         {formatMetric(cli.metricValue, cli.metricLabel) ?? (cli.githubStars !== null ? `${formatCompactNumber(cli.githubStars)} ★` : "—")}
                       </div>
-                    </Link>
+                    </div>
                   ))}
                 </>
               )}

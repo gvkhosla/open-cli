@@ -65,8 +65,9 @@ export function CliLogoMarquee() {
 
   return (
     <div className="ui-panel relative overflow-hidden rounded-[18px] px-3 py-3">
-      <div className="absolute left-0 top-0 bottom-0 z-10 w-12 bg-gradient-to-r from-[#151d26] to-transparent" />
-      <div className="absolute right-0 top-0 bottom-0 z-10 w-12 bg-gradient-to-l from-[#151d26] to-transparent" />
+      <div className="absolute -inset-px rounded-[19px] bg-gradient-to-b from-white/[0.04] to-transparent pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 z-10 w-12 bg-gradient-to-r from-[#111821] to-transparent" />
+      <div className="absolute right-0 top-0 bottom-0 z-10 w-12 bg-gradient-to-l from-[#111821] to-transparent" />
       <div className="marquee-track relative flex w-max gap-2">
         {marqueeItems.map((item, index) => (
           <LogoBadge key={`${item.name}-${index}`} item={item} />

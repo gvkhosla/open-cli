@@ -39,12 +39,17 @@ export function SiteHeader() {
       <header
         className={cn(
           "sticky top-0 z-50 bg-[rgba(7,11,16,0.84)] backdrop-blur-xl transition-[border-color,box-shadow] duration-300",
-          scrolled ? "border-white/0 shadow-[0_6px_18px_rgba(0,0,0,0.18)]" : "border-white/0"
+          scrolled ? "border-white/6 shadow-[0_6px_18px_rgba(0,0,0,0.18)]" : "border-white/0"
         )}
       >
         <div className="mx-auto flex h-13 w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" onClick={() => setMobileOpen(false)} className="group inline-flex items-center gap-2.5 text-sm text-white/90 transition hover:text-white">
-            <span className="inline-flex h-2 w-2 rounded-full bg-white/90 transition group-hover:bg-white" />
+            <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-white/[0.05] transition group-hover:border-white/16 group-hover:bg-white/[0.08]">
+              <svg width="16" height="16" viewBox="0 0 28 28" fill="none" className="text-white/80">
+                <path d="M7 6.5L13 14L7 21.5" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M16 20H21" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" />
+              </svg>
+            </span>
             <span className="text-[14px] font-medium tracking-[-0.02em] text-white">Open CLI</span>
           </Link>
 

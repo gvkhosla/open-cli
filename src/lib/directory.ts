@@ -14,6 +14,8 @@ export type DirectoryCliResult = {
   metricLabel: string | null;
   githubStars: number | null;
   highlights: string[];
+  installWith: string;
+  installCommand: string;
 };
 
 export type DirectoryStats = {
@@ -30,6 +32,7 @@ export type DirectorySearchResponse = {
 
 export type DirectoryQueryOptions = {
   category?: string;
+  packageManager?: string;
 };
 
 function serializeCli(cli: CliEntry, query: string): DirectoryCliResult {
@@ -47,6 +50,8 @@ function serializeCli(cli: CliEntry, query: string): DirectoryCliResult {
     metricLabel: cli.metricLabel,
     githubStars: cli.githubStars,
     highlights: getSearchHighlights(cli, query),
+    installWith: cli.installWith,
+    installCommand: cli.installCommand,
   };
 }
 
@@ -66,16 +71,18 @@ export function getDirectoryResults(query: string, limit = 24, options: Director
   const trimmed = query.trim();
   const normalizedCategory = options.category?.trim() || "All";
   const categoryFilter = normalizedCategory === "All" ? "All" : normalizedCategory;
+  const pmFilter = options.packageManager?.trim() || "All";
   const matches = trimmed
     ? searchClis(trimmed, { mode: "all", category: categoryFilter as CliEntry["category"] | "All" })
     : [...clis]
         .filter((cli) => (categoryFilter === "All" ? true : cli.category === categoryFilter))
         .sort(sortDefaultDirectory);
-  const sliced = matches.slice(0, limit);
+  const filtered = pmFilter === "All" ? matches : matches.filter((cli) => cli.installWith === pmFilter);
+  const sliced = filtered.slice(0, limit);
 
   return {
     query: trimmed,
-    total: matches.length,
+    total: filtered.length,
     results: sliced.map((cli) => serializeCli(cli, trimmed)),
   };
 }

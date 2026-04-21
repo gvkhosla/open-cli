@@ -1,4 +1,3 @@
-import builderLaunchesJson from "@/content/builder-launches.json";
 import cliMetricsJson from "@/content/cli-metrics.json";
 import cliSeedsJson from "@/content/clis.json";
 import makersJson from "@/content/makers.json";
@@ -140,29 +139,6 @@ export type CliEntry = {
   metricValue: number | null;
   metricSource: string | null;
   metricAsOf: string | null;
-};
-
-export type BuilderLaunchStatus = "pending" | "approved" | "rejected";
-export type BuilderLaunchSource = "manual" | "discovered";
-
-export type BuilderLaunch = {
-  id?: string;
-  name: string;
-  creator: string;
-  creatorUrl: string;
-  tagline: string;
-  installCommand: string;
-  href: string;
-  released: string;
-  packageName?: string;
-  githubRepo?: string;
-  stars?: number | null;
-  monthlyDownloads?: number | null;
-  publishedAt?: string | null;
-  status?: BuilderLaunchStatus;
-  source?: BuilderLaunchSource;
-  auditScore?: number | null;
-  createdAt?: string | null;
 };
 
 const makerSeeds = makersJson as Maker[];
@@ -384,8 +360,6 @@ function createCli(seed: CliSeed): CliEntry {
 export const clis: CliEntry[] = cliSeeds
   .map(createCli)
   .sort((a, b) => popularityValue(b) - popularityValue(a) || a.name.localeCompare(b.name));
-
-export const builderLaunches = builderLaunchesJson as BuilderLaunch[];
 
 export const makers = makerSeeds
   .map((maker) => ({

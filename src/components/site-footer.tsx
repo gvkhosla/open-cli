@@ -9,7 +9,12 @@ export function SiteFooter() {
           {/* Brand */}
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2.5">
-              <span className="inline-flex h-2 w-2 rounded-full bg-white/82" />
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-white/[0.05]">
+                <svg width="16" height="16" viewBox="0 0 28 28" fill="none" className="text-white/70">
+                  <path d="M7 6.5L13 14L7 21.5" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M16 20H21" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" />
+                </svg>
+              </span>
               <span className="text-sm font-medium tracking-[-0.02em] text-white/82">Open CLI</span>
             </div>
             <p className="max-w-xs text-sm leading-6 text-white/52">

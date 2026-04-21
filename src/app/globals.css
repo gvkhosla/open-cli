@@ -9,6 +9,8 @@
   --accent-iris: #71717a;
   --accent-peach: #d4d4d8;
   --accent-rose: #f87171;
+  --accent-cyan: #22d3ee;
+  --accent-teal: #2dd4bf;
   --muted: oklch(0.97 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -104,6 +106,13 @@ body {
     linear-gradient(180deg, rgba(255, 255, 255, 0.012), transparent 16%),
     #070b10;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
 body::before {
@@ -353,6 +362,57 @@ a {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.gradient-text-hero {
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.72) 60%, rgba(34,211,238,0.35) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow-cyan {
+  box-shadow: 0 0 80px -20px rgba(34, 211, 238, 0.15);
+}
+
+.glow-cyan-strong {
+  box-shadow: 0 0 100px -20px rgba(34, 211, 238, 0.22);
+}
+
+.terminal-cursor::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 18px;
+  background: rgba(34, 211, 238, 0.8);
+  margin-left: 2px;
+  animation: terminalBlink 1s step-end infinite;
+  vertical-align: middle;
+}
+
+@keyframes terminalBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-line {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
 }
 
 /* ── Better focus-visible ── */

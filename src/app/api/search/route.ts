@@ -6,8 +6,9 @@ export function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const query = searchParams.get("q") ?? "";
   const category = searchParams.get("category") ?? "All";
+  const packageManager = searchParams.get("pm") ?? "All";
   const rawLimit = Number.parseInt(searchParams.get("limit") ?? "24", 10);
   const limit = Number.isFinite(rawLimit) ? Math.min(Math.max(rawLimit, 1), 125) : 24;
 
-  return NextResponse.json(getDirectoryResults(query, limit, { category }));
+  return NextResponse.json(getDirectoryResults(query, limit, { category, packageManager }));
 }
