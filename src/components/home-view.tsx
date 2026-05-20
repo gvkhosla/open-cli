@@ -22,7 +22,7 @@ const promptSuggestions = [
   "review pull requests",
 ] as const;
 
-const toolSuggestions = ["pandoc", "duckdb", "rg", "ffmpeg", "gh"] as const;
+const toolSuggestions = ["pi", "amp", "claude", "codex", "pandoc", "duckdb", "rg", "gh"] as const;
 
 const categoryChips = ["All", "Productivity", "Docs / Content", "Data", "Shell Utilities", "Git", "Deploy", "Database", "Browser Automation", "AI", "Wallet / Payments"] as const;
 const packageManagerChips = ["All", ...packageManagers] as const;

@@ -5825,5 +5825,354 @@
     "requiresNetwork": true,
     "ciFriendly": true,
     "destructivePotential": "high"
+  },
+  {
+    "slug": "pi",
+    "name": "Pi Coding Agent",
+    "shortName": "pi",
+    "maker": "earendil-works",
+    "category": "AI",
+    "installWith": "npm",
+    "installCommand": "npm install -g @earendil-works/pi-coding-agent",
+    "quickStart": "pi",
+    "githubRepo": "earendil-works/pi-coding-agent",
+    "website": "https://github.com/earendil-works/pi-coding-agent",
+    "docs": "https://github.com/earendil-works/pi-coding-agent",
+    "useCases": [
+      "Coding agent",
+      "Terminal coding workflows",
+      "Agent extensions"
+    ],
+    "aliases": [
+      "pi agent",
+      "pi coding agent"
+    ],
+    "keywords": [
+      "agent",
+      "coding",
+      "terminal",
+      "tui",
+      "skills"
+    ],
+    "tags": [
+      "agent",
+      "coding-agent"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": false,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "high",
+    "exampleWorkflow": [
+      "pi",
+      "pi --help"
+    ]
+  },
+  {
+    "slug": "amp",
+    "name": "Amp",
+    "shortName": "amp",
+    "maker": "sourcegraph",
+    "category": "AI",
+    "installWith": "npm",
+    "installCommand": "npm install -g @sourcegraph/amp",
+    "quickStart": "amp",
+    "githubRepo": "sourcegraph/amp",
+    "website": "https://ampcode.com",
+    "docs": "https://ampcode.com/manual",
+    "useCases": [
+      "Coding agent",
+      "Codebase edits",
+      "Agentic development"
+    ],
+    "aliases": [
+      "ampcode",
+      "sourcegraph amp"
+    ],
+    "keywords": [
+      "agent",
+      "coding",
+      "sourcegraph",
+      "amp"
+    ],
+    "tags": [
+      "agent",
+      "coding-agent"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": false,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "high",
+    "exampleWorkflow": [
+      "amp",
+      "amp --help"
+    ]
+  },
+  {
+    "slug": "cursor-agent",
+    "name": "Cursor Agent CLI",
+    "shortName": "cursor-agent",
+    "maker": "cursor",
+    "category": "AI",
+    "installWith": "curl",
+    "installCommand": "Install Cursor, then enable the cursor-agent command from Cursor settings",
+    "quickStart": "cursor-agent --help",
+    "githubRepo": "getcursor/cursor",
+    "website": "https://cursor.com",
+    "docs": "https://docs.cursor.com/cli",
+    "useCases": [
+      "Coding agent",
+      "Editor-backed automation",
+      "Codebase work"
+    ],
+    "aliases": [
+      "cursor cli",
+      "cursor agent"
+    ],
+    "keywords": [
+      "cursor",
+      "agent",
+      "coding",
+      "editor"
+    ],
+    "tags": [
+      "agent",
+      "coding-agent"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": false,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "amazon-q",
+    "name": "Amazon Q Developer CLI",
+    "shortName": "q",
+    "maker": "amazon",
+    "category": "AI",
+    "installWith": "brew",
+    "installCommand": "brew install --cask amazon-q",
+    "quickStart": "q chat",
+    "githubRepo": "aws/amazon-q-developer-cli",
+    "website": "https://aws.amazon.com/q/developer/",
+    "docs": "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line.html",
+    "useCases": [
+      "Coding assistant",
+      "AWS development",
+      "Terminal AI"
+    ],
+    "aliases": [
+      "q developer",
+      "amazon q"
+    ],
+    "keywords": [
+      "amazon",
+      "aws",
+      "q",
+      "agent",
+      "coding"
+    ],
+    "tags": [
+      "agent",
+      "coding-agent",
+      "aws"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": false,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "continue-cli",
+    "name": "Continue CLI",
+    "shortName": "cn",
+    "maker": "continue",
+    "category": "AI",
+    "installWith": "npm",
+    "installCommand": "npm install -g @continuedev/cli",
+    "quickStart": "cn --help",
+    "githubRepo": "continuedev/continue",
+    "website": "https://continue.dev",
+    "docs": "https://docs.continue.dev",
+    "useCases": [
+      "Coding assistant",
+      "Custom AI workflows",
+      "Codebase context"
+    ],
+    "aliases": [
+      "continue"
+    ],
+    "keywords": [
+      "continue",
+      "agent",
+      "coding",
+      "llm"
+    ],
+    "tags": [
+      "agent",
+      "coding-agent"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": false,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "opencode",
+    "name": "OpenCode",
+    "shortName": "opencode",
+    "maker": "sst",
+    "category": "AI",
+    "installWith": "npm",
+    "installCommand": "npm install -g opencode-ai",
+    "quickStart": "opencode",
+    "githubRepo": "sst/opencode",
+    "website": "https://opencode.ai",
+    "docs": "https://opencode.ai/docs",
+    "useCases": [
+      "Terminal coding agent",
+      "Codebase edits",
+      "AI development"
+    ],
+    "aliases": [
+      "open code"
+    ],
+    "keywords": [
+      "agent",
+      "coding",
+      "terminal",
+      "sst"
+    ],
+    "tags": [
+      "agent",
+      "coding-agent"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": false,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "crush",
+    "name": "Crush",
+    "shortName": "crush",
+    "maker": "charm",
+    "category": "AI",
+    "installWith": "brew",
+    "installCommand": "brew install charmbracelet/tap/crush",
+    "quickStart": "crush",
+    "githubRepo": "charmbracelet/crush",
+    "website": "https://github.com/charmbracelet/crush",
+    "docs": "https://github.com/charmbracelet/crush",
+    "useCases": [
+      "Terminal coding agent",
+      "TUI AI assistant",
+      "Codebase work"
+    ],
+    "aliases": [
+      "charm crush"
+    ],
+    "keywords": [
+      "agent",
+      "coding",
+      "tui",
+      "terminal"
+    ],
+    "tags": [
+      "agent",
+      "coding-agent"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": false,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "qwen-code",
+    "name": "Qwen Code",
+    "shortName": "qwen",
+    "maker": "qwen",
+    "category": "AI",
+    "installWith": "npm",
+    "installCommand": "npm install -g @qwen-code/qwen-code",
+    "quickStart": "qwen --help",
+    "githubRepo": "QwenLM/qwen-code",
+    "website": "https://github.com/QwenLM/qwen-code",
+    "docs": "https://github.com/QwenLM/qwen-code",
+    "useCases": [
+      "Coding agent",
+      "Qwen models",
+      "Terminal AI"
+    ],
+    "aliases": [
+      "qwen cli"
+    ],
+    "keywords": [
+      "qwen",
+      "agent",
+      "coding",
+      "llm"
+    ],
+    "tags": [
+      "agent",
+      "coding-agent"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": false,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "zed-agent",
+    "name": "Zed Agent Panel CLI",
+    "shortName": "zed",
+    "maker": "zed",
+    "category": "AI",
+    "installWith": "brew",
+    "installCommand": "brew install --cask zed",
+    "quickStart": "zed .",
+    "githubRepo": "zed-industries/zed",
+    "website": "https://zed.dev",
+    "docs": "https://zed.dev/docs/assistant/overview",
+    "useCases": [
+      "Editor agent",
+      "Codebase work",
+      "AI-assisted development"
+    ],
+    "aliases": [
+      "zed ai",
+      "zed assistant"
+    ],
+    "keywords": [
+      "zed",
+      "agent",
+      "coding",
+      "editor"
+    ],
+    "tags": [
+      "agent",
+      "coding-agent"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": false,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "high"
   }
 ]

@@ -971,5 +971,68 @@
     "type": "org",
     "url": "https://elastic.co",
     "officialPlatformMaker": true
+  },
+  {
+    "slug": "earendil-works",
+    "name": "Earendil Works",
+    "type": "org",
+    "url": "https://github.com/earendil-works",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "sourcegraph",
+    "name": "Sourcegraph",
+    "type": "org",
+    "url": "https://sourcegraph.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "cursor",
+    "name": "Cursor",
+    "type": "org",
+    "url": "https://cursor.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "amazon",
+    "name": "Amazon",
+    "type": "org",
+    "url": "https://aws.amazon.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "continue",
+    "name": "Continue",
+    "type": "org",
+    "url": "https://continue.dev",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "sst",
+    "name": "SST",
+    "type": "org",
+    "url": "https://sst.dev",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "charm",
+    "name": "Charm",
+    "type": "org",
+    "url": "https://charm.land",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "qwen",
+    "name": "Qwen",
+    "type": "org",
+    "url": "https://qwen.ai",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "zed",
+    "name": "Zed",
+    "type": "org",
+    "url": "https://zed.dev",
+    "officialPlatformMaker": true
   }
 ]

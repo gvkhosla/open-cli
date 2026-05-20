@@ -43,6 +43,11 @@ const logoItems: LogoItem[] = [
   { name: "FFmpeg", href: "/cli/ffmpeg", icon: siFfmpeg },
   { name: "Jira CLI", href: "/cli/jira-cli", icon: siJira },
   { name: "khal", href: "/cli/khal", label: "cal" },
+  { name: "Pi", href: "/cli/pi", label: "pi" },
+  { name: "Amp", href: "/cli/amp", label: "amp" },
+  { name: "Codex", href: "/cli/codex", label: "cx" },
+  { name: "Cursor Agent", href: "/cli/cursor-agent", label: "cur" },
+  { name: "OpenCode", href: "/cli/opencode", label: "oc" },
 ];
 
 function LogoBadge({ item }: { item: LogoItem }) {
