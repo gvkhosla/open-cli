@@ -423,9 +423,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
     : `Browse ${formatCompactNumber(directoryStats.total)} tools`;
 
   return (
-    <div className="relative mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 pb-16 pt-8 sm:px-6 lg:px-8 lg:pt-10">
-      {/* Subtle grid background */}
-      <div className="absolute inset-0 -z-10 bg-grid-pattern opacity-50" />
+    <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-4 sm:px-6 lg:px-8">
 
       <motion.div
         initial={{ opacity: 0, y: 14, scale: 0.99 }}
@@ -440,18 +438,16 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: polish.search.y }}
           transition={{ ...motionTransition, delay: HOME_REVEAL.search }}
-          className={`ui-panel overflow-hidden rounded-[26px] transition-all duration-300 ${
-            isFocused
-              ? "border-cyan-500/20 shadow-[0_14px_36px_rgba(0,0,0,0.22),0_0_0_1px_rgba(34,211,238,0.08)]"
-              : "border-white/10 shadow-[0_6px_22px_rgba(0,0,0,0.12)]"
+          className={`overflow-hidden rounded-3xl bg-[#fefffc] shadow-[var(--shadow-card)] ring-1 ring-black/5 transition-all duration-300 ${
+            isFocused ? "ring-[#41a1cf]/40" : ""
           }`}
           style={{ borderRadius: polish.search.radius }}
         >
           <div className="border-b border-white/6 px-5 pb-3 pt-4 sm:px-6">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <div className="ui-label">Work router</div>
-                <p className="mt-1 text-base leading-7 text-white/56 sm:text-sm sm:leading-6">Say what you want done. Get a CLI stack, verify steps, and agent guardrails.</p>
+                <div className="text-sm font-medium text-[#2c2c2c]">Work router</div>
+                <p className="mt-1 text-base leading-7 text-[#646464] sm:text-sm sm:leading-6">Say what you want done. Get a CLI stack, verify steps, and agent guardrails.</p>
               </div>
               <div className="flex flex-wrap gap-2">
                 <CopyButton compact value="https://opencli.co" label="Copy page" />
@@ -462,13 +458,11 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
 
           <div className="p-3 sm:p-4">
             <div
-              className={`ui-panel-soft relative rounded-[24px] transition-all duration-300 ${
-                isFocused
-                  ? "border-white/16 bg-white/[0.07] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_0_1px_rgba(255,255,255,0.04)]"
-                  : ""
+              className={`relative rounded-2xl border border-black/10 bg-[#f9faf7] shadow-[var(--shadow-sm-2)] transition-all duration-300 ${
+                isFocused ? "border-[#41a1cf]" : ""
               }`}
             >
-              <span className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-5 text-white/34 sm:pl-6">
+              <span className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-5 text-[#646464] sm:pl-6">
                 <SearchIcon className="h-[15px] w-[15px]" />
               </span>
               <input
@@ -481,7 +475,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                   setLimit(event.target.value.trim() ? 40 : 125);
                 }}
                 placeholder="review PRs, deploy preview, inspect postgres, test signup…"
-                className="h-16 w-full rounded-[24px] border border-transparent bg-transparent pl-12 pr-28 text-[16px] text-white/96 outline-none placeholder:text-white/40 sm:pl-14 sm:pr-32 sm:text-[17px]"
+                className="h-16 w-full rounded-2xl border border-transparent bg-transparent pl-12 pr-28 text-base text-[#171717] outline-none placeholder:text-[#646464]/70 sm:pl-14 sm:pr-32 sm:text-[17px]"
               />
               <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-5 sm:pr-6">
                 {isLoading && <div className="spinner" />}
