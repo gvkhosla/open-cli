@@ -627,7 +627,6 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                     <span className="flex size-5 items-center justify-center rounded bg-[#2f2f2f] font-mono text-[11px] text-white/80">
                       {agent === "Claude Code" ? "CC" : agent.slice(0, 1)}
                     </span>
-                    {agent}
                   </span>
                 ))}
               </div>
