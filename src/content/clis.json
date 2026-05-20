@@ -4467,5 +4467,550 @@
       "tempo wallet services --search ai",
       "tempo request --dry-run https://example.com"
     ]
+  },
+  {
+    "slug": "quarto",
+    "name": "Quarto CLI",
+    "shortName": "quarto",
+    "maker": "quarto",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install --cask quarto",
+    "quickStart": "quarto render report.qmd",
+    "githubRepo": "quarto-dev/quarto-cli",
+    "website": "https://quarto.org",
+    "docs": "https://quarto.org/docs/guide/",
+    "useCases": [
+      "Research reports",
+      "Notebooks",
+      "Publishing"
+    ],
+    "keywords": [
+      "report",
+      "notebook",
+      "markdown",
+      "publish"
+    ],
+    "tags": [
+      "docs",
+      "research"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "ciFriendly": true,
+    "localFirst": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "quarto render",
+      "quarto preview"
+    ]
+  },
+  {
+    "slug": "vale",
+    "name": "Vale",
+    "shortName": "vale",
+    "maker": "errata-ai",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install vale",
+    "quickStart": "vale docs/",
+    "githubRepo": "errata-ai/vale",
+    "website": "https://vale.sh",
+    "docs": "https://vale.sh/docs/",
+    "useCases": [
+      "Style checking",
+      "Docs linting",
+      "Editorial review"
+    ],
+    "keywords": [
+      "writing",
+      "lint",
+      "docs",
+      "style"
+    ],
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "ciFriendly": true,
+    "localFirst": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "vale README.md",
+      "vale --output=JSON docs/"
+    ]
+  },
+  {
+    "slug": "markdownlint-cli2",
+    "name": "markdownlint-cli2",
+    "shortName": "markdownlint-cli2",
+    "maker": "david-baumgold",
+    "category": "Docs / Content",
+    "installWith": "npm",
+    "installCommand": "npm install -g markdownlint-cli2",
+    "quickStart": "markdownlint-cli2 \"**/*.md\"",
+    "githubRepo": "DavidAnson/markdownlint-cli2",
+    "website": "https://github.com/DavidAnson/markdownlint-cli2",
+    "docs": "https://github.com/DavidAnson/markdownlint-cli2",
+    "useCases": [
+      "Markdown linting",
+      "Docs hygiene",
+      "CI checks"
+    ],
+    "keywords": [
+      "markdown",
+      "lint",
+      "docs"
+    ],
+    "supportsNonInteractive": true,
+    "ciFriendly": true,
+    "localFirst": true,
+    "destructivePotential": "low"
+  },
+  {
+    "slug": "miller",
+    "name": "Miller",
+    "shortName": "mlr",
+    "maker": "johnkerl",
+    "category": "Data",
+    "installWith": "brew",
+    "installCommand": "brew install miller",
+    "quickStart": "mlr --csv head data.csv",
+    "githubRepo": "johnkerl/miller",
+    "website": "https://miller.readthedocs.io",
+    "docs": "https://miller.readthedocs.io",
+    "useCases": [
+      "CSV wrangling",
+      "Log analysis",
+      "Data transformation"
+    ],
+    "aliases": [
+      "mlr"
+    ],
+    "keywords": [
+      "csv",
+      "json",
+      "data",
+      "transform"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "ciFriendly": true,
+    "localFirst": true,
+    "destructivePotential": "low"
+  },
+  {
+    "slug": "ocrmypdf",
+    "name": "OCRmyPDF",
+    "shortName": "ocrmypdf",
+    "maker": "ocrmypdf",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install ocrmypdf",
+    "quickStart": "ocrmypdf scanned.pdf searchable.pdf",
+    "githubRepo": "ocrmypdf/OCRmyPDF",
+    "website": "https://ocrmypdf.readthedocs.io",
+    "docs": "https://ocrmypdf.readthedocs.io",
+    "useCases": [
+      "OCR PDFs",
+      "Searchable documents",
+      "Document ingestion"
+    ],
+    "keywords": [
+      "pdf",
+      "ocr",
+      "documents",
+      "scan"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "ciFriendly": true,
+    "localFirst": true,
+    "destructivePotential": "low"
+  },
+  {
+    "slug": "tesseract",
+    "name": "Tesseract OCR",
+    "shortName": "tesseract",
+    "maker": "tesseract",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install tesseract",
+    "quickStart": "tesseract image.png stdout",
+    "githubRepo": "tesseract-ocr/tesseract",
+    "website": "https://github.com/tesseract-ocr/tesseract",
+    "docs": "https://tesseract-ocr.github.io/",
+    "useCases": [
+      "Image OCR",
+      "Scanned text",
+      "Document extraction"
+    ],
+    "keywords": [
+      "ocr",
+      "image",
+      "text"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "ciFriendly": true,
+    "localFirst": true,
+    "destructivePotential": "low"
+  },
+  {
+    "slug": "poppler",
+    "name": "Poppler Utils",
+    "shortName": "pdftotext",
+    "maker": "poppler",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install poppler",
+    "quickStart": "pdftotext document.pdf -",
+    "githubRepo": "innodatalabs/poppler",
+    "website": "https://poppler.freedesktop.org",
+    "docs": "https://poppler.freedesktop.org",
+    "useCases": [
+      "Extract PDF text",
+      "PDF metadata",
+      "Document search"
+    ],
+    "keywords": [
+      "pdf",
+      "text",
+      "documents"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "ciFriendly": true,
+    "localFirst": true,
+    "destructivePotential": "low"
+  },
+  {
+    "slug": "whisper-cpp",
+    "name": "whisper.cpp",
+    "shortName": "whisper-cli",
+    "maker": "ggerganov",
+    "category": "AI",
+    "installWith": "brew",
+    "installCommand": "brew install whisper-cpp",
+    "quickStart": "whisper-cli -m models/ggml-base.en.bin -f audio.wav",
+    "githubRepo": "ggml-org/whisper.cpp",
+    "website": "https://github.com/ggml-org/whisper.cpp",
+    "docs": "https://github.com/ggml-org/whisper.cpp",
+    "useCases": [
+      "Transcription",
+      "Meeting notes",
+      "Audio analysis"
+    ],
+    "keywords": [
+      "transcribe",
+      "audio",
+      "whisper",
+      "meetings"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "ciFriendly": true,
+    "localFirst": true,
+    "destructivePotential": "low"
+  },
+  {
+    "slug": "wget",
+    "name": "GNU Wget",
+    "shortName": "wget",
+    "maker": "gnu",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install wget",
+    "quickStart": "wget https://example.com/file.csv",
+    "githubRepo": "mirror/wget",
+    "website": "https://www.gnu.org/software/wget/",
+    "docs": "https://www.gnu.org/software/wget/manual/wget.html",
+    "useCases": [
+      "Download files",
+      "Mirror websites",
+      "Research collection"
+    ],
+    "keywords": [
+      "download",
+      "web",
+      "mirror"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "low"
+  },
+  {
+    "slug": "notmuch",
+    "name": "notmuch",
+    "shortName": "notmuch",
+    "maker": "notmuch",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install notmuch",
+    "quickStart": "notmuch search from:alice",
+    "githubRepo": "notmuch/notmuch",
+    "website": "https://notmuchmail.org",
+    "docs": "https://notmuchmail.org/doc/latest/",
+    "useCases": [
+      "Email search",
+      "Mail indexing",
+      "Knowledge retrieval"
+    ],
+    "keywords": [
+      "email",
+      "search",
+      "mail"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "localFirst": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "aerc",
+    "name": "aerc",
+    "shortName": "aerc",
+    "maker": "aerc",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install aerc",
+    "quickStart": "aerc",
+    "githubRepo": "rjarry/aerc",
+    "website": "https://aerc-mail.org",
+    "docs": "https://man.sr.ht/~rjarry/aerc/",
+    "useCases": [
+      "Terminal email",
+      "Mail workflows",
+      "Communication"
+    ],
+    "keywords": [
+      "email",
+      "mail",
+      "terminal"
+    ],
+    "supportsNonInteractive": false,
+    "localFirst": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "khal",
+    "name": "khal",
+    "shortName": "khal",
+    "maker": "khal",
+    "category": "Productivity",
+    "installWith": "pipx",
+    "installCommand": "pipx install khal",
+    "quickStart": "khal list today 7d",
+    "githubRepo": "pimutils/khal",
+    "website": "https://lostpackets.de/khal/",
+    "docs": "https://khal.readthedocs.io",
+    "useCases": [
+      "Calendar review",
+      "Agenda planning",
+      "Scheduling"
+    ],
+    "keywords": [
+      "calendar",
+      "agenda",
+      "ics"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "localFirst": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "vdirsyncer",
+    "name": "vdirsyncer",
+    "shortName": "vdirsyncer",
+    "maker": "pimutils",
+    "category": "Productivity",
+    "installWith": "pipx",
+    "installCommand": "pipx install vdirsyncer",
+    "quickStart": "vdirsyncer discover",
+    "githubRepo": "pimutils/vdirsyncer",
+    "website": "https://vdirsyncer.pimutils.org",
+    "docs": "https://vdirsyncer.pimutils.org/en/stable/",
+    "useCases": [
+      "Calendar sync",
+      "Contacts sync",
+      "Knowledge work data"
+    ],
+    "keywords": [
+      "calendar",
+      "contacts",
+      "sync"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresNetwork": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "zk",
+    "name": "zk",
+    "shortName": "zk",
+    "maker": "zk-org",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install zk",
+    "quickStart": "zk list --format json",
+    "githubRepo": "zk-org/zk",
+    "website": "https://github.com/zk-org/zk",
+    "docs": "https://github.com/zk-org/zk/blob/main/docs",
+    "useCases": [
+      "Notes search",
+      "Zettelkasten",
+      "Knowledge base"
+    ],
+    "keywords": [
+      "notes",
+      "markdown",
+      "pkm",
+      "zettelkasten"
+    ],
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "localFirst": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "nb",
+    "name": "nb",
+    "shortName": "nb",
+    "maker": "xwmx",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install xwmx/taps/nb",
+    "quickStart": "nb add \"Meeting notes\"",
+    "githubRepo": "xwmx/nb",
+    "website": "https://xwmx.github.io/nb/",
+    "docs": "https://xwmx.github.io/nb/",
+    "useCases": [
+      "Notes",
+      "Bookmarks",
+      "Knowledge base"
+    ],
+    "keywords": [
+      "notes",
+      "bookmarks",
+      "markdown"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "localFirst": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "jrnl",
+    "name": "jrnl",
+    "shortName": "jrnl",
+    "maker": "jrnl",
+    "category": "Productivity",
+    "installWith": "pipx",
+    "installCommand": "pipx install jrnl",
+    "quickStart": "jrnl today: shipped draft",
+    "githubRepo": "jrnl-org/jrnl",
+    "website": "https://jrnl.sh",
+    "docs": "https://jrnl.sh/en/stable/",
+    "useCases": [
+      "Journaling",
+      "Work logs",
+      "Personal notes"
+    ],
+    "keywords": [
+      "journal",
+      "notes",
+      "log"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "localFirst": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "taskwarrior",
+    "name": "Taskwarrior",
+    "shortName": "task",
+    "maker": "gothenburg-bit-factory",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install task",
+    "quickStart": "task add \"Review proposal\"",
+    "githubRepo": "GothenburgBitFactory/taskwarrior",
+    "website": "https://taskwarrior.org",
+    "docs": "https://taskwarrior.org/docs/",
+    "useCases": [
+      "Task management",
+      "Todo lists",
+      "Personal planning"
+    ],
+    "keywords": [
+      "tasks",
+      "todo",
+      "planning"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "localFirst": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "linear",
+    "name": "Linear CLI",
+    "shortName": "linear",
+    "maker": "linear",
+    "category": "Productivity",
+    "installWith": "npm",
+    "installCommand": "npm install -g @linear/sdk",
+    "quickStart": "linear --help",
+    "githubRepo": "linear/linear",
+    "website": "https://linear.app",
+    "docs": "https://developers.linear.app/docs/cli",
+    "useCases": [
+      "Issue tracking",
+      "Product work",
+      "Team coordination"
+    ],
+    "keywords": [
+      "issues",
+      "project",
+      "tasks",
+      "linear"
+    ],
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "jira-cli",
+    "name": "Jira CLI",
+    "shortName": "jira",
+    "maker": "ankitpokhrel",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install ankitpokhrel/jira-cli/jira-cli",
+    "quickStart": "jira issue list",
+    "githubRepo": "ankitpokhrel/jira-cli",
+    "website": "https://github.com/ankitpokhrel/jira-cli",
+    "docs": "https://github.com/ankitpokhrel/jira-cli",
+    "useCases": [
+      "Jira issues",
+      "Sprint work",
+      "Project tracking"
+    ],
+    "keywords": [
+      "jira",
+      "issues",
+      "project",
+      "tickets"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "destructivePotential": "medium"
   }
 ]

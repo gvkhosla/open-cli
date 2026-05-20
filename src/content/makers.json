@@ -681,5 +681,137 @@
     "type": "org",
     "url": "https://tempo.xyz",
     "officialPlatformMaker": true
+  },
+  {
+    "slug": "john-macfarlane",
+    "name": "John MacFarlane",
+    "type": "individual",
+    "url": "https://github.com/jgm"
+  },
+  {
+    "slug": "quarto",
+    "name": "Quarto",
+    "type": "org",
+    "url": "https://quarto.org"
+  },
+  {
+    "slug": "errata-ai",
+    "name": "Errata AI",
+    "type": "org",
+    "url": "https://errata.ai"
+  },
+  {
+    "slug": "david-baumgold",
+    "name": "David Baumgold",
+    "type": "individual",
+    "url": "https://github.com/DavidAnson"
+  },
+  {
+    "slug": "mikefarah",
+    "name": "Mike Farah",
+    "type": "individual",
+    "url": "https://mikefarah.gitbook.io"
+  },
+  {
+    "slug": "burntsushi",
+    "name": "BurntSushi",
+    "type": "individual",
+    "url": "https://github.com/BurntSushi"
+  },
+  {
+    "slug": "saulpw",
+    "name": "Saul Pwanson",
+    "type": "individual",
+    "url": "https://www.visidata.org"
+  },
+  {
+    "slug": "ocrmypdf",
+    "name": "OCRmyPDF",
+    "type": "org",
+    "url": "https://ocrmypdf.readthedocs.io"
+  },
+  {
+    "slug": "tesseract",
+    "name": "Tesseract OCR",
+    "type": "org",
+    "url": "https://github.com/tesseract-ocr"
+  },
+  {
+    "slug": "poppler",
+    "name": "Poppler",
+    "type": "org",
+    "url": "https://poppler.freedesktop.org"
+  },
+  {
+    "slug": "ggerganov",
+    "name": "Georgi Gerganov",
+    "type": "individual",
+    "url": "https://github.com/ggerganov"
+  },
+  {
+    "slug": "gnu",
+    "name": "GNU",
+    "type": "org",
+    "url": "https://www.gnu.org"
+  },
+  {
+    "slug": "notmuch",
+    "name": "Notmuch",
+    "type": "org",
+    "url": "https://notmuchmail.org"
+  },
+  {
+    "slug": "aerc",
+    "name": "aerc",
+    "type": "org",
+    "url": "https://aerc-mail.org"
+  },
+  {
+    "slug": "khal",
+    "name": "khal",
+    "type": "org",
+    "url": "https://lostpackets.de/khal"
+  },
+  {
+    "slug": "pimutils",
+    "name": "pimutils",
+    "type": "org",
+    "url": "https://pimutils.org"
+  },
+  {
+    "slug": "zk-org",
+    "name": "zk",
+    "type": "org",
+    "url": "https://github.com/zk-org"
+  },
+  {
+    "slug": "xwmx",
+    "name": "xwmx",
+    "type": "individual",
+    "url": "https://xwmx.github.io"
+  },
+  {
+    "slug": "jrnl",
+    "name": "jrnl",
+    "type": "org",
+    "url": "https://jrnl.sh"
+  },
+  {
+    "slug": "gothenburg-bit-factory",
+    "name": "Gothenburg Bit Factory",
+    "type": "org",
+    "url": "https://taskwarrior.org"
+  },
+  {
+    "slug": "linear",
+    "name": "Linear",
+    "type": "org",
+    "url": "https://linear.app"
+  },
+  {
+    "slug": "ankitpokhrel",
+    "name": "Ankit Pokhrel",
+    "type": "individual",
+    "url": "https://github.com/ankitpokhrel"
   }
 ]

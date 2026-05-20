@@ -12,16 +12,17 @@ import { formatCompactNumber, formatMetric } from "@/lib/format";
 import type { SuperchargeRecommendation } from "@/lib/supercharge";
 
 const promptSuggestions = [
+  "research a topic",
+  "process PDFs",
+  "clean CSV spreadsheet",
+  "search notes",
+  "transcribe meeting audio",
   "review pull requests",
-  "deploy next.js app",
-  "inspect postgres schema",
-  "test signup flow",
-  "run local models",
 ] as const;
 
-const toolSuggestions = ["basecamp", "vercel", "gh", "claude"] as const;
+const toolSuggestions = ["pandoc", "duckdb", "rg", "ffmpeg", "gh"] as const;
 
-const categoryChips = ["All", "Git", "Deploy", "Database", "Browser Automation", "AI", "Wallet / Payments"] as const;
+const categoryChips = ["All", "Docs / Content", "Data", "Productivity", "Shell Utilities", "Git", "Deploy", "Database", "Browser Automation", "AI", "Wallet / Payments"] as const;
 const packageManagerChips = ["All", ...packageManagers] as const;
 const homepageAgentInstructions = `Use OpenCLI as a work-to-CLI router.
 
@@ -476,7 +477,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                   setSearch(event.target.value);
                   setLimit(event.target.value.trim() ? 40 : 125);
                 }}
-                placeholder="review PRs, deploy preview, inspect postgres, test signup…"
+                placeholder="research topic, process PDFs, clean CSV, search notes…"
                 className="h-16 w-full rounded-lg border border-transparent bg-transparent pl-12 pr-28 text-base text-white outline-none placeholder:text-[#868684] sm:pl-14 sm:pr-32 sm:text-[17px]"
               />
               <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-5 sm:pr-6">

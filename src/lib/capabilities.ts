@@ -162,6 +162,111 @@ export const capabilityDefinitions: CapabilityDefinition[] = [
     ],
   },
   {
+    slug: "research",
+    label: "Research",
+    blurb: "Crawl pages, collect sources, extract PDFs, and turn messy material into usable notes.",
+    samplePrompt: "Research a topic from web pages and PDFs, extract the useful text, and produce a sourced summary.",
+    searchTerms: ["research", "web research", "summarize", "sources", "pdf", "crawl", "scrape", "collect", "extract", "read papers"],
+    categories: ["Scraping", "Docs / Content", "Shell Utilities"],
+    candidateSlugs: ["firecrawl", "wget", "httpie", "yt-dlp", "ocrmypdf", "poppler", "pandoc", "rg"],
+    setupChecklist: [
+      "Install web, PDF, or extraction CLIs based on the source material.",
+      "Verify the agent can fetch or read one small source before collecting many.",
+      "Keep source URLs and file paths with every extracted note."
+    ],
+    loopName: "Research collection loop",
+    loopSteps: [
+      "Clarify the research question and source boundaries.",
+      "Fetch or extract a small sample and verify quality.",
+      "Search, dedupe, and summarize with citations or file references.",
+      "Ask before large crawls, logins, paid APIs, or copyrighted media downloads."
+    ],
+  },
+  {
+    slug: "documents",
+    label: "Documents",
+    blurb: "Convert, lint, OCR, and publish documents without losing structure.",
+    samplePrompt: "Turn this folder of Markdown and PDFs into a clean report with extracted text and formatting checks.",
+    searchTerms: ["documents", "docs", "markdown", "pdf", "ocr", "report", "convert", "docx", "publish", "writing"],
+    categories: ["Docs / Content"],
+    candidateSlugs: ["pandoc", "quarto", "vale", "markdownlint-cli2", "ocrmypdf", "tesseract", "poppler"],
+    setupChecklist: [
+      "Install the document CLI and confirm the input files are local and readable.",
+      "Run extraction or lint commands on one file first.",
+      "Write outputs to a separate folder unless the user asks to overwrite files."
+    ],
+    loopName: "Document processing loop",
+    loopSteps: [
+      "Inspect file types and choose conversion or extraction tools.",
+      "Run a sample conversion or lint check.",
+      "Process the full set and report warnings, skipped files, and outputs.",
+      "Ask before overwriting source documents."
+    ],
+  },
+  {
+    slug: "knowledge-files",
+    label: "Files & Notes",
+    blurb: "Search folders, notes, cloud drives, and personal knowledge bases.",
+    samplePrompt: "Search my notes and documents for relevant context, then summarize the strongest matches with file paths.",
+    searchTerms: ["files", "folders", "notes", "knowledge base", "pkm", "search documents", "drive", "sync", "find"],
+    categories: ["Shell Utilities", "Productivity"],
+    candidateSlugs: ["rg", "fd", "fzf", "rclone", "zk", "nb", "jrnl"],
+    setupChecklist: [
+      "Install local search tools and point them at the right folder or remote.",
+      "Start with read-only search/list commands.",
+      "Keep file paths in summaries so the user can verify sources."
+    ],
+    loopName: "Knowledge retrieval loop",
+    loopSteps: [
+      "Search for likely terms across local notes, files, or remotes.",
+      "Open only the top matching files and summarize with paths.",
+      "Refine terms based on what was found.",
+      "Ask before moving, syncing, deleting, or editing files."
+    ],
+  },
+  {
+    slug: "spreadsheets",
+    label: "Spreadsheets & Data",
+    blurb: "Inspect CSVs, clean tables, and query local data with repeatable commands.",
+    samplePrompt: "Inspect this CSV, summarize columns and data quality issues, then create a cleaned output file.",
+    searchTerms: ["spreadsheet", "csv", "excel", "table", "data cleanup", "data wrangling", "query csv", "analytics"],
+    categories: ["Data"],
+    candidateSlugs: ["duckdb", "csvkit", "miller", "xsv", "visidata", "jq", "yq"],
+    setupChecklist: [
+      "Install a data CLI and identify the input file format.",
+      "Run schema/header/stat commands before transformations.",
+      "Write cleaned outputs to new files and preserve originals."
+    ],
+    loopName: "Data cleanup loop",
+    loopSteps: [
+      "Inspect headers, row counts, types, and missing values.",
+      "Run read-only queries or stats and summarize anomalies.",
+      "Create a proposed transformation and save to a new output.",
+      "Ask before overwriting, deleting, or uploading data."
+    ],
+  },
+  {
+    slug: "media",
+    label: "Media & Transcription",
+    blurb: "Extract audio, transcribe meetings, and prepare media for knowledge workflows.",
+    samplePrompt: "Transcribe this meeting recording and produce notes with timestamps and action items.",
+    searchTerms: ["audio", "video", "media", "transcribe", "transcription", "meeting notes", "youtube", "recording"],
+    categories: ["AI", "Shell Utilities"],
+    candidateSlugs: ["ffmpeg", "whisper-cpp", "yt-dlp"],
+    setupChecklist: [
+      "Install media tools and verify the input file can be read.",
+      "Extract a short sample before processing long recordings.",
+      "Keep generated transcripts separate from original media."
+    ],
+    loopName: "Media processing loop",
+    loopSteps: [
+      "Inspect media metadata and choose extraction/transcription commands.",
+      "Run a short sample and check transcript quality.",
+      "Process the full file and produce notes or chapters.",
+      "Ask before downloading external media or deleting originals."
+    ],
+  },
+  {
     slug: "project-management",
     label: "Project Management",
     blurb: "Let your agent work with projects, todos, messages, and team coordination safely.",

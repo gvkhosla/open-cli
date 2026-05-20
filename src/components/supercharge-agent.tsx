@@ -12,10 +12,12 @@ type SuperchargeAgentProps = {
 };
 
 const workPrompts = [
+  { label: "research topic", prompt: "research a topic from web pages and PDFs" },
+  { label: "process PDFs", prompt: "extract and summarize text from PDFs" },
+  { label: "clean CSV", prompt: "inspect and clean a CSV spreadsheet" },
+  { label: "search notes", prompt: "search my notes and documents for context" },
+  { label: "transcribe audio", prompt: "transcribe meeting audio and produce notes" },
   { label: "review PRs", prompt: "review pull requests" },
-  { label: "deploy preview", prompt: "deploy preview and inspect logs" },
-  { label: "inspect database", prompt: "inspect postgres schema safely" },
-  { label: "test signup flow", prompt: "test signup flow in browser" },
 ] as const;
 
 export function SuperchargeAgent({ stats, onSelectWork }: SuperchargeAgentProps) {
@@ -37,7 +39,7 @@ export function SuperchargeAgent({ stats, onSelectWork }: SuperchargeAgentProps)
             Describe the work. Get the CLI stack.
           </h1>
           <p className="mx-auto max-w-[60ch] text-pretty text-base leading-7 text-[#868684] sm:text-[19px] sm:leading-8">
-            OpenCLI turns jobs like reviewing PRs, deploying previews, or inspecting databases into the right tools, verify commands, and agent-safe instructions.
+            OpenCLI turns jobs like researching topics, processing PDFs, cleaning CSVs, or reviewing PRs into the right tools, verify commands, and agent-safe instructions.
           </p>
         </div>
 
