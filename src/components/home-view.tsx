@@ -15,6 +15,7 @@ const promptSuggestions = [
   "research a topic",
   "process PDFs",
   "clean CSV spreadsheet",
+  "search email and calendar",
   "search notes",
   "transcribe meeting audio",
   "review pull requests",
@@ -22,7 +23,7 @@ const promptSuggestions = [
 
 const toolSuggestions = ["pandoc", "duckdb", "rg", "ffmpeg", "gh"] as const;
 
-const categoryChips = ["All", "Docs / Content", "Data", "Productivity", "Shell Utilities", "Git", "Deploy", "Database", "Browser Automation", "AI", "Wallet / Payments"] as const;
+const categoryChips = ["All", "Productivity", "Docs / Content", "Data", "Shell Utilities", "Git", "Deploy", "Database", "Browser Automation", "AI", "Wallet / Payments"] as const;
 const packageManagerChips = ["All", ...packageManagers] as const;
 const homepageAgentInstructions = `Use OpenCLI as a work-to-CLI router.
 
@@ -452,10 +453,6 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                 <div className="text-sm font-medium text-white">Work router</div>
                 <p className="mt-1 text-base leading-7 text-[#868684] sm:text-sm sm:leading-6">Say what you want done. Get a CLI stack, verify steps, and agent guardrails.</p>
               </div>
-              <div className="flex flex-wrap gap-2">
-                <CopyButton compact value="https://opencli.co" label="Copy page" />
-                <CopyButton compact value={homepageAgentInstructions} label="Agent prompt" />
-              </div>
             </div>
           </div>
 
@@ -477,7 +474,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                   setSearch(event.target.value);
                   setLimit(event.target.value.trim() ? 40 : 125);
                 }}
-                placeholder="research topic, process PDFs, clean CSV, search notes…"
+                placeholder="search email, plan week, process PDFs, clean CSV…"
                 className="h-16 w-full rounded-lg border border-transparent bg-transparent pl-12 pr-28 text-base text-white outline-none placeholder:text-[#868684] sm:pl-14 sm:pr-32 sm:text-[17px]"
               />
               <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-5 sm:pr-6">
@@ -592,6 +589,16 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
             />
           ) : null}
         </AnimatePresence>
+
+        <div className="rounded-lg border border-white/10 bg-[#1E1E1D] p-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="text-sm font-medium text-white">Using an agent?</div>
+              <p className="mt-1 text-base leading-7 text-[#868684] sm:text-sm sm:leading-6">Copy this tiny handoff into Claude Code, Pi, Codex, Cursor, or any agent.</p>
+            </div>
+            <CopyButton compact value={homepageAgentInstructions} label="Copy agent prompt" />
+          </div>
+        </div>
 
         <div className="flex items-center justify-between gap-3 px-1 pt-2">
           <div className="flex items-center gap-2 text-sm text-white/44">

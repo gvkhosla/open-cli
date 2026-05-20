@@ -267,6 +267,27 @@ export const capabilityDefinitions: CapabilityDefinition[] = [
     ],
   },
   {
+    slug: "email-calendar",
+    label: "Email & Calendar",
+    blurb: "Search mail, inspect calendars, draft replies, and coordinate schedules with human approval.",
+    samplePrompt: "Search my email and calendar for this project, summarize relevant context, and suggest next actions without sending or changing anything.",
+    searchTerms: ["email", "mail", "inbox", "calendar", "agenda", "schedule", "meeting", "contacts", "imap", "gmail", "reply", "draft"],
+    categories: ["Productivity"],
+    candidateSlugs: ["notmuch", "mbsync", "himalaya", "aerc", "neomutt", "khal", "gcalcli", "icalbuddy", "vdirsyncer", "khard", "todoist-cli"],
+    setupChecklist: [
+      "Install the mail or calendar CLI and verify the active account or local store.",
+      "Start with read-only list/search/agenda commands.",
+      "Draft replies or events separately; never send or mutate without confirmation."
+    ],
+    loopName: "Email and calendar loop",
+    loopSteps: [
+      "Confirm the account, mailbox, calendar, and date range.",
+      "Search or list relevant messages/events and summarize with IDs or dates.",
+      "Draft responses, agendas, or next actions without applying changes.",
+      "Ask before sending, archiving, deleting, inviting attendees, or changing events."
+    ],
+  },
+  {
     slug: "project-management",
     label: "Project Management",
     blurb: "Let your agent work with projects, todos, messages, and team coordination safely.",

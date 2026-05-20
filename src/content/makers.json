@@ -813,5 +813,65 @@
     "name": "Ankit Pokhrel",
     "type": "individual",
     "url": "https://github.com/ankitpokhrel"
+  },
+  {
+    "slug": "isync",
+    "name": "isync",
+    "type": "org",
+    "url": "https://isync.sourceforge.io"
+  },
+  {
+    "slug": "offlineimap",
+    "name": "OfflineIMAP",
+    "type": "org",
+    "url": "https://www.offlineimap.org"
+  },
+  {
+    "slug": "neomutt",
+    "name": "NeoMutt",
+    "type": "org",
+    "url": "https://neomutt.org"
+  },
+  {
+    "slug": "pimalaya",
+    "name": "Pimalaya",
+    "type": "org",
+    "url": "https://pimalaya.org"
+  },
+  {
+    "slug": "meli",
+    "name": "meli",
+    "type": "org",
+    "url": "https://meli.delivery"
+  },
+  {
+    "slug": "insanum",
+    "name": "Insanum",
+    "type": "individual",
+    "url": "https://github.com/insanum"
+  },
+  {
+    "slug": "ali-rantakari",
+    "name": "Ali Rantakari",
+    "type": "individual",
+    "url": "https://hasseg.org"
+  },
+  {
+    "slug": "lucc",
+    "name": "lucc",
+    "type": "individual",
+    "url": "https://github.com/lucc"
+  },
+  {
+    "slug": "todoist",
+    "name": "Todoist",
+    "type": "org",
+    "url": "https://todoist.com"
+  },
+  {
+    "slug": "sachaos",
+    "name": "sachaos",
+    "type": "individual",
+    "url": "https://github.com/sachaos"
   }
 ]

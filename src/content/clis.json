@@ -5012,5 +5012,272 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "destructivePotential": "medium"
+  },
+  {
+    "slug": "mbsync",
+    "name": "mbsync / isync",
+    "shortName": "mbsync",
+    "maker": "isync",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install isync",
+    "quickStart": "mbsync -a",
+    "githubRepo": "gburd/isync",
+    "website": "https://isync.sourceforge.io",
+    "docs": "https://isync.sourceforge.io/mbsync.html",
+    "useCases": [
+      "IMAP sync",
+      "Local email archive",
+      "Agent email search"
+    ],
+    "aliases": [
+      "isync"
+    ],
+    "keywords": [
+      "email",
+      "imap",
+      "sync",
+      "mail"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": false,
+    "localFirst": true,
+    "destructivePotential": "medium",
+    "exampleWorkflow": [
+      "mbsync -a",
+      "mbsync work"
+    ]
+  },
+  {
+    "slug": "offlineimap",
+    "name": "OfflineIMAP",
+    "shortName": "offlineimap",
+    "maker": "offlineimap",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install offlineimap",
+    "quickStart": "offlineimap -o",
+    "githubRepo": "OfflineIMAP/offlineimap3",
+    "website": "https://www.offlineimap.org",
+    "docs": "https://www.offlineimap.org/doc/quick_start.html",
+    "useCases": [
+      "IMAP sync",
+      "Mail archive",
+      "Offline email"
+    ],
+    "keywords": [
+      "email",
+      "imap",
+      "sync"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "neomutt",
+    "name": "NeoMutt",
+    "shortName": "neomutt",
+    "maker": "neomutt",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install neomutt",
+    "quickStart": "neomutt -f ~/Mail/Inbox",
+    "githubRepo": "neomutt/neomutt",
+    "website": "https://neomutt.org",
+    "docs": "https://neomutt.org/guide/",
+    "useCases": [
+      "Terminal email",
+      "Mail triage",
+      "Drafting replies"
+    ],
+    "keywords": [
+      "email",
+      "mail",
+      "mutt"
+    ],
+    "supportsNonInteractive": false,
+    "requiresAuth": false,
+    "localFirst": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "himalaya",
+    "name": "Himalaya",
+    "shortName": "himalaya",
+    "maker": "pimalaya",
+    "category": "Productivity",
+    "installWith": "cargo",
+    "installCommand": "cargo install himalaya",
+    "quickStart": "himalaya envelope list",
+    "githubRepo": "pimalaya/himalaya",
+    "website": "https://pimalaya.org/himalaya/",
+    "docs": "https://pimalaya.org/himalaya/cli/latest/",
+    "useCases": [
+      "Email CLI",
+      "Mail search",
+      "Draft replies"
+    ],
+    "keywords": [
+      "email",
+      "mail",
+      "imap"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "destructivePotential": "high",
+    "exampleWorkflow": [
+      "himalaya account list",
+      "himalaya envelope list"
+    ]
+  },
+  {
+    "slug": "meli",
+    "name": "meli",
+    "shortName": "meli",
+    "maker": "meli",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install meli",
+    "quickStart": "meli",
+    "githubRepo": "meli/meli",
+    "website": "https://meli.delivery",
+    "docs": "https://meli.delivery/documentation.html",
+    "useCases": [
+      "Terminal email",
+      "Mail client",
+      "Knowledge work"
+    ],
+    "keywords": [
+      "email",
+      "mail"
+    ],
+    "supportsNonInteractive": false,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "gcalcli",
+    "name": "gcalcli",
+    "shortName": "gcalcli",
+    "maker": "insanum",
+    "category": "Productivity",
+    "installWith": "pipx",
+    "installCommand": "pipx install gcalcli",
+    "quickStart": "gcalcli agenda",
+    "githubRepo": "insanum/gcalcli",
+    "website": "https://github.com/insanum/gcalcli",
+    "docs": "https://github.com/insanum/gcalcli",
+    "useCases": [
+      "Google Calendar",
+      "Agenda review",
+      "Schedule search"
+    ],
+    "keywords": [
+      "calendar",
+      "google calendar",
+      "agenda"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "destructivePotential": "medium",
+    "exampleWorkflow": [
+      "gcalcli agenda",
+      "gcalcli calw"
+    ]
+  },
+  {
+    "slug": "icalbuddy",
+    "name": "icalBuddy",
+    "shortName": "icalBuddy",
+    "maker": "ali-rantakari",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install ical-buddy",
+    "quickStart": "icalBuddy eventsToday",
+    "githubRepo": "ali-rantakari/icalBuddy",
+    "website": "https://hasseg.org/icalBuddy/",
+    "docs": "https://hasseg.org/icalBuddy/",
+    "useCases": [
+      "macOS Calendar",
+      "Agenda extraction",
+      "Meeting summaries"
+    ],
+    "keywords": [
+      "calendar",
+      "macos",
+      "agenda"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "localFirst": true,
+    "destructivePotential": "low"
+  },
+  {
+    "slug": "khard",
+    "name": "khard",
+    "shortName": "khard",
+    "maker": "lucc",
+    "category": "Productivity",
+    "installWith": "pipx",
+    "installCommand": "pipx install khard",
+    "quickStart": "khard list",
+    "githubRepo": "lucc/khard",
+    "website": "https://github.com/lucc/khard",
+    "docs": "https://khard.readthedocs.io",
+    "useCases": [
+      "Contacts",
+      "Address book",
+      "CardDAV"
+    ],
+    "keywords": [
+      "contacts",
+      "address book",
+      "carddav"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "localFirst": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "todoist-cli",
+    "name": "Todoist CLI",
+    "shortName": "todoist",
+    "maker": "todoist",
+    "category": "Productivity",
+    "installWith": "npm",
+    "installCommand": "npm install -g todoist-cli",
+    "quickStart": "todoist list",
+    "githubRepo": "sachaos/todoist",
+    "website": "https://github.com/sachaos/todoist",
+    "docs": "https://github.com/sachaos/todoist",
+    "useCases": [
+      "Todoist tasks",
+      "Task capture",
+      "Personal planning"
+    ],
+    "keywords": [
+      "todoist",
+      "tasks",
+      "todos"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "destructivePotential": "medium"
   }
 ]
