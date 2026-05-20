@@ -385,7 +385,10 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
     setSearch(value);
     setLimit(40);
     setActiveCategory("All");
-    inputRef.current?.focus();
+    setActivePackageManager("All");
+    setShowCatalog(true);
+    document.getElementById("directory")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.setTimeout(() => inputRef.current?.focus(), 250);
   }
 
   function handleClearSearch() {
@@ -429,7 +432,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
         animate={{ opacity: 1, y: polish.hero.y, scale: polish.hero.scale }}
         transition={{ ...motionTransition, delay: HOME_REVEAL.hero }}
       >
-        <SuperchargeAgent stats={directoryStats} />
+        <SuperchargeAgent stats={directoryStats} onSelectWork={handleSuggestion} />
       </motion.div>
 
       <section id="directory" className="scroll-mt-20 space-y-5">

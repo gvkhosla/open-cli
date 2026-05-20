@@ -8,9 +8,17 @@ type SuperchargeAgentProps = {
     official: number;
     builders: number;
   };
+  onSelectWork?: (work: string) => void;
 };
 
-export function SuperchargeAgent({ stats }: SuperchargeAgentProps) {
+const workPrompts = [
+  { label: "review PRs", prompt: "review pull requests" },
+  { label: "deploy preview", prompt: "deploy preview and inspect logs" },
+  { label: "inspect database", prompt: "inspect postgres schema safely" },
+  { label: "test signup flow", prompt: "test signup flow in browser" },
+] as const;
+
+export function SuperchargeAgent({ stats, onSelectWork }: SuperchargeAgentProps) {
   return (
     <section className="py-14 text-center sm:py-20">
       <motion.div
@@ -34,8 +42,15 @@ export function SuperchargeAgent({ stats }: SuperchargeAgentProps) {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-[#afaeac]">
-          {['review PRs', 'deploy preview', 'inspect database', 'test signup flow'].map((item) => (
-            <span key={item} className="rounded-full border border-white/10 bg-[#1E1E1D] px-3 py-1.5">{item}</span>
+          {workPrompts.map((item) => (
+            <button
+              key={item.label}
+              type="button"
+              onClick={() => onSelectWork?.(item.prompt)}
+              className="rounded-full border border-white/10 bg-[#1E1E1D] px-3 py-1.5 transition hover:border-[#217EFF]/70 hover:bg-[#2f2f2f] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#217EFF]"
+            >
+              {item.label}
+            </button>
           ))}
         </div>
       </motion.div>
