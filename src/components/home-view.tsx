@@ -8,6 +8,7 @@ import { CliLogoMarquee } from "@/components/cli-logo-marquee";
 import { CopyButton } from "@/components/copy-button";
 import { SuperchargeAgent } from "@/components/supercharge-agent";
 import { packageManagers } from "@/data/clis";
+import { capabilityDefinitions } from "@/lib/capabilities";
 import type { DirectorySearchResponse, DirectoryStats } from "@/lib/directory";
 import { formatCompactNumber, formatMetric } from "@/lib/format";
 import type { SuperchargeRecommendation } from "@/lib/supercharge";
@@ -24,6 +25,7 @@ const toolSuggestions = ["basecamp", "vercel", "gh", "claude"] as const;
 
 const categoryChips = ["All", "Git", "Deploy", "Database", "Browser Automation", "AI", "Wallet / Payments"] as const;
 const packageManagerChips = ["All", ...packageManagers] as const;
+const featuredCapabilities = capabilityDefinitions.slice(0, 6);
 
 type HomeViewProps = {
   initialDirectory: DirectorySearchResponse;
@@ -426,11 +428,32 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
         <SuperchargeAgent stats={directoryStats} />
       </motion.div>
 
+      <section className="grid gap-3 md:grid-cols-3">
+        {featuredCapabilities.map((capability, index) => (
+          <motion.button
+            key={capability.slug}
+            type="button"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...motionTransition, delay: 0.12 + index * 0.035 }}
+            onClick={() => handleSuggestion(capability.samplePrompt)}
+            className="group rounded-[22px] border border-white/10 bg-white/[0.035] p-4 text-left transition hover:-translate-y-0.5 hover:border-cyan-400/20 hover:bg-white/[0.055] hover:shadow-[0_18px_42px_rgba(0,0,0,0.18)]"
+          >
+            <div className="flex items-center justify-between gap-3">
+              <div className="ui-label">{capability.label}</div>
+              <span className="text-white/22 transition group-hover:translate-x-0.5 group-hover:text-cyan-200/70">→</span>
+            </div>
+            <p className="mt-2 text-base leading-7 text-white/68 sm:text-sm sm:leading-6">{capability.blurb}</p>
+            <p className="mt-3 line-clamp-2 font-mono text-[11px] leading-5 text-white/34">{capability.samplePrompt}</p>
+          </motion.button>
+        ))}
+      </section>
+
       {/* Section divider */}
       <div className="flex items-center gap-4 py-2">
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <span className="text-[10px] uppercase tracking-[0.2em] text-white/25">Directory</span>
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="h-px flex-1 bg-linear-to-r from-transparent via-white/10 to-transparent" />
+        <span className="text-[10px] uppercase tracking-[0.2em] text-white/25">Build an agent pack</span>
+        <div className="h-px flex-1 bg-linear-to-r from-transparent via-white/10 to-transparent" />
       </div>
 
       <section id="directory" className="scroll-mt-20 space-y-5">

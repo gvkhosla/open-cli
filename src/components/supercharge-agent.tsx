@@ -6,14 +6,14 @@ import { motion } from "motion/react";
 function TerminalMockup() {
   const [lines, setLines] = useState<string[]>([]);
   const fullLines = [
-    { text: "$ opencli search \"deploy next.js\"", delay: 0 },
-    { text: "→ Vercel CLI  —  4.2M installs", delay: 400 },
-    { text: "→ Railway CLI —  890K installs", delay: 550 },
-    { text: "→ flyctl      —  2.1M installs", delay: 700 },
+    { text: "$ opencli agent \"deploy my next app safely\"", delay: 0 },
+    { text: "→ Vercel CLI — Great for agents · 82/100", delay: 400 },
+    { text: "→ install: npm i -g vercel", delay: 550 },
+    { text: "→ verify:  vercel whoami", delay: 700 },
     { text: "", delay: 900 },
-    { text: "$ opencli install vercel", delay: 1100 },
-    { text: "✓ Installed  vercel@latest", delay: 1500 },
-    { text: "✓ Verified   vercel --version", delay: 1700 },
+    { text: "$ curl opencli.co/cli/vercel/agent.md", delay: 1100 },
+    { text: "✓ Agent pack copied", delay: 1500 },
+    { text: "✓ Guardrails: ask before production", delay: 1700 },
   ];
 
   useEffect(() => {
@@ -138,7 +138,7 @@ export function SuperchargeAgent({ stats }: SuperchargeAgentProps) {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400/60" />
             </span>
             <span className="text-[11px] font-medium tracking-wide text-white/50">
-              Task-first CLI directory
+              Agent capability router
             </span>
           </motion.div>
 
@@ -150,13 +150,12 @@ export function SuperchargeAgent({ stats }: SuperchargeAgentProps) {
             className="space-y-3"
           >
             <h1 className="text-[clamp(2.4rem,5.5vw,4rem)] font-semibold leading-[1.05] tracking-[-0.05em]">
-              <span className="gradient-text-hero">Find the right CLI</span>
+              <span className="gradient-text-hero">Give your agent</span>
               <br />
-              <span className="text-white/50">for the job.</span>
+              <span className="text-white/50">the right CLI.</span>
             </h1>
             <p className="max-w-lg text-base leading-7 text-white/55 sm:text-[17px] sm:leading-8">
-              Search by task when you are exploring, or type the exact tool when you already know
-              what you want. Get install commands, verify steps, and companion skills.
+              Describe a task. Get the right command-line tool, install and verify steps, and a copyable agent pack with guardrails.
             </p>
           </motion.div>
 
@@ -183,7 +182,7 @@ export function SuperchargeAgent({ stats }: SuperchargeAgentProps) {
               href="#directory"
               className="inline-flex h-10 items-center gap-2 rounded-full bg-white px-5 text-sm font-medium text-black transition hover:bg-white/90"
             >
-              Explore directory
+              Build an agent pack
               <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
                 <path d="M1 7h12M8 2l5 5-5 5" />
               </svg>

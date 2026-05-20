@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", label: "Home" },
+  { href: "/agent", label: "Agent guide" },
   { href: "/makers", label: "Makers" },
   { href: "/submit", label: "Submit" },
 ];
@@ -43,7 +44,7 @@ export function SiteHeader() {
         )}
       >
         <div className="mx-auto flex h-13 w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" onClick={() => setMobileOpen(false)} className="group inline-flex items-center gap-2.5 text-sm text-white/90 transition hover:text-white">
+          <Link href="/" aria-label="Homepage" onClick={() => setMobileOpen(false)} className="group inline-flex items-center gap-2.5 text-sm text-white/90 transition hover:text-white">
             <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-white/[0.05] transition group-hover:border-white/16 group-hover:bg-white/[0.08]">
               <svg width="16" height="16" viewBox="0 0 28 28" fill="none" className="text-white/80">
                 <path d="M7 6.5L13 14L7 21.5" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
