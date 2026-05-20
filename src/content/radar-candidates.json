@@ -1,0 +1,67 @@
+[
+  {
+    "slug": "repomix",
+    "name": "Repomix",
+    "sourceUrl": "https://github.com/yamadashy/repomix",
+    "description": "Pack a repository into an AI-friendly file for coding agents and LLM context windows.",
+    "detectedCategory": "AI",
+    "detectedUseCases": ["codebase context", "coding agents", "repo analysis"],
+    "detectedInstallCommand": "npx repomix",
+    "whyFound": "Detected from GitHub AI/tooling activity and npm-style CLI usage in the README.",
+    "signals": { "stars": 18000, "growth": "+2.1k this month", "lastSeen": "today", "hasBin": true, "jsonOutput": false, "dryRun": false },
+    "agentReadinessGuess": 86,
+    "status": "candidate"
+  },
+  {
+    "slug": "uv",
+    "name": "uv",
+    "sourceUrl": "https://github.com/astral-sh/uv",
+    "description": "Fast Python package and project management that agents can use for repeatable Python setup.",
+    "detectedCategory": "Package Management",
+    "detectedUseCases": ["python setup", "dependency management", "agent runtimes"],
+    "detectedInstallCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh",
+    "whyFound": "High-growth GitHub project with clear CLI docs, recent releases, and strong automation fit.",
+    "signals": { "stars": 56000, "growth": "+4.8k this month", "lastSeen": "today", "hasBin": true, "jsonOutput": false, "dryRun": true },
+    "agentReadinessGuess": 91,
+    "status": "candidate"
+  },
+  {
+    "slug": "playwright-mcp",
+    "name": "Playwright MCP",
+    "sourceUrl": "https://github.com/microsoft/playwright-mcp",
+    "description": "Give agents browser automation primitives powered by Playwright.",
+    "detectedCategory": "Browser Automation",
+    "detectedUseCases": ["browser testing", "web automation", "agent browsing"],
+    "detectedInstallCommand": "npx @playwright/mcp@latest",
+    "whyFound": "Found from agent/browser automation topics and official Microsoft Playwright ecosystem activity.",
+    "signals": { "stars": 13000, "growth": "+3.4k this month", "lastSeen": "today", "hasBin": true, "jsonOutput": true, "dryRun": false },
+    "agentReadinessGuess": 88,
+    "status": "candidate"
+  },
+  {
+    "slug": "posting",
+    "name": "Posting",
+    "sourceUrl": "https://github.com/darrenburns/posting",
+    "description": "Terminal HTTP client for exploring APIs and generating repeatable requests.",
+    "detectedCategory": "Shell Utilities",
+    "detectedUseCases": ["api testing", "http requests", "integration debugging"],
+    "detectedInstallCommand": "uv tool install posting",
+    "whyFound": "Active terminal developer-tool repo with agent-friendly API inspection use cases.",
+    "signals": { "stars": 9200, "growth": "+740 this month", "lastSeen": "today", "hasBin": true, "jsonOutput": false, "dryRun": false },
+    "agentReadinessGuess": 73,
+    "status": "candidate"
+  },
+  {
+    "slug": "mise",
+    "name": "mise",
+    "sourceUrl": "https://github.com/jdx/mise",
+    "description": "Manage language runtimes, task runners, and per-project tool versions from one CLI.",
+    "detectedCategory": "Package Management",
+    "detectedUseCases": ["dev environment setup", "runtime management", "project tasks"],
+    "detectedInstallCommand": "brew install mise",
+    "whyFound": "Fast-growing dev environment CLI with strong fit for reproducible agent workspaces.",
+    "signals": { "stars": 18000, "growth": "+1.2k this month", "lastSeen": "today", "hasBin": true, "jsonOutput": true, "dryRun": false },
+    "agentReadinessGuess": 84,
+    "status": "candidate"
+  }
+]

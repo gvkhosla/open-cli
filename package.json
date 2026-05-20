@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "sync:metrics": "node scripts/sync-cli-metrics.mjs",
-    "discover:maker": "node scripts/discover-maker-clis.mjs"
+    "discover:maker": "node scripts/discover-maker-clis.mjs",
+    "discover:github": "node scripts/discover-github.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
