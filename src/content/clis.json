@@ -5279,5 +5279,551 @@
     "requiresAuth": true,
     "requiresNetwork": true,
     "destructivePotential": "medium"
+  },
+  {
+    "slug": "gsutil",
+    "name": "gsutil",
+    "shortName": "gsutil",
+    "maker": "google",
+    "category": "Cloud",
+    "installWith": "brew",
+    "installCommand": "brew install --cask google-cloud-sdk",
+    "quickStart": "gsutil ls",
+    "githubRepo": "GoogleCloudPlatform/gsutil",
+    "website": "https://cloud.google.com/storage/docs/gsutil",
+    "docs": "https://cloud.google.com/storage/docs/gsutil",
+    "useCases": [
+      "Cloud Storage",
+      "Bucket sync",
+      "Object inspection"
+    ],
+    "keywords": [
+      "gcs",
+      "storage",
+      "bucket"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "bq",
+    "name": "bq CLI",
+    "shortName": "bq",
+    "maker": "google",
+    "category": "Data",
+    "installWith": "brew",
+    "installCommand": "brew install --cask google-cloud-sdk",
+    "quickStart": "bq ls --format=json",
+    "githubRepo": "google-cloud-sdk-unofficial/google-cloud-sdk",
+    "website": "https://cloud.google.com/bigquery/docs/bq-command-line-tool",
+    "docs": "https://cloud.google.com/bigquery/docs/bq-command-line-tool",
+    "useCases": [
+      "BigQuery",
+      "Data warehouse",
+      "SQL analytics"
+    ],
+    "keywords": [
+      "bigquery",
+      "data",
+      "sql"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "m365",
+    "name": "Microsoft 365 CLI",
+    "shortName": "m365",
+    "maker": "microsoft",
+    "category": "Productivity",
+    "installWith": "npm",
+    "installCommand": "npm install -g @pnp/cli-microsoft365",
+    "quickStart": "m365 status",
+    "githubRepo": "pnp/cli-microsoft365",
+    "website": "https://pnp.github.io/cli-microsoft365/",
+    "docs": "https://pnp.github.io/cli-microsoft365/cmd/login/login/",
+    "useCases": [
+      "Microsoft 365",
+      "SharePoint",
+      "Teams automation"
+    ],
+    "keywords": [
+      "microsoft 365",
+      "sharepoint",
+      "teams"
+    ],
+    "official": false,
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "teamsfx",
+    "name": "Teams Toolkit CLI",
+    "shortName": "teamsfx",
+    "maker": "microsoft",
+    "category": "Productivity",
+    "installWith": "npm",
+    "installCommand": "npm install -g @microsoft/teamsfx-cli",
+    "quickStart": "teamsfx --help",
+    "githubRepo": "OfficeDev/TeamsFx",
+    "website": "https://learn.microsoft.com/microsoftteams/platform/toolkit/teamsfx-cli",
+    "docs": "https://learn.microsoft.com/microsoftteams/platform/toolkit/teamsfx-cli",
+    "useCases": [
+      "Teams apps",
+      "Microsoft collaboration",
+      "App deployment"
+    ],
+    "keywords": [
+      "teams",
+      "microsoft",
+      "collaboration"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "openai",
+    "name": "OpenAI CLI",
+    "shortName": "openai",
+    "maker": "openai",
+    "category": "AI",
+    "installWith": "pipx",
+    "installCommand": "pipx install openai",
+    "quickStart": "openai models list",
+    "githubRepo": "openai/openai-python",
+    "website": "https://platform.openai.com/docs",
+    "docs": "https://platform.openai.com/docs/api-reference",
+    "useCases": [
+      "OpenAI API",
+      "Model calls",
+      "AI workflows"
+    ],
+    "keywords": [
+      "openai",
+      "llm",
+      "models"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "claude",
+    "name": "Claude Code",
+    "shortName": "claude",
+    "maker": "anthropic",
+    "category": "AI",
+    "installWith": "npm",
+    "installCommand": "npm install -g @anthropic-ai/claude-code",
+    "quickStart": "claude --help",
+    "githubRepo": "anthropics/claude-code",
+    "website": "https://docs.anthropic.com/en/docs/claude-code",
+    "docs": "https://docs.anthropic.com/en/docs/claude-code",
+    "useCases": [
+      "Coding agent",
+      "Codebase work",
+      "AI terminal workflows"
+    ],
+    "keywords": [
+      "claude",
+      "anthropic",
+      "agent",
+      "coding"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsNonInteractive": false,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "llama",
+    "name": "Llama CLI",
+    "shortName": "llama",
+    "maker": "meta",
+    "category": "AI",
+    "installWith": "pipx",
+    "installCommand": "pipx install llama-stack",
+    "quickStart": "llama stack --help",
+    "githubRepo": "meta-llama/llama-stack",
+    "website": "https://llama-stack.readthedocs.io",
+    "docs": "https://llama-stack.readthedocs.io",
+    "useCases": [
+      "Llama models",
+      "AI apps",
+      "Local/hosted inference"
+    ],
+    "keywords": [
+      "meta",
+      "llama",
+      "models"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresNetwork": false,
+    "ciFriendly": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "xcodebuild",
+    "name": "xcodebuild",
+    "shortName": "xcodebuild",
+    "maker": "apple",
+    "category": "Package Management",
+    "installWith": "curl",
+    "installCommand": "xcode-select --install",
+    "quickStart": "xcodebuild -list",
+    "githubRepo": "apple-oss-distributions/xcode_tools",
+    "website": "https://developer.apple.com/documentation/xcode/building-your-app-from-the-command-line",
+    "docs": "https://developer.apple.com/documentation/xcodebuild",
+    "useCases": [
+      "Apple builds",
+      "iOS/macOS projects",
+      "Xcode automation"
+    ],
+    "keywords": [
+      "apple",
+      "xcode",
+      "ios",
+      "macos"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "localFirst": true,
+    "ciFriendly": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "ibmcloud",
+    "name": "IBM Cloud CLI",
+    "shortName": "ibmcloud",
+    "maker": "ibm",
+    "category": "Cloud",
+    "installWith": "brew",
+    "installCommand": "brew install ibm-cloud-cli",
+    "quickStart": "ibmcloud target",
+    "githubRepo": "IBM-Cloud/ibm-cloud-cli-sdk",
+    "website": "https://cloud.ibm.com/docs/cli",
+    "docs": "https://cloud.ibm.com/docs/cli",
+    "useCases": [
+      "IBM Cloud",
+      "Cloud resources",
+      "Deployments"
+    ],
+    "keywords": [
+      "ibm",
+      "cloud"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "oci",
+    "name": "Oracle Cloud CLI",
+    "shortName": "oci",
+    "maker": "oracle",
+    "category": "Cloud",
+    "installWith": "brew",
+    "installCommand": "brew install oci-cli",
+    "quickStart": "oci --version",
+    "githubRepo": "oracle/oci-cli",
+    "website": "https://docs.oracle.com/iaas/Content/API/SDKDocs/cliinstall.htm",
+    "docs": "https://docs.oracle.com/iaas/tools/oci-cli/latest/oci_cli_docs/",
+    "useCases": [
+      "Oracle Cloud",
+      "Cloud resources",
+      "Infra ops"
+    ],
+    "keywords": [
+      "oracle",
+      "oci",
+      "cloud"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "doctl",
+    "name": "DigitalOcean CLI",
+    "shortName": "doctl",
+    "maker": "digitalocean",
+    "category": "Cloud",
+    "installWith": "brew",
+    "installCommand": "brew install doctl",
+    "quickStart": "doctl account get",
+    "githubRepo": "digitalocean/doctl",
+    "website": "https://docs.digitalocean.com/reference/doctl/",
+    "docs": "https://docs.digitalocean.com/reference/doctl/",
+    "useCases": [
+      "DigitalOcean",
+      "Droplets",
+      "Cloud resources"
+    ],
+    "keywords": [
+      "digitalocean",
+      "cloud"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "heroku",
+    "name": "Heroku CLI",
+    "shortName": "heroku",
+    "maker": "heroku",
+    "category": "Deploy",
+    "installWith": "brew",
+    "installCommand": "brew tap heroku/brew && brew install heroku",
+    "quickStart": "heroku apps --json",
+    "githubRepo": "heroku/cli",
+    "website": "https://devcenter.heroku.com/articles/heroku-cli",
+    "docs": "https://devcenter.heroku.com/articles/heroku-cli-command-reference",
+    "useCases": [
+      "Heroku apps",
+      "Deploys",
+      "Logs"
+    ],
+    "keywords": [
+      "heroku",
+      "deploy",
+      "apps"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "sf",
+    "name": "Salesforce CLI",
+    "shortName": "sf",
+    "maker": "salesforce",
+    "category": "Productivity",
+    "installWith": "npm",
+    "installCommand": "npm install -g @salesforce/cli",
+    "quickStart": "sf org list --json",
+    "githubRepo": "salesforcecli/cli",
+    "website": "https://developer.salesforce.com/tools/salesforcecli",
+    "docs": "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/",
+    "useCases": [
+      "Salesforce orgs",
+      "CRM automation",
+      "Metadata"
+    ],
+    "keywords": [
+      "salesforce",
+      "crm"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "twilio",
+    "name": "Twilio CLI",
+    "shortName": "twilio",
+    "maker": "twilio",
+    "category": "Cloud",
+    "installWith": "npm",
+    "installCommand": "npm install -g twilio-cli",
+    "quickStart": "twilio profiles:list",
+    "githubRepo": "twilio/twilio-cli",
+    "website": "https://www.twilio.com/docs/twilio-cli/quickstart",
+    "docs": "https://www.twilio.com/docs/twilio-cli",
+    "useCases": [
+      "Messaging",
+      "Phone numbers",
+      "Communications APIs"
+    ],
+    "keywords": [
+      "twilio",
+      "sms",
+      "voice"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "gitlab",
+    "name": "GitLab CLI",
+    "shortName": "glab",
+    "maker": "gitlab",
+    "category": "Git",
+    "installWith": "brew",
+    "installCommand": "brew install glab",
+    "quickStart": "glab auth status",
+    "githubRepo": "gl-cli/glab",
+    "website": "https://gitlab.com/gitlab-org/cli",
+    "docs": "https://docs.gitlab.com/editor_extensions/gitlab_cli/",
+    "useCases": [
+      "GitLab issues",
+      "Merge requests",
+      "CI"
+    ],
+    "keywords": [
+      "gitlab",
+      "mr",
+      "issues"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "medium"
+  },
+  {
+    "slug": "snowsql",
+    "name": "SnowSQL",
+    "shortName": "snowsql",
+    "maker": "snowflake",
+    "category": "Data",
+    "installWith": "brew",
+    "installCommand": "brew install --cask snowflake-snowsql",
+    "quickStart": "snowsql -v",
+    "githubRepo": "snowflakedb/snowflake-connector-python",
+    "website": "https://docs.snowflake.com/en/user-guide/snowsql",
+    "docs": "https://docs.snowflake.com/en/user-guide/snowsql",
+    "useCases": [
+      "Snowflake",
+      "Data warehouse",
+      "SQL queries"
+    ],
+    "keywords": [
+      "snowflake",
+      "sql",
+      "data"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "mongosh",
+    "name": "MongoDB Shell",
+    "shortName": "mongosh",
+    "maker": "mongodb",
+    "category": "Database",
+    "installWith": "brew",
+    "installCommand": "brew install mongosh",
+    "quickStart": "mongosh --version",
+    "githubRepo": "mongodb-js/mongosh",
+    "website": "https://www.mongodb.com/docs/mongodb-shell/",
+    "docs": "https://www.mongodb.com/docs/mongodb-shell/",
+    "useCases": [
+      "MongoDB",
+      "Database inspection",
+      "Queries"
+    ],
+    "keywords": [
+      "mongodb",
+      "database",
+      "nosql"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": false,
+    "requiresNetwork": false,
+    "ciFriendly": true,
+    "destructivePotential": "high"
+  },
+  {
+    "slug": "elastic",
+    "name": "Elastic CLI",
+    "shortName": "elastic",
+    "maker": "elastic",
+    "category": "Observability",
+    "installWith": "curl",
+    "installCommand": "curl -fsSL https://elastic.co/downloads/elastic-agent | sh",
+    "quickStart": "elastic-agent version",
+    "githubRepo": "elastic/elastic-agent",
+    "website": "https://www.elastic.co/guide/en/fleet/current/elastic-agent-cmd-options.html",
+    "docs": "https://www.elastic.co/guide/en/fleet/current/elastic-agent-cmd-options.html",
+    "useCases": [
+      "Elastic Agent",
+      "Observability",
+      "Security data"
+    ],
+    "keywords": [
+      "elastic",
+      "observability",
+      "search"
+    ],
+    "official": true,
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "high"
   }
 ]

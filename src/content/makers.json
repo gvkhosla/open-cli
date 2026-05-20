@@ -873,5 +873,103 @@
     "name": "sachaos",
     "type": "individual",
     "url": "https://github.com/sachaos"
+  },
+  {
+    "slug": "google",
+    "name": "Google",
+    "type": "org",
+    "url": "https://google.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "azure",
+    "name": "Microsoft Azure",
+    "type": "org",
+    "url": "https://azure.microsoft.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "meta",
+    "name": "Meta",
+    "type": "org",
+    "url": "https://meta.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "apple",
+    "name": "Apple",
+    "type": "org",
+    "url": "https://apple.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "ibm",
+    "name": "IBM",
+    "type": "org",
+    "url": "https://ibm.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "oracle",
+    "name": "Oracle",
+    "type": "org",
+    "url": "https://oracle.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "digitalocean",
+    "name": "DigitalOcean",
+    "type": "org",
+    "url": "https://digitalocean.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "heroku",
+    "name": "Heroku",
+    "type": "org",
+    "url": "https://heroku.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "salesforce",
+    "name": "Salesforce",
+    "type": "org",
+    "url": "https://salesforce.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "twilio",
+    "name": "Twilio",
+    "type": "org",
+    "url": "https://twilio.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "gitlab",
+    "name": "GitLab",
+    "type": "org",
+    "url": "https://gitlab.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "snowflake",
+    "name": "Snowflake",
+    "type": "org",
+    "url": "https://snowflake.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "mongodb",
+    "name": "MongoDB",
+    "type": "org",
+    "url": "https://mongodb.com",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "elastic",
+    "name": "Elastic",
+    "type": "org",
+    "url": "https://elastic.co",
+    "officialPlatformMaker": true
   }
 ]
