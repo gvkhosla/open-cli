@@ -40,7 +40,7 @@ export function SuperchargeAgent({ stats, onSelectWork }: SuperchargeAgentProps)
             Describe the work. Get the CLI stack.
           </h1>
           <p className="mx-auto max-w-[60ch] text-pretty text-base leading-7 text-[#868684] sm:text-[19px] sm:leading-8">
-            OpenCLI turns jobs like searching email, planning calendars, processing PDFs, cleaning CSVs, or reviewing PRs into the right tools, verify commands, and agent-safe instructions.
+            OpenCLI turns jobs like searching email, planning calendars, processing PDFs, cleaning CSVs, or reviewing PRs into CLI stacks, verify commands, and agent-safe instructions.
           </p>
         </div>
 

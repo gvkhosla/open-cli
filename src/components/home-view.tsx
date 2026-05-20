@@ -185,6 +185,33 @@ function RecommendationPanel({
           </p>
         </motion.div>
 
+        {recommendation.stack.length > 1 ? (
+          <motion.div variants={PANEL_STAGGER.item} className="ui-panel-soft overflow-hidden rounded-[24px]">
+            <div className="border-b border-white/8 px-4 py-3.5 sm:px-5">
+              <div className="ui-label">Recommended stack</div>
+              <p className="mt-1 text-sm leading-6 text-white/54">Use these together for the job. Verify each before real work.</p>
+            </div>
+            <div className="divide-y divide-white/8">
+              {recommendation.stack.map((item, index) => (
+                <div key={`${item.role}-${item.cli.slug}`} className="grid gap-3 px-4 py-3.5 sm:grid-cols-[1fr_auto] sm:items-center sm:px-5">
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-xs text-white/34">{index + 1}</span>
+                      <Link href={`/cli/${item.cli.slug}`} className="font-mono text-sm text-white hover:text-white/80">{item.cli.shortName}</Link>
+                      <span className="text-sm text-white/38">— {item.role}</span>
+                    </div>
+                    <code className="mt-2 block truncate font-mono text-xs text-white/48">{item.verifyCommand}</code>
+                  </div>
+                  <div className="flex gap-2">
+                    <CopyButton compact value={item.cli.installCommand} label="Install" />
+                    <CopyButton compact value={item.agentPackUrl} label="Pack" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        ) : null}
+
         <motion.div variants={PANEL_STAGGER.item} className="ui-panel-soft overflow-hidden rounded-[24px]">
           <CommandRow
             label="Install"

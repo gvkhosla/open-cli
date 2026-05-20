@@ -18,6 +18,13 @@ export type SuperchargeAlternative = {
   reason: string;
 };
 
+export type SuperchargeStackItem = {
+  role: string;
+  cli: SuperchargeCliSummary;
+  verifyCommand: string;
+  agentPackUrl: string;
+};
+
 export type SuperchargeRecommendation = {
   matchType: "direct" | "intent";
   capability: {
@@ -26,6 +33,7 @@ export type SuperchargeRecommendation = {
   };
   primary: SuperchargeCliSummary;
   alternatives: SuperchargeAlternative[];
+  stack: SuperchargeStackItem[];
   rationale: string;
   whyReasons: string[];
   watchouts: string[];
@@ -120,6 +128,74 @@ function getDefaultCapabilityForCli(cli: CliEntry) {
   );
 }
 
+const stackRolesByCapability: Record<string, Array<{ role: string; slugs: string[] }>> = {
+  research: [
+    { role: "Collect web sources", slugs: ["firecrawl", "wget", "httpie"] },
+    { role: "Extract PDFs", slugs: ["poppler", "ocrmypdf"] },
+    { role: "Search the corpus", slugs: ["rg"] },
+    { role: "Write the report", slugs: ["pandoc", "quarto"] },
+  ],
+  documents: [
+    { role: "Convert documents", slugs: ["pandoc", "quarto"] },
+    { role: "OCR scanned PDFs", slugs: ["ocrmypdf", "tesseract"] },
+    { role: "Extract PDF text", slugs: ["poppler"] },
+    { role: "Check writing", slugs: ["vale", "markdownlint-cli2"] },
+  ],
+  "knowledge-files": [
+    { role: "Find files", slugs: ["fd"] },
+    { role: "Search contents", slugs: ["rg"] },
+    { role: "Search notes", slugs: ["zk", "nb"] },
+    { role: "Reach cloud files", slugs: ["rclone"] },
+  ],
+  spreadsheets: [
+    { role: "Query tables", slugs: ["duckdb"] },
+    { role: "Inspect CSVs", slugs: ["csvkit", "xsv"] },
+    { role: "Transform rows", slugs: ["miller"] },
+    { role: "Handle JSON/YAML", slugs: ["jq", "yq"] },
+  ],
+  media: [
+    { role: "Extract audio/video", slugs: ["ffmpeg"] },
+    { role: "Transcribe audio", slugs: ["whisper-cpp"] },
+    { role: "Collect media metadata", slugs: ["yt-dlp"] },
+  ],
+  "email-calendar": [
+    { role: "Sync email locally", slugs: ["mbsync", "offlineimap"] },
+    { role: "Search email", slugs: ["notmuch", "himalaya"] },
+    { role: "Read calendar", slugs: ["khal", "gcalcli", "icalbuddy"] },
+    { role: "Look up contacts", slugs: ["khard"] },
+  ],
+  deploy: [
+    { role: "Deploy preview", slugs: ["vercel", "railway", "flyctl", "wrangler"] },
+    { role: "Inspect logs", slugs: ["vercel", "railway", "flyctl"] },
+    { role: "Check repo state", slugs: ["gh"] },
+  ],
+  github: [
+    { role: "Inspect PRs and issues", slugs: ["gh"] },
+    { role: "Review local git state", slugs: ["lazygit", "gitui"] },
+  ],
+};
+
+function buildStack(capability: CapabilityDefinition, candidates: CliEntry[]) {
+  const roles = stackRolesByCapability[capability.slug] ?? [
+    { role: capability.label, slugs: candidates.map((cli) => cli.slug) },
+  ];
+
+  return roles
+    .map((item) => {
+      const cli = item.slugs.map((slug) => candidates.find((candidate) => candidate.slug === slug) ?? clis.find((candidate) => candidate.slug === slug)).find(Boolean);
+      if (!cli) return null;
+      return {
+        role: item.role,
+        cli: summarizeCli(cli),
+        verifyCommand: getVerifyStep(cli).command,
+        agentPackUrl: `/cli/${cli.slug}/agent.md`,
+      };
+    })
+    .filter((item): item is SuperchargeStackItem => Boolean(item))
+    .filter((item, index, array) => array.findIndex((candidate) => candidate.cli.slug === item.cli.slug) === index)
+    .slice(0, 5);
+}
+
 function chooseCandidates(capability: CapabilityDefinition, prompt: string) {
   const ranked = searchClis(prompt);
   const capabilityPreferred = capability.candidateSlugs
@@ -167,6 +243,7 @@ export function buildSuperchargeRecommendation(prompt: string, preferredCapabili
     capability: { slug: capability.slug, label: capability.label },
     primary: summarizeCli(primary),
     alternatives,
+    stack: buildStack(capability, candidates),
     rationale: buildRationale(primary, capability),
     whyReasons: buildWhyReasons(primary, capability),
     watchouts: buildWatchouts(primary),
