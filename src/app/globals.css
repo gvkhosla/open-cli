@@ -5,6 +5,18 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --color-night-sky: #1f1f29;
+  --color-cofounder-blue: #0081c0;
+  --color-action-azure: #41a1cf;
+  --color-off-white: #fefffc;
+  --color-ash-gray: #f9faf7;
+  --color-cool-gray: #eef1ed;
+  --color-steel-gray: #dee2de;
+  --color-dark-charcoal: #171717;
+  --color-charcoal: #2c2c2c;
+  --color-medium-gray: #646464;
+  --shadow-nav: rgba(0, 0, 0, 0.15) 0px 2px 6px 0px;
+  --shadow-card: rgba(0, 0, 0, 0.08) 0px 1px 1px 0px, rgba(0, 0, 0, 0.08) 0px 4px 5px 0px;
   --accent-lilac: #a1a1aa;
   --accent-iris: #71717a;
   --accent-peach: #d4d4d8;
@@ -100,11 +112,8 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at top center, rgba(102, 120, 154, 0.08), transparent 22%),
-    radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.028), transparent 24%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.012), transparent 16%),
-    #070b10;
+  background: #ffffff;
+  color: #171717;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
@@ -115,25 +124,14 @@ body {
   background-size: 64px 64px;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.014), transparent 12%, transparent 88%, rgba(255, 255, 255, 0.01));
-}
-
+body::before,
 body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.028);
+  content: none;
 }
 
 ::selection {
-  background: rgba(255, 255, 255, 0.18);
-  color: white;
+  background: rgba(0, 129, 192, 0.16);
+  color: #171717;
 }
 
 .section-kicker {

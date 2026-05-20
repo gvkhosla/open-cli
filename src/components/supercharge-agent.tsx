@@ -88,9 +88,9 @@ type SuperchargeAgentProps = {
 
 export function SuperchargeAgent({ stats }: SuperchargeAgentProps) {
   return (
-    <section className="relative">
-      <div className="absolute -left-24 -top-24 size-72 rounded-full bg-cyan-400/[0.045] blur-3xl" />
-      <div className="absolute -right-16 top-8 size-56 rounded-full bg-emerald-300/[0.035] blur-3xl" />
+    <section className="relative overflow-hidden rounded-[32px] bg-[#1f1f29] p-6 shadow-[var(--shadow-card)] sm:p-10 lg:p-12">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(65,161,207,0.22),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.08),transparent_24%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-black/20 to-transparent" />
 
       <div className="relative grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14">
         <div className="space-y-7">
@@ -98,10 +98,10 @@ export function SuperchargeAgent({ stats }: SuperchargeAgentProps) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="inline-flex items-center gap-2 rounded-full border border-cyan-200/12 bg-cyan-200/[0.04] px-3 py-1"
+            className="inline-flex items-center gap-2 rounded-full bg-white/[0.06] px-3 py-1 shadow-[var(--shadow-nav)] backdrop-blur-md"
           >
             <span className="size-1.5 rounded-full bg-cyan-300/70" />
-            <span className="text-sm font-medium text-cyan-50/62">CLI stacks for agent work</span>
+            <span className="text-sm font-medium text-white/72">CLI stacks for agent work</span>
           </motion.div>
 
           <motion.div
@@ -110,7 +110,7 @@ export function SuperchargeAgent({ stats }: SuperchargeAgentProps) {
             transition={{ duration: 0.6, delay: 0.08, ease: "easeOut" }}
             className="space-y-4"
           >
-            <h1 className="max-w-[13ch] text-balance text-[clamp(3rem,7vw,5.8rem)] font-semibold tracking-[-0.07em] text-white">
+            <h1 className="max-w-[13ch] text-balance text-[clamp(3rem,7vw,5.8rem)] font-medium tracking-[-0.02em] text-white">
               What are you trying to get done?
             </h1>
             <p className="max-w-[58ch] text-pretty text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
@@ -148,13 +148,13 @@ export function SuperchargeAgent({ stats }: SuperchargeAgentProps) {
             transition={{ duration: 0.5, delay: 0.28, ease: "easeOut" }}
             className="flex flex-wrap items-center gap-3 pt-1"
           >
-            <a href="#directory" className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-4 text-sm font-medium text-black transition hover:bg-white/90">
+            <a href="#directory" className="inline-flex h-11 items-center gap-2 rounded-lg bg-white px-4 text-sm font-medium text-[#171717] transition hover:bg-[#fefffc]">
               Describe your work
               <svg className="size-3.5" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
                 <path d="M1 7h12M8 2l5 5-5 5" />
               </svg>
             </a>
-            <a href="/agent" className="inline-flex h-11 items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 text-sm text-white/70 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white">
+            <a href="/agent" className="inline-flex h-11 items-center gap-2 rounded-lg border border-[#41a1cf] bg-transparent px-4 text-sm text-white/78 transition hover:bg-white/[0.06] hover:text-white">
               How agents use it
             </a>
           </motion.div>
