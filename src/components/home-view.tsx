@@ -452,7 +452,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
       {/* Section divider */}
       <div className="flex items-center gap-4 py-2">
         <div className="h-px flex-1 bg-linear-to-r from-transparent via-white/10 to-transparent" />
-        <span className="text-[10px] uppercase tracking-[0.2em] text-white/25">Build an agent pack</span>
+        <span className="text-[10px] uppercase tracking-[0.2em] text-white/25">Describe the work</span>
         <div className="h-px flex-1 bg-linear-to-r from-transparent via-white/10 to-transparent" />
       </div>
 
@@ -469,8 +469,8 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
           style={{ borderRadius: polish.search.radius }}
         >
           <div className="border-b border-white/6 px-5 pb-3 pt-4 sm:px-6">
-            <div className="ui-label">Search</div>
-            <p className="mt-1 text-sm leading-6 text-white/56">Task, workflow, or exact CLI name.</p>
+            <div className="ui-label">Work router</div>
+            <p className="mt-1 text-base leading-7 text-white/56 sm:text-sm sm:leading-6">Say what you want done. OpenCLI returns a CLI stack, verify steps, and guardrails.</p>
           </div>
 
           <div className="p-3 sm:p-4">
@@ -493,7 +493,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                   setSearch(event.target.value);
                   setLimit(event.target.value.trim() ? 40 : 125);
                 }}
-                placeholder="deploy app, review PRs, basecamp…"
+                placeholder="review PRs, deploy preview, inspect postgres, test signup…"
                 className="h-16 w-full rounded-[24px] border border-transparent bg-transparent pl-12 pr-28 text-[16px] text-white/96 outline-none placeholder:text-white/40 sm:pl-14 sm:pr-32 sm:text-[17px]"
               />
               <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-5 sm:pr-6">
@@ -623,10 +623,10 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
             {hasQuery ? (
               <>
                 <span className="inline-flex h-1.5 w-1.5 rounded-full bg-cyan-400/60" />
-                {directory.total} option{directory.total !== 1 ? "s" : ""} found
+                {directory.total} tool{directory.total !== 1 ? "s" : ""} for this work
               </>
             ) : (
-              "Curated recommendations for real jobs."
+              "Pick a work pattern above or describe your own."
             )}
           </div>
           <button
@@ -651,7 +651,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
               ) : (
                 <>
                   <div className="hidden border-b border-white/6 px-5 py-2.5 md:grid md:grid-cols-[minmax(0,1.5fr)_140px_100px_80px] md:items-center md:gap-4">
-                    <div className="ui-label">Tool</div>
+                    <div className="ui-label">CLI stack candidates</div>
                     <div className="ui-label">Maker</div>
                     <div className="ui-label">Install</div>
                     <div className="ui-label text-right">Signal</div>
