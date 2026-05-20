@@ -28,15 +28,20 @@ const categoryChips = ["All", "Productivity", "Docs / Content", "Data", "Shell U
 const packageManagerChips = ["All", ...packageManagers] as const;
 const agentTargets = ["Claude Code", "Pi", "Codex", "Cursor", "Amp"] as const;
 
-const homepageAgentInstructions = `Use OpenCLI as a work-to-CLI router.
+const homepageAgentInstructions = `Use OpenCLI to choose and safely operate command-line tools for this work.
 
-1. Ask the user what work they want done.
-2. Search OpenCLI with that work description.
-3. Pick the recommended CLI stack, not just the most popular tool.
-4. Open the relevant /cli/{slug}/agent.md pack.
-5. Install only if missing, then run the verify command.
-6. Start with read-only/safe commands and summarize findings.
-7. Ask before destructive, paid, deploy, merge, delete, publish, transfer, or secret-exposing actions.`;
+OpenCLI website: https://opencli.co
+OpenCLI machine index: https://opencli.co/llms.txt
+OpenCLI GitHub repo: https://github.com/gvkhosla/open-cli
+
+How to use it:
+1. Ask the user what work they want done, e.g. research a topic, search email, process PDFs, clean CSVs, deploy an app, or review PRs.
+2. Open https://opencli.co and search using the user's work description, not just a tool name.
+3. Use the recommended CLI stack and alternatives to choose the right tools for the job.
+4. For each selected CLI, open its agent pack at https://opencli.co/cli/{slug}/agent.md.
+5. Install a CLI only if it is missing, then run the pack's verify command before real work.
+6. Start with read-only or safe commands, summarize findings, and cite files/URLs/IDs when useful.
+7. Ask before destructive, paid, deploy, merge, delete, publish, transfer, send-email, calendar-edit, or secret-exposing actions.`;
 
 type HomeViewProps = {
   initialDirectory: DirectorySearchResponse;
