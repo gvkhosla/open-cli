@@ -92,7 +92,7 @@ export function SuperchargeAgent({ stats }: SuperchargeAgentProps) {
       <div className="absolute -left-24 -top-24 size-72 rounded-full bg-cyan-400/[0.045] blur-3xl" />
       <div className="absolute -right-16 top-8 size-56 rounded-full bg-emerald-300/[0.035] blur-3xl" />
 
-      <div className="relative grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-16">
+      <div className="relative grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-14">
         <div className="space-y-7">
           <motion.div
             initial={{ opacity: 0, y: 8 }}
@@ -110,11 +110,11 @@ export function SuperchargeAgent({ stats }: SuperchargeAgentProps) {
             transition={{ duration: 0.6, delay: 0.08, ease: "easeOut" }}
             className="space-y-4"
           >
-            <h1 className="max-w-[12ch] text-balance text-[clamp(3rem,7vw,5.8rem)] font-semibold tracking-[-0.07em] text-white">
-              Bring the work. Get the CLI stack.
+            <h1 className="max-w-[13ch] text-balance text-[clamp(3rem,7vw,5.8rem)] font-semibold tracking-[-0.07em] text-white">
+              What are you trying to get done?
             </h1>
             <p className="max-w-[58ch] text-pretty text-base leading-7 text-white/60 sm:text-lg sm:leading-8">
-              Tell OpenCLI what you or your agent are trying to accomplish. We map the job to the right set of CLIs, verify steps, safe commands, and copyable agent instructions.
+              OpenCLI maps the work to the right command-line stack — with install commands, verify steps, and guardrails agents can actually follow.
             </p>
           </motion.div>
 

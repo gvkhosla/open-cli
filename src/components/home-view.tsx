@@ -8,7 +8,6 @@ import { CliLogoMarquee } from "@/components/cli-logo-marquee";
 import { CopyButton } from "@/components/copy-button";
 import { SuperchargeAgent } from "@/components/supercharge-agent";
 import { packageManagers } from "@/data/clis";
-import { capabilityDefinitions } from "@/lib/capabilities";
 import type { DirectorySearchResponse, DirectoryStats } from "@/lib/directory";
 import { formatCompactNumber, formatMetric } from "@/lib/format";
 import type { SuperchargeRecommendation } from "@/lib/supercharge";
@@ -25,7 +24,6 @@ const toolSuggestions = ["basecamp", "vercel", "gh", "claude"] as const;
 
 const categoryChips = ["All", "Git", "Deploy", "Database", "Browser Automation", "AI", "Wallet / Payments"] as const;
 const packageManagerChips = ["All", ...packageManagers] as const;
-const featuredCapabilities = capabilityDefinitions.slice(0, 6);
 const homepageAgentInstructions = `Use OpenCLI as a work-to-CLI router.
 
 1. Ask the user what work they want done.
@@ -315,7 +313,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
   const [activePackageManager, setActivePackageManager] = useState<(typeof packageManagerChips)[number]>("All");
   const [isLoading, setIsLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [showCatalog, setShowCatalog] = useState(true);
+  const [showCatalog, setShowCatalog] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const polish = {
@@ -437,52 +435,6 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
         <SuperchargeAgent stats={directoryStats} />
       </motion.div>
 
-      <section className="grid gap-3 md:grid-cols-3">
-        {featuredCapabilities.map((capability, index) => (
-          <motion.button
-            key={capability.slug}
-            type="button"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...motionTransition, delay: 0.12 + index * 0.035 }}
-            onClick={() => handleSuggestion(capability.samplePrompt)}
-            className="group rounded-[22px] border border-white/10 bg-white/[0.035] p-4 text-left transition hover:-translate-y-0.5 hover:border-cyan-400/20 hover:bg-white/[0.055] hover:shadow-[0_18px_42px_rgba(0,0,0,0.18)]"
-          >
-            <div className="flex items-center justify-between gap-3">
-              <div className="ui-label">{capability.label}</div>
-              <span className="text-white/22 transition group-hover:translate-x-0.5 group-hover:text-cyan-200/70">→</span>
-            </div>
-            <p className="mt-2 text-base leading-7 text-white/68 sm:text-sm sm:leading-6">{capability.blurb}</p>
-            <p className="mt-3 line-clamp-2 font-mono text-[11px] leading-5 text-white/34">{capability.samplePrompt}</p>
-          </motion.button>
-        ))}
-      </section>
-
-      <section className="ui-panel-soft rounded-[26px] p-4 sm:p-5">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <div className="ui-label">For agents</div>
-            <p className="mt-2 max-w-3xl text-base leading-7 text-white/64 sm:text-sm sm:leading-6">
-              Paste this page into Claude Code, Pi, Codex, Cursor, or any coding agent. It tells the agent to use OpenCLI as a work-to-CLI router, then follow the tool-specific <code className="font-mono text-white/78">/agent.md</code> packs.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <CopyButton compact value={typeof window === "undefined" ? "https://opencli.co" : window.location.href} label="Copy page" />
-            <CopyButton compact value={homepageAgentInstructions} label="Copy instructions" />
-            <a href="/llms.txt" className="inline-flex h-8 items-center rounded-full border border-white/10 bg-white/[0.03] px-3.5 text-sm text-white/62 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white">
-              llms.txt
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Section divider */}
-      <div className="flex items-center gap-4 py-2">
-        <div className="h-px flex-1 bg-linear-to-r from-transparent via-white/10 to-transparent" />
-        <span className="text-[10px] uppercase tracking-[0.2em] text-white/25">Describe the work</span>
-        <div className="h-px flex-1 bg-linear-to-r from-transparent via-white/10 to-transparent" />
-      </div>
-
       <section id="directory" className="scroll-mt-20 space-y-5">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -496,8 +448,16 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
           style={{ borderRadius: polish.search.radius }}
         >
           <div className="border-b border-white/6 px-5 pb-3 pt-4 sm:px-6">
-            <div className="ui-label">Work router</div>
-            <p className="mt-1 text-base leading-7 text-white/56 sm:text-sm sm:leading-6">Say what you want done. OpenCLI returns a CLI stack, verify steps, and guardrails.</p>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <div className="ui-label">Work router</div>
+                <p className="mt-1 text-base leading-7 text-white/56 sm:text-sm sm:leading-6">Say what you want done. Get a CLI stack, verify steps, and agent guardrails.</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <CopyButton compact value="https://opencli.co" label="Copy page" />
+                <CopyButton compact value={homepageAgentInstructions} label="Agent prompt" />
+              </div>
+            </div>
           </div>
 
           <div className="p-3 sm:p-4">
@@ -544,7 +504,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
             {!hasQuery ? (
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/50">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/28">Tasks</span>
+                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/28">Try</span>
                   {promptSuggestions.map((suggestion) => (
                     <button
                       key={suggestion}
