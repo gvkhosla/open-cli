@@ -180,6 +180,22 @@ function RecommendationPanel({
             description={recommendation.verifySignal}
             bordered
           />
+          <div className="border-t border-white/8 px-4 py-3.5 sm:px-5">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <div className="ui-label">Agent pack</div>
+                <p className="mt-1 text-sm leading-6 text-white/54">
+                  {recommendation.agentReadiness.label} · {recommendation.agentReadiness.score}/100. Copy this markdown link into your agent.
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <CopyButton compact value={recommendation.agentPackUrl} label="Copy link" />
+                <Link href={recommendation.agentPackUrl} className="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-sm text-white/62 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white">
+                  Open .md
+                </Link>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         <motion.div variants={PANEL_STAGGER.item} className="ui-panel-soft rounded-[24px] p-4 sm:p-5">

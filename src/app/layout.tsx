@@ -67,7 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("dark", geistSans.variable, geistMono.variable, "font-sans", inter.variable)} suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="min-h-screen">
+        <div className="isolate min-h-dvh">
           {children}
           <SiteFooter />
         </div>

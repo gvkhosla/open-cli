@@ -6,7 +6,8 @@ import { CopyButton } from "@/components/copy-button";
 import { SiteHeader } from "@/components/site-header";
 import { clis, getAlternativeClis, getCliBySlug, type CliEntry } from "@/data/clis";
 import { buildCliAudit } from "@/lib/audits";
-import { formatCompactNumber, formatMetric, titleCase } from "@/lib/format";
+import { buildAgentPack, getAgentReadiness, getVerifyStep } from "@/lib/agent-pack";
+import { formatCompactNumber, titleCase } from "@/lib/format";
 
 type CliPageProps = { params: Promise<{ slug: string }> };
 
@@ -51,9 +52,10 @@ export default async function CliPage({ params }: CliPageProps) {
   const alternatives = getAlternativeClis(cli);
   const audit = buildCliAudit(cli);
   const releaseDate = formatReleaseDate(cli.latestRelease);
-  const verify = cli.requiresAuth
-    ? { command: `${cli.shortName} --help`, signal: `${cli.shortName} responds locally and you can move on to authentication.` }
-    : { command: `${cli.shortName} --version`, signal: `${cli.shortName} responds locally and is ready for the first real command.` };
+  const verify = getVerifyStep(cli);
+  const agentReadiness = getAgentReadiness(cli);
+  const agentPack = buildAgentPack(cli);
+  const agentPackPath = `/cli/${cli.slug}/agent.md`;
 
   return (
     <>
@@ -94,6 +96,32 @@ export default async function CliPage({ params }: CliPageProps) {
             </header>
 
             <OneLiner cli={cli} />
+
+            <DocSection title="Agent pack">
+              <div className="ui-panel-soft overflow-hidden rounded-2xl">
+                <div className="border-b border-white/8 p-4 sm:p-5">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <div className="ui-label">Copy into an agent</div>
+                      <p className="mt-2 max-w-2xl text-base leading-7 text-white/68 sm:text-sm sm:leading-6">
+                        A markdown-ready setup brief with install, verify, safe starting commands, and guardrails for AI agents.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <CopyButton compact value={agentPack} label="Copy pack" />
+                      <Link href={agentPackPath} className="inline-flex h-8 items-center rounded-full border border-white/10 bg-white/[0.03] px-3.5 text-sm text-white/62 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white">
+                        Open .md
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid gap-0 divide-y divide-white/8 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+                  <AgentReadinessCell label="Readiness" value={`${agentReadiness.label} · ${agentReadiness.score}/100`} />
+                  <AgentReadinessCell label="Verify" value={verify.command} mono />
+                  <AgentReadinessCell label="Agent URL" value={agentPackPath} mono />
+                </div>
+              </div>
+            </DocSection>
 
             <DocSection title="Quick reference">
               <div className="space-y-2.5">
@@ -220,6 +248,15 @@ function InlineTag({ children }: { children: React.ReactNode }) {
     <span className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-white/48">
       {children}
     </span>
+  );
+}
+
+function AgentReadinessCell({ label, value, mono = false }: { label: string; value: string; mono?: boolean }) {
+  return (
+    <div className="p-4 sm:p-5">
+      <div className="ui-label">{label}</div>
+      <div className={mono ? "mt-2 break-all font-mono text-sm text-white/78" : "mt-2 text-sm font-medium text-white/82"}>{value}</div>
+    </div>
   );
 }
 

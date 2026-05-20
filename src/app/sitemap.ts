@@ -32,5 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...baseRoutes, ...cliRoutes];
+  const agentPackRoutes: MetadataRoute.Sitemap = clis.map((cli) => ({
+    url: `${siteConfig.url}/cli/${cli.slug}/agent.md`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.6,
+  }));
+
+  return [...baseRoutes, ...cliRoutes, ...agentPackRoutes];
 }

@@ -1,5 +1,6 @@
 import { clis, findDirectCliMatch, searchClis, type CliEntry } from "@/data/clis";
 import { capabilityDefinitions, detectCapabilityMatches, getCapabilityBySlug, type CapabilityDefinition } from "@/lib/capabilities";
+import { getAgentReadiness, getVerifyStep } from "@/lib/agent-pack";
 
 export type SuperchargeCliSummary = {
   slug: string;
@@ -30,39 +31,14 @@ export type SuperchargeRecommendation = {
   watchouts: string[];
   verifyCommand: string;
   verifySignal: string;
+  agentReadiness: {
+    label: string;
+    score: number;
+  };
+  agentPackUrl: string;
   loopName: string;
   loopSteps: string[];
 };
-
-const verifyOverrides: Record<string, { command: string; signal: string }> = {
-  gh: { command: "gh auth status", signal: "Shows the signed-in GitHub account and scopes." },
-  vercel: { command: "vercel whoami", signal: "Shows the active Vercel account or team." },
-  wrangler: { command: "wrangler whoami", signal: "Prints the active Cloudflare identity." },
-  flyctl: { command: "fly auth whoami", signal: "Shows the active org or user identity." },
-  railway: { command: "railway whoami", signal: "Confirms the authenticated account." },
-  supabase: { command: "supabase --version", signal: "The CLI responds and is ready for local project setup." },
-  ollama: { command: "ollama --version", signal: "Responds locally and is ready for models." },
-  docker: { command: "docker version", signal: "Docker responds and the daemon is reachable." },
-  kubectl: { command: "kubectl config current-context", signal: "Prints the active cluster context." },
-  terraform: { command: "terraform version", signal: "Responds and is ready to inspect or plan." },
-};
-
-function defaultVerify(cli: CliEntry) {
-  if (cli.requiresAuth) {
-    return {
-      command: `${cli.shortName} --help`,
-      signal: `${cli.shortName} responds locally and you can move on to authentication or project setup.`,
-    };
-  }
-  return {
-    command: `${cli.shortName} --version`,
-    signal: `${cli.shortName} responds locally and is ready for the first real command.`,
-  };
-}
-
-function getVerifyStep(cli: CliEntry) {
-  return verifyOverrides[cli.slug] ?? defaultVerify(cli);
-}
 
 function stripBestFor(bestFor: string) {
   return bestFor.replace(/^Best for\s*/i, "").replace(/\.$/, "");
@@ -196,6 +172,11 @@ export function buildSuperchargeRecommendation(prompt: string, preferredCapabili
     watchouts: buildWatchouts(primary),
     verifyCommand: verify.command,
     verifySignal: verify.signal,
+    agentReadiness: {
+      label: getAgentReadiness(primary).label,
+      score: getAgentReadiness(primary).score,
+    },
+    agentPackUrl: `/cli/${primary.slug}/agent.md`,
     loopName: capability.loopName,
     loopSteps: capability.loopSteps,
   };
