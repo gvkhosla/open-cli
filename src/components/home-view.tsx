@@ -281,7 +281,7 @@ function RecommendationPanel({
           </RecommendationDetail>
 
           {recommendation.alternatives.length > 0 ? (
-            <RecommendationDetail title="Alternatives" defaultOpen>
+            <RecommendationDetail title="Other relevant CLIs" defaultOpen>
               <div className="space-y-2">
                 {recommendation.alternatives.map((alternative) => (
                   <Link

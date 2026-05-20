@@ -100,10 +100,10 @@ export const capabilityDefinitions: CapabilityDefinition[] = [
   },
   {
     slug: "ai",
-    label: "Local AI",
+    label: "AI & Coding Agents",
     blurb: "Set up coding agents, local models, and AI-first terminal workflows.",
     samplePrompt: "Set up an agent-friendly AI stack so I can run local models and coding workflows from the terminal.",
-    searchTerms: ["ai", "agent", "local models", "llm", "coding agent", "prompt", "ollama", "claude", "codex", "gemini"],
+    searchTerms: ["ai", "agent", "agents", "coding cli", "coding clis", "coding agent", "coding agents", "code agent", "code agents", "terminal agent", "local models", "llm", "prompt", "ollama", "claude", "codex", "gemini", "amp", "pi", "cursor"],
     categories: ["AI", "Package Management"],
     candidateSlugs: ["pi", "amp", "claude-code", "codex", "gemini-cli", "cursor-agent", "opencode", "crush", "amazon-q", "aider", "ollama", "llm", "uv"],
     setupChecklist: [

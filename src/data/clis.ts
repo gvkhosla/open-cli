@@ -436,6 +436,7 @@ const intentSlugBoosts = [
   { terms: ["postgres", "postgresql"], slugs: ["pgcli", "usql", "supabase", "dbmate"] },
   { terms: ["sqlite"], slugs: ["sqlite-utils", "litecli", "usql", "duckdb"] },
   { terms: ["browser", "automation", "playwright", "scrape"], slugs: ["browser-use", "playwright", "firecrawl"] },
+  { terms: ["coding cli", "coding clis", "coding agent", "coding agents", "code agent", "terminal agent", "agent cli"], slugs: ["pi", "amp", "claude-code", "codex", "cursor-agent", "opencode", "crush", "aider", "gemini-cli"] },
   { terms: ["wallet", "tempo", "mpp", "paid requests"], slugs: ["tempo"] },
 ];
 

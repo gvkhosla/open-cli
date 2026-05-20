@@ -164,6 +164,11 @@ const stackRolesByCapability: Record<string, Array<{ role: string; slugs: string
     { role: "Read calendar", slugs: ["khal", "gcalcli", "icalbuddy"] },
     { role: "Look up contacts", slugs: ["khard"] },
   ],
+  ai: [
+    { role: "Terminal coding agent", slugs: ["pi", "amp", "claude-code", "codex", "cursor-agent", "opencode", "crush"] },
+    { role: "Model and prompt CLI", slugs: ["ollama", "llm", "openai", "gemini-cli"] },
+    { role: "Pair-programming edits", slugs: ["aider", "continue-cli"] },
+  ],
   deploy: [
     { role: "Deploy preview", slugs: ["vercel", "railway", "flyctl", "wrangler"] },
     { role: "Inspect logs", slugs: ["vercel", "railway", "flyctl"] },
@@ -230,7 +235,7 @@ export function buildSuperchargeRecommendation(prompt: string, preferredCapabili
   const verify = getVerifyStep(primary);
   const alternatives = candidates
     .filter((cli) => cli.slug !== primary.slug)
-    .slice(0, 3)
+    .slice(0, 16)
     .map((cli) => ({
       slug: cli.slug,
       shortName: cli.shortName,
