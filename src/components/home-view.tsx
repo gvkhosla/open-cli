@@ -246,7 +246,7 @@ function RecommendationPanel({
           </RecommendationDetail>
 
           {recommendation.alternatives.length > 0 ? (
-            <RecommendationDetail title="Alternatives">
+            <RecommendationDetail title="Alternatives" defaultOpen>
               <div className="space-y-2">
                 {recommendation.alternatives.map((alternative) => (
                   <Link
@@ -388,7 +388,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
     setLimit(40);
     setActiveCategory("All");
     setActivePackageManager("All");
-    setShowCatalog(true);
+    setShowCatalog(false);
     document.getElementById("directory")?.scrollIntoView({ behavior: "smooth", block: "start" });
     window.setTimeout(() => inputRef.current?.focus(), 250);
   }
