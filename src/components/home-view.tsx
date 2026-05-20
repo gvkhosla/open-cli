@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
+import { CliLogoMarquee } from "@/components/cli-logo-marquee";
 import { CopyButton } from "@/components/copy-button";
 import { SuperchargeAgent } from "@/components/supercharge-agent";
 import { packageManagers } from "@/data/clis";
@@ -25,6 +26,8 @@ const toolSuggestions = ["pandoc", "duckdb", "rg", "ffmpeg", "gh"] as const;
 
 const categoryChips = ["All", "Productivity", "Docs / Content", "Data", "Shell Utilities", "Git", "Deploy", "Database", "Browser Automation", "AI", "Wallet / Payments"] as const;
 const packageManagerChips = ["All", ...packageManagers] as const;
+const agentTargets = ["Claude Code", "Pi", "Codex", "Cursor", "Amp"] as const;
+
 const homepageAgentInstructions = `Use OpenCLI as a work-to-CLI router.
 
 1. Ask the user what work they want done.
@@ -591,14 +594,28 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
         </AnimatePresence>
 
         <div className="rounded-lg border border-white/10 bg-[#1E1E1D] p-4">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-sm font-medium text-white">Using an agent?</div>
-              <p className="mt-1 text-base leading-7 text-[#868684] sm:text-sm sm:leading-6">Copy this tiny handoff into Claude Code, Pi, Codex, Cursor, or any agent.</p>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="space-y-3">
+              <div>
+                <div className="text-sm font-medium text-white">Using an agent?</div>
+                <p className="mt-1 text-base leading-7 text-[#868684] sm:text-sm sm:leading-6">Copy this tiny handoff into your agent.</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {agentTargets.map((agent) => (
+                  <span key={agent} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-2.5 py-1 text-sm text-[#afaeac]">
+                    <span className="flex size-5 items-center justify-center rounded bg-[#2f2f2f] font-mono text-[11px] text-white/80">
+                      {agent === "Claude Code" ? "CC" : agent.slice(0, 1)}
+                    </span>
+                    {agent}
+                  </span>
+                ))}
+              </div>
             </div>
             <CopyButton compact value={homepageAgentInstructions} label="Copy agent prompt" />
           </div>
         </div>
+
+        {!hasQuery ? <CliLogoMarquee /> : null}
 
         <div className="flex items-center justify-between gap-3 px-1 pt-2">
           <div className="flex items-center gap-2 text-sm text-white/44">

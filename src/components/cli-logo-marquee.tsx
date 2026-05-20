@@ -4,8 +4,11 @@ import {
   siBun,
   siCloudflare,
   siDeno,
+  siDuckdb,
+  siFfmpeg,
   siFlydotio,
   siGithub,
+  siJira,
   siOllama,
   siPnpm,
   siRailway,
@@ -34,13 +37,19 @@ const logoItems: LogoItem[] = [
   { name: "flyctl", href: "/cli/flyctl", icon: siFlydotio },
   { name: "Supabase CLI", href: "/cli/supabase", icon: siSupabase },
   { name: "Stripe CLI", href: "/cli/stripe", icon: siStripe },
+  { name: "DuckDB", href: "/cli/duckdb", icon: siDuckdb },
+  { name: "Pandoc", href: "/cli/pandoc", label: "pd" },
+  { name: "ripgrep", href: "/cli/rg", label: "rg" },
+  { name: "FFmpeg", href: "/cli/ffmpeg", icon: siFfmpeg },
+  { name: "Jira CLI", href: "/cli/jira-cli", icon: siJira },
+  { name: "khal", href: "/cli/khal", label: "cal" },
 ];
 
 function LogoBadge({ item }: { item: LogoItem }) {
   return (
     <Link
       href={item.href}
-      className="group/logo relative flex h-12 min-w-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.05] px-3.5 transition-colors duration-200 hover:border-white/14 hover:bg-white/[0.07]"
+      className="group/logo relative flex h-12 min-w-12 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-[#1E1E1D] px-3.5 transition-colors duration-200 hover:border-[#217EFF]/70 hover:bg-[#2f2f2f]"
       aria-label={item.name}
       title={item.name}
     >
@@ -51,7 +60,7 @@ function LogoBadge({ item }: { item: LogoItem }) {
           </svg>
         ) : null}
         {item.label ? (
-          <span className="absolute -bottom-2.5 -right-3 rounded-full border border-white/10 bg-[#151d26] px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-[0.18em] text-white/50 transition group-hover/logo:border-white/14 group-hover/logo:text-white/70">
+          <span className="absolute -bottom-2.5 -right-3 rounded-full border border-white/10 bg-[#121212] px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-[0.18em] text-white/50 transition group-hover/logo:border-[#217EFF]/60 group-hover/logo:text-white/70">
             {item.label}
           </span>
         ) : null}
@@ -64,10 +73,10 @@ export function CliLogoMarquee() {
   const marqueeItems = [...logoItems, ...logoItems];
 
   return (
-    <div className="ui-panel relative overflow-hidden rounded-[18px] px-3 py-3">
-      <div className="absolute -inset-px rounded-[19px] bg-gradient-to-b from-white/[0.04] to-transparent pointer-events-none" />
-      <div className="absolute left-0 top-0 bottom-0 z-10 w-12 bg-gradient-to-r from-[#111821] to-transparent" />
-      <div className="absolute right-0 top-0 bottom-0 z-10 w-12 bg-gradient-to-l from-[#111821] to-transparent" />
+    <div className="relative overflow-hidden rounded-lg border border-white/10 bg-[#121212] px-3 py-3">
+      <div className="pointer-events-none absolute -inset-px rounded-lg bg-linear-to-b from-white/[0.04] to-transparent" />
+      <div className="absolute bottom-0 left-0 top-0 z-10 w-12 bg-linear-to-r from-[#121212] to-transparent" />
+      <div className="absolute bottom-0 right-0 top-0 z-10 w-12 bg-linear-to-l from-[#121212] to-transparent" />
       <div className="marquee-track relative flex w-max gap-2">
         {marqueeItems.map((item, index) => (
           <LogoBadge key={`${item.name}-${index}`} item={item} />
