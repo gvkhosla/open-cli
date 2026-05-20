@@ -26,6 +26,15 @@ const toolSuggestions = ["basecamp", "vercel", "gh", "claude"] as const;
 const categoryChips = ["All", "Git", "Deploy", "Database", "Browser Automation", "AI", "Wallet / Payments"] as const;
 const packageManagerChips = ["All", ...packageManagers] as const;
 const featuredCapabilities = capabilityDefinitions.slice(0, 6);
+const homepageAgentInstructions = `Use OpenCLI as a work-to-CLI router.
+
+1. Ask the user what work they want done.
+2. Search OpenCLI with that work description.
+3. Pick the recommended CLI stack, not just the most popular tool.
+4. Open the relevant /cli/{slug}/agent.md pack.
+5. Install only if missing, then run the verify command.
+6. Start with read-only/safe commands and summarize findings.
+7. Ask before destructive, paid, deploy, merge, delete, publish, transfer, or secret-exposing actions.`;
 
 type HomeViewProps = {
   initialDirectory: DirectorySearchResponse;
@@ -447,6 +456,24 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
             <p className="mt-3 line-clamp-2 font-mono text-[11px] leading-5 text-white/34">{capability.samplePrompt}</p>
           </motion.button>
         ))}
+      </section>
+
+      <section className="ui-panel-soft rounded-[26px] p-4 sm:p-5">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <div className="ui-label">For agents</div>
+            <p className="mt-2 max-w-3xl text-base leading-7 text-white/64 sm:text-sm sm:leading-6">
+              Paste this page into Claude Code, Pi, Codex, Cursor, or any coding agent. It tells the agent to use OpenCLI as a work-to-CLI router, then follow the tool-specific <code className="font-mono text-white/78">/agent.md</code> packs.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <CopyButton compact value={typeof window === "undefined" ? "https://opencli.co" : window.location.href} label="Copy page" />
+            <CopyButton compact value={homepageAgentInstructions} label="Copy instructions" />
+            <a href="/llms.txt" className="inline-flex h-8 items-center rounded-full border border-white/10 bg-white/[0.03] px-3.5 text-sm text-white/62 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white">
+              llms.txt
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* Section divider */}
