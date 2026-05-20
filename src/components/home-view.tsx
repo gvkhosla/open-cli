@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
-import { CliLogoMarquee } from "@/components/cli-logo-marquee";
 import { CopyButton } from "@/components/copy-button";
 import { SuperchargeAgent } from "@/components/supercharge-agent";
 import { packageManagers } from "@/data/clis";
@@ -423,7 +422,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
     : `Browse ${formatCompactNumber(directoryStats.total)} tools`;
 
   return (
-    <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-4 sm:px-6 lg:px-8">
+    <div className="relative mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 pb-16 pt-4 sm:px-6 lg:px-8">
 
       <motion.div
         initial={{ opacity: 0, y: 14, scale: 0.99 }}
@@ -438,7 +437,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: polish.search.y }}
           transition={{ ...motionTransition, delay: HOME_REVEAL.search }}
-          className={`overflow-hidden rounded-3xl bg-[#fefffc] shadow-[var(--shadow-card)] ring-1 ring-black/5 transition-all duration-300 ${
+          className={`overflow-hidden rounded-3xl bg-white shadow-[var(--shadow-card)] ring-1 ring-black/5 transition-all duration-300 ${
             isFocused ? "ring-[#41a1cf]/40" : ""
           }`}
           style={{ borderRadius: polish.search.radius }}
@@ -577,15 +576,6 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
           </div>
         </motion.div>
 
-        {!hasQuery ? (
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 px-1">
-              <div className="ui-label">Popular tools</div>
-              <div className="h-px flex-1 bg-gradient-to-r from-white/8 to-transparent" />
-            </div>
-            <CliLogoMarquee />
-          </div>
-        ) : null}
 
         <AnimatePresence mode="wait">
           {hasQuery ? (
