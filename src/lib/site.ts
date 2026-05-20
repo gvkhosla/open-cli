@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Open CLI",
   description:
-    "Choose the right CLI for a real job, understand the tradeoffs, and start with the first safe commands.",
+    "Describe the work. Get the CLI stack with install commands, verify checks, and agent-safe instructions.",
   url: "https://opencli.co",
   ogImage: "https://opencli.co/opengraph-image",
   links: {
