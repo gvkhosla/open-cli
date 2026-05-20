@@ -437,16 +437,16 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: polish.search.y }}
           transition={{ ...motionTransition, delay: HOME_REVEAL.search }}
-          className={`overflow-hidden rounded-3xl bg-white shadow-[var(--shadow-card)] ring-1 ring-black/5 transition-all duration-300 ${
-            isFocused ? "ring-[#41a1cf]/40" : ""
+          className={`overflow-hidden rounded-lg bg-[#1E1E1D] ring-1 ring-white/10 transition-all duration-300 ${
+            isFocused ? "shadow-[var(--shadow-xl)] ring-[#217EFF]/60" : ""
           }`}
           style={{ borderRadius: polish.search.radius }}
         >
           <div className="border-b border-white/6 px-5 pb-3 pt-4 sm:px-6">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <div className="text-sm font-medium text-[#2c2c2c]">Work router</div>
-                <p className="mt-1 text-base leading-7 text-[#646464] sm:text-sm sm:leading-6">Say what you want done. Get a CLI stack, verify steps, and agent guardrails.</p>
+                <div className="text-sm font-medium text-white">Work router</div>
+                <p className="mt-1 text-base leading-7 text-[#868684] sm:text-sm sm:leading-6">Say what you want done. Get a CLI stack, verify steps, and agent guardrails.</p>
               </div>
               <div className="flex flex-wrap gap-2">
                 <CopyButton compact value="https://opencli.co" label="Copy page" />
@@ -457,11 +457,11 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
 
           <div className="p-3 sm:p-4">
             <div
-              className={`relative rounded-2xl border border-black/10 bg-[#f9faf7] shadow-[var(--shadow-sm-2)] transition-all duration-300 ${
-                isFocused ? "border-[#41a1cf]" : ""
+              className={`relative rounded-lg border border-white/10 bg-[#121212] transition-all duration-300 ${
+                isFocused ? "border-[#217EFF]" : ""
               }`}
             >
-              <span className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-5 text-[#646464] sm:pl-6">
+              <span className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-5 text-[#868684] sm:pl-6">
                 <SearchIcon className="h-[15px] w-[15px]" />
               </span>
               <input
@@ -474,7 +474,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                   setLimit(event.target.value.trim() ? 40 : 125);
                 }}
                 placeholder="review PRs, deploy preview, inspect postgres, test signup…"
-                className="h-16 w-full rounded-2xl border border-transparent bg-transparent pl-12 pr-28 text-base text-[#171717] outline-none placeholder:text-[#646464]/70 sm:pl-14 sm:pr-32 sm:text-[17px]"
+                className="h-16 w-full rounded-lg border border-transparent bg-transparent pl-12 pr-28 text-base text-white outline-none placeholder:text-[#868684] sm:pl-14 sm:pr-32 sm:text-[17px]"
               />
               <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-5 sm:pr-6">
                 {isLoading && <div className="spinner" />}
@@ -497,7 +497,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
             {!hasQuery ? (
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/50">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/28">Try</span>
+                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-[#6F839F]">Try</span>
                   {promptSuggestions.map((suggestion) => (
                     <button
                       key={suggestion}

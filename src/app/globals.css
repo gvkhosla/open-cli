@@ -5,6 +5,18 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --color-midnight-base: #121212;
+  --color-graphite-surface: #1E1E1D;
+  --color-dark-overlay: #40403f;
+  --color-ash-text: #868684;
+  --color-highlight-white: #FFFFFF;
+  --color-subtle-cream: #FAFAFA;
+  --color-interactive-teal: #2f2f2f;
+  --color-code-comment-gray: #6F839F;
+  --color-code-keyword-gold: #BD9F65;
+  --color-accent-blue: #217EFF;
+  --color-success-green: #2ECC71;
+  --shadow-xl: rgba(33, 126, 255, 0.5) 0px 0px 32px 10px;
   --color-night-sky: #1f1f29;
   --color-cofounder-blue: #0081c0;
   --color-action-azure: #41a1cf;
@@ -112,8 +124,8 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  background: #ffffff;
-  color: #171717;
+  background: #121212;
+  color: #ffffff;
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
@@ -130,8 +142,8 @@ body::after {
 }
 
 ::selection {
-  background: rgba(0, 129, 192, 0.16);
-  color: #171717;
+  background: rgba(33, 126, 255, 0.35);
+  color: #ffffff;
 }
 
 .section-kicker {
