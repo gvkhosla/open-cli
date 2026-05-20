@@ -258,17 +258,6 @@ function RecommendationPanel({
         </motion.div>
 
         <motion.div variants={PANEL_STAGGER.item} className="space-y-3">
-          <RecommendationDetail title="Why this fits" defaultOpen>
-            <ul className="space-y-2">
-              {recommendation.whyReasons.map((reason) => (
-                <li key={reason} className="flex items-start gap-2.5">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-white/28" />
-                  <span>{reason}</span>
-                </li>
-              ))}
-            </ul>
-          </RecommendationDetail>
-
           <RecommendationDetail title="Watch-outs">
             <ul className="space-y-2">
               {recommendation.watchouts.map((watchout) => (
