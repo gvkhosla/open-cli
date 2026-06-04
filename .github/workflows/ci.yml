@@ -30,6 +30,9 @@ jobs:
       - name: Validate content data
         run: npm run validate:data
 
+      - name: Audit production dependencies
+        run: npm audit --omit=dev
+
       - name: Lint
         run: npm run lint
 

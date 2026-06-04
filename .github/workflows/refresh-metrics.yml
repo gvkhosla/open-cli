@@ -1,0 +1,60 @@
+name: Refresh metrics
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 9 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  NEXT_TELEMETRY_DISABLED: 1
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh CLI metrics
+        run: npm run sync:metrics
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Validate content data
+        run: npm run validate:data
+
+      - name: Open pull request if metrics changed
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ github.token }}
+          branch: chore/refresh-cli-metrics
+          delete-branch: true
+          commit-message: Refresh CLI metrics
+          title: Refresh CLI metrics
+          body: |
+            Automated weekly refresh of `src/content/cli-metrics.json`.
+
+            This PR was created by the Refresh metrics workflow after running:
+            - `npm run sync:metrics`
+            - `npm run validate:data`
+          labels: |
+            automated
+            metrics
+          add-paths: |
+            src/content/cli-metrics.json
