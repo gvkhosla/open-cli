@@ -36,6 +36,9 @@ const verifyOverrides: Record<string, { command: string; signal: string }> = {
   poppler: { command: "pdftotext -v", signal: "Poppler pdftotext responds and can extract PDF text." },
   ffmpeg: { command: "ffmpeg -version", signal: "FFmpeg responds and can inspect media." },
   "whisper-cpp": { command: "whisper-cli --help", signal: "whisper.cpp CLI responds and can transcribe with a model." },
+  repomix: { command: "repomix --version", signal: "Repomix responds and can package repository context for agents." },
+  "playwright-mcp": { command: "npx @playwright/mcp@latest --help", signal: "The Playwright MCP server help text prints successfully." },
+  posting: { command: "posting --help", signal: "Posting responds and is ready for interactive API exploration." },
 };
 
 export function getVerifyStep(cli: CliEntry) {

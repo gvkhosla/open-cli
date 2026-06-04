@@ -1034,5 +1034,19 @@
     "type": "org",
     "url": "https://zed.dev",
     "officialPlatformMaker": true
+  },
+  {
+    "slug": "yamadashy",
+    "name": "Yamadashy",
+    "type": "individual",
+    "url": "https://github.com/yamadashy",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "darrenburns",
+    "name": "Darren Burns",
+    "type": "individual",
+    "url": "https://github.com/darrenburns",
+    "featuredBuilder": true
   }
 ]

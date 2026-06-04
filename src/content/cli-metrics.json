@@ -1132,5 +1132,32 @@
     "metricValue": 1666,
     "metricSource": "github",
     "metricAsOf": "2026-03-20T06:58:13.366Z"
+  },
+  "repomix": {
+    "githubStars": 25950,
+    "latestRelease": "2026-06-04T10:19:46Z",
+    "license": "MIT",
+    "metricLabel": "npm weekly downloads",
+    "metricValue": 62377,
+    "metricSource": "npm",
+    "metricAsOf": "2026-06-04T14:05:34.152Z"
+  },
+  "playwright-mcp": {
+    "githubStars": 33483,
+    "latestRelease": "2026-05-28T01:32:25Z",
+    "license": "Apache-2.0",
+    "metricLabel": "npm weekly downloads",
+    "metricValue": 5319545,
+    "metricSource": "npm",
+    "metricAsOf": "2026-06-04T14:05:34.152Z"
+  },
+  "posting": {
+    "githubStars": 12001,
+    "latestRelease": "2026-03-25T23:30:48Z",
+    "license": "Apache-2.0",
+    "metricLabel": "PyPI weekly downloads",
+    "metricValue": 3048,
+    "metricSource": "pypistats",
+    "metricAsOf": "2026-06-04T14:05:34.152Z"
   }
 }

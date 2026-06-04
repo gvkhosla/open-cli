@@ -176,8 +176,14 @@ const stackRolesByCapability: Record<string, Array<{ role: string; slugs: string
   ],
   ai: [
     { role: "Terminal coding agent", slugs: ["pi", "amp", "claude-code", "codex", "cursor-agent", "opencode", "crush"] },
+    { role: "Pack repo context", slugs: ["repomix"] },
     { role: "Model and prompt CLI", slugs: ["ollama", "llm", "openai", "gemini-cli"] },
     { role: "Pair-programming edits", slugs: ["aider", "continue-cli"] },
+  ],
+  browser: [
+    { role: "Agent browser MCP", slugs: ["playwright-mcp"] },
+    { role: "Browser testing", slugs: ["playwright"] },
+    { role: "Hosted extraction", slugs: ["firecrawl"] },
   ],
   deploy: [
     { role: "Deploy preview", slugs: ["vercel", "railway", "flyctl", "wrangler"] },

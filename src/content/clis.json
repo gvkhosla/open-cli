@@ -6174,5 +6174,156 @@
     "requiresNetwork": true,
     "localFirst": true,
     "destructivePotential": "high"
+  },
+  {
+    "slug": "repomix",
+    "name": "Repomix",
+    "shortName": "repomix",
+    "maker": "yamadashy",
+    "category": "AI",
+    "installWith": "npm",
+    "installCommand": "npm install -g repomix",
+    "quickStart": "repomix --style markdown --output repomix-output.md",
+    "githubRepo": "yamadashy/repomix",
+    "website": "https://repomix.com",
+    "docs": "https://repomix.com/guide/",
+    "packageName": "repomix",
+    "npmPackage": "repomix",
+    "bestFor": "Packing repositories into AI-friendly context files for coding agents.",
+    "useThisIf": "You want to give an agent or LLM a clean, reproducible codebase snapshot.",
+    "skipIf": "You only need to search one or two local files directly.",
+    "useCases": [
+      "Codebase context",
+      "Agent handoff",
+      "Repository analysis"
+    ],
+    "aliases": [
+      "repo mix",
+      "repo pack",
+      "ai context packer"
+    ],
+    "keywords": [
+      "context",
+      "repository",
+      "codebase",
+      "agent",
+      "llm",
+      "prompt"
+    ],
+    "tags": [
+      "agent-friendly",
+      "context",
+      "coding-agent"
+    ],
+    "featured": true,
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "ciFriendly": true,
+    "localFirst": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "repomix --style markdown --output repomix-output.md",
+      "repomix --include \"src/**/*.ts\" --output src-context.md"
+    ]
+  },
+  {
+    "slug": "playwright-mcp",
+    "name": "Playwright MCP",
+    "shortName": "playwright-mcp",
+    "maker": "microsoft",
+    "category": "Browser Automation",
+    "installWith": "npm",
+    "installCommand": "npm install -g @playwright/mcp",
+    "quickStart": "npx @playwright/mcp@latest --help",
+    "githubRepo": "microsoft/playwright-mcp",
+    "website": "https://github.com/microsoft/playwright-mcp",
+    "docs": "https://github.com/microsoft/playwright-mcp",
+    "packageName": "@playwright/mcp",
+    "npmPackage": "@playwright/mcp",
+    "bestFor": "Giving agents browser automation through the Model Context Protocol.",
+    "useThisIf": "You want an agent to inspect pages, click flows, and collect browser evidence with Playwright.",
+    "skipIf": "You only need a one-off HTTP fetch or static scrape.",
+    "useCases": [
+      "Agent browser control",
+      "Web testing",
+      "Browser automation"
+    ],
+    "aliases": [
+      "playwright model context protocol",
+      "mcp browser",
+      "browser mcp"
+    ],
+    "keywords": [
+      "mcp",
+      "playwright",
+      "browser",
+      "agent",
+      "automation",
+      "testing"
+    ],
+    "tags": [
+      "agent-friendly",
+      "mcp",
+      "browser"
+    ],
+    "featured": true,
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "localFirst": true,
+    "destructivePotential": "medium",
+    "exampleWorkflow": [
+      "npx @playwright/mcp@latest --help"
+    ]
+  },
+  {
+    "slug": "posting",
+    "name": "Posting",
+    "shortName": "posting",
+    "maker": "darrenburns",
+    "category": "Shell Utilities",
+    "installWith": "pipx",
+    "installCommand": "pipx install posting",
+    "quickStart": "posting",
+    "githubRepo": "darrenburns/posting",
+    "website": "https://posting.sh",
+    "docs": "https://posting.sh/guide/",
+    "packageName": "posting",
+    "pypiPackage": "posting",
+    "bestFor": "Exploring APIs from a polished terminal HTTP client.",
+    "useThisIf": "You want to inspect, save, and replay API requests while debugging integrations.",
+    "skipIf": "You need a fully non-interactive CI HTTP client; use httpie or curl instead.",
+    "useCases": [
+      "API testing",
+      "HTTP debugging",
+      "Integration exploration"
+    ],
+    "aliases": [
+      "posting http",
+      "terminal postman",
+      "api client"
+    ],
+    "keywords": [
+      "http",
+      "api",
+      "rest",
+      "request",
+      "postman",
+      "tui"
+    ],
+    "tags": [
+      "api",
+      "http",
+      "tui"
+    ],
+    "agentFriendly": false,
+    "supportsNonInteractive": false,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "medium",
+    "exampleWorkflow": [
+      "posting"
+    ]
   }
 ]
