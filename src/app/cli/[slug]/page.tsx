@@ -56,6 +56,9 @@ export default async function CliPage({ params }: CliPageProps) {
   const agentReadiness = getAgentReadiness(cli);
   const agentPack = buildAgentPack(cli);
   const agentPackPath = `/cli/${cli.slug}/agent.md`;
+  const jsonPath = `/cli/${cli.slug}.json`;
+  const installVerifyBrief = `${cli.installCommand}\n${verify.command}`;
+  const agentHandoff = `Use ${cli.name} (${cli.shortName}) for ${cli.bestFor.toLowerCase()}.\n\nInstall if missing:\n${cli.installCommand}\n\nVerify before real work:\n${verify.command}\nExpected signal: ${verify.signal}\n\nStart safely with:\n${cli.quickStart}\n\nOpenCLI agent pack: https://opencli.co${agentPackPath}\nOpenCLI JSON: https://opencli.co${jsonPath}`;
 
   return (
     <>
@@ -92,6 +95,7 @@ export default async function CliPage({ params }: CliPageProps) {
                   {cli.installCommand}
                 </code>
                 <CopyButton compact value={cli.installCommand} label="Copy install" />
+                <CopyButton compact value={installVerifyBrief} label="Install + verify" />
               </div>
             </header>
 
@@ -108,9 +112,13 @@ export default async function CliPage({ params }: CliPageProps) {
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-2">
+                      <CopyButton compact value={agentHandoff} label="Copy handoff" />
                       <CopyButton compact value={agentPack} label="Copy pack" />
                       <Link href={agentPackPath} className="inline-flex h-8 items-center rounded-full border border-white/10 bg-white/[0.03] px-3.5 text-sm text-white/62 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white">
                         Open .md
+                      </Link>
+                      <Link href={jsonPath} className="inline-flex h-8 items-center rounded-full border border-white/10 bg-white/[0.03] px-3.5 text-sm text-white/62 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white">
+                        JSON
                       </Link>
                     </div>
                   </div>
@@ -128,6 +136,7 @@ export default async function CliPage({ params }: CliPageProps) {
                 <ReferenceRow label="Install" value={cli.installCommand} />
                 <ReferenceRow label="Verify" value={verify.command} />
                 <ReferenceRow label="First command" value={cli.quickStart} />
+                <ReferenceRow label="Machine JSON" value={jsonPath} />
               </div>
             </DocSection>
 
@@ -190,6 +199,7 @@ export default async function CliPage({ params }: CliPageProps) {
                   { href: cli.website, label: "Website" },
                   { href: cli.github, label: "GitHub" },
                   { href: cli.docs, label: "Docs" },
+                  { href: jsonPath, label: "OpenCLI JSON" },
                 ].map((link) => (
                   <a
                     key={link.label}
@@ -263,9 +273,12 @@ function AgentReadinessCell({ label, value, mono = false }: { label: string; val
 function ReferenceRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="ui-code rounded-xl px-3 py-3">
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex items-center justify-between gap-3">
         <span className="ui-label pt-0.5">{label}</span>
-        <code className="max-w-[70%] text-right font-mono text-sm text-white/88">{value}</code>
+        <div className="flex min-w-0 flex-1 items-center justify-end gap-2">
+          <code className="min-w-0 overflow-x-auto text-right font-mono text-sm text-white/88">{value}</code>
+          <CopyButton compact value={value} label="Copy" />
+        </div>
       </div>
     </div>
   );
