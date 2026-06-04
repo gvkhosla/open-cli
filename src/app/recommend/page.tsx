@@ -237,9 +237,7 @@ function PrimaryCard({ recommendation }: { recommendation: SuperchargeRecommenda
   const primary = recommendation.primary;
   const metric = primary.metricValue !== null && primary.metricLabel
     ? `${formatCompactNumber(primary.metricValue)} ${primary.metricLabel.toLowerCase()}`
-    : primary.official
-      ? `Official CLI from ${primary.makerName}`
-      : `Built by ${primary.makerName}`;
+    : "Curated by OpenCLI";
 
   return (
     <section className="overflow-hidden rounded-[30px] border border-white/12 bg-white/[0.045] shadow-[inset_0_1px_0_rgba(255,255,255,0.045)]">
