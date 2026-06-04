@@ -1,5 +1,9 @@
 name: CI
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  NEXT_TELEMETRY_DISABLED: 1
+
 on:
   pull_request:
   push:
@@ -11,6 +15,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          submodules: false
 
       - name: Set up Node
         uses: actions/setup-node@v4
