@@ -57,6 +57,14 @@ Fetched by script and stored in git:
 
 If Open CLI cannot fetch an exact install metric for a tool, it does not invent one.
 
+## Validate content
+
+```bash
+npm run validate:data
+```
+
+This checks the curated JSON for duplicate slugs, missing required fields, invalid maker references, bad URLs, malformed GitHub repo names, invalid metric records, and malformed radar candidates.
+
 ## Refresh metrics
 
 ```bash

@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "validate:data": "node scripts/validate-data.mjs",
     "sync:metrics": "node scripts/sync-cli-metrics.mjs",
     "discover:maker": "node scripts/discover-maker-clis.mjs",
     "discover:github": "node scripts/discover-github.mjs"
