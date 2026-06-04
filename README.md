@@ -27,7 +27,7 @@ npm run dev
 - Makers: `src/content/makers.json`
 - CLI directory: `src/content/clis.json`
 - Exact metrics cache: `src/content/cli-metrics.json`
-- Builder launches: `src/content/builder-launches.json`
+- Radar candidates: `src/content/radar-candidates.json`
 
 ## Data philosophy
 
@@ -75,13 +75,14 @@ The sync script prefers explicit package source fields when they are present, an
 
 The script prefers `GITHUB_TOKEN`, and falls back to `gh auth token` if available.
 
-## Discover more builder-made CLIs
+## Discover more CLIs
 
 ```bash
 npm run discover:maker -- steipete
+npm run discover:github
 ```
 
-This prints candidate repos and npm packages for a maker so you can review them before adding them to the directory.
+These commands print or generate candidate repos and packages so you can review them before adding them to the directory.
 
 ## Submit a CLI
 

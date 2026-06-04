@@ -22,17 +22,19 @@ type RadarState = Record<string, { vote: -1 | 0 | 1; comments: string[] }>;
 const storageKey = "opencli-radar-v1";
 const taskTags = ["Coding agents", "Deploy", "Browser", "Database", "Local AI", "Infra", "APIs"];
 
-export function RadarView({ candidates }: { candidates: RadarCandidate[] }) {
-  const [state, setState] = useState<RadarState>({});
-  const [activeCategory, setActiveCategory] = useState("All");
+function readStoredRadarState(): RadarState {
+  if (typeof window === "undefined") return {};
 
-  useEffect(() => {
-    try {
-      setState(JSON.parse(window.localStorage.getItem(storageKey) ?? "{}") as RadarState);
-    } catch {
-      setState({});
-    }
-  }, []);
+  try {
+    return JSON.parse(window.localStorage.getItem(storageKey) ?? "{}") as RadarState;
+  } catch {
+    return {};
+  }
+}
+
+export function RadarView({ candidates }: { candidates: RadarCandidate[] }) {
+  const [state, setState] = useState<RadarState>(readStoredRadarState);
+  const [activeCategory, setActiveCategory] = useState("All");
 
   useEffect(() => {
     window.localStorage.setItem(storageKey, JSON.stringify(state));

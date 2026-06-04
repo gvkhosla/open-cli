@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored plugin/skill reference material is content, not app source.
+    "plugins/**",
   ]),
 ]);
 
