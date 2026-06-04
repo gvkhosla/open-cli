@@ -5,7 +5,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-const navItems: { href: string; label: string }[] = [];
+const navItems: { href: string; label: string }[] = [
+  { href: "/recommend", label: "Recommend" },
+  { href: "/for/research", label: "Use cases" },
+  { href: "/agent", label: "Agents" },
+  { href: "/radar", label: "Radar" },
+];
 
 export function SiteHeader() {
   const pathname = usePathname();

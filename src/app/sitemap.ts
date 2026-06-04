@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { clis } from "@/data/clis";
+import { capabilityDefinitions } from "@/lib/capabilities";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -13,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${siteConfig.url}/agent`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteConfig.url}/recommend`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
@@ -37,6 +44,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  const useCaseRoutes: MetadataRoute.Sitemap = capabilityDefinitions.map((capability) => ({
+    url: `${siteConfig.url}/for/${capability.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.85,
+  }));
+
   const cliRoutes: MetadataRoute.Sitemap = clis.map((cli) => ({
     url: `${siteConfig.url}/cli/${cli.slug}`,
     lastModified: new Date(),
@@ -51,5 +65,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...baseRoutes, ...cliRoutes, ...agentPackRoutes];
+  return [...baseRoutes, ...useCaseRoutes, ...cliRoutes, ...agentPackRoutes];
 }

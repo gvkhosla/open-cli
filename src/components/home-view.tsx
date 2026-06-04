@@ -26,7 +26,7 @@ const toolSuggestions = ["pi", "amp", "claude", "codex", "pandoc", "duckdb", "rg
 
 const categoryChips = ["All", "Productivity", "Docs / Content", "Data", "Shell Utilities", "Git", "Deploy", "Database", "Browser Automation", "AI", "Wallet / Payments"] as const;
 const packageManagerChips = ["All", ...packageManagers] as const;
-const agentTargets = ["Claude Code", "Pi", "Codex", "Cursor", "Amp"] as const;
+const agentTargets = ["Claude Code", "Pi", "Codex", "Amp", "OpenCode"] as const;
 
 const homepageAgentInstructions = `Use OpenCLI to choose and safely operate command-line tools for this work.
 
@@ -122,6 +122,102 @@ function RecommendationDetail({
   );
 }
 
+function formatMetricFreshness(value: string | null) {
+  if (!value) return null;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
+function buildSetupBrief(recommendation: SuperchargeRecommendation) {
+  const stack = recommendation.stack.length > 1
+    ? recommendation.stack.map((item) => `- ${item.role}: ${item.cli.name} — verify with \`${item.verifyCommand}\`.`).join("\n")
+    : `- ${recommendation.primary.name} — verify with \`${recommendation.verifyCommand}\`.`;
+
+  return `Use OpenCLI's recommendation for ${recommendation.capability.label.toLowerCase()}.
+
+Recommended CLI: ${recommendation.primary.name} (${recommendation.primary.shortName})
+Why this tool:
+${recommendation.whyReasons.map((reason) => `- ${reason}`).join("\n")}
+
+Install:
+\`${recommendation.primary.installCommand}\`
+
+Verify before real work:
+\`${recommendation.verifyCommand}\`
+Expected signal: ${recommendation.verifySignal}
+
+First safe command:
+\`${recommendation.primary.quickStart}\`
+
+Recommended stack:
+${stack}
+
+Watch-outs:
+${recommendation.watchouts.map((watchout) => `- ${watchout}`).join("\n")}
+
+Before mutations, deployments, sends, deletes, payments, merges, or secret-exposing commands, ask the user for confirmation.`;
+}
+
+function buildSkillMarkdown(recommendation: SuperchargeRecommendation) {
+  return `---
+name: use-${recommendation.primary.slug}
+description: Use ${recommendation.primary.name} safely for ${recommendation.capability.label.toLowerCase()} from the terminal.
+---
+
+# Use ${recommendation.primary.name}
+
+Use this skill when the user wants to do work related to ${recommendation.capability.label.toLowerCase()} and ${recommendation.primary.shortName} is the right CLI for the job.
+
+## Why this CLI
+
+${recommendation.whyReasons.map((reason) => `- ${reason}`).join("\n")}
+
+## Install
+
+\`\`\`sh
+${recommendation.primary.installCommand}
+\`\`\`
+
+## Verify before real work
+
+\`\`\`sh
+${recommendation.verifyCommand}
+\`\`\`
+
+Expected signal: ${recommendation.verifySignal}
+
+## First safe command
+
+\`\`\`sh
+${recommendation.primary.quickStart}
+\`\`\`
+
+## Guardrails
+
+${recommendation.watchouts.map((watchout) => `- ${watchout}`).join("\n")}
+- Ask before destructive, paid, deploy, merge, delete, publish, send-email, calendar-edit, or secret-exposing actions.
+
+## Agent loop
+
+${recommendation.loopSteps.map((step, index) => `${index + 1}. ${step}`).join("\n")}
+
+Source: OpenCLI (${recommendation.agentPackUrl})
+`;
+}
+
+function downloadTextFile(filename: string, contents: string) {
+  const blob = new Blob([contents], { type: "text/markdown;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
 function RecommendationPanel({
   recommendation,
   isLoading,
@@ -146,6 +242,13 @@ function RecommendationPanel({
     recommendation.matchType === "direct"
       ? "Matched from the CLI name you typed."
       : "Matched from the job you described.";
+  const metricDate = formatMetricFreshness(recommendation.primary.metricAsOf);
+  const metricSource = recommendation.primary.metricSource ? `Source: ${recommendation.primary.metricSource}` : "Exact metric source unavailable";
+  const popularitySignal = primaryMetric
+    ? `${primaryMetric}${metricDate ? ` · ${metricDate}` : ""}`
+    : "No exact install metric yet";
+  const setupBrief = buildSetupBrief(recommendation);
+  const skillMarkdown = buildSkillMarkdown(recommendation);
 
   return (
     <motion.section
@@ -183,6 +286,35 @@ function RecommendationPanel({
           <p className="max-w-2xl text-[15px] leading-7 text-white/72 sm:text-[17px] sm:leading-8">
             {recommendation.rationale}
           </p>
+        </motion.div>
+
+        <motion.div variants={PANEL_STAGGER.item} className="grid gap-3 sm:grid-cols-3">
+          {[
+            { label: "Fit", value: recommendation.capability.label, detail: matchDescription },
+            {
+              label: "Trust",
+              value: recommendation.primary.official ? "Official CLI" : recommendation.agentReadiness.label,
+              detail: recommendation.primary.official ? `Built by ${recommendation.primary.makerName}.` : `${recommendation.agentReadiness.score}/100 agent readiness.`,
+            },
+            { label: "Popularity", value: popularitySignal, detail: metricSource },
+          ].map((signal) => (
+            <div key={signal.label} className="rounded-[22px] border border-white/10 bg-white/[0.045] p-4">
+              <div className="ui-label">{signal.label}</div>
+              <div className="mt-2 text-base font-medium text-white/88 sm:text-sm">{signal.value}</div>
+              <p className="mt-1 text-sm leading-6 text-white/48">{signal.detail}</p>
+            </div>
+          ))}
+        </motion.div>
+
+        <motion.div variants={PANEL_STAGGER.item} className="ui-panel-soft rounded-[24px] p-4 sm:p-5">
+          <div className="ui-label">Why this tool</div>
+          <ul className="mt-3 grid gap-3 text-sm leading-6 text-white/68 sm:grid-cols-3">
+            {recommendation.whyReasons.map((reason) => (
+              <li key={reason} className="rounded-2xl border border-white/8 bg-black/10 p-3">
+                {reason}
+              </li>
+            ))}
+          </ul>
         </motion.div>
 
         {recommendation.stack.length > 1 ? (
@@ -225,16 +357,30 @@ function RecommendationPanel({
             description={recommendation.verifySignal}
             bordered
           />
+          <CommandRow
+            label="First command"
+            command={recommendation.primary.quickStart}
+            copyLabel="Copy command"
+            description="Run this only after install and verify pass."
+            bordered
+          />
           <div className="border-t border-white/8 px-4 py-3.5 sm:px-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <div className="ui-label">Agent pack</div>
+                <div className="ui-label">Reusable agent setup</div>
                 <p className="mt-1 text-sm leading-6 text-white/54">
-                  {recommendation.agentReadiness.label} · {recommendation.agentReadiness.score}/100. Copy this markdown link into your agent.
+                  {recommendation.agentReadiness.label} · {recommendation.agentReadiness.score}/100. Copy a brief, download a skill, or open the full agent pack.
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <CopyButton compact value={recommendation.agentPackUrl} label="Copy link" />
+              <div className="flex flex-wrap items-center gap-2">
+                <CopyButton compact value={setupBrief} label="Copy brief" />
+                <button
+                  type="button"
+                  onClick={() => downloadTextFile("SKILL.md", skillMarkdown)}
+                  className="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-sm text-white/62 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#217EFF]"
+                >
+                  Download SKILL.md
+                </button>
                 <Link href={recommendation.agentPackUrl} className="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-sm text-white/62 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white">
                   Open .md
                 </Link>
@@ -623,10 +769,8 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
               </div>
               <div className="flex flex-wrap gap-2">
                 {agentTargets.map((agent) => (
-                  <span key={agent} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-2.5 py-1 text-sm text-[#afaeac]">
-                    <span className="flex size-5 items-center justify-center rounded bg-[#2f2f2f] font-mono text-[11px] text-white/80">
-                      {agent === "Claude Code" ? "CC" : agent.slice(0, 1)}
-                    </span>
+                  <span key={agent} className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.035] px-2.5 py-1 text-sm text-[#afaeac]">
+                    {agent}
                   </span>
                 ))}
               </div>

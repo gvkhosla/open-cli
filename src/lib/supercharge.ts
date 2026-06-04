@@ -6,9 +6,14 @@ export type SuperchargeCliSummary = {
   slug: string;
   shortName: string;
   name: string;
+  makerName: string;
+  official: boolean;
   installCommand: string;
+  quickStart: string;
   metricValue: number | null;
   metricLabel: string | null;
+  metricSource: string | null;
+  metricAsOf: string | null;
 };
 
 export type SuperchargeAlternative = {
@@ -114,9 +119,14 @@ function summarizeCli(cli: CliEntry): SuperchargeCliSummary {
     slug: cli.slug,
     shortName: cli.shortName,
     name: cli.name,
+    makerName: cli.makerName,
+    official: cli.official,
     installCommand: cli.installCommand,
+    quickStart: cli.quickStart,
     metricValue: cli.metricValue,
     metricLabel: cli.metricLabel,
+    metricSource: cli.metricSource,
+    metricAsOf: cli.metricAsOf,
   };
 }
 

@@ -12,10 +12,10 @@ export function GET() {
     .join("\n");
 
   const capabilities = capabilityDefinitions
-    .map((capability) => `- ${capability.label}: ${capability.blurb}`)
+    .map((capability) => `- ${capability.label}: /for/${capability.slug} — ${capability.blurb}`)
     .join("\n");
 
-  const body = `# ${siteConfig.name}\n\n${siteConfig.description}\n\nOpenCLI helps agents and humans choose command-line tools by task, verify setup, and start with safer commands.\n\n## Agent entry points\n- Home/task search: /\n- CLI pages: /cli/{slug}\n- Agent packs: /cli/{slug}/agent.md\n- Machine index: /llms.txt\n- JSON recommendation API: /api/recommend?q={work-description}\n\n## How agents should use OpenCLI\n1. Search or choose a CLI for the user's task.\n2. Open the CLI's /agent.md pack.\n3. Install only if missing.\n4. Run the verify command before task commands.\n5. Start read-only. Ask before destructive, paid, deploy, merge, delete, or secret-exposing actions.\n\n## Capability areas\n${capabilities}\n\n## Agent-ready CLI packs\n${featured}\n`;
+  const body = `# ${siteConfig.name}\n\n${siteConfig.description}\n\nOpenCLI helps agents and humans choose command-line tools by task, verify setup, and start with safer commands.\n\n## Agent entry points\n- Home/task search: /\n- Shareable task recommendations: /recommend?q={work-description}\n- Curated use-case stacks: /for/{capability-slug}\n- CLI pages: /cli/{slug}\n- Agent packs: /cli/{slug}/agent.md\n- CLI JSON: /cli/{slug}.json\n- Machine index: /llms.txt\n- JSON recommendation API: /api/recommend?q={work-description}\n\n## How agents should use OpenCLI\n1. Search or choose a CLI for the user's task.\n2. Open the CLI's /agent.md pack or /cli/{slug}.json.\n3. Install only if missing.\n4. Run the verify command before task commands.\n5. Start read-only. Ask before destructive, paid, deploy, merge, delete, or secret-exposing actions.\n\n## Capability areas\n${capabilities}\n\n## Agent-ready CLI packs\n${featured}\n`;
 
   return new NextResponse(body, {
     headers: {
