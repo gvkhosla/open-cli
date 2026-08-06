@@ -6325,5 +6325,55 @@
     "exampleWorkflow": [
       "posting"
     ]
+  },
+  {
+    "slug": "zoxide-doctor",
+    "name": "zoxide-doctor",
+    "shortName": "zoxide-doctor",
+    "maker": "jiankn",
+    "category": "Shell Utilities",
+    "installWith": "npm",
+    "installCommand": "npm install -g github:jiankn/zoxide-doctor",
+    "quickStart": "zoxide-doctor --shell zsh --json",
+    "githubRepo": "jiankn/zoxide-doctor",
+    "website": "https://zoxide.org/tools/zoxide-doctor/",
+    "docs": "https://zoxide.org/tools/zoxide-doctor/",
+    "bestFor": "Diagnosing zoxide installation, PATH, and shell initialization problems locally.",
+    "useThisIf": "zoxide is installed but its z command is missing, initialization fails, or shell configuration is unclear.",
+    "skipIf": "You need the zoxide binary itself; install the official zoxide project instead.",
+    "useCases": [
+      "zoxide setup diagnostics",
+      "Shell initialization checks",
+      "PATH and profile troubleshooting"
+    ],
+    "aliases": [
+      "zoxide doctor",
+      "zoxide diagnostic",
+      "zoxide setup checker"
+    ],
+    "keywords": [
+      "zoxide",
+      "shell",
+      "path",
+      "diagnostics",
+      "command not found"
+    ],
+    "tags": [
+      "agent-friendly",
+      "shell",
+      "diagnostics"
+    ],
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": false,
+    "requiresNetwork": false,
+    "ciFriendly": true,
+    "localFirst": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "npm install -g github:jiankn/zoxide-doctor",
+      "zoxide-doctor --shell zsh --json"
+    ]
   }
 ]
