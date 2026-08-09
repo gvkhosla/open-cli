@@ -6333,7 +6333,7 @@
     "maker": "jiankn",
     "category": "Shell Utilities",
     "installWith": "npm",
-    "installCommand": "npm install -g github:jiankn/zoxide-doctor",
+    "installCommand": "npm install -g zoxide-doctor",
     "quickStart": "zoxide-doctor --shell zsh --json",
     "githubRepo": "jiankn/zoxide-doctor",
     "website": "https://zoxide.org/tools/zoxide-doctor/",
@@ -6372,7 +6372,7 @@
     "localFirst": true,
     "destructivePotential": "low",
     "exampleWorkflow": [
-      "npm install -g github:jiankn/zoxide-doctor",
+      "npm install -g zoxide-doctor",
       "zoxide-doctor --shell zsh --json"
     ]
   }
