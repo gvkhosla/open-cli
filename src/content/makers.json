@@ -1048,5 +1048,11 @@
     "type": "individual",
     "url": "https://github.com/darrenburns",
     "featuredBuilder": true
+  },
+  {
+    "slug": "jiankn",
+    "name": "LTD Atlas",
+    "type": "individual",
+    "url": "https://github.com/jiankn"
   }
 ]
