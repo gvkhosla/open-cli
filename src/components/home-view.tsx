@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { CliLogoMarquee } from "@/components/cli-logo-marquee";
 import { CopyButton } from "@/components/copy-button";
 import { SuperchargeAgent } from "@/components/supercharge-agent";
-import { packageManagers } from "@/data/clis";
+import { categoryOrder, packageManagers } from "@/data/clis";
 import type { DirectorySearchResponse, DirectoryStats } from "@/lib/directory";
 import { formatCompactNumber, formatMetric } from "@/lib/format";
 import type { SuperchargeRecommendation } from "@/lib/supercharge";
@@ -24,7 +24,7 @@ const promptSuggestions = [
 
 const toolSuggestions = ["pi", "amp", "claude", "codex", "pandoc", "duckdb", "rg", "gh"] as const;
 
-const categoryChips = ["All", "Productivity", "Docs / Content", "Data", "Shell Utilities", "Git", "Deploy", "Database", "Browser Automation", "AI", "Wallet / Payments"] as const;
+const categoryChips = ["All", ...categoryOrder] as const;
 const packageManagerChips = ["All", ...packageManagers] as const;
 const agentTargets = ["Claude Code", "Pi", "Codex", "Amp", "OpenCode"] as const;
 

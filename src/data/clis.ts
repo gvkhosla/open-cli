@@ -21,7 +21,8 @@ export type CliCategory =
   | "Productivity"
   | "Scraping"
   | "Security"
-  | "Shell Utilities";
+  | "Shell Utilities"
+  | "Wallet / Payments";
 
 export type Maker = {
   slug: string;
@@ -181,6 +182,7 @@ function categoryNoun(category: CliCategory) {
     Scraping: "web scraping",
     Security: "security scanning",
     "Shell Utilities": "shell utilities",
+    "Wallet / Payments": "wallet and payments",
   };
   return map[category] ?? "terminal workflows";
 }
@@ -371,6 +373,15 @@ export const makers = makerSeeds
 
 export const categories = Array.from(new Set(clis.map((cli) => cli.category))).sort();
 export const packageManagers = Array.from(new Set(clis.map((cli) => cli.installWith))).sort();
+
+/** Categories ordered by CLI count, descending — best for filter chips. */
+export const categoryOrder = (() => {
+  const counts = new Map<string, number>();
+  for (const cli of clis) counts.set(cli.category, (counts.get(cli.category) ?? 0) + 1);
+  return Array.from(counts.entries())
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([category]) => category);
+})();
 export const featuredClis = clis.filter((cli) => cli.featured);
 export const officialClis = clis.filter((cli) => cli.official);
 export const builderClis = clis.filter((cli) => !cli.official);
