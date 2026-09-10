@@ -5913,6 +5913,90 @@
     ]
   },
   {
+    "slug": "founder-skills",
+    "name": "Founder Skills",
+    "shortName": "founder-skills",
+    "maker": "gvkhosla",
+    "category": "AI",
+    "installWith": "npx",
+    "installCommand": "npx --yes github:gvkhosla/founder-skills setup",
+    "quickStart": "founder-skills doctor",
+    "githubRepo": "gvkhosla/founder-skills",
+    "website": "https://github.com/gvkhosla/founder-skills",
+    "docs": "https://github.com/gvkhosla/founder-skills",
+    "useCases": [
+      "Startup workflows for coding agents",
+      "Company memory",
+      "Co-founder skill pack"
+    ],
+    "aliases": [
+      "co-founder",
+      "founder skills"
+    ],
+    "keywords": [
+      "founder",
+      "startup",
+      "skills",
+      "codex",
+      "pi"
+    ],
+    "tags": [
+      "agent-friendly",
+      "skills"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": false,
+    "requiresNetwork": false,
+    "localFirst": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "npx --yes github:gvkhosla/founder-skills setup",
+      "founder-skills doctor --json"
+    ]
+  },
+  {
+    "slug": "preflight",
+    "name": "preflight",
+    "shortName": "preflight",
+    "maker": "gvkhosla",
+    "category": "AI",
+    "installWith": "npm",
+    "installCommand": "npm install -g @khosla/preflight",
+    "quickStart": "preflight doctor",
+    "githubRepo": "gvkhosla/preflight",
+    "website": "https://github.com/gvkhosla/preflight",
+    "docs": "https://github.com/gvkhosla/preflight",
+    "useCases": [
+      "Review a git diff with coding agents",
+      "CI agent readiness",
+      "Strict dual-agent review"
+    ],
+    "aliases": [
+      "preflight cli"
+    ],
+    "keywords": [
+      "diff",
+      "review",
+      "agent",
+      "ci"
+    ],
+    "tags": [
+      "agent-friendly",
+      "git"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": false,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "npx @khosla/preflight doctor --json",
+      "npx @khosla/preflight --json --auto"
+    ]
+  },
+  {
     "slug": "amp",
     "name": "Amp",
     "shortName": "amp",

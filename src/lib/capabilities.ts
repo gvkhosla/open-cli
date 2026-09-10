@@ -105,7 +105,7 @@ export const capabilityDefinitions: CapabilityDefinition[] = [
     samplePrompt: "Set up an agent-friendly AI stack so I can run local models and coding workflows from the terminal.",
     searchTerms: ["ai", "agent", "agents", "coding cli", "coding clis", "coding agent", "coding agents", "code agent", "code agents", "terminal agent", "local models", "llm", "prompt", "ollama", "claude", "codex", "gemini", "amp", "pi", "cursor"],
     categories: ["AI", "Package Management"],
-    candidateSlugs: ["pi", "pi-tinker", "amp", "claude-code", "codex", "gemini-cli", "cursor-agent", "opencode", "crush", "amazon-q", "aider", "repomix", "ollama", "llm", "uv", "pickbrain"],
+    candidateSlugs: ["pi", "pi-tinker", "founder-skills", "preflight", "amp", "claude-code", "codex", "gemini-cli", "cursor-agent", "opencode", "crush", "amazon-q", "aider", "repomix", "ollama", "llm", "uv", "pickbrain"],
     setupChecklist: [
       "Install the CLI and any required runtime, model, or Python environment.",
       "Authenticate if the model provider requires it, or pull the local model first.",
