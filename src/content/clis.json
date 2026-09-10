@@ -5870,6 +5870,49 @@
     ]
   },
   {
+    "slug": "pi-tinker",
+    "name": "pi-tinker",
+    "shortName": "pi-tinker",
+    "maker": "gvkhosla",
+    "category": "AI",
+    "installWith": "curl",
+    "installCommand": "pi install git:github.com/gvkhosla/pi-tinker",
+    "quickStart": "/tinker demo",
+    "githubRepo": "gvkhosla/pi-tinker",
+    "website": "https://github.com/gvkhosla/pi-tinker",
+    "docs": "https://github.com/gvkhosla/pi-tinker",
+    "useCases": [
+      "Fine-tune Tinker models from Pi",
+      "Inkling SFT",
+      "Eval checkpoints"
+    ],
+    "aliases": [
+      "tinker pi",
+      "pi tinker"
+    ],
+    "keywords": [
+      "tinker",
+      "fine-tune",
+      "inkling",
+      "sft"
+    ],
+    "tags": [
+      "agent-friendly",
+      "pi"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": false,
+    "destructivePotential": "medium",
+    "exampleWorkflow": [
+      "pi install git:github.com/gvkhosla/pi-tinker",
+      "export TINKER_API_KEY=...",
+      "/tinker doctor"
+    ]
+  },
+  {
     "slug": "amp",
     "name": "Amp",
     "shortName": "amp",
