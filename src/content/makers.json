@@ -1048,5 +1048,12 @@
     "type": "individual",
     "url": "https://github.com/darrenburns",
     "featuredBuilder": true
+  },
+  {
+    "slug": "gvkhosla",
+    "name": "Geet Khosla",
+    "type": "individual",
+    "url": "https://github.com/gvkhosla",
+    "featuredBuilder": false
   }
 ]

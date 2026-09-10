@@ -6325,5 +6325,137 @@
     "exampleWorkflow": [
       "posting"
     ]
+  },
+  {
+    "slug": "ytmd",
+    "name": "ytmd",
+    "shortName": "ytmd",
+    "maker": "gvkhosla",
+    "category": "Docs / Content",
+    "installWith": "curl",
+    "installCommand": "curl -fsSL https://raw.githubusercontent.com/gvkhosla/ytmd/main/install.sh | sh",
+    "quickStart": "ytmd get URL && ytmd search WORDS",
+    "githubRepo": "gvkhosla/ytmd",
+    "website": "https://gvkhosla.github.io/ytmd/",
+    "docs": "https://gvkhosla.github.io/ytmd/llms.txt",
+    "useCases": [
+      "Save YouTube captions",
+      "Search timestamped transcripts",
+      "Feed videos to coding agents"
+    ],
+    "aliases": [
+      "youtube markdown",
+      "youtube transcripts"
+    ],
+    "keywords": [
+      "youtube",
+      "transcript",
+      "captions",
+      "agent"
+    ],
+    "tags": [
+      "agent-friendly",
+      "local-first",
+      "json-output"
+    ],
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": false,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "ciFriendly": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "ytmd doctor",
+      "ytmd get https://youtu.be/jNQXAC9IVRw",
+      "ytmd search cache invalidation --json"
+    ]
+  },
+  {
+    "slug": "pickbrain",
+    "name": "Pickbrain",
+    "shortName": "pickbrain",
+    "maker": "gvkhosla",
+    "category": "AI",
+    "installWith": "curl",
+    "installCommand": "git clone https://github.com/gvkhosla/pickbrain.git && cd pickbrain && make pickbrain-install",
+    "quickStart": "pickbrain -q --type pi auth middleware",
+    "githubRepo": "gvkhosla/pickbrain",
+    "website": "https://github.com/gvkhosla/pickbrain",
+    "docs": "https://github.com/gvkhosla/pickbrain",
+    "useCases": [
+      "Recall past coding-agent sessions",
+      "Search Pi, Codex, and Claude history",
+      "Local semantic memory"
+    ],
+    "aliases": [
+      "witchcraft pickbrain"
+    ],
+    "keywords": [
+      "recall",
+      "sessions",
+      "semantic",
+      "pi",
+      "memory"
+    ],
+    "tags": [
+      "agent-friendly",
+      "local-first"
+    ],
+    "agentFriendly": true,
+    "supportsJsonOutput": false,
+    "supportsNonInteractive": true,
+    "requiresAuth": false,
+    "requiresNetwork": false,
+    "localFirst": true,
+    "ciFriendly": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "pickbrain doctor",
+      "pickbrain -q --type pi auth middleware"
+    ]
+  },
+  {
+    "slug": "momento",
+    "name": "Momento",
+    "shortName": "momento",
+    "maker": "gvkhosla",
+    "category": "Productivity",
+    "installWith": "curl",
+    "installCommand": "git clone https://github.com/gvkhosla/momento.git && cd momento && npm link",
+    "quickStart": "momento capture URL && momento search query && momento brief --skip-model",
+    "githubRepo": "gvkhosla/momento",
+    "website": "https://github.com/gvkhosla/momento",
+    "docs": "https://github.com/gvkhosla/momento",
+    "useCases": [
+      "Local X bookmark vault",
+      "Extract articles",
+      "Daily brief from bookmarks"
+    ],
+    "aliases": [
+      "momento vault"
+    ],
+    "keywords": [
+      "bookmarks",
+      "x",
+      "brief",
+      "vault"
+    ],
+    "tags": [
+      "agent-friendly",
+      "local-first"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": false,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "momento stats",
+      "momento capture https://example.com/post",
+      "momento search pricing"
+    ]
   }
 ]

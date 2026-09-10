@@ -105,7 +105,7 @@ export const capabilityDefinitions: CapabilityDefinition[] = [
     samplePrompt: "Set up an agent-friendly AI stack so I can run local models and coding workflows from the terminal.",
     searchTerms: ["ai", "agent", "agents", "coding cli", "coding clis", "coding agent", "coding agents", "code agent", "code agents", "terminal agent", "local models", "llm", "prompt", "ollama", "claude", "codex", "gemini", "amp", "pi", "cursor"],
     categories: ["AI", "Package Management"],
-    candidateSlugs: ["pi", "amp", "claude-code", "codex", "gemini-cli", "cursor-agent", "opencode", "crush", "amazon-q", "aider", "repomix", "ollama", "llm", "uv"],
+    candidateSlugs: ["pi", "amp", "claude-code", "codex", "gemini-cli", "cursor-agent", "opencode", "crush", "amazon-q", "aider", "repomix", "ollama", "llm", "uv", "pickbrain"],
     setupChecklist: [
       "Install the CLI and any required runtime, model, or Python environment.",
       "Authenticate if the model provider requires it, or pull the local model first.",
@@ -168,7 +168,7 @@ export const capabilityDefinitions: CapabilityDefinition[] = [
     samplePrompt: "Research a topic from web pages and PDFs, extract the useful text, and produce a sourced summary.",
     searchTerms: ["research", "web research", "summarize", "sources", "pdf", "crawl", "scrape", "collect", "extract", "read papers"],
     categories: ["Scraping", "Docs / Content", "Shell Utilities"],
-    candidateSlugs: ["firecrawl", "wget", "httpie", "posting", "yt-dlp", "ocrmypdf", "poppler", "pandoc", "rg"],
+    candidateSlugs: ["firecrawl", "wget", "httpie", "posting", "yt-dlp", "ytmd", "ocrmypdf", "poppler", "pandoc", "rg"],
     setupChecklist: [
       "Install web, PDF, or extraction CLIs based on the source material.",
       "Verify the agent can fetch or read one small source before collecting many.",
