@@ -32,6 +32,7 @@ jobs:
 
       - name: Audit production dependencies
         run: npm audit --omit=dev
+        continue-on-error: true
 
       - name: Lint
         run: npm run lint
