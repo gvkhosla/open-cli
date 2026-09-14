@@ -1055,5 +1055,24 @@
     "type": "individual",
     "url": "https://github.com/gvkhosla",
     "featuredBuilder": false
+  },
+  {
+    "slug": "blue-b",
+    "name": "Blue-B",
+    "type": "individual",
+    "url": "https://github.com/Blue-B"
+  },
+  {
+    "slug": "ant-design",
+    "name": "Ant Design",
+    "type": "org",
+    "url": "https://ant.design",
+    "officialPlatformMaker": true
+  },
+  {
+    "slug": "jiankn",
+    "name": "LTD Atlas",
+    "type": "individual",
+    "url": "https://github.com/jiankn"
   }
 ]

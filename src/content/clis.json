@@ -5918,12 +5918,12 @@
     "shortName": "founder-skills",
     "maker": "gvkhosla",
     "category": "AI",
-    "installWith": "npx",
+    "installWith": "npm",
     "installCommand": "npx --yes github:gvkhosla/founder-skills setup",
     "quickStart": "founder-skills doctor",
     "githubRepo": "gvkhosla/founder-skills",
-    "website": "https://github.com/gvkhosla/founder-skills",
-    "docs": "https://github.com/gvkhosla/founder-skills",
+    "website": "https://fskills.xyz",
+    "docs": "https://fskills.xyz",
     "useCases": [
       "Startup workflows for coding agents",
       "Company memory",
@@ -6583,6 +6583,154 @@
       "momento stats",
       "momento capture https://example.com/post",
       "momento search pricing"
+    ]
+  },
+  {
+    "slug": "pisesh",
+    "name": "pisesh",
+    "shortName": "pisesh",
+    "maker": "blue-b",
+    "category": "AI",
+    "installWith": "npm",
+    "installCommand": "npm install -g pisesh",
+    "quickStart": "pisesh",
+    "githubRepo": "Blue-B/pisesh",
+    "website": "https://www.npmjs.com/package/pisesh",
+    "docs": "https://github.com/Blue-B/pisesh",
+    "npmPackage": "pisesh",
+    "bestFor": "Bookmarking, searching, and resuming Pi coding-agent sessions from a keyboard TUI.",
+    "useThisIf": "Pi's built-in resume list is too long and you want favorites, titles, and project-scoped sessions.",
+    "skipIf": "You are not using the Pi coding agent.",
+    "useCases": [
+      "Resume Pi sessions",
+      "Favorite long-running threads",
+      "Search session titles and prompts"
+    ],
+    "aliases": [
+      "pi sesh",
+      "pi session manager"
+    ],
+    "keywords": [
+      "pi",
+      "sessions",
+      "tui",
+      "resume",
+      "favorites"
+    ],
+    "tags": [
+      "agent-friendly",
+      "tui",
+      "pi"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": false,
+    "requiresAuth": false,
+    "requiresNetwork": false,
+    "localFirst": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "npm install -g pisesh",
+      "pisesh"
+    ]
+  },
+  {
+    "slug": "ant-design-cli",
+    "name": "Ant Design CLI",
+    "shortName": "antd-cli",
+    "maker": "ant-design",
+    "category": "Docs / Content",
+    "installWith": "npm",
+    "installCommand": "npm i -g @ant-design/cli",
+    "quickStart": "antd --help",
+    "githubRepo": "ant-design/ant-design-cli",
+    "website": "https://ant.design/docs/react/cli",
+    "docs": "https://ant.design/docs/react/cli",
+    "npmPackage": "@ant-design/cli",
+    "packageName": "@ant-design/cli",
+    "bestFor": "Querying Ant Design component docs and analyzing antd usage from the terminal.",
+    "useThisIf": "You want offline Ant Design component knowledge, version checks, or project usage analysis.",
+    "skipIf": "You are not using Ant Design.",
+    "useCases": [
+      "Query Ant Design component docs",
+      "Check antd versions",
+      "Analyze antd usage in a project"
+    ],
+    "aliases": [
+      "antd cli",
+      "ant design cli"
+    ],
+    "keywords": [
+      "antd",
+      "ant-design",
+      "components",
+      "docs",
+      "react"
+    ],
+    "tags": [
+      "official",
+      "agent-friendly",
+      "docs"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": false,
+    "requiresNetwork": false,
+    "localFirst": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "npm i -g @ant-design/cli",
+      "antd --help"
+    ]
+  },
+  {
+    "slug": "zoxide-doctor",
+    "name": "zoxide-doctor",
+    "shortName": "zoxide-doctor",
+    "maker": "jiankn",
+    "category": "Shell Utilities",
+    "installWith": "npm",
+    "installCommand": "npm install -g zoxide-doctor",
+    "quickStart": "zoxide-doctor --shell zsh --json",
+    "githubRepo": "jiankn/zoxide-doctor",
+    "website": "https://zoxide.org/tools/zoxide-doctor/",
+    "docs": "https://zoxide.org/tools/zoxide-doctor/",
+    "npmPackage": "zoxide-doctor",
+    "bestFor": "Diagnosing zoxide installation, PATH, and shell initialization problems locally.",
+    "useThisIf": "zoxide is installed but its z command is missing, initialization fails, or shell configuration is unclear.",
+    "skipIf": "You need the zoxide binary itself; install the official zoxide project instead.",
+    "useCases": [
+      "zoxide setup diagnostics",
+      "Shell initialization checks",
+      "PATH and profile troubleshooting"
+    ],
+    "aliases": [
+      "zoxide doctor",
+      "zoxide diagnostic",
+      "zoxide setup checker"
+    ],
+    "keywords": [
+      "zoxide",
+      "shell",
+      "path",
+      "diagnostics",
+      "command not found"
+    ],
+    "tags": [
+      "agent-friendly",
+      "shell",
+      "diagnostics"
+    ],
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": false,
+    "requiresNetwork": false,
+    "ciFriendly": true,
+    "localFirst": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "npm install -g zoxide-doctor",
+      "zoxide-doctor --shell zsh --json"
     ]
   }
 ]

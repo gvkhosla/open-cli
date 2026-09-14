@@ -15,6 +15,8 @@ It is built around a simple idea:
 - Tailwind CSS
 - Vercel
 
+MIT licensed. See [LICENSE](LICENSE).
+
 ## Local development
 
 ```bash
@@ -105,3 +107,4 @@ That keeps the project easy to contribute to without adding a heavy backend.
 - Makers: https://opencli.co/makers
 - Submit: https://opencli.co/submit
 - GitHub: https://github.com/gvkhosla/open-cli
+- License: [MIT](LICENSE)
