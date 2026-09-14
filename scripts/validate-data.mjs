@@ -270,6 +270,22 @@ function validateRadar(radar) {
       if (!isNonEmptyString(candidate?.[key])) errorAt("radar", index, slug, `missing ${key}`);
     }
 
+    if (candidate?.detectedFirstCommand !== undefined && !isNonEmptyString(candidate.detectedFirstCommand)) {
+      errorAt("radar", index, slug, "detectedFirstCommand must be a non-empty string when present");
+    }
+
+    if (candidate?.beatsIncumbent !== undefined && !isNonEmptyString(candidate.beatsIncumbent)) {
+      errorAt("radar", index, slug, "beatsIncumbent must be a non-empty string when present");
+    }
+
+    if (candidate?.verdict !== undefined && !new Set(["try", "wait", "skip"]).has(candidate.verdict)) {
+      errorAt("radar", index, slug, `invalid verdict ${JSON.stringify(candidate.verdict)}`);
+    }
+
+    if (isNonEmptyString(candidate?.detectedInstallCommand) && candidate.detectedInstallCommand.trim().startsWith("#")) {
+      errorAt("radar", index, slug, "detectedInstallCommand must be a real command, not a placeholder comment");
+    }
+
     if (isNonEmptyString(candidate?.sourceUrl) && !isHttpUrl(candidate.sourceUrl)) {
       errorAt("radar", index, slug, "sourceUrl must be an http(s) URL");
     }

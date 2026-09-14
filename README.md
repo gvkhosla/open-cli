@@ -85,6 +85,17 @@ The sync script prefers explicit package source fields when they are present, an
 
 The script prefers `GITHUB_TOKEN`, and falls back to `gh auth token` if available.
 
+## Radar
+
+`/radar` is a curated watch list, not a scrape dump. Candidates in `src/content/radar-candidates.json` should be tools that are **not** already in the directory, with:
+
+- a real install command
+- a first command to run
+- a try / wait / skip call
+- why it might beat an incumbent
+
+Promote a candidate into `clis.json` only after it earns a directory page.
+
 ## Discover more CLIs
 
 ```bash

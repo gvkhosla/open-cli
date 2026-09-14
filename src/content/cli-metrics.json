@@ -1753,5 +1753,50 @@
     "metricValue": null,
     "metricSource": null,
     "metricAsOf": "2026-09-14T09:00:24.840Z"
+  },
+  "gws": {
+    "githubStars": 30993,
+    "latestRelease": "2026-03-31T18:53:24Z",
+    "license": "Apache-2.0",
+    "metricLabel": null,
+    "metricValue": null,
+    "metricSource": null,
+    "metricAsOf": "2026-09-14"
+  },
+  "harlequin": {
+    "githubStars": 6398,
+    "latestRelease": "2026-09-02T19:41:17Z",
+    "license": "MIT",
+    "metricLabel": null,
+    "metricValue": null,
+    "metricSource": null,
+    "metricAsOf": "2026-09-14"
+  },
+  "zellij": {
+    "githubStars": 35416,
+    "latestRelease": "2026-08-28T09:21:44Z",
+    "license": "MIT",
+    "metricLabel": null,
+    "metricValue": null,
+    "metricSource": null,
+    "metricAsOf": "2026-09-14"
+  },
+  "tmux": {
+    "githubStars": 49247,
+    "latestRelease": "2026-08-17T12:53:48Z",
+    "license": "ISC",
+    "metricLabel": null,
+    "metricValue": null,
+    "metricSource": null,
+    "metricAsOf": "2026-09-14"
+  },
+  "ast-grep": {
+    "githubStars": 15895,
+    "latestRelease": "2026-08-31T01:42:23Z",
+    "license": "MIT",
+    "metricLabel": null,
+    "metricValue": null,
+    "metricSource": null,
+    "metricAsOf": "2026-09-14"
   }
 }

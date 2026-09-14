@@ -6829,5 +6829,242 @@
       "/swarm-start scout :: inspect this repo",
       "/swarm"
     ]
+  },
+  {
+    "slug": "gws",
+    "name": "Google Workspace CLI",
+    "shortName": "gws",
+    "maker": "google",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install googleworkspace-cli",
+    "quickStart": "gws auth setup",
+    "githubRepo": "googleworkspace/cli",
+    "website": "https://github.com/googleworkspace/cli",
+    "docs": "https://github.com/googleworkspace/cli",
+    "tagline": "Drive, Gmail, Calendar, Sheets, and Chat from one official CLI.",
+    "bestFor": "Searching Google Workspace mail, files, and calendars from the terminal or an agent.",
+    "useThisIf": "You live in Google Workspace and want an agent to search Gmail or Calendar without IMAP hacks.",
+    "skipIf": "You're not on Google Workspace or cannot complete Google Cloud OAuth.",
+    "useCases": [
+      "Gmail search",
+      "Calendar",
+      "Drive files",
+      "Sheets"
+    ],
+    "aliases": [
+      "google workspace cli",
+      "gmail cli"
+    ],
+    "keywords": [
+      "gmail calendar drive sheets workspace google"
+    ],
+    "tags": [
+      "official",
+      "agent-friendly",
+      "json-output",
+      "dry-run"
+    ],
+    "featured": true,
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "supportsDryRun": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "ciFriendly": true,
+    "destructivePotential": "medium",
+    "exampleWorkflow": [
+      "gws auth setup",
+      "gws gmail users messages list --params '{\"userId\": \"me\", \"q\": \"is:unread newer_than:7d\", \"maxResults\": 5}'",
+      "gws calendar events list --params '{\"calendarId\": \"primary\", \"maxResults\": 5}' --dry-run"
+    ],
+    "brewFormula": "googleworkspace-cli",
+    "npmPackage": "@googleworkspace/cli"
+  },
+  {
+    "slug": "harlequin",
+    "name": "Harlequin",
+    "shortName": "harlequin",
+    "maker": "tconbeer",
+    "category": "Database",
+    "installWith": "brew",
+    "installCommand": "brew install harlequin",
+    "quickStart": "harlequin",
+    "githubRepo": "tconbeer/harlequin",
+    "website": "https://harlequin.sh",
+    "docs": "https://harlequin.sh",
+    "tagline": "A SQL IDE for DuckDB, SQLite, and Postgres in the terminal.",
+    "bestFor": "Exploring local SQL visually when a prompt-only shell is too cramped.",
+    "useThisIf": "You want a terminal SQL IDE, especially for DuckDB, not just a REPL.",
+    "skipIf": "You need a scriptable, non-interactive SQL CLI \u2014 use DuckDB or pgcli instead.",
+    "useCases": [
+      "SQL IDE",
+      "DuckDB",
+      "Schema browsing"
+    ],
+    "aliases": [
+      "sql ide",
+      "duckdb ide"
+    ],
+    "keywords": [
+      "duckdb sqlite postgres textual sql"
+    ],
+    "tags": [
+      "builder",
+      "local-first"
+    ],
+    "featured": true,
+    "agentFriendly": false,
+    "supportsJsonOutput": false,
+    "supportsNonInteractive": false,
+    "requiresNetwork": false,
+    "localFirst": true,
+    "destructivePotential": "medium",
+    "exampleWorkflow": [
+      "harlequin",
+      "harlequin --adapter sqlite",
+      "harlequin --help"
+    ],
+    "brewFormula": "harlequin",
+    "pypiPackage": "harlequin"
+  },
+  {
+    "slug": "zellij",
+    "name": "Zellij",
+    "shortName": "zellij",
+    "maker": "zellij-org",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install zellij",
+    "quickStart": "zellij",
+    "githubRepo": "zellij-org/zellij",
+    "website": "https://zellij.dev",
+    "docs": "https://zellij.dev/documentation/",
+    "tagline": "A terminal workspace with batteries included.",
+    "bestFor": "Persistent sessions, panes, and layouts without a tmux config rabbit hole.",
+    "useThisIf": "You want a multiplexer that is usable on day one.",
+    "skipIf": "You already have a tmux setup you like and do not want another layer.",
+    "useCases": [
+      "Terminal sessions",
+      "Panes",
+      "Remote work"
+    ],
+    "aliases": [
+      "terminal multiplexer"
+    ],
+    "keywords": [
+      "tmux panes sessions workspace"
+    ],
+    "tags": [
+      "builder",
+      "local-first"
+    ],
+    "featured": true,
+    "agentFriendly": false,
+    "supportsJsonOutput": false,
+    "supportsNonInteractive": false,
+    "requiresNetwork": false,
+    "localFirst": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "zellij",
+      "zellij --session work",
+      "zellij list-sessions"
+    ],
+    "brewFormula": "zellij",
+    "crateName": "zellij"
+  },
+  {
+    "slug": "tmux",
+    "name": "tmux",
+    "shortName": "tmux",
+    "maker": "tmux",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install tmux",
+    "quickStart": "tmux new -s work",
+    "githubRepo": "tmux/tmux",
+    "website": "https://github.com/tmux/tmux",
+    "docs": "https://github.com/tmux/tmux/wiki",
+    "tagline": "The standard terminal multiplexer for persistent sessions.",
+    "bestFor": "Detaching SSH sessions and splitting panes on remote machines.",
+    "useThisIf": "You need the multiplexer every server already has.",
+    "skipIf": "You want friendlier defaults and a modern UI \u2014 try Zellij.",
+    "useCases": [
+      "Persistent sessions",
+      "SSH",
+      "Pane splits"
+    ],
+    "aliases": [
+      "terminal multiplexer"
+    ],
+    "keywords": [
+      "sessions panes ssh detach"
+    ],
+    "tags": [
+      "local-first"
+    ],
+    "agentFriendly": false,
+    "supportsJsonOutput": false,
+    "supportsNonInteractive": true,
+    "requiresNetwork": false,
+    "localFirst": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "tmux new -s work",
+      "tmux ls",
+      "tmux attach -t work"
+    ],
+    "brewFormula": "tmux"
+  },
+  {
+    "slug": "ast-grep",
+    "name": "ast-grep",
+    "shortName": "sg",
+    "maker": "ast-grep",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install ast-grep",
+    "quickStart": "sg --pattern 'console.log($$$)' src",
+    "githubRepo": "ast-grep/ast-grep",
+    "website": "https://ast-grep.github.io",
+    "docs": "https://ast-grep.github.io/guide/quick-start.html",
+    "tagline": "Structural search and replace for code, not just text.",
+    "bestFor": "Finding and rewriting code by AST pattern \u2014 what ripgrep cannot see.",
+    "useThisIf": "You want an agent to refactor or audit code by syntax, not regex.",
+    "skipIf": "You only need plain-text search \u2014 use ripgrep.",
+    "useCases": [
+      "Structural search",
+      "Codemods",
+      "Refactoring"
+    ],
+    "aliases": [
+      "sg",
+      "ast grep"
+    ],
+    "keywords": [
+      "ast grep refactor search replace"
+    ],
+    "tags": [
+      "builder",
+      "agent-friendly",
+      "json-output",
+      "local-first"
+    ],
+    "featured": true,
+    "agentFriendly": true,
+    "supportsJsonOutput": true,
+    "supportsNonInteractive": true,
+    "requiresNetwork": false,
+    "localFirst": true,
+    "ciFriendly": true,
+    "destructivePotential": "medium",
+    "exampleWorkflow": [
+      "sg --pattern 'console.log($$$)' src",
+      "sg --pattern 'console.log($$$)' --rewrite 'logger.debug($$$)' --dry-run src",
+      "sg scan"
+    ],
+    "brewFormula": "ast-grep"
   }
 ]

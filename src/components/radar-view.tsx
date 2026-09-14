@@ -2,25 +2,12 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { CopyButton } from "@/components/copy-button";
-
-type RadarCandidate = {
-  slug: string;
-  name: string;
-  sourceUrl: string;
-  description: string;
-  detectedCategory: string;
-  detectedUseCases: string[];
-  detectedInstallCommand: string;
-  whyFound: string;
-  signals: { stars: number; growth: string; lastSeen: string; hasBin: boolean; jsonOutput: boolean; dryRun: boolean };
-  agentReadinessGuess: number;
-  status: string;
-};
+import type { RadarCandidate, RadarVerdict } from "@/lib/radar";
 
 type RadarState = Record<string, { vote: -1 | 0 | 1; comments: string[] }>;
+type Filter = "try" | "wait" | "all";
 
-const storageKey = "opencli-radar-v1";
-const taskTags = ["Coding agents", "Deploy", "Browser", "Database", "Local AI", "Infra", "APIs"];
+const storageKey = "opencli-radar-v2";
 
 function readStoredRadarState(): RadarState {
   if (typeof window === "undefined") return {};
@@ -32,16 +19,27 @@ function readStoredRadarState(): RadarState {
   }
 }
 
+function verdictLabel(verdict: RadarVerdict | undefined) {
+  if (verdict === "try") return "Try now";
+  if (verdict === "skip") return "Skip";
+  return "Wait";
+}
+
 export function RadarView({ candidates }: { candidates: RadarCandidate[] }) {
   const [state, setState] = useState<RadarState>(readStoredRadarState);
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [filter, setFilter] = useState<Filter>("try");
 
   useEffect(() => {
     window.localStorage.setItem(storageKey, JSON.stringify(state));
   }, [state]);
 
-  const categories = useMemo(() => ["All", ...Array.from(new Set(candidates.map((candidate) => candidate.detectedCategory)))], [candidates]);
-  const visible = activeCategory === "All" ? candidates : candidates.filter((candidate) => candidate.detectedCategory === activeCategory);
+  const live = useMemo(
+    () => candidates.filter((candidate) => candidate.status !== "promoted"),
+    [candidates],
+  );
+  const visible = live.filter((candidate) => (filter === "all" ? true : (candidate.verdict ?? "wait") === filter));
+  const tryCount = live.filter((candidate) => candidate.verdict === "try").length;
+  const waitCount = live.filter((candidate) => (candidate.verdict ?? "wait") === "wait").length;
 
   function vote(slug: string, value: -1 | 1) {
     setState((current) => ({
@@ -65,92 +63,127 @@ export function RadarView({ candidates }: { candidates: RadarCandidate[] }) {
         <div className="space-y-5">
           <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200/12 bg-cyan-200/[0.04] px-3 py-1 text-sm text-cyan-50/62">
             <span className="size-1.5 rounded-full bg-cyan-300/70" />
-            Scraped candidates + community signal
+            New tools, with a first command
           </div>
           <div className="space-y-4">
-            <h1 className="max-w-[11ch] text-balance text-5xl font-semibold tracking-[-0.06em] text-white sm:text-7xl">OpenCLI Radar</h1>
+            <h1 className="max-w-[12ch] text-balance text-5xl font-semibold tracking-[-0.06em] text-white sm:text-7xl">OpenCLI Radar</h1>
             <p className="max-w-[66ch] text-pretty text-base leading-7 text-white/62 sm:text-lg sm:leading-8">
-              Radar tracks CLIs being made across GitHub and package registries. Vote and comment on what is actually useful so OpenCLI can recommend the right stack for real work.
+              Not a launch dump. Each card is a CLI that is not in the directory yet, with a real install, a first command, and a call: try now, wait, or skip.
             </p>
           </div>
         </div>
         <div className="ui-panel-soft rounded-[26px] p-4 sm:p-5">
-          <div className="ui-label">Community review prompt</div>
-          <p className="mt-2 text-base leading-7 text-white/62 sm:text-sm sm:leading-6">Would you give this CLI to an agent? Upvote if useful, downvote if noisy, and comment with the work it helped you do.</p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {taskTags.slice(0, 5).map((tag) => <span key={tag} className="rounded-full border border-white/8 bg-white/[0.03] px-2.5 py-1 text-sm text-white/46">{tag}</span>)}
-          </div>
+          <div className="ui-label">How to use this</div>
+          <p className="mt-2 text-base leading-7 text-white/62 sm:text-sm sm:leading-6">
+            Start with Try now. Copy the first command. If it earns a slot in your workflow, it can graduate into the directory.
+          </p>
         </div>
       </section>
 
       <div className="flex flex-wrap gap-2">
-        {categories.map((category) => (
-          <button key={category} type="button" onClick={() => setActiveCategory(category)} className={`rounded-full px-3 py-1.5 text-sm transition ${activeCategory === category ? "bg-white text-black" : "border border-white/10 bg-white/[0.03] text-white/58 hover:border-white/16 hover:text-white"}`}>
-            {category}
+        {(
+          [
+            ["try", `Try now (${tryCount})`],
+            ["wait", `Wait (${waitCount})`],
+            ["all", `All (${live.length})`],
+          ] as const
+        ).map(([value, label]) => (
+          <button
+            key={value}
+            type="button"
+            onClick={() => setFilter(value)}
+            className={`rounded-full px-3 py-1.5 text-sm transition ${filter === value ? "bg-white text-black" : "border border-white/10 bg-white/[0.03] text-white/58 hover:border-white/16 hover:text-white"}`}
+          >
+            {label}
           </button>
         ))}
       </div>
 
-      <section className="grid gap-4 lg:grid-cols-2">
-        {visible.map((candidate) => {
-          const itemState = state[candidate.slug] ?? { vote: 0, comments: [] };
-          const score = candidate.agentReadinessGuess + itemState.vote * 4 + itemState.comments.length * 2;
-          return (
-            <article key={candidate.slug} className="group overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.035] transition hover:border-white/16 hover:bg-white/[0.05]">
-              <div className="p-5 sm:p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h2 className="text-2xl font-medium tracking-tight text-white">{candidate.name}</h2>
-                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] text-white/42">{candidate.detectedCategory}</span>
+      {visible.length === 0 ? (
+        <div className="rounded-[28px] border border-white/10 bg-white/[0.03] px-6 py-16 text-center">
+          <p className="text-sm text-white/64">Nothing in this bucket right now.</p>
+          <p className="mt-1 text-xs text-white/42">Try the other filter, or browse the directory for tools that already earned a page.</p>
+        </div>
+      ) : (
+        <section className="grid gap-4 lg:grid-cols-2">
+          {visible.map((candidate) => {
+            const itemState = state[candidate.slug] ?? { vote: 0, comments: [] };
+            const firstCommand = candidate.detectedFirstCommand ?? candidate.detectedInstallCommand;
+            const score = Math.min(99, candidate.agentReadinessGuess + itemState.vote * 4 + itemState.comments.length * 2);
+            const verdict = candidate.verdict ?? "wait";
+            return (
+              <article key={candidate.slug} className="group overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.035] transition hover:border-white/16 hover:bg-white/[0.05]">
+                <div className="p-5 sm:p-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h2 className="text-2xl font-medium tracking-tight text-white">{candidate.name}</h2>
+                        <span className={`rounded-full px-2 py-0.5 text-[11px] ${verdict === "try" ? "bg-emerald-300/90 text-black" : "border border-white/10 bg-white/[0.04] text-white/50"}`}>
+                          {verdictLabel(verdict)}
+                        </span>
+                        <span className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] text-white/42">{candidate.detectedCategory}</span>
+                      </div>
+                      <p className="mt-2 text-base leading-7 text-white/64 sm:text-sm sm:leading-6">{candidate.description}</p>
                     </div>
-                    <p className="mt-2 text-base leading-7 text-white/64 sm:text-sm sm:leading-6">{candidate.description}</p>
+                    <div className="shrink-0 text-right">
+                      <div className="font-mono text-2xl text-white tabular-nums">{score}</div>
+                      <div className="text-[10px] uppercase tracking-wide text-white/34">agent fit</div>
+                    </div>
                   </div>
-                  <div className="shrink-0 text-right">
-                    <div className="font-mono text-2xl text-white tabular-nums">{Math.min(score, 99)}</div>
-                    <div className="text-[10px] uppercase tracking-wide text-white/34">agent fit</div>
+
+                  {candidate.beatsIncumbent ? (
+                    <p className="mt-4 text-sm leading-6 text-white/52">
+                      <span className="text-white/36">Choose this over </span>
+                      {candidate.beatsIncumbent}
+                    </p>
+                  ) : null}
+
+                  <div className="mt-5 space-y-2">
+                    <CommandRow label="Install" value={candidate.detectedInstallCommand} />
+                    <CommandRow label="First command" value={firstCommand} />
                   </div>
+
+                  <div className="mt-4 grid grid-cols-3 gap-2">
+                    <Signal label="Stars" value={candidate.signals.stars.toLocaleString()} />
+                    <Signal label="Why now" value={candidate.signals.growth} />
+                    <Signal label="Seen" value={candidate.signals.lastSeen} />
+                  </div>
+
+                  <p className="mt-4 text-sm leading-6 text-white/44">{candidate.whyFound}</p>
                 </div>
 
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {candidate.detectedUseCases.map((useCase) => <span key={useCase} className="rounded-full bg-white/[0.04] px-2.5 py-1 text-sm text-white/48">{useCase}</span>)}
-                </div>
-
-                <div className="mt-5 rounded-2xl border border-white/8 bg-black/16 p-3">
-                  <div className="flex items-center gap-2">
-                    <code className="min-w-0 flex-1 overflow-x-auto font-mono text-sm text-white/78">{candidate.detectedInstallCommand}</code>
-                    <CopyButton compact value={candidate.detectedInstallCommand} label="Copy" />
+                <div className="border-t border-white/8 bg-black/10 p-4 sm:p-5">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex gap-2">
+                      <button type="button" onClick={() => vote(candidate.slug, 1)} className={`rounded-full px-3 py-1.5 text-sm transition ${itemState.vote === 1 ? "bg-emerald-300 text-black" : "border border-white/10 text-white/58 hover:bg-white/[0.06] hover:text-white"}`}>Useful</button>
+                      <button type="button" onClick={() => vote(candidate.slug, -1)} className={`rounded-full px-3 py-1.5 text-sm transition ${itemState.vote === -1 ? "bg-rose-300 text-black" : "border border-white/10 text-white/58 hover:bg-white/[0.06] hover:text-white"}`}>Noisy</button>
+                    </div>
+                    <a href={candidate.sourceUrl} target="_blank" rel="noreferrer" className="text-sm text-white/46 transition hover:text-white">Source →</a>
                   </div>
+                  <CommentBox slug={candidate.slug} onSubmit={comment} />
+                  {itemState.comments.length > 0 ? (
+                    <div className="mt-3 space-y-2">
+                      {itemState.comments.map((body, index) => <p key={`${body}-${index}`} className="rounded-2xl border border-white/8 bg-white/[0.025] px-3 py-2 text-sm leading-6 text-white/58">{body}</p>)}
+                    </div>
+                  ) : null}
                 </div>
+              </article>
+            );
+          })}
+        </section>
+      )}
+    </div>
+  );
+}
 
-                <div className="mt-4 grid grid-cols-3 gap-2">
-                  <Signal label="Stars" value={candidate.signals.stars.toLocaleString()} />
-                  <Signal label="Growth" value={candidate.signals.growth} />
-                  <Signal label="Seen" value={candidate.signals.lastSeen} />
-                </div>
-
-                <p className="mt-4 text-sm leading-6 text-white/44">{candidate.whyFound}</p>
-              </div>
-
-              <div className="border-t border-white/8 bg-black/10 p-4 sm:p-5">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div className="flex gap-2">
-                    <button type="button" onClick={() => vote(candidate.slug, 1)} className={`rounded-full px-3 py-1.5 text-sm transition ${itemState.vote === 1 ? "bg-emerald-300 text-black" : "border border-white/10 text-white/58 hover:bg-white/[0.06] hover:text-white"}`}>Useful</button>
-                    <button type="button" onClick={() => vote(candidate.slug, -1)} className={`rounded-full px-3 py-1.5 text-sm transition ${itemState.vote === -1 ? "bg-rose-300 text-black" : "border border-white/10 text-white/58 hover:bg-white/[0.06] hover:text-white"}`}>Noisy</button>
-                  </div>
-                  <a href={candidate.sourceUrl} target="_blank" rel="noreferrer" className="text-sm text-white/46 transition hover:text-white">Source →</a>
-                </div>
-                <CommentBox slug={candidate.slug} onSubmit={comment} />
-                {itemState.comments.length > 0 ? (
-                  <div className="mt-3 space-y-2">
-                    {itemState.comments.map((body, index) => <p key={`${body}-${index}`} className="rounded-2xl border border-white/8 bg-white/[0.025] px-3 py-2 text-sm leading-6 text-white/58">{body}</p>)}
-                  </div>
-                ) : null}
-              </div>
-            </article>
-          );
-        })}
-      </section>
+function CommandRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-2xl border border-white/8 bg-black/16 p-3">
+      <div className="mb-1.5 ui-label">{label}</div>
+      <div className="flex items-center gap-2">
+        <code className="min-w-0 flex-1 overflow-x-auto font-mono text-sm text-white/78">{value}</code>
+        <CopyButton compact value={value} label="Copy" />
+      </div>
     </div>
   );
 }

@@ -10,6 +10,7 @@ import { SuperchargeAgent } from "@/components/supercharge-agent";
 import { categoryOrder, packageManagers } from "@/data/clis";
 import type { DirectorySearchResponse, DirectoryStats } from "@/lib/directory";
 import { formatCompactNumber, formatMetric } from "@/lib/format";
+import type { RadarCandidate } from "@/lib/radar";
 import type { SuperchargeRecommendation } from "@/lib/supercharge";
 
 const promptSuggestions = [
@@ -41,11 +42,13 @@ How to use it:
 4. For each selected CLI, open its agent pack at https://opencli.co/cli/{slug}/agent.md.
 5. Install a CLI only if it is missing, then run the pack's verify command before real work.
 6. Start with read-only or safe commands, summarize findings, and cite files/URLs/IDs when useful.
-7. Ask before destructive, paid, deploy, merge, delete, publish, transfer, send-email, calendar-edit, or secret-exposing actions.`;
+7. Ask before destructive, paid, deploy, merge, delete, publish, transfer, send-email, calendar-edit, or secret-exposing actions.
+8. If the directory has no fit, open https://opencli.co/radar for try-now candidates with a first command.`;
 
 type HomeViewProps = {
   initialDirectory: DirectorySearchResponse;
   directoryStats: DirectoryStats;
+  radarPreview?: RadarCandidate[];
 };
 
 type RecommendationPayload = {
@@ -475,7 +478,7 @@ function CommandRow({
   );
 }
 
-export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
+export function HomeView({ initialDirectory, directoryStats, radarPreview = [] }: HomeViewProps) {
   const [search, setSearch] = useState(initialDirectory.query);
   const [directory, setDirectory] = useState(initialDirectory);
   const [recommendation, setRecommendation] = useState<SuperchargeRecommendation | null>(null);
@@ -779,6 +782,33 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
           </div>
         </div>
 
+        {!hasQuery && radarPreview.length > 0 ? (
+          <div className="rounded-lg border border-white/10 bg-[#1E1E1D] p-4">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <div className="text-sm font-medium text-white">On radar</div>
+                <p className="mt-1 text-sm leading-6 text-[#868684]">New CLIs that are not in the directory yet. Each one has a first command.</p>
+              </div>
+              <Link href="/radar" className="shrink-0 text-sm text-white/54 transition hover:text-white">See all →</Link>
+            </div>
+            <div className="mt-4 grid gap-2 sm:grid-cols-3">
+              {radarPreview.map((candidate) => (
+                <Link
+                  key={candidate.slug}
+                  href="/radar"
+                  className="rounded-xl border border-white/8 bg-white/[0.03] px-3 py-3 transition hover:border-white/14 hover:bg-white/[0.05]"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-sm font-medium text-white">{candidate.name}</span>
+                    <span className="rounded-full bg-emerald-300/90 px-1.5 py-0.5 text-[10px] text-black">Try</span>
+                  </div>
+                  <p className="mt-1 line-clamp-2 text-xs leading-5 text-white/48">{candidate.description}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         {!hasQuery ? <CliLogoMarquee /> : null}
 
         <div className="flex items-center justify-between gap-3 px-1 pt-2">
@@ -809,7 +839,7 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
                 <div className="flex flex-col items-center justify-center px-5 py-16 text-center">
                   <SearchIcon className="h-6 w-6 text-white/18" />
                   <p className="mt-4 text-sm text-white/64">No CLIs match that description.</p>
-                  <p className="mt-1 text-xs text-white/42">Try a different phrase or broaden your category filter.</p>
+                  <p className="mt-1 text-xs text-white/42">Try a different phrase, or check <Link href="/radar" className="text-white/70 underline-offset-2 hover:text-white hover:underline">Radar</Link> for tools that have not landed in the directory yet.</p>
                 </div>
               ) : (
                 <>

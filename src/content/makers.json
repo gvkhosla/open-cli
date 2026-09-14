@@ -1074,5 +1074,32 @@
     "name": "LTD Atlas",
     "type": "individual",
     "url": "https://github.com/jiankn"
+  },
+  {
+    "slug": "zellij-org",
+    "name": "Zellij",
+    "type": "small-team",
+    "url": "https://zellij.dev",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "tmux",
+    "name": "tmux",
+    "type": "org",
+    "url": "https://github.com/tmux/tmux"
+  },
+  {
+    "slug": "tconbeer",
+    "name": "Ted Conbeer",
+    "type": "individual",
+    "url": "https://github.com/tconbeer",
+    "featuredBuilder": true
+  },
+  {
+    "slug": "ast-grep",
+    "name": "ast-grep",
+    "type": "small-team",
+    "url": "https://ast-grep.github.io",
+    "featuredBuilder": true
   }
 ]

@@ -1,122 +1,137 @@
 [
   {
-    "slug": "repomix",
-    "name": "Repomix",
-    "sourceUrl": "https://github.com/yamadashy/repomix",
-    "description": "Pack a repository into an AI-friendly file for coding agents and LLM context windows.",
+    "slug": "fabric",
+    "name": "Fabric",
+    "sourceUrl": "https://github.com/danielmiessler/Fabric",
+    "description": "Crowdsourced AI patterns you can pipe anything through: summarize a page, extract insights, or critique code without reinventing the prompt.",
     "detectedCategory": "AI",
     "detectedUseCases": [
-      "codebase context",
-      "coding agents",
-      "repo analysis"
+      "prompt patterns",
+      "summarize anything",
+      "agent workflows"
     ],
-    "detectedInstallCommand": "npx repomix",
-    "whyFound": "Detected from GitHub AI/tooling activity and npm-style CLI usage in the README.",
+    "detectedInstallCommand": "brew install fabric-ai",
+    "detectedFirstCommand": "fabric-ai --listpatterns",
+    "whyFound": "43k GitHub stars and still the cleanest way to reuse battle-tested prompts from the terminal. Homebrew packages it as fabric-ai.",
+    "beatsIncumbent": "One-off ChatGPT tabs. You get named patterns instead of retyping the same prompt.",
+    "verdict": "try",
     "signals": {
-      "stars": 18000,
-      "growth": "+2.1k this month",
-      "lastSeen": "today",
+      "stars": 43923,
+      "growth": "crowdsourced patterns",
+      "lastSeen": "2026-09-14",
       "hasBin": true,
       "jsonOutput": false,
       "dryRun": false
     },
-    "agentReadinessGuess": 86,
-    "status": "promoted"
+    "agentReadinessGuess": 78,
+    "status": "candidate"
   },
   {
-    "slug": "uv",
-    "name": "uv",
-    "sourceUrl": "https://github.com/astral-sh/uv",
-    "description": "Fast Python package and project management that agents can use for repeatable Python setup.",
-    "detectedCategory": "Package Management",
+    "slug": "btop",
+    "name": "btop",
+    "sourceUrl": "https://github.com/aristocratos/btop",
+    "description": "A resource monitor that actually explains CPU, memory, disks, and network without looking like 1984.",
+    "detectedCategory": "Shell Utilities",
     "detectedUseCases": [
-      "python setup",
-      "dependency management",
-      "agent runtimes"
+      "process monitor",
+      "CPU and memory",
+      "system health"
     ],
-    "detectedInstallCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh",
-    "whyFound": "High-growth GitHub project with clear CLI docs, recent releases, and strong automation fit.",
+    "detectedInstallCommand": "brew install btop",
+    "detectedFirstCommand": "btop",
+    "whyFound": "34k stars and still the monitor 2026 roundups tell people to install instead of top. Open CLI already lists btm; btop is the one most humans actually want.",
+    "beatsIncumbent": "top and htop. Same job, readable by default.",
+    "verdict": "try",
     "signals": {
-      "stars": 56000,
-      "growth": "+4.8k this month",
-      "lastSeen": "today",
+      "stars": 34570,
+      "growth": "stable default pick",
+      "lastSeen": "2026-09-14",
+      "hasBin": true,
+      "jsonOutput": false,
+      "dryRun": false
+    },
+    "agentReadinessGuess": 54,
+    "status": "candidate"
+  },
+  {
+    "slug": "fx",
+    "name": "fx",
+    "sourceUrl": "https://github.com/antonmedv/fx",
+    "description": "Interactive JSON exploration in the terminal. Pipe API output in, fold it, and query it without writing a jq program first.",
+    "detectedCategory": "Data",
+    "detectedUseCases": [
+      "JSON exploration",
+      "API responses",
+      "debugging"
+    ],
+    "detectedInstallCommand": "brew install fx",
+    "detectedFirstCommand": "echo '{\"ok\":true}' | fx",
+    "whyFound": "20k stars and the missing companion to jq: jq is for scripts, fx is for looking.",
+    "beatsIncumbent": "jq when you do not yet know the shape of the JSON.",
+    "verdict": "try",
+    "signals": {
+      "stars": 20622,
+      "growth": "JSON companion",
+      "lastSeen": "2026-09-14",
+      "hasBin": true,
+      "jsonOutput": true,
+      "dryRun": false
+    },
+    "agentReadinessGuess": 71,
+    "status": "candidate"
+  },
+  {
+    "slug": "vhs",
+    "name": "VHS",
+    "sourceUrl": "https://github.com/charmbracelet/vhs",
+    "description": "Record a terminal session from a tape file and get a GIF. Useful for CLI docs, READMEs, and showing an agent what a command looks like.",
+    "detectedCategory": "Docs / Content",
+    "detectedUseCases": [
+      "CLI demos",
+      "README gifs",
+      "docs"
+    ],
+    "detectedInstallCommand": "brew install vhs",
+    "detectedFirstCommand": "vhs --help",
+    "whyFound": "Charm's recorder is the least painful way to document a CLI without opening a video editor. 20k stars, still maintained.",
+    "beatsIncumbent": "Screenshot-and-crop workflows for terminal demos.",
+    "verdict": "try",
+    "signals": {
+      "stars": 20897,
+      "growth": "docs workflow",
+      "lastSeen": "2026-09-14",
       "hasBin": true,
       "jsonOutput": false,
       "dryRun": true
     },
-    "agentReadinessGuess": 91,
+    "agentReadinessGuess": 68,
     "status": "candidate"
   },
   {
-    "slug": "playwright-mcp",
-    "name": "Playwright MCP",
-    "sourceUrl": "https://github.com/microsoft/playwright-mcp",
-    "description": "Give agents browser automation primitives powered by Playwright.",
-    "detectedCategory": "Browser Automation",
+    "slug": "jqp",
+    "name": "jqp",
+    "sourceUrl": "https://github.com/noahgorstein/jqp",
+    "description": "A TUI playground for jq. Tweak a filter against real JSON until it works, then paste the filter into a script or agent command.",
+    "detectedCategory": "Data",
     "detectedUseCases": [
-      "browser testing",
-      "web automation",
-      "agent browsing"
+      "jq playground",
+      "JSON filters",
+      "learning jq"
     ],
-    "detectedInstallCommand": "npx @playwright/mcp@latest",
-    "whyFound": "Found from agent/browser automation topics and official Microsoft Playwright ecosystem activity.",
+    "detectedInstallCommand": "brew install jqp",
+    "detectedFirstCommand": "echo '{\"items\":[1,2,3]}' | jqp",
+    "whyFound": "jq remains non-negotiable, but the filter language is the part people bounce off. jqp is the rehearsal room.",
+    "beatsIncumbent": "Trial-and-error jq in a raw shell.",
+    "verdict": "wait",
     "signals": {
-      "stars": 13000,
-      "growth": "+3.4k this month",
-      "lastSeen": "today",
-      "hasBin": true,
-      "jsonOutput": true,
-      "dryRun": false
-    },
-    "agentReadinessGuess": 88,
-    "status": "promoted"
-  },
-  {
-    "slug": "posting",
-    "name": "Posting",
-    "sourceUrl": "https://github.com/darrenburns/posting",
-    "description": "Terminal HTTP client for exploring APIs and generating repeatable requests.",
-    "detectedCategory": "Shell Utilities",
-    "detectedUseCases": [
-      "api testing",
-      "http requests",
-      "integration debugging"
-    ],
-    "detectedInstallCommand": "uv tool install posting",
-    "whyFound": "Active terminal developer-tool repo with agent-friendly API inspection use cases.",
-    "signals": {
-      "stars": 9200,
-      "growth": "+740 this month",
-      "lastSeen": "today",
+      "stars": 2839,
+      "growth": "helper, not a replacement",
+      "lastSeen": "2026-09-14",
       "hasBin": true,
       "jsonOutput": false,
       "dryRun": false
     },
-    "agentReadinessGuess": 73,
-    "status": "promoted"
-  },
-  {
-    "slug": "mise",
-    "name": "mise",
-    "sourceUrl": "https://github.com/jdx/mise",
-    "description": "Manage language runtimes, task runners, and per-project tool versions from one CLI.",
-    "detectedCategory": "Package Management",
-    "detectedUseCases": [
-      "dev environment setup",
-      "runtime management",
-      "project tasks"
-    ],
-    "detectedInstallCommand": "brew install mise",
-    "whyFound": "Fast-growing dev environment CLI with strong fit for reproducible agent workspaces.",
-    "signals": {
-      "stars": 18000,
-      "growth": "+1.2k this month",
-      "lastSeen": "today",
-      "hasBin": true,
-      "jsonOutput": true,
-      "dryRun": false
-    },
-    "agentReadinessGuess": 84,
+    "agentReadinessGuess": 42,
     "status": "candidate"
   }
 ]

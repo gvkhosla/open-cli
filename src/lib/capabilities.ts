@@ -63,7 +63,7 @@ export const capabilityDefinitions: CapabilityDefinition[] = [
     samplePrompt: "Inspect my Postgres schema, show the key tables, and answer questions with read-only queries first.",
     searchTerms: ["database", "db", "postgres", "postgresql", "sql", "schema", "migration", "query", "sqlite", "mysql"],
     categories: ["Database", "Data"],
-    candidateSlugs: ["pgcli", "usql", "sqlite-utils", "duckdb", "mycli", "litecli"],
+    candidateSlugs: ["harlequin", "pgcli", "usql", "sqlite-utils", "duckdb", "mycli", "litecli"],
     setupChecklist: [
       "Install a CLI that matches your database engine.",
       "Provide a safe connection string or local file path.",
@@ -210,7 +210,7 @@ export const capabilityDefinitions: CapabilityDefinition[] = [
     samplePrompt: "Search my notes and documents for relevant context, then summarize the strongest matches with file paths.",
     searchTerms: ["files", "folders", "notes", "knowledge base", "pkm", "search documents", "drive", "sync", "find"],
     categories: ["Shell Utilities", "Productivity"],
-    candidateSlugs: ["rg", "fd", "fzf", "rclone", "zk", "nb", "jrnl"],
+    candidateSlugs: ["rg", "ast-grep", "fd", "fzf", "rclone", "zk", "nb", "jrnl"],
     setupChecklist: [
       "Install local search tools and point them at the right folder or remote.",
       "Start with read-only search/list commands.",
@@ -271,9 +271,9 @@ export const capabilityDefinitions: CapabilityDefinition[] = [
     label: "Email & Calendar",
     blurb: "Search mail, inspect calendars, draft replies, and coordinate schedules with human approval.",
     samplePrompt: "Search my email and calendar for this project, summarize relevant context, and suggest next actions without sending or changing anything.",
-    searchTerms: ["email", "mail", "inbox", "calendar", "agenda", "schedule", "meeting", "contacts", "imap", "gmail", "reply", "draft"],
+    searchTerms: ["email", "mail", "inbox", "calendar", "agenda", "schedule", "meeting", "contacts", "imap", "gmail", "google workspace", "gws", "reply", "draft"],
     categories: ["Productivity"],
-    candidateSlugs: ["notmuch", "mbsync", "himalaya", "aerc", "neomutt", "khal", "gcalcli", "icalbuddy", "vdirsyncer", "khard", "todoist-cli"],
+    candidateSlugs: ["gws", "gcalcli", "himalaya", "notmuch", "mbsync", "aerc", "neomutt", "khal", "icalbuddy", "vdirsyncer", "khard", "todoist-cli"],
     setupChecklist: [
       "Install the mail or calendar CLI and verify the active account or local store.",
       "Start with read-only list/search/agenda commands.",
