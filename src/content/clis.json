@@ -5875,11 +5875,11 @@
     "shortName": "pi-tinker",
     "maker": "gvkhosla",
     "category": "AI",
-    "installWith": "curl",
-    "installCommand": "pi install git:github.com/gvkhosla/pi-tinker",
+    "installWith": "npm",
+    "installCommand": "pi install npm:pi-tinker",
     "quickStart": "/tinker demo",
     "githubRepo": "gvkhosla/pi-tinker",
-    "website": "https://github.com/gvkhosla/pi-tinker",
+    "website": "https://www.npmjs.com/package/pi-tinker",
     "docs": "https://github.com/gvkhosla/pi-tinker",
     "useCases": [
       "Fine-tune Tinker models from Pi",
@@ -5907,10 +5907,11 @@
     "localFirst": false,
     "destructivePotential": "medium",
     "exampleWorkflow": [
-      "pi install git:github.com/gvkhosla/pi-tinker",
+      "pi install npm:pi-tinker",
       "export TINKER_API_KEY=...",
       "/tinker doctor"
-    ]
+    ],
+    "npmPackage": "pi-tinker"
   },
   {
     "slug": "founder-skills",
@@ -5919,7 +5920,7 @@
     "maker": "gvkhosla",
     "category": "AI",
     "installWith": "npm",
-    "installCommand": "npx --yes github:gvkhosla/founder-skills setup",
+    "installCommand": "npx --yes founder-skills setup",
     "quickStart": "founder-skills doctor",
     "githubRepo": "gvkhosla/founder-skills",
     "website": "https://fskills.xyz",
@@ -5951,9 +5952,10 @@
     "localFirst": true,
     "destructivePotential": "low",
     "exampleWorkflow": [
-      "npx --yes github:gvkhosla/founder-skills setup",
+      "npx --yes founder-skills setup",
       "founder-skills doctor --json"
-    ]
+    ],
+    "npmPackage": "founder-skills"
   },
   {
     "slug": "preflight",
@@ -5962,11 +5964,11 @@
     "maker": "gvkhosla",
     "category": "AI",
     "installWith": "npm",
-    "installCommand": "npm install -g @khosla/preflight",
-    "quickStart": "preflight doctor",
+    "installCommand": "npx @khosla/preflight",
+    "quickStart": "npx @khosla/preflight doctor --json",
     "githubRepo": "gvkhosla/preflight",
-    "website": "https://github.com/gvkhosla/preflight",
-    "docs": "https://github.com/gvkhosla/preflight",
+    "website": "https://gvkhosla.github.io/preflight/",
+    "docs": "https://gvkhosla.github.io/preflight/",
     "useCases": [
       "Review a git diff with coding agents",
       "CI agent readiness",
@@ -5994,7 +5996,8 @@
     "exampleWorkflow": [
       "npx @khosla/preflight doctor --json",
       "npx @khosla/preflight --json --auto"
-    ]
+    ],
+    "npmPackage": "@khosla/preflight"
   },
   {
     "slug": "amp",
@@ -6461,13 +6464,13 @@
     "category": "Docs / Content",
     "installWith": "curl",
     "installCommand": "curl -fsSL https://raw.githubusercontent.com/gvkhosla/ytmd/main/install.sh | sh",
-    "quickStart": "ytmd get URL && ytmd search WORDS",
+    "quickStart": "ytmd add URL && ytmd read ID --max-chars 4000 --json",
     "githubRepo": "gvkhosla/ytmd",
     "website": "https://gvkhosla.github.io/ytmd/",
     "docs": "https://gvkhosla.github.io/ytmd/llms.txt",
     "useCases": [
-      "Save YouTube captions",
-      "Search timestamped transcripts",
+      "Read YouTube captions as evidence",
+      "Chapter and timestamped retrieval",
       "Feed videos to coding agents"
     ],
     "aliases": [
@@ -6731,6 +6734,100 @@
     "exampleWorkflow": [
       "npm install -g zoxide-doctor",
       "zoxide-doctor --shell zsh --json"
+    ]
+  },
+  {
+    "slug": "pi-fusion",
+    "name": "pi-fusion",
+    "shortName": "pi-fusion",
+    "maker": "gvkhosla",
+    "category": "AI",
+    "installWith": "npm",
+    "installCommand": "pi install npm:@khosla/pi-fusion",
+    "quickStart": "/fusion:doctor",
+    "githubRepo": "gvkhosla/pi-fusion",
+    "website": "https://www.npmjs.com/package/@khosla/pi-fusion",
+    "docs": "https://github.com/gvkhosla/pi-fusion",
+    "npmPackage": "@khosla/pi-fusion",
+    "bestFor": "A multi-model second opinion in Pi without switching your main model.",
+    "useThisIf": "A problem is hard, ambiguous, or worth a panel review of a diff or file.",
+    "skipIf": "You only need a single OpenRouter model as your daily driver.",
+    "useCases": [
+      "Second opinion on a hard coding question",
+      "Review the current git diff with a model panel",
+      "Review one file with Fusion"
+    ],
+    "aliases": [
+      "fusion pi",
+      "openrouter fusion"
+    ],
+    "keywords": [
+      "fusion",
+      "openrouter",
+      "pi",
+      "review"
+    ],
+    "tags": [
+      "agent-friendly",
+      "pi"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": false,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "pi install npm:@khosla/pi-fusion",
+      "/fusion:doctor",
+      "/fusion:review-diff"
+    ]
+  },
+  {
+    "slug": "pi-swarm-supervisor",
+    "name": "pi-swarm-supervisor",
+    "shortName": "pi-swarm",
+    "maker": "gvkhosla",
+    "category": "AI",
+    "installWith": "npm",
+    "installCommand": "pi install npm:pi-swarm-supervisor",
+    "quickStart": "/swarm-roles",
+    "githubRepo": "gvkhosla/pi-swarm-supervisor",
+    "website": "https://www.npmjs.com/package/pi-swarm-supervisor",
+    "docs": "https://github.com/gvkhosla/pi-swarm-supervisor",
+    "npmPackage": "pi-swarm-supervisor",
+    "bestFor": "Supervising several Pi coding agents from one dashboard.",
+    "useThisIf": "You want live status, stuck detection, and role presets for side agents.",
+    "skipIf": "You only run one Pi session at a time.",
+    "useCases": [
+      "Spawn isolated Pi side agents",
+      "Detect stuck workers",
+      "Apply analyzer suggestions"
+    ],
+    "aliases": [
+      "pi swarm",
+      "swarm supervisor"
+    ],
+    "keywords": [
+      "swarm",
+      "multi-agent",
+      "pi",
+      "supervisor"
+    ],
+    "tags": [
+      "agent-friendly",
+      "pi"
+    ],
+    "agentFriendly": true,
+    "supportsNonInteractive": false,
+    "requiresAuth": true,
+    "requiresNetwork": true,
+    "localFirst": true,
+    "destructivePotential": "medium",
+    "exampleWorkflow": [
+      "pi install npm:pi-swarm-supervisor",
+      "/swarm-start scout :: inspect this repo",
+      "/swarm"
     ]
   }
 ]
