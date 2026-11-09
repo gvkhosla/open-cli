@@ -1,1452 +1,1452 @@
 {
   "gh": {
-    "githubStars": 46271,
-    "latestRelease": "2026-09-11T18:06:19Z",
+    "githubStars": 46936,
+    "latestRelease": "2026-11-09T14:03:02Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 229809,
+    "metricValue": 291435,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:11.110Z"
+    "metricAsOf": "2026-11-09T19:54:41.540Z"
   },
   "git-lfs": {
-    "githubStars": 14493,
-    "latestRelease": "2026-09-02T00:35:37Z",
+    "githubStars": 14584,
+    "latestRelease": "2026-11-06T20:38:30Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 25853,
+    "metricValue": 39819,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:11.761Z"
+    "metricAsOf": "2026-11-09T19:54:41.916Z"
   },
   "vercel": {
-    "githubStars": 16237,
-    "latestRelease": "2026-09-12T19:00:41Z",
+    "githubStars": 16561,
+    "latestRelease": "2026-11-09T19:43:35Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 2795868,
+    "metricValue": 5635474,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:58:13.376Z"
+    "metricAsOf": "2026-11-09T19:54:42.280Z"
   },
   "turborepo": {
-    "githubStars": 31083,
-    "latestRelease": "2026-09-14T01:23:26Z",
+    "githubStars": 31318,
+    "latestRelease": "2026-11-09T19:52:14Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 18001248,
+    "metricValue": 44539211,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:58:14.117Z"
+    "metricAsOf": "2026-11-09T19:54:42.583Z"
   },
   "wrangler": {
-    "githubStars": 4530,
-    "latestRelease": "2026-09-14T08:57:56Z",
+    "githubStars": 4710,
+    "latestRelease": "2026-11-09T19:43:36Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 16299254,
+    "metricValue": 42293673,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:58:14.630Z"
+    "metricAsOf": "2026-11-09T19:54:42.901Z"
   },
   "supabase": {
-    "githubStars": 2411,
-    "latestRelease": "2026-09-14T08:56:48Z",
-    "license": null,
+    "githubStars": 2461,
+    "latestRelease": "2026-11-09T18:08:15Z",
+    "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 3540,
+    "metricValue": 4676,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:15.160Z"
+    "metricAsOf": "2026-11-09T19:54:43.234Z"
   },
   "railway": {
-    "githubStars": 607,
-    "latestRelease": "2026-09-13T10:36:19Z",
+    "githubStars": 629,
+    "latestRelease": "2026-11-06T11:51:33Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 297995,
+    "metricValue": 411190,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:58:15.803Z"
+    "metricAsOf": "2026-11-09T19:54:43.688Z"
   },
   "flyctl": {
-    "githubStars": 1703,
-    "latestRelease": "2026-09-12T17:07:06Z",
+    "githubStars": 1719,
+    "latestRelease": "2026-11-09T19:04:21Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 12778,
+    "metricValue": 16605,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:16.364Z"
+    "metricAsOf": "2026-11-09T19:54:44.033Z"
   },
   "netlify": {
-    "githubStars": 1916,
-    "latestRelease": "2026-09-14T03:38:07Z",
+    "githubStars": 1934,
+    "latestRelease": "2026-11-09T18:21:26Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 274908,
+    "metricValue": 490655,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:58:17.477Z"
+    "metricAsOf": "2026-11-09T19:54:44.384Z"
   },
   "firebase": {
-    "githubStars": 4467,
-    "latestRelease": "2026-09-14T04:46:41Z",
+    "githubStars": 4489,
+    "latestRelease": "2026-11-09T19:43:37Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 2186911,
+    "metricValue": 4888224,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:58:18.021Z"
+    "metricAsOf": "2026-11-09T19:54:44.755Z"
   },
   "aws-cli": {
-    "githubStars": 17253,
-    "latestRelease": "2026-09-14T02:30:16Z",
+    "githubStars": 17346,
+    "latestRelease": "2026-11-09T18:52:35Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 144083,
+    "metricValue": 157259,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:18.610Z"
+    "metricAsOf": "2026-11-09T19:54:45.110Z"
   },
   "gcloud": {
     "githubStars": 20,
-    "latestRelease": "2026-09-03T02:01:17Z",
+    "latestRelease": "2026-11-03T00:10:54Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 36819,
+    "metricValue": 52619,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:19.127Z"
+    "metricAsOf": "2026-11-09T19:54:45.503Z"
   },
   "az": {
-    "githubStars": 4623,
-    "latestRelease": "2026-09-14T04:14:42Z",
+    "githubStars": 4664,
+    "latestRelease": "2026-11-09T08:53:26Z",
     "license": "MIT",
-    "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 26350,
-    "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:19.823Z"
+    "metricLabel": "GitHub release downloads (latest)",
+    "metricValue": 42853,
+    "metricSource": "github",
+    "metricAsOf": "2026-11-09T19:54:46.093Z"
   },
   "docker": {
-    "githubStars": 6057,
-    "latestRelease": "2026-09-11T08:46:00Z",
+    "githubStars": 6125,
+    "latestRelease": "2026-11-06T02:17:39Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 33728,
+    "metricValue": 35721,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:20.458Z"
+    "metricAsOf": "2026-11-09T19:54:46.418Z"
   },
   "kubectl": {
-    "githubStars": 3340,
-    "latestRelease": "2026-09-11T19:39:10Z",
+    "githubStars": 3367,
+    "latestRelease": "2026-11-06T06:17:56Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 39029,
+    "metricValue": 38035,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:21.066Z"
+    "metricAsOf": "2026-11-09T19:54:46.647Z"
   },
   "helm": {
-    "githubStars": 30242,
-    "latestRelease": "2026-09-11T23:11:50Z",
+    "githubStars": 30409,
+    "latestRelease": "2026-11-07T10:35:27Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 25554,
+    "metricValue": 42068,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:21.693Z"
+    "metricAsOf": "2026-11-09T19:54:46.976Z"
   },
   "terraform": {
-    "githubStars": 49652,
-    "latestRelease": "2026-09-12T19:06:00Z",
+    "githubStars": 50176,
+    "latestRelease": "2026-11-09T19:36:15Z",
     "license": "NOASSERTION",
     "metricLabel": null,
     "metricValue": null,
     "metricSource": null,
-    "metricAsOf": "2026-09-14T08:58:22.703Z"
+    "metricAsOf": "2026-11-09T19:54:47.536Z"
   },
   "vault": {
-    "githubStars": 36238,
-    "latestRelease": "2026-09-11T22:02:26Z",
+    "githubStars": 36490,
+    "latestRelease": "2026-11-09T18:02:29Z",
     "license": "NOASSERTION",
     "metricLabel": "Docker pulls",
-    "metricValue": 279234818,
+    "metricValue": 304233017,
     "metricSource": "docker-hub",
-    "metricAsOf": "2026-09-14T08:58:23.569Z"
+    "metricAsOf": "2026-11-09T19:54:48.063Z"
   },
   "consul": {
-    "githubStars": 30064,
-    "latestRelease": "2026-09-14T08:49:01Z",
+    "githubStars": 30110,
+    "latestRelease": "2026-11-09T19:40:13Z",
     "license": "NOASSERTION",
     "metricLabel": "Docker pulls",
-    "metricValue": 107579229,
+    "metricValue": 111609662,
     "metricSource": "docker-hub",
-    "metricAsOf": "2026-09-14T08:58:24.309Z"
+    "metricAsOf": "2026-11-09T19:54:48.500Z"
   },
   "nomad": {
-    "githubStars": 16914,
-    "latestRelease": "2026-09-11T20:58:35Z",
+    "githubStars": 17088,
+    "latestRelease": "2026-11-05T15:41:09Z",
     "license": "NOASSERTION",
     "metricLabel": "Docker pulls",
-    "metricValue": 617642,
+    "metricValue": 714260,
     "metricSource": "docker-hub",
-    "metricAsOf": "2026-09-14T08:58:25.062Z"
+    "metricAsOf": "2026-11-09T19:54:48.980Z"
   },
   "pulumi": {
-    "githubStars": 25680,
-    "latestRelease": "2026-09-14T08:51:17Z",
+    "githubStars": 25853,
+    "latestRelease": "2026-11-09T19:30:18Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 2409,
+    "metricValue": 3143,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:25.572Z"
+    "metricAsOf": "2026-11-09T19:54:49.338Z"
   },
   "dagger": {
-    "githubStars": 16246,
-    "latestRelease": "2026-09-14T07:16:34Z",
+    "githubStars": 16601,
+    "latestRelease": "2026-11-09T19:51:13Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 178,
+    "metricValue": 333,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:26.207Z"
+    "metricAsOf": "2026-11-09T19:54:49.647Z"
   },
   "prisma": {
-    "githubStars": 47607,
-    "latestRelease": "2026-09-14T08:41:29Z",
+    "githubStars": 47660,
+    "latestRelease": "2026-11-09T19:09:32Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 12653834,
+    "metricValue": 26024923,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:58:28.304Z"
+    "metricAsOf": "2026-11-09T19:54:50.308Z"
   },
   "turso": {
-    "githubStars": 324,
-    "latestRelease": "2026-08-17T20:45:33Z",
+    "githubStars": 326,
+    "latestRelease": "2026-11-02T20:59:40Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 72,
+    "metricValue": 121,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:28.871Z"
+    "metricAsOf": "2026-11-09T19:54:50.656Z"
   },
   "neonctl": {
-    "githubStars": 117,
-    "latestRelease": "2026-06-23T17:33:54Z",
+    "githubStars": 119,
+    "latestRelease": "2026-11-09T15:14:44Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 1638,
+    "metricValue": 2601,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:29.479Z"
+    "metricAsOf": "2026-11-09T19:54:51.031Z"
   },
   "pscale": {
-    "githubStars": 666,
-    "latestRelease": "2026-09-10T20:49:57Z",
+    "githubStars": 672,
+    "latestRelease": "2026-11-09T19:13:32Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 293,
+    "metricValue": 323,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:30.085Z"
+    "metricAsOf": "2026-11-09T19:54:51.441Z"
   },
   "stripe": {
-    "githubStars": 2179,
-    "latestRelease": "2026-09-11T23:45:49Z",
+    "githubStars": 2230,
+    "latestRelease": "2026-11-09T19:52:46Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 2217,
+    "metricValue": 3112,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:30.707Z"
+    "metricAsOf": "2026-11-09T19:54:51.828Z"
   },
   "sentry-cli": {
-    "githubStars": 1041,
-    "latestRelease": "2026-09-14T00:38:22Z",
+    "githubStars": 1044,
+    "latestRelease": "2026-11-09T09:20:21Z",
     "license": "NOASSERTION",
     "metricLabel": "GitHub release downloads (latest)",
-    "metricValue": 106253,
+    "metricValue": 121015,
     "metricSource": "github",
-    "metricAsOf": "2026-09-14T08:58:31.928Z"
+    "metricAsOf": "2026-11-09T19:54:52.620Z"
   },
   "semgrep": {
-    "githubStars": 16629,
-    "latestRelease": "2026-09-14T00:02:17Z",
+    "githubStars": 17572,
+    "latestRelease": "2026-11-09T00:06:50Z",
     "license": "LGPL-2.1",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 6283,
+    "metricValue": 8490,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:32.493Z"
+    "metricAsOf": "2026-11-09T19:54:52.993Z"
   },
   "datadog-ci": {
     "githubStars": 163,
-    "latestRelease": "2026-09-14T08:11:49Z",
+    "latestRelease": "2026-11-09T18:29:39Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 3478944,
+    "metricValue": 7107300,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:58:33.283Z"
+    "metricAsOf": "2026-11-09T19:54:53.397Z"
   },
   "shopify": {
-    "githubStars": 743,
-    "latestRelease": "2026-09-11T15:54:35Z",
+    "githubStars": 773,
+    "latestRelease": "2026-11-09T18:38:51Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 431965,
+    "metricValue": 987590,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:58:34.377Z"
+    "metricAsOf": "2026-11-09T19:54:53.830Z"
   },
   "ngrok": {
-    "githubStars": 24425,
+    "githubStars": 24382,
     "latestRelease": "2024-04-26T18:11:18Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 14764,
+    "metricValue": 13734,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:34.894Z"
+    "metricAsOf": "2026-11-09T19:54:54.174Z"
   },
   "tailscale": {
-    "githubStars": 36451,
-    "latestRelease": "2026-09-14T03:12:45Z",
+    "githubStars": 38846,
+    "latestRelease": "2026-11-09T19:48:35Z",
     "license": "BSD-3-Clause",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 9595,
+    "metricValue": 17397,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:35.490Z"
+    "metricAsOf": "2026-11-09T19:54:54.526Z"
   },
   "doppler": {
-    "githubStars": 393,
-    "latestRelease": "2026-09-09T18:23:28Z",
+    "githubStars": 404,
+    "latestRelease": "2026-10-22T15:56:07Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 749,
+    "metricValue": 883,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:36.122Z"
+    "metricAsOf": "2026-11-09T19:54:54.858Z"
   },
   "claude-code": {
-    "githubStars": 144963,
-    "latestRelease": "2026-09-14T03:39:01Z",
+    "githubStars": 155070,
+    "latestRelease": "2026-11-09T19:22:29Z",
     "license": null,
     "metricLabel": "npm weekly downloads",
-    "metricValue": 10994666,
+    "metricValue": 14193546,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:58:37.231Z"
+    "metricAsOf": "2026-11-09T19:54:55.267Z"
   },
   "codex": {
-    "githubStars": 123978,
-    "latestRelease": "2026-09-14T04:37:18Z",
+    "githubStars": 134299,
+    "latestRelease": "2026-11-09T19:50:50Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 17149232,
+    "metricValue": 25908100,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:58:38.358Z"
+    "metricAsOf": "2026-11-09T19:54:55.790Z"
   },
   "gemini-cli": {
-    "githubStars": 106968,
-    "latestRelease": "2026-09-14T01:45:57Z",
+    "githubStars": 108748,
+    "latestRelease": "2026-11-09T19:49:22Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 308020,
+    "metricValue": 476704,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:58:39.490Z"
+    "metricAsOf": "2026-11-09T19:54:56.238Z"
   },
   "uv": {
-    "githubStars": 89796,
-    "latestRelease": "2026-09-14T02:20:43Z",
+    "githubStars": 91811,
+    "latestRelease": "2026-11-09T18:18:16Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 162348,
+    "metricValue": 206307,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:40.135Z"
+    "metricAsOf": "2026-11-09T19:54:56.531Z"
   },
   "ruff": {
-    "githubStars": 49626,
-    "latestRelease": "2026-09-14T04:01:27Z",
+    "githubStars": 51134,
+    "latestRelease": "2026-11-09T19:51:46Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 7995,
+    "metricValue": 14674,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:40.780Z"
+    "metricAsOf": "2026-11-09T19:54:56.868Z"
   },
   "pnpm": {
-    "githubStars": 36517,
-    "latestRelease": "2026-09-14T06:15:34Z",
+    "githubStars": 37045,
+    "latestRelease": "2026-11-09T19:36:24Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 132740959,
+    "metricValue": 325920735,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:58:41.348Z"
+    "metricAsOf": "2026-11-09T19:54:57.153Z"
   },
   "bun": {
-    "githubStars": 95960,
-    "latestRelease": "2026-09-14T08:56:03Z",
+    "githubStars": 96727,
+    "latestRelease": "2026-11-09T19:54:49Z",
     "license": "NOASSERTION",
     "metricLabel": "GitHub release downloads (latest)",
-    "metricValue": 1504434,
+    "metricValue": 4890430,
     "metricSource": "github",
-    "metricAsOf": "2026-09-14T08:58:42.480Z"
+    "metricAsOf": "2026-11-09T19:54:57.902Z"
   },
   "deno": {
-    "githubStars": 108424,
-    "latestRelease": "2026-09-09T08:38:58Z",
+    "githubStars": 108936,
+    "latestRelease": "2026-10-29T08:03:10Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 36371,
+    "metricValue": 31012,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:43.087Z"
+    "metricAsOf": "2026-11-09T19:54:58.142Z"
   },
   "pipx": {
-    "githubStars": 12964,
-    "latestRelease": "2026-09-08T22:06:26Z",
+    "githubStars": 12991,
+    "latestRelease": "2026-11-09T15:33:13Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 48217,
+    "metricValue": 115929,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:43.562Z"
+    "metricAsOf": "2026-11-09T19:54:58.434Z"
   },
   "poetry": {
-    "githubStars": 34301,
-    "latestRelease": "2026-09-11T15:13:51Z",
+    "githubStars": 34432,
+    "latestRelease": "2026-11-08T09:24:46Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 3683,
+    "metricValue": 6409,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:44.117Z"
+    "metricAsOf": "2026-11-09T19:54:58.823Z"
   },
   "hatch": {
-    "githubStars": 7235,
-    "latestRelease": "2026-09-11T03:41:06Z",
+    "githubStars": 7246,
+    "latestRelease": "2026-11-08T06:38:17Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 263,
+    "metricValue": 739,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:44.609Z"
+    "metricAsOf": "2026-11-09T19:54:59.183Z"
   },
   "mise": {
-    "githubStars": 33894,
-    "latestRelease": "2026-09-14T04:24:55Z",
+    "githubStars": 35981,
+    "latestRelease": "2026-11-09T19:38:30Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 49670,
+    "metricValue": 86130,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:45.053Z"
+    "metricAsOf": "2026-11-09T19:54:59.433Z"
   },
   "direnv": {
-    "githubStars": 15444,
-    "latestRelease": "2026-03-31T18:52:06Z",
+    "githubStars": 15538,
+    "latestRelease": "2026-10-26T07:02:53Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 7420,
+    "metricValue": 25309,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:45.534Z"
+    "metricAsOf": "2026-11-09T19:54:59.782Z"
   },
   "just": {
-    "githubStars": 35790,
-    "latestRelease": "2026-09-01T20:47:57Z",
+    "githubStars": 36630,
+    "latestRelease": "2026-11-02T05:24:09Z",
     "license": "CC0-1.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 35251,
+    "metricValue": 36444,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:46.062Z"
+    "metricAsOf": "2026-11-09T19:55:00.087Z"
   },
   "watchexec": {
-    "githubStars": 7182,
-    "latestRelease": "2026-09-13T12:45:55Z",
+    "githubStars": 7280,
+    "latestRelease": "2026-11-06T15:12:49Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 1580,
+    "metricValue": 1474,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:46.684Z"
+    "metricAsOf": "2026-11-09T19:55:00.400Z"
   },
   "starship": {
-    "githubStars": 59896,
-    "latestRelease": "2026-09-14T08:53:13Z",
+    "githubStars": 60667,
+    "latestRelease": "2026-11-09T19:06:19Z",
     "license": "ISC",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 11045,
+    "metricValue": 35965,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:47.174Z"
+    "metricAsOf": "2026-11-09T19:55:00.683Z"
   },
   "nushell": {
-    "githubStars": 40501,
-    "latestRelease": "2026-09-13T12:31:36Z",
+    "githubStars": 41075,
+    "latestRelease": "2026-11-09T17:58:44Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 4394,
+    "metricValue": 3663,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:47.803Z"
+    "metricAsOf": "2026-11-09T19:55:01.033Z"
   },
   "atuin": {
-    "githubStars": 31616,
-    "latestRelease": "2026-09-14T06:48:21Z",
+    "githubStars": 32244,
+    "latestRelease": "2026-11-09T19:42:34Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 9868,
+    "metricValue": 26878,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:48.415Z"
+    "metricAsOf": "2026-11-09T19:55:01.405Z"
   },
   "zoxide": {
-    "githubStars": 39456,
-    "latestRelease": "2026-09-08T00:09:41Z",
+    "githubStars": 40532,
+    "latestRelease": "2026-11-08T02:51:28Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 9108,
+    "metricValue": 15191,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:48.953Z"
+    "metricAsOf": "2026-11-09T19:55:01.682Z"
   },
   "rg": {
-    "githubStars": 68242,
-    "latestRelease": "2026-08-04T13:59:44Z",
+    "githubStars": 69936,
+    "latestRelease": "2026-10-27T18:31:31Z",
     "license": "Unlicense",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 52061,
+    "metricValue": 46503,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:49.430Z"
+    "metricAsOf": "2026-11-09T19:55:01.974Z"
   },
   "fd": {
-    "githubStars": 44402,
-    "latestRelease": "2026-09-09T01:47:38Z",
+    "githubStars": 45130,
+    "latestRelease": "2026-11-09T06:43:32Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 23171,
+    "metricValue": 42576,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:50.068Z"
+    "metricAsOf": "2026-11-09T19:55:02.316Z"
   },
   "bat": {
-    "githubStars": 60444,
-    "latestRelease": "2026-09-04T19:10:30Z",
+    "githubStars": 61257,
+    "latestRelease": "2026-11-08T08:24:11Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 8519,
+    "metricValue": 18263,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:50.672Z"
+    "metricAsOf": "2026-11-09T19:55:02.623Z"
   },
   "hyperfine": {
-    "githubStars": 28855,
-    "latestRelease": "2026-04-30T08:23:25Z",
+    "githubStars": 29233,
+    "latestRelease": "2026-11-01T03:02:36Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 933,
+    "metricValue": 5083,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:51.183Z"
+    "metricAsOf": "2026-11-09T19:55:02.933Z"
   },
   "fzf": {
-    "githubStars": 82972,
-    "latestRelease": "2026-09-14T03:16:23Z",
+    "githubStars": 84100,
+    "latestRelease": "2026-11-07T12:06:19Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 40556,
+    "metricValue": 61077,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:51.684Z"
+    "metricAsOf": "2026-11-09T19:55:03.294Z"
   },
   "jq": {
-    "githubStars": 35596,
-    "latestRelease": "2026-09-01T06:30:47Z",
+    "githubStars": 36087,
+    "latestRelease": "2026-11-02T07:08:10Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 57222,
+    "metricValue": 61901,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:52.201Z"
+    "metricAsOf": "2026-11-09T19:55:03.606Z"
   },
   "yq": {
-    "githubStars": 15955,
-    "latestRelease": "2026-09-10T03:52:39Z",
+    "githubStars": 16250,
+    "latestRelease": "2026-11-09T04:15:37Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 50083,
+    "metricValue": 50920,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:52.662Z"
+    "metricAsOf": "2026-11-09T19:55:03.907Z"
   },
   "eza": {
-    "githubStars": 23265,
+    "githubStars": 23844,
     "latestRelease": "2026-08-06T19:53:22Z",
     "license": "EUPL-1.2",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 8234,
+    "metricValue": 15909,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:53.238Z"
+    "metricAsOf": "2026-11-09T19:55:04.235Z"
   },
   "yazi-cli": {
-    "githubStars": 42179,
-    "latestRelease": "2026-09-12T00:19:17Z",
+    "githubStars": 43324,
+    "latestRelease": "2026-11-09T16:54:30Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 12848,
+    "metricValue": 5711,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:53.665Z"
+    "metricAsOf": "2026-11-09T19:55:04.588Z"
   },
   "broot": {
-    "githubStars": 12937,
-    "latestRelease": "2026-09-13T19:18:37Z",
+    "githubStars": 13141,
+    "latestRelease": "2026-11-01T16:37:14Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 1413,
+    "metricValue": 1607,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:54.157Z"
+    "metricAsOf": "2026-11-09T19:55:04.946Z"
   },
   "btm": {
-    "githubStars": 14019,
-    "latestRelease": "2026-09-13T03:54:01Z",
+    "githubStars": 14170,
+    "latestRelease": "2026-11-09T07:53:41Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 3587,
+    "metricValue": 2791,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:54.594Z"
+    "metricAsOf": "2026-11-09T19:55:05.305Z"
   },
   "procs": {
-    "githubStars": 6168,
-    "latestRelease": "2026-09-09T20:05:45Z",
+    "githubStars": 6217,
+    "latestRelease": "2026-11-06T20:08:00Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 713,
+    "metricValue": 815,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:54.994Z"
+    "metricAsOf": "2026-11-09T19:55:05.675Z"
   },
   "sd": {
-    "githubStars": 7352,
+    "githubStars": 7418,
     "latestRelease": "2026-02-25T19:26:21Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 756,
+    "metricValue": 1687,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:55.491Z"
+    "metricAsOf": "2026-11-09T19:55:06.124Z"
   },
   "dust": {
-    "githubStars": 12260,
-    "latestRelease": "2026-09-09T22:33:03Z",
+    "githubStars": 12606,
+    "latestRelease": "2026-11-01T20:33:00Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 4608,
+    "metricValue": 5921,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:55.969Z"
+    "metricAsOf": "2026-11-09T19:55:06.486Z"
   },
   "duf": {
-    "githubStars": 15295,
-    "latestRelease": "2026-01-13T11:07:14Z",
+    "githubStars": 15378,
+    "latestRelease": "2026-11-06T15:41:45Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 748,
+    "metricValue": 1555,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:56.506Z"
+    "metricAsOf": "2026-11-09T19:55:06.904Z"
   },
   "mprocs": {
-    "githubStars": 2718,
-    "latestRelease": "2026-09-13T19:41:15Z",
+    "githubStars": 2799,
+    "latestRelease": "2026-11-08T22:33:41Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 117,
+    "metricValue": 515,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:57.437Z"
+    "metricAsOf": "2026-11-09T19:55:07.570Z"
   },
   "tealdeer": {
-    "githubStars": 6519,
-    "latestRelease": "2026-08-25T22:10:38Z",
+    "githubStars": 6655,
+    "latestRelease": "2026-10-24T21:07:01Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 3302,
+    "metricValue": 7702,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:57.941Z"
+    "metricAsOf": "2026-11-09T19:55:07.990Z"
   },
   "glow": {
-    "githubStars": 27298,
-    "latestRelease": "2026-09-07T11:48:13Z",
+    "githubStars": 27974,
+    "latestRelease": "2026-11-04T12:06:23Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 6616,
+    "metricValue": 6188,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:58.555Z"
+    "metricAsOf": "2026-11-09T19:55:08.370Z"
   },
   "gum": {
-    "githubStars": 24372,
-    "latestRelease": "2026-09-11T05:27:03Z",
+    "githubStars": 24578,
+    "latestRelease": "2026-11-01T04:13:41Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 2600,
+    "metricValue": 2498,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:59.031Z"
+    "metricAsOf": "2026-11-09T19:55:08.770Z"
   },
   "mods": {
-    "githubStars": 4525,
+    "githubStars": 4519,
     "latestRelease": "2026-03-09T15:06:08Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 10,
+    "metricValue": 11,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:58:59.569Z"
+    "metricAsOf": "2026-11-09T19:55:09.146Z"
   },
   "pandoc": {
-    "githubStars": 46272,
-    "latestRelease": "2026-09-14T06:28:01Z",
+    "githubStars": 46868,
+    "latestRelease": "2026-11-09T16:45:01Z",
     "license": "GPL-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 36397,
+    "metricValue": 41481,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:00.132Z"
+    "metricAsOf": "2026-11-09T19:55:09.482Z"
   },
   "httpie": {
-    "githubStars": 38509,
+    "githubStars": 38703,
     "latestRelease": "2024-12-17T17:30:35Z",
     "license": "BSD-3-Clause",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 1736,
+    "metricValue": 7452,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:00.673Z"
+    "metricAsOf": "2026-11-09T19:55:09.830Z"
   },
   "xh": {
-    "githubStars": 8070,
-    "latestRelease": "2026-09-05T09:34:49Z",
+    "githubStars": 8175,
+    "latestRelease": "2026-11-06T10:01:35Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 522,
+    "metricValue": 1876,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:01.122Z"
+    "metricAsOf": "2026-11-09T19:55:10.237Z"
   },
   "doggo": {
-    "githubStars": 4474,
-    "latestRelease": "2026-09-01T09:47:04Z",
+    "githubStars": 4548,
+    "latestRelease": "2026-10-30T19:03:23Z",
     "license": "GPL-3.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 699,
+    "metricValue": 2090,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:01.622Z"
+    "metricAsOf": "2026-11-09T19:55:10.571Z"
   },
   "ollama": {
-    "githubStars": 180862,
-    "latestRelease": "2026-09-14T03:35:49Z",
+    "githubStars": 186438,
+    "latestRelease": "2026-11-09T19:09:45Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 39892,
+    "metricValue": 62298,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:02.135Z"
+    "metricAsOf": "2026-11-09T19:55:10.836Z"
   },
   "aider": {
-    "githubStars": 48946,
+    "githubStars": 50035,
     "latestRelease": "2026-05-22T14:02:20Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 503,
+    "metricValue": 411,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:02.658Z"
+    "metricAsOf": "2026-11-09T19:55:11.182Z"
   },
   "goose": {
-    "githubStars": 54242,
-    "latestRelease": "2026-09-14T04:35:07Z",
+    "githubStars": 56406,
+    "latestRelease": "2026-11-09T19:39:38Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 313,
+    "metricValue": 626,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:03.569Z"
+    "metricAsOf": "2026-11-09T19:55:11.752Z"
   },
   "browser-use": {
-    "githubStars": 114564,
-    "latestRelease": "2026-09-13T20:04:16Z",
+    "githubStars": 120440,
+    "latestRelease": "2026-11-09T19:29:35Z",
     "license": "MIT",
-    "metricLabel": null,
-    "metricValue": null,
-    "metricSource": null,
-    "metricAsOf": "2026-09-14T08:59:04.922Z"
+    "metricLabel": "PyPI weekly downloads",
+    "metricValue": 1610367,
+    "metricSource": "pypistats",
+    "metricAsOf": "2026-11-09T19:55:12.550Z"
   },
   "firecrawl": {
-    "githubStars": 631,
-    "latestRelease": "2026-09-14T03:01:20Z",
+    "githubStars": 681,
+    "latestRelease": "2026-11-09T18:06:43Z",
     "license": null,
     "metricLabel": "npm weekly downloads",
-    "metricValue": 530510,
+    "metricValue": 1103006,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:06.106Z"
+    "metricAsOf": "2026-11-09T19:55:12.913Z"
   },
   "playwright": {
-    "githubStars": 96092,
-    "latestRelease": "2026-09-11T23:00:20Z",
+    "githubStars": 99683,
+    "latestRelease": "2026-11-09T19:48:04Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 45794389,
+    "metricValue": 117911590,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:06.666Z"
+    "metricAsOf": "2026-11-09T19:55:13.437Z"
   },
   "llm": {
-    "githubStars": 12502,
-    "latestRelease": "2026-09-08T18:35:28Z",
+    "githubStars": 12734,
+    "latestRelease": "2026-11-06T05:27:38Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 2186,
+    "metricValue": 3270,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:07.127Z"
+    "metricAsOf": "2026-11-09T19:55:13.844Z"
   },
   "summarize": {
-    "githubStars": 6618,
-    "latestRelease": "2026-09-13T17:35:21Z",
+    "githubStars": 6792,
+    "latestRelease": "2026-11-05T23:33:35Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 3835,
+    "metricValue": 12670,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:07.655Z"
+    "metricAsOf": "2026-11-09T19:55:14.216Z"
   },
   "traces": {
     "githubStars": null,
     "latestRelease": null,
     "license": null,
     "metricLabel": "npm weekly downloads",
-    "metricValue": 5821,
+    "metricValue": 6499,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:08.563Z"
+    "metricAsOf": "2026-11-09T19:55:14.637Z"
   },
   "sqlite-utils": {
-    "githubStars": 2168,
-    "latestRelease": "2026-09-02T04:44:52Z",
+    "githubStars": 2188,
+    "latestRelease": "2026-10-11T00:15:55Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 295,
+    "metricValue": 72,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:09.286Z"
+    "metricAsOf": "2026-11-09T19:55:14.966Z"
   },
   "duckdb": {
-    "githubStars": 41214,
-    "latestRelease": "2026-09-14T08:40:43Z",
+    "githubStars": 42942,
+    "latestRelease": "2026-11-09T19:51:57Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 2774,
+    "metricValue": 7383,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:09.817Z"
+    "metricAsOf": "2026-11-09T19:55:15.361Z"
   },
   "pgcli": {
-    "githubStars": 13384,
-    "latestRelease": "2026-09-09T19:51:00Z",
+    "githubStars": 13436,
+    "latestRelease": "2026-11-04T22:15:44Z",
     "license": "BSD-3-Clause",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 1207,
+    "metricValue": 903,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:10.386Z"
+    "metricAsOf": "2026-11-09T19:55:15.685Z"
   },
   "mycli": {
-    "githubStars": 11975,
-    "latestRelease": "2026-09-14T08:34:41Z",
+    "githubStars": 11993,
+    "latestRelease": "2026-11-09T16:55:55Z",
     "license": "BSD-3-Clause",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 2143,
+    "metricValue": 2287,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:10.884Z"
+    "metricAsOf": "2026-11-09T19:55:16.068Z"
   },
   "usql": {
-    "githubStars": 10112,
-    "latestRelease": "2026-09-13T06:54:59Z",
+    "githubStars": 10167,
+    "latestRelease": "2026-11-09T07:47:06Z",
     "license": "MIT",
     "metricLabel": "crates recent downloads",
-    "metricValue": 12,
+    "metricValue": 5,
     "metricSource": "crates.io",
-    "metricAsOf": "2026-09-14T08:59:11.945Z"
+    "metricAsOf": "2026-11-09T19:55:16.753Z"
   },
   "litecli": {
-    "githubStars": 3298,
+    "githubStars": 3321,
     "latestRelease": "2026-06-18T20:25:31Z",
     "license": "BSD-3-Clause",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 234,
+    "metricValue": 67,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:12.480Z"
+    "metricAsOf": "2026-11-09T19:55:17.105Z"
   },
   "csvkit": {
-    "githubStars": 6411,
-    "latestRelease": "2026-08-03T23:53:23Z",
+    "githubStars": 6420,
+    "latestRelease": "2026-11-09T03:54:37Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 181,
+    "metricValue": 243,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:13.020Z"
+    "metricAsOf": "2026-11-09T19:55:17.481Z"
   },
   "mlr": {
-    "githubStars": 10018,
-    "latestRelease": "2026-09-09T15:24:45Z",
+    "githubStars": 10060,
+    "latestRelease": "2026-11-09T18:24:03Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 389,
+    "metricValue": 483,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:13.502Z"
+    "metricAsOf": "2026-11-09T19:55:17.805Z"
   },
   "visidata": {
-    "githubStars": 9277,
-    "latestRelease": "2026-08-28T00:09:56Z",
+    "githubStars": 9456,
+    "latestRelease": "2026-11-02T01:22:19Z",
     "license": "GPL-3.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 211,
+    "metricValue": 849,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:13.937Z"
+    "metricAsOf": "2026-11-09T19:55:18.175Z"
   },
   "xsv": {
-    "githubStars": 10760,
+    "githubStars": 10751,
     "latestRelease": "2025-04-24T13:09:22Z",
     "license": "Unlicense",
     "metricLabel": "crates recent downloads",
-    "metricValue": 5563,
+    "metricValue": 9080,
     "metricSource": "crates.io",
-    "metricAsOf": "2026-09-14T08:59:14.652Z"
+    "metricAsOf": "2026-11-09T19:55:18.707Z"
   },
   "yt-dlp": {
-    "githubStars": 191018,
-    "latestRelease": "2026-08-30T13:58:45Z",
+    "githubStars": 206466,
+    "latestRelease": "2026-11-04T07:16:27Z",
     "license": "Unlicense",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 51899,
+    "metricValue": 68916,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:15.250Z"
+    "metricAsOf": "2026-11-09T19:55:19.034Z"
   },
   "ffmpeg": {
-    "githubStars": 64202,
-    "latestRelease": "2026-09-14T03:54:28Z",
+    "githubStars": 66822,
+    "latestRelease": "2026-11-09T11:48:49Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 165880,
+    "metricValue": 142101,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:15.739Z"
+    "metricAsOf": "2026-11-09T19:55:19.287Z"
   },
   "rclone": {
-    "githubStars": 59745,
-    "latestRelease": "2026-09-14T08:34:34Z",
+    "githubStars": 60893,
+    "latestRelease": "2026-11-09T17:19:11Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 18423,
+    "metricValue": 24337,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:16.482Z"
+    "metricAsOf": "2026-11-09T19:55:19.626Z"
   },
   "trivy": {
-    "githubStars": 37900,
-    "latestRelease": "2026-09-11T10:39:47Z",
+    "githubStars": 39165,
+    "latestRelease": "2026-11-09T10:22:26Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 9005,
+    "metricValue": 15993,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:17.191Z"
+    "metricAsOf": "2026-11-09T19:55:19.947Z"
   },
   "syft": {
-    "githubStars": 9557,
-    "latestRelease": "2026-09-11T21:46:09Z",
+    "githubStars": 9865,
+    "latestRelease": "2026-11-09T14:36:34Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 2083,
+    "metricValue": 4637,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:17.810Z"
+    "metricAsOf": "2026-11-09T19:55:20.282Z"
   },
   "grype": {
-    "githubStars": 12876,
-    "latestRelease": "2026-09-11T16:06:13Z",
+    "githubStars": 13226,
+    "latestRelease": "2026-11-09T15:11:51Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 1744,
+    "metricValue": 4177,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:18.321Z"
+    "metricAsOf": "2026-11-09T19:55:20.623Z"
   },
   "dive": {
-    "githubStars": 54558,
-    "latestRelease": "2025-12-15T17:20:36Z",
+    "githubStars": 54710,
+    "latestRelease": "2026-11-02T17:54:03Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 363,
+    "metricValue": 880,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:18.785Z"
+    "metricAsOf": "2026-11-09T19:55:20.938Z"
   },
   "k9s": {
-    "githubStars": 34580,
-    "latestRelease": "2026-09-13T14:12:02Z",
+    "githubStars": 34944,
+    "latestRelease": "2026-11-09T17:13:11Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 7782,
+    "metricValue": 11599,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:19.241Z"
+    "metricAsOf": "2026-11-09T19:55:21.275Z"
   },
   "stern": {
-    "githubStars": 4858,
-    "latestRelease": "2026-08-19T05:46:49Z",
+    "githubStars": 4918,
+    "latestRelease": "2026-11-08T01:39:01Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 985,
+    "metricValue": 3536,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:19.748Z"
+    "metricAsOf": "2026-11-09T19:55:21.634Z"
   },
   "lazydocker": {
-    "githubStars": 52819,
+    "githubStars": 53302,
     "latestRelease": "2026-04-19T02:51:06Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 1358,
+    "metricValue": 2185,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:20.207Z"
+    "metricAsOf": "2026-11-09T19:55:22.000Z"
   },
   "k6": {
-    "githubStars": 31472,
-    "latestRelease": "2026-09-14T00:04:24Z",
+    "githubStars": 32233,
+    "latestRelease": "2026-11-09T15:06:27Z",
     "license": "AGPL-3.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 3557,
+    "metricValue": 4173,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:20.782Z"
+    "metricAsOf": "2026-11-09T19:55:22.381Z"
   },
   "lazygit": {
-    "githubStars": 82318,
-    "latestRelease": "2026-09-14T08:50:05Z",
+    "githubStars": 83768,
+    "latestRelease": "2026-11-09T16:59:10Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 14341,
+    "metricValue": 35952,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:21.284Z"
+    "metricAsOf": "2026-11-09T19:55:22.743Z"
   },
   "gitui": {
-    "githubStars": 22483,
-    "latestRelease": "2026-08-04T08:27:21Z",
+    "githubStars": 22637,
+    "latestRelease": "2026-10-06T07:08:04Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 271,
+    "metricValue": 351,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:22.238Z"
+    "metricAsOf": "2026-11-09T19:55:23.288Z"
   },
   "jj": {
-    "githubStars": 31560,
-    "latestRelease": "2026-09-13T23:39:06Z",
+    "githubStars": 32423,
+    "latestRelease": "2026-11-09T19:34:15Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 2067,
+    "metricValue": 4253,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:22.906Z"
+    "metricAsOf": "2026-11-09T19:55:23.656Z"
   },
   "delta": {
-    "githubStars": 32176,
-    "latestRelease": "2026-09-13T21:20:30Z",
+    "githubStars": 32701,
+    "latestRelease": "2026-11-09T16:01:12Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 3514,
+    "metricValue": 12696,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:23.349Z"
+    "metricAsOf": "2026-11-09T19:55:23.976Z"
   },
   "difftastic": {
-    "githubStars": 25895,
-    "latestRelease": "2026-09-13T21:58:31Z",
+    "githubStars": 26166,
+    "latestRelease": "2026-11-04T09:59:26Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 1578,
+    "metricValue": 4352,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:23.847Z"
+    "metricAsOf": "2026-11-09T19:55:24.288Z"
   },
   "biome": {
-    "githubStars": 25776,
-    "latestRelease": "2026-09-14T08:41:22Z",
+    "githubStars": 26072,
+    "latestRelease": "2026-11-09T19:53:43Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 11005083,
+    "metricValue": 26261522,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:24.505Z"
+    "metricAsOf": "2026-11-09T19:55:24.764Z"
   },
   "eslint": {
-    "githubStars": 27505,
-    "latestRelease": "2026-09-14T05:56:04Z",
+    "githubStars": 27606,
+    "latestRelease": "2026-11-09T12:07:34Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 113656111,
+    "metricValue": 205011064,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:24.901Z"
+    "metricAsOf": "2026-11-09T19:55:25.104Z"
   },
   "prettier": {
-    "githubStars": 52260,
-    "latestRelease": "2026-09-14T07:03:09Z",
+    "githubStars": 52408,
+    "latestRelease": "2026-11-09T14:11:52Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 93270869,
+    "metricValue": 182688964,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:25.305Z"
+    "metricAsOf": "2026-11-09T19:55:25.406Z"
   },
   "vitest": {
-    "githubStars": 17098,
-    "latestRelease": "2026-09-14T08:56:42Z",
+    "githubStars": 17354,
+    "latestRelease": "2026-11-09T19:00:53Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 77062981,
+    "metricValue": 179734329,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:25.691Z"
+    "metricAsOf": "2026-11-09T19:55:25.806Z"
   },
   "vite": {
-    "githubStars": 82815,
-    "latestRelease": "2026-09-14T02:29:10Z",
+    "githubStars": 83890,
+    "latestRelease": "2026-11-09T11:39:13Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 132485786,
+    "metricValue": 262791030,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:26.118Z"
+    "metricAsOf": "2026-11-09T19:55:26.192Z"
   },
   "drizzle-kit": {
-    "githubStars": 35763,
-    "latestRelease": "2026-09-11T15:04:58Z",
+    "githubStars": 36244,
+    "latestRelease": "2026-11-09T19:05:08Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 13644360,
+    "metricValue": 41827137,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:26.632Z"
+    "metricAsOf": "2026-11-09T19:55:26.591Z"
   },
   "dbmate": {
-    "githubStars": 7379,
-    "latestRelease": "2026-09-10T05:20:25Z",
+    "githubStars": 7529,
+    "latestRelease": "2026-11-09T16:29:19Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 340,
+    "metricValue": 490,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:27.122Z"
+    "metricAsOf": "2026-11-09T19:55:26.960Z"
   },
   "shellcheck": {
-    "githubStars": 40035,
-    "latestRelease": "2026-08-04T08:32:46Z",
+    "githubStars": 40309,
+    "latestRelease": "2026-11-09T01:29:53Z",
     "license": "GPL-3.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 24103,
+    "metricValue": 39720,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:27.636Z"
+    "metricAsOf": "2026-11-09T19:55:27.376Z"
   },
   "shfmt": {
-    "githubStars": 9055,
-    "latestRelease": "2026-09-09T21:28:20Z",
+    "githubStars": 9187,
+    "latestRelease": "2026-11-09T12:55:46Z",
     "license": "BSD-3-Clause",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 7595,
+    "metricValue": 11547,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:28.112Z"
+    "metricAsOf": "2026-11-09T19:55:27.695Z"
   },
   "fd-find": {
-    "githubStars": 44402,
-    "latestRelease": "2026-09-09T01:47:38Z",
+    "githubStars": 45130,
+    "latestRelease": "2026-11-09T06:43:32Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 23171,
+    "metricValue": 42576,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:28.528Z"
+    "metricAsOf": "2026-11-09T19:55:27.907Z"
   },
   "oracle": {
-    "githubStars": 3959,
-    "latestRelease": "2026-09-14T02:41:45Z",
+    "githubStars": 4065,
+    "latestRelease": "2026-11-06T20:26:33Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 2830,
+    "metricValue": 3320,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:29.090Z"
+    "metricAsOf": "2026-11-09T19:55:28.344Z"
   },
   "mcporter": {
-    "githubStars": 5005,
-    "latestRelease": "2026-09-14T08:55:28Z",
+    "githubStars": 5105,
+    "latestRelease": "2026-11-05T19:32:57Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 218646,
+    "metricValue": 544195,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:30.387Z"
+    "metricAsOf": "2026-11-09T19:55:28.949Z"
   },
   "basecamp": {
-    "githubStars": 273,
-    "latestRelease": "2026-09-14T06:51:10Z",
+    "githubStars": 297,
+    "latestRelease": "2026-11-09T19:13:25Z",
     "license": "MIT",
     "metricLabel": "GitHub release downloads (latest)",
-    "metricValue": 1672,
+    "metricValue": 906,
     "metricSource": "github",
-    "metricAsOf": "2026-09-14T08:59:31.456Z"
+    "metricAsOf": "2026-11-09T19:55:29.643Z"
   },
   "tempo": {
-    "githubStars": 1026,
-    "latestRelease": "2026-09-14T08:56:15Z",
+    "githubStars": 1042,
+    "latestRelease": "2026-11-09T19:42:14Z",
     "license": "Apache-2.0",
     "metricLabel": "GitHub release downloads (latest)",
-    "metricValue": 3025,
+    "metricValue": 1717,
     "metricSource": "github",
-    "metricAsOf": "2026-09-14T08:59:32.546Z"
+    "metricAsOf": "2026-11-09T19:55:30.353Z"
   },
   "quarto": {
-    "githubStars": 5995,
-    "latestRelease": "2026-09-14T07:33:12Z",
+    "githubStars": 6164,
+    "latestRelease": "2026-11-09T16:45:44Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 764,
+    "metricValue": 960,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:33.051Z"
+    "metricAsOf": "2026-11-09T19:55:30.717Z"
   },
   "vale": {
-    "githubStars": 6104,
-    "latestRelease": "2026-09-10T11:19:16Z",
+    "githubStars": 6359,
+    "latestRelease": "2026-11-09T05:27:19Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 8369,
+    "metricValue": 7252,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:33.904Z"
+    "metricAsOf": "2026-11-09T19:55:31.320Z"
   },
   "markdownlint-cli2": {
-    "githubStars": 919,
-    "latestRelease": "2026-09-13T20:40:13Z",
+    "githubStars": 974,
+    "latestRelease": "2026-11-09T16:56:32Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 1157487,
+    "metricValue": 2903454,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:34.220Z"
+    "metricAsOf": "2026-11-09T19:55:31.691Z"
   },
   "miller": {
-    "githubStars": 10018,
-    "latestRelease": "2026-09-09T15:24:45Z",
+    "githubStars": 10060,
+    "latestRelease": "2026-11-09T18:24:03Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 389,
+    "metricValue": 483,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:34.594Z"
+    "metricAsOf": "2026-11-09T19:55:31.916Z"
   },
   "ocrmypdf": {
-    "githubStars": 34759,
-    "latestRelease": "2026-09-13T22:14:27Z",
+    "githubStars": 35281,
+    "latestRelease": "2026-11-09T04:29:22Z",
     "license": "MPL-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 4030,
+    "metricValue": 2812,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:35.092Z"
+    "metricAsOf": "2026-11-09T19:55:32.277Z"
   },
   "tesseract": {
-    "githubStars": 76479,
-    "latestRelease": "2026-09-11T05:17:27Z",
+    "githubStars": 77424,
+    "latestRelease": "2026-11-09T11:40:17Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 34947,
+    "metricValue": 51046,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:35.668Z"
+    "metricAsOf": "2026-11-09T19:55:32.605Z"
   },
   "poppler": {
-    "githubStars": 46,
+    "githubStars": 47,
     "latestRelease": "2021-03-03T14:07:39Z",
     "license": "GPL-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 48293,
+    "metricValue": 59012,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:36.240Z"
+    "metricAsOf": "2026-11-09T19:55:32.934Z"
   },
   "whisper-cpp": {
-    "githubStars": 53653,
-    "latestRelease": "2026-09-14T04:35:58Z",
+    "githubStars": 55046,
+    "latestRelease": "2026-11-09T13:02:33Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 86,
+    "metricValue": 21871,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:36.747Z"
+    "metricAsOf": "2026-11-09T19:55:33.297Z"
   },
   "wget": {
-    "githubStars": 460,
+    "githubStars": 468,
     "latestRelease": "2024-09-25T04:41:51Z",
     "license": "GPL-3.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 11081,
+    "metricValue": 32409,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:37.255Z"
+    "metricAsOf": "2026-11-09T19:55:33.648Z"
   },
   "notmuch": {
-    "githubStars": 212,
-    "latestRelease": "2026-08-24T00:00:21Z",
+    "githubStars": 214,
+    "latestRelease": "2026-11-09T00:00:15Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 148,
+    "metricValue": 723,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:37.883Z"
+    "metricAsOf": "2026-11-09T19:55:34.020Z"
   },
   "aerc": {
-    "githubStars": 297,
-    "latestRelease": "2026-09-09T13:26:25Z",
+    "githubStars": 309,
+    "latestRelease": "2026-10-29T20:33:30Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 157,
+    "metricValue": 104,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:38.352Z"
+    "metricAsOf": "2026-11-09T19:55:34.348Z"
   },
   "khal": {
-    "githubStars": 3047,
-    "latestRelease": "2026-09-07T21:25:04Z",
+    "githubStars": 3088,
+    "latestRelease": "2026-11-02T22:35:22Z",
     "license": "MIT",
     "metricLabel": null,
     "metricValue": null,
     "metricSource": null,
-    "metricAsOf": "2026-09-14T08:59:39.069Z"
+    "metricAsOf": "2026-11-09T19:55:34.961Z"
   },
   "vdirsyncer": {
-    "githubStars": 1872,
-    "latestRelease": "2026-09-04T00:28:49Z",
+    "githubStars": 1904,
+    "latestRelease": "2026-11-08T05:17:05Z",
     "license": "NOASSERTION",
     "metricLabel": "GitHub release downloads (latest)",
-    "metricValue": 107,
+    "metricValue": 114,
     "metricSource": "github",
-    "metricAsOf": "2026-09-14T08:59:40.002Z"
+    "metricAsOf": "2026-11-09T19:55:35.539Z"
   },
   "zk": {
-    "githubStars": 2796,
-    "latestRelease": "2026-09-12T08:42:29Z",
+    "githubStars": 2867,
+    "latestRelease": "2026-11-06T23:32:41Z",
     "license": "GPL-3.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 75,
+    "metricValue": 232,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:40.595Z"
+    "metricAsOf": "2026-11-09T19:55:35.888Z"
   },
   "nb": {
-    "githubStars": 8405,
-    "latestRelease": "2026-08-26T00:51:47Z",
+    "githubStars": 8469,
+    "latestRelease": "2026-11-02T00:42:50Z",
     "license": "AGPL-3.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 103,
+    "metricValue": 173,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:41.091Z"
+    "metricAsOf": "2026-11-09T19:55:36.221Z"
   },
   "jrnl": {
-    "githubStars": 7315,
-    "latestRelease": "2026-09-10T18:31:55Z",
+    "githubStars": 7351,
+    "latestRelease": "2026-11-06T18:48:39Z",
     "license": "GPL-3.0",
     "metricLabel": null,
     "metricValue": null,
     "metricSource": null,
-    "metricAsOf": "2026-09-14T08:59:41.919Z"
+    "metricAsOf": "2026-11-09T19:55:36.820Z"
   },
   "taskwarrior": {
-    "githubStars": 6064,
-    "latestRelease": "2026-09-12T16:38:44Z",
+    "githubStars": 6158,
+    "latestRelease": "2026-11-09T06:10:57Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 1024,
+    "metricValue": 538,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:42.482Z"
+    "metricAsOf": "2026-11-09T19:55:37.187Z"
   },
   "linear": {
-    "githubStars": 1598,
-    "latestRelease": "2026-09-09T23:15:00Z",
+    "githubStars": 1664,
+    "latestRelease": "2026-11-04T19:19:32Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 1712382,
+    "metricValue": 4351392,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:43.280Z"
+    "metricAsOf": "2026-11-09T19:55:37.546Z"
   },
   "jira-cli": {
-    "githubStars": 5962,
-    "latestRelease": "2026-08-19T11:07:22Z",
+    "githubStars": 6066,
+    "latestRelease": "2026-10-17T16:56:25Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 530,
+    "metricValue": 602,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:43.840Z"
+    "metricAsOf": "2026-11-09T19:55:37.840Z"
   },
   "mbsync": {
-    "githubStars": 56,
+    "githubStars": 61,
     "latestRelease": "2013-01-30T01:50:17Z",
     "license": "GPL-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 110,
+    "metricValue": 612,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:44.302Z"
+    "metricAsOf": "2026-11-09T19:55:38.264Z"
   },
   "offlineimap": {
-    "githubStars": 633,
+    "githubStars": 638,
     "latestRelease": "2026-06-15T19:45:27Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 29,
+    "metricValue": 33,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:44.780Z"
+    "metricAsOf": "2026-11-09T19:55:38.697Z"
   },
   "neomutt": {
-    "githubStars": 3832,
-    "latestRelease": "2026-09-14T08:44:39Z",
+    "githubStars": 3862,
+    "latestRelease": "2026-11-09T00:55:23Z",
     "license": "GPL-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 129,
+    "metricValue": 484,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:45.358Z"
+    "metricAsOf": "2026-11-09T19:55:39.022Z"
   },
   "himalaya": {
-    "githubStars": 7237,
-    "latestRelease": "2026-09-08T16:28:42Z",
+    "githubStars": 7614,
+    "latestRelease": "2026-11-08T11:41:58Z",
     "license": "Apache-2.0",
     "metricLabel": "crates recent downloads",
-    "metricValue": 6758,
+    "metricValue": 3481,
     "metricSource": "crates.io",
-    "metricAsOf": "2026-09-14T08:59:46.152Z"
+    "metricAsOf": "2026-11-09T19:55:39.393Z"
   },
   "meli": {
-    "githubStars": 890,
-    "latestRelease": "2026-09-13T17:32:14Z",
+    "githubStars": 896,
+    "latestRelease": "2026-11-09T11:35:54Z",
     "license": "GPL-3.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 13,
+    "metricValue": 41,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:46.740Z"
+    "metricAsOf": "2026-11-09T19:55:39.755Z"
   },
   "gcalcli": {
-    "githubStars": 3763,
+    "githubStars": 3782,
     "latestRelease": "2025-10-25T01:39:59Z",
     "license": "MIT",
     "metricLabel": null,
     "metricValue": null,
     "metricSource": null,
-    "metricAsOf": "2026-09-14T08:59:47.585Z"
+    "metricAsOf": "2026-11-09T19:55:40.320Z"
   },
   "icalbuddy": {
     "githubStars": 191,
     "latestRelease": "2020-09-08T10:23:09Z",
     "license": null,
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 254,
+    "metricValue": 256,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:48.114Z"
+    "metricAsOf": "2026-11-09T19:55:40.766Z"
   },
   "khard": {
-    "githubStars": 669,
-    "latestRelease": "2026-09-07T18:24:12Z",
+    "githubStars": 676,
+    "latestRelease": "2026-10-17T12:24:48Z",
     "license": "GPL-3.0",
     "metricLabel": null,
     "metricValue": null,
     "metricSource": null,
-    "metricAsOf": "2026-09-14T08:59:48.910Z"
+    "metricAsOf": "2026-11-09T19:55:41.251Z"
   },
   "todoist-cli": {
-    "githubStars": 1735,
-    "latestRelease": "2026-07-26T17:37:41Z",
+    "githubStars": 1730,
+    "latestRelease": "2026-11-01T09:08:12Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 7,
+    "metricValue": 14,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:49.553Z"
+    "metricAsOf": "2026-11-09T19:55:41.677Z"
   },
   "gsutil": {
     "githubStars": 918,
-    "latestRelease": "2026-07-28T02:05:22Z",
+    "latestRelease": "2026-10-21T10:00:35Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 36819,
+    "metricValue": 52619,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:50.263Z"
+    "metricAsOf": "2026-11-09T19:55:41.940Z"
   },
   "bq": {
     "githubStars": 20,
-    "latestRelease": "2026-09-03T02:01:17Z",
+    "latestRelease": "2026-11-03T00:10:54Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 36819,
+    "metricValue": 52619,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:50.663Z"
+    "metricAsOf": "2026-11-09T19:55:42.182Z"
   },
   "m365": {
-    "githubStars": 1449,
-    "latestRelease": "2026-09-13T08:28:18Z",
+    "githubStars": 1479,
+    "latestRelease": "2026-11-09T06:58:22Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 28339,
+    "metricValue": 31801,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:51.267Z"
+    "metricAsOf": "2026-11-09T19:55:42.553Z"
   },
   "teamsfx": {
-    "githubStars": 776,
-    "latestRelease": "2026-09-14T08:48:05Z",
+    "githubStars": 786,
+    "latestRelease": "2026-11-09T15:41:46Z",
     "license": "NOASSERTION",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 4488,
+    "metricValue": 8421,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:52.759Z"
+    "metricAsOf": "2026-11-09T19:55:43.139Z"
   },
   "openai": {
-    "githubStars": 31618,
-    "latestRelease": "2026-09-11T19:54:46Z",
+    "githubStars": 32095,
+    "latestRelease": "2026-11-09T16:45:19Z",
     "license": "Apache-2.0",
     "metricLabel": null,
     "metricValue": null,
     "metricSource": null,
-    "metricAsOf": "2026-09-14T08:59:53.700Z"
+    "metricAsOf": "2026-11-09T19:55:44.325Z"
   },
   "claude": {
-    "githubStars": 144963,
-    "latestRelease": "2026-09-14T03:39:01Z",
+    "githubStars": 155070,
+    "latestRelease": "2026-11-09T19:22:29Z",
     "license": null,
     "metricLabel": "npm weekly downloads",
-    "metricValue": 10994666,
+    "metricValue": 14193546,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:54.138Z"
+    "metricAsOf": "2026-11-09T19:55:44.614Z"
   },
   "llama": {
-    "githubStars": 8426,
-    "latestRelease": "2026-09-13T14:14:34Z",
+    "githubStars": 8457,
+    "latestRelease": "2026-11-09T13:20:02Z",
     "license": "MIT",
     "metricLabel": "GitHub release downloads (latest)",
-    "metricValue": 24,
+    "metricValue": 37,
     "metricSource": "github",
-    "metricAsOf": "2026-09-14T08:59:55.677Z"
+    "metricAsOf": "2026-11-09T19:55:45.731Z"
   },
   "xcodebuild": {
     "githubStars": null,
@@ -1455,250 +1455,250 @@
     "metricLabel": null,
     "metricValue": null,
     "metricSource": null,
-    "metricAsOf": "2026-09-14T08:59:56.117Z"
+    "metricAsOf": "2026-11-09T19:55:46.003Z"
   },
   "ibmcloud": {
     "githubStars": 35,
-    "latestRelease": "2026-09-14T05:19:10Z",
+    "latestRelease": "2026-11-09T05:45:15Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 124,
+    "metricValue": 117,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:56.753Z"
+    "metricAsOf": "2026-11-09T19:55:46.342Z"
   },
   "oci": {
-    "githubStars": 668,
-    "latestRelease": "2026-09-08T10:18:29Z",
+    "githubStars": 686,
+    "latestRelease": "2026-11-03T11:42:19Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 3105,
+    "metricValue": 3638,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:57.336Z"
+    "metricAsOf": "2026-11-09T19:55:46.695Z"
   },
   "doctl": {
-    "githubStars": 3449,
-    "latestRelease": "2026-09-13T09:48:41Z",
+    "githubStars": 3455,
+    "latestRelease": "2026-11-06T14:11:08Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 2631,
+    "metricValue": 5950,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:57.875Z"
+    "metricAsOf": "2026-11-09T19:55:47.038Z"
   },
   "heroku": {
-    "githubStars": 889,
-    "latestRelease": "2026-09-13T19:04:14Z",
+    "githubStars": 886,
+    "latestRelease": "2026-11-09T18:50:22Z",
     "license": "ISC",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 618,
+    "metricValue": 837,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T08:59:58.415Z"
+    "metricAsOf": "2026-11-09T19:55:47.382Z"
   },
   "sf": {
-    "githubStars": 180,
-    "latestRelease": "2026-09-14T02:44:08Z",
+    "githubStars": 187,
+    "latestRelease": "2026-11-09T15:53:10Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 279199,
+    "metricValue": 552705,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T08:59:59.181Z"
+    "metricAsOf": "2026-11-09T19:55:47.804Z"
   },
   "twilio": {
-    "githubStars": 193,
-    "latestRelease": "2026-09-10T11:10:35Z",
+    "githubStars": 194,
+    "latestRelease": "2026-10-26T10:58:10Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 12062,
+    "metricValue": 7665,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T09:00:00.315Z"
+    "metricAsOf": "2026-11-09T19:55:48.269Z"
   },
   "gitlab": {
-    "githubStars": 46,
-    "latestRelease": "2026-09-14T06:53:05Z",
+    "githubStars": 52,
+    "latestRelease": "2026-11-09T18:32:56Z",
     "license": "MIT",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 24121,
+    "metricValue": 47732,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T09:00:01.287Z"
+    "metricAsOf": "2026-11-09T19:55:48.840Z"
   },
   "snowsql": {
-    "githubStars": 729,
-    "latestRelease": "2026-09-09T09:34:58Z",
+    "githubStars": 733,
+    "latestRelease": "2026-11-04T12:16:51Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 262,
+    "metricValue": 220,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T09:00:01.942Z"
+    "metricAsOf": "2026-11-09T19:55:49.164Z"
   },
   "mongosh": {
-    "githubStars": 401,
-    "latestRelease": "2026-09-14T00:57:44Z",
+    "githubStars": 402,
+    "latestRelease": "2026-11-09T18:16:17Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 3826,
+    "metricValue": 8879,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T09:00:02.534Z"
+    "metricAsOf": "2026-11-09T19:55:49.517Z"
   },
   "elastic": {
-    "githubStars": 275,
-    "latestRelease": "2026-09-14T08:53:59Z",
+    "githubStars": 290,
+    "latestRelease": "2026-11-09T19:24:53Z",
     "license": "NOASSERTION",
     "metricLabel": null,
     "metricValue": null,
     "metricSource": null,
-    "metricAsOf": "2026-09-14T09:00:03.439Z"
+    "metricAsOf": "2026-11-09T19:55:50.160Z"
   },
   "pi": {
     "githubStars": null,
     "latestRelease": null,
     "license": null,
     "metricLabel": "npm weekly downloads",
-    "metricValue": 1999808,
+    "metricValue": 6249248,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T09:00:04.373Z"
+    "metricAsOf": "2026-11-09T19:55:50.385Z"
   },
   "pi-tinker": {
-    "githubStars": 24,
-    "latestRelease": "2026-09-14T08:44:29Z",
+    "githubStars": 25,
+    "latestRelease": "2026-11-05T15:48:51Z",
     "license": "Apache-2.0",
-    "metricLabel": null,
-    "metricValue": null,
-    "metricSource": null,
-    "metricAsOf": "2026-09-14T09:00:05.234Z"
+    "metricLabel": "npm weekly downloads",
+    "metricValue": 22,
+    "metricSource": "npm",
+    "metricAsOf": "2026-11-09T19:55:50.709Z"
   },
   "founder-skills": {
-    "githubStars": 8,
+    "githubStars": 15,
     "latestRelease": "2026-09-14T08:53:10Z",
     "license": "MIT",
-    "metricLabel": null,
-    "metricValue": null,
-    "metricSource": null,
-    "metricAsOf": "2026-09-14T09:00:06.217Z"
+    "metricLabel": "npm weekly downloads",
+    "metricValue": 8,
+    "metricSource": "npm",
+    "metricAsOf": "2026-11-09T19:55:51.121Z"
   },
   "preflight": {
     "githubStars": 0,
-    "latestRelease": "2026-09-14T08:52:05Z",
+    "latestRelease": "2026-09-14T09:01:17Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 6,
+    "metricValue": 9,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T09:00:07.343Z"
+    "metricAsOf": "2026-11-09T19:55:51.650Z"
   },
   "amp": {
     "githubStars": null,
     "latestRelease": null,
     "license": null,
     "metricLabel": "npm weekly downloads",
-    "metricValue": 16401,
+    "metricValue": 26738,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T09:00:08.369Z"
+    "metricAsOf": "2026-11-09T19:55:52.797Z"
   },
   "cursor-agent": {
-    "githubStars": 33237,
+    "githubStars": 33329,
     "latestRelease": "2026-05-12T15:25:06Z",
     "license": null,
     "metricLabel": null,
     "metricValue": null,
     "metricSource": null,
-    "metricAsOf": "2026-09-14T09:00:09.847Z"
+    "metricAsOf": "2026-11-09T19:55:53.867Z"
   },
   "amazon-q": {
-    "githubStars": 1982,
+    "githubStars": 1987,
     "latestRelease": "2026-08-24T22:13:43Z",
     "license": "Apache-2.0",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 1073,
+    "metricValue": 2023,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T09:00:10.474Z"
+    "metricAsOf": "2026-11-09T19:55:54.335Z"
   },
   "continue-cli": {
-    "githubStars": 35898,
-    "latestRelease": "2026-09-14T04:33:35Z",
+    "githubStars": 36446,
+    "latestRelease": "2026-11-05T15:28:28Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 2453,
+    "metricValue": 7003,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T09:00:11.131Z"
+    "metricAsOf": "2026-11-09T19:55:54.909Z"
   },
   "opencode": {
-    "githubStars": 207232,
-    "latestRelease": "2026-09-14T08:08:36Z",
+    "githubStars": 225636,
+    "latestRelease": "2026-11-09T19:51:01Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 1774358,
+    "metricValue": 3363206,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T09:00:11.812Z"
+    "metricAsOf": "2026-11-09T19:55:55.432Z"
   },
   "crush": {
-    "githubStars": 28070,
-    "latestRelease": "2026-09-14T08:24:15Z",
+    "githubStars": 29017,
+    "latestRelease": "2026-11-09T19:50:22Z",
     "license": "NOASSERTION",
     "metricLabel": "GitHub release downloads (latest)",
-    "metricValue": 6295,
+    "metricValue": 17625,
     "metricSource": "github",
-    "metricAsOf": "2026-09-14T09:00:13.009Z"
+    "metricAsOf": "2026-11-09T19:55:56.570Z"
   },
   "qwen-code": {
-    "githubStars": 27831,
-    "latestRelease": "2026-09-14T08:50:36Z",
+    "githubStars": 29132,
+    "latestRelease": "2026-11-09T19:44:56Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 49639,
+    "metricValue": 138568,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T09:00:14.205Z"
+    "metricAsOf": "2026-11-09T19:55:57.193Z"
   },
   "zed-agent": {
-    "githubStars": 90209,
-    "latestRelease": "2026-09-14T08:57:55Z",
+    "githubStars": 94580,
+    "latestRelease": "2026-11-09T19:39:34Z",
     "license": "NOASSERTION",
     "metricLabel": "Homebrew installs (30d)",
-    "metricValue": 6376,
+    "metricValue": 8770,
     "metricSource": "homebrew",
-    "metricAsOf": "2026-09-14T09:00:14.751Z"
+    "metricAsOf": "2026-11-09T19:55:57.611Z"
   },
   "repomix": {
-    "githubStars": 28331,
-    "latestRelease": "2026-09-13T06:41:37Z",
+    "githubStars": 29204,
+    "latestRelease": "2026-11-08T08:56:26Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 63911,
+    "metricValue": 116149,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T09:00:15.340Z"
+    "metricAsOf": "2026-11-09T19:55:58.073Z"
   },
   "playwright-mcp": {
-    "githubStars": 37079,
-    "latestRelease": "2026-09-11T22:45:15Z",
+    "githubStars": 39385,
+    "latestRelease": "2026-11-09T18:28:53Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 4633135,
+    "metricValue": 10233094,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T09:00:16.458Z"
+    "metricAsOf": "2026-11-09T19:55:58.512Z"
   },
   "posting": {
-    "githubStars": 12412,
-    "latestRelease": "2026-03-25T23:30:48Z",
+    "githubStars": 12612,
+    "latestRelease": "2026-10-16T02:21:22Z",
     "license": "Apache-2.0",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 3,
+    "metricValue": 15,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T09:00:17.073Z"
+    "metricAsOf": "2026-11-09T19:55:59.020Z"
   },
   "ytmd": {
-    "githubStars": 0,
-    "latestRelease": "2026-09-14T08:44:28Z",
+    "githubStars": 2,
+    "latestRelease": "2026-11-02T16:49:19Z",
     "license": "MIT",
     "metricLabel": "GitHub release downloads (latest)",
-    "metricValue": 6,
+    "metricValue": 16,
     "metricSource": "github",
-    "metricAsOf": "2026-09-14T09:00:17.785Z"
+    "metricAsOf": "2026-11-09T19:55:59.675Z"
   },
   "pickbrain": {
-    "githubStars": 0,
-    "latestRelease": "2026-09-10T19:00:53Z",
-    "license": "Apache-2.0",
+    "githubStars": null,
+    "latestRelease": null,
+    "license": null,
     "metricLabel": null,
     "metricValue": null,
     "metricSource": null,
-    "metricAsOf": "2026-09-14T09:00:18.608Z"
+    "metricAsOf": "2026-11-09T19:56:00.169Z"
   },
   "momento": {
     "githubStars": 0,
@@ -1707,96 +1707,96 @@
     "metricLabel": null,
     "metricValue": null,
     "metricSource": null,
-    "metricAsOf": "2026-09-14T09:00:19.427Z"
+    "metricAsOf": "2026-11-09T19:56:00.779Z"
   },
   "pisesh": {
-    "githubStars": 8,
+    "githubStars": 10,
     "latestRelease": "2026-08-28T04:23:31Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 49,
+    "metricValue": 25,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T09:00:20.467Z"
+    "metricAsOf": "2026-11-09T19:56:01.101Z"
   },
   "ant-design-cli": {
-    "githubStars": 257,
-    "latestRelease": "2026-09-14T07:04:37Z",
+    "githubStars": 261,
+    "latestRelease": "2026-11-08T17:04:16Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 11652,
+    "metricValue": 24565,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T09:00:21.151Z"
+    "metricAsOf": "2026-11-09T19:56:01.504Z"
   },
   "zoxide-doctor": {
     "githubStars": 0,
     "latestRelease": "2026-08-08T14:14:46Z",
     "license": "MIT",
     "metricLabel": "npm weekly downloads",
-    "metricValue": 9,
+    "metricValue": 21,
     "metricSource": "npm",
-    "metricAsOf": "2026-09-14T09:00:22.192Z"
+    "metricAsOf": "2026-11-09T19:56:01.886Z"
   },
   "pi-fusion": {
     "githubStars": 2,
-    "latestRelease": "2026-09-14T08:52:08Z",
+    "latestRelease": "2026-09-29T19:30:56Z",
     "license": "MIT",
-    "metricLabel": null,
-    "metricValue": null,
-    "metricSource": null,
-    "metricAsOf": "2026-09-14T09:00:23.747Z"
+    "metricLabel": "npm weekly downloads",
+    "metricValue": 19,
+    "metricSource": "npm",
+    "metricAsOf": "2026-11-09T19:56:02.377Z"
   },
   "pi-swarm-supervisor": {
     "githubStars": 2,
     "latestRelease": "2026-09-14T08:10:22Z",
     "license": "MIT",
-    "metricLabel": null,
-    "metricValue": null,
-    "metricSource": null,
-    "metricAsOf": "2026-09-14T09:00:24.840Z"
+    "metricLabel": "npm weekly downloads",
+    "metricValue": 6,
+    "metricSource": "npm",
+    "metricAsOf": "2026-11-09T19:56:02.847Z"
   },
   "gws": {
-    "githubStars": 30993,
-    "latestRelease": "2026-03-31T18:53:24Z",
+    "githubStars": 32210,
+    "latestRelease": "2026-11-03T01:37:22Z",
     "license": "Apache-2.0",
-    "metricLabel": null,
-    "metricValue": null,
-    "metricSource": null,
-    "metricAsOf": "2026-09-14"
+    "metricLabel": "npm weekly downloads",
+    "metricValue": 56386,
+    "metricSource": "npm",
+    "metricAsOf": "2026-11-09T19:56:03.203Z"
   },
   "harlequin": {
-    "githubStars": 6398,
-    "latestRelease": "2026-09-02T19:41:17Z",
+    "githubStars": 6515,
+    "latestRelease": "2026-11-07T18:15:09Z",
     "license": "MIT",
-    "metricLabel": null,
-    "metricValue": null,
-    "metricSource": null,
-    "metricAsOf": "2026-09-14"
+    "metricLabel": "Homebrew installs (30d)",
+    "metricValue": 457,
+    "metricSource": "homebrew",
+    "metricAsOf": "2026-11-09T19:56:03.581Z"
   },
   "zellij": {
-    "githubStars": 35416,
-    "latestRelease": "2026-08-28T09:21:44Z",
+    "githubStars": 35982,
+    "latestRelease": "2026-11-09T19:33:18Z",
     "license": "MIT",
-    "metricLabel": null,
-    "metricValue": null,
-    "metricSource": null,
-    "metricAsOf": "2026-09-14"
+    "metricLabel": "Homebrew installs (30d)",
+    "metricValue": 3483,
+    "metricSource": "homebrew",
+    "metricAsOf": "2026-11-09T19:56:03.947Z"
   },
   "tmux": {
-    "githubStars": 49247,
-    "latestRelease": "2026-08-17T12:53:48Z",
+    "githubStars": 50224,
+    "latestRelease": "2026-11-09T13:24:50Z",
     "license": "ISC",
-    "metricLabel": null,
-    "metricValue": null,
-    "metricSource": null,
-    "metricAsOf": "2026-09-14"
+    "metricLabel": "Homebrew installs (30d)",
+    "metricValue": 63075,
+    "metricSource": "homebrew",
+    "metricAsOf": "2026-11-09T19:56:04.367Z"
   },
   "ast-grep": {
-    "githubStars": 15895,
-    "latestRelease": "2026-08-31T01:42:23Z",
+    "githubStars": 16519,
+    "latestRelease": "2026-11-09T14:57:21Z",
     "license": "MIT",
-    "metricLabel": null,
-    "metricValue": null,
-    "metricSource": null,
-    "metricAsOf": "2026-09-14"
+    "metricLabel": "Homebrew installs (30d)",
+    "metricValue": 13002,
+    "metricSource": "homebrew",
+    "metricAsOf": "2026-11-09T19:56:04.711Z"
   }
 }
