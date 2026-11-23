@@ -490,11 +490,6 @@ export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
     return () => { controller.abort(); window.clearTimeout(timeout); };
   }, [query]);
 
-  useEffect(() => {
-    const shared = new URLSearchParams(window.location.search).get("q");
-    if (shared?.trim()) setSearch(shared.trim());
-  }, []);
-
   function handleSuggestion(value: string) {
     setSearch(value);
     setLimit(40);
