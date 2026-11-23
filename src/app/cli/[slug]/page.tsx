@@ -63,7 +63,7 @@ export default async function CliPage({ params }: CliPageProps) {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pt-8">
+      <main className="guide-page mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pt-8">
         <nav className="flex items-center gap-1.5 font-mono text-sm text-white/46">
           <Link href="/" className="transition hover:text-white">open-cli</Link>
           <span>/</span>

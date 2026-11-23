@@ -527,6 +527,15 @@ function getDirectCliMatchScore(cli: CliEntry, query: string) {
   return score;
 }
 
+export function findExactCli(query: string) {
+  const key = query.trim().toLowerCase();
+  if (!key) return null;
+  return clis.find(cli => cli.slug === key)
+    ?? clis.find(cli => [cli.shortName, cli.name, cli.binaryName].some(value => value?.toLowerCase() === key))
+    ?? clis.find(cli => cli.aliases.some(alias => alias.toLowerCase() === key))
+    ?? null;
+}
+
 export function findDirectCliMatch(query: string) {
   const normalized = normalizeIntentText(query);
 

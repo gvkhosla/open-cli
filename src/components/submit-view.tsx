@@ -2,13 +2,13 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/lib/site";
 
-export function SubmitView() {
-  const issueUrl = `${siteConfig.links.github}/issues/new?labels=cli-suggestion&title=Suggest+CLI:+&body=%23%23+CLI+name%0A%0A%23%23+Install+command%0A%0A%23%23+What+it+does%0A%0A%23%23+Project+link%0A`;
+export function SubmitView({ task = "" }: { task?: string }) {
+  const issueUrl = `${siteConfig.links.github}/issues/new?labels=cli-suggestion&title=Suggest+CLI:+&body=%23%23+CLI+name%0A%0A%23%23+Install+command%0A%0A%23%23+What+it+does%0A%0A%23%23+Project+link%0A${task ? encodeURIComponent(`\n## Task to support\n${task}\n`) : ""}`;
 
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+      <main className="guide-page mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-8 sm:px-6 lg:px-8">
         <nav className="flex items-center gap-2 text-sm text-white/50">
           <Link href="/" className="transition hover:text-white">open-cli</Link>
           <svg className="h-3 w-3 text-white/20" fill="none" viewBox="0 0 12 12" stroke="currentColor" strokeWidth="1.5"><path d="M4 2l4 4-4 4" /></svg>
@@ -22,6 +22,7 @@ export function SubmitView() {
             <p className="ui-body max-w-2xl">
               If a useful CLI is missing, open a GitHub issue with the name, install command, and what it does. We review suggestions regularly.
             </p>
+            {task && <p className="text-sm text-white/75">Task to include in your suggestion: {task}</p>}
             <div className="pt-2">
               <a
                 href={issueUrl}

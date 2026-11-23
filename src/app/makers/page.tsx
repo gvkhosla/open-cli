@@ -18,7 +18,7 @@ export default function MakersPage() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+      <main className="guide-page mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-16 pt-8 sm:px-6 lg:px-8">
         <nav className="flex items-center gap-2 font-mono text-sm text-white/46">
           <Link href="/" className="transition hover:text-white">open-cli</Link>
           <Chevron />

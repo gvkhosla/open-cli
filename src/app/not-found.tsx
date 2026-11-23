@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-4 text-center sm:px-6 lg:px-8">
+      <main className="guide-page mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-4 text-center sm:px-6 lg:px-8">
         <div className="animate-fade-in-up space-y-6">
           <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl border border-white/8 bg-white/[0.02]">
             <span className="text-3xl font-medium text-white/84">404</span>

@@ -1,8 +1,10 @@
-import { clis, findDirectCliMatch, searchClis, type CliEntry } from "@/data/clis";
+import { clis, findExactCli, findDirectCliMatch, searchClis, type CliEntry } from "@/data/clis";
 import { capabilityDefinitions, detectCapabilityMatches, getCapabilityBySlug, type CapabilityDefinition } from "@/lib/capabilities";
+import { ambiguousPdf, exampleFor, toolForTask } from "./task-intents";
 import { getAgentReadiness, getVerifyStep } from "@/lib/agent-pack";
 
 export type SuperchargeCliSummary = {
+  tagline: string;
   slug: string;
   shortName: string;
   name: string;
@@ -31,6 +33,8 @@ export type SuperchargeStackItem = {
 };
 
 export type SuperchargeRecommendation = {
+  firstCommand: string;
+  commandHint: string;
   matchType: "direct" | "intent";
   capability: {
     slug: string;
@@ -116,6 +120,7 @@ function buildAlternativeReason(primary: CliEntry, alternative: CliEntry) {
 
 function summarizeCli(cli: CliEntry): SuperchargeCliSummary {
   return {
+    tagline: cli.tagline,
     slug: cli.slug,
     shortName: cli.shortName,
     name: cli.name,
@@ -230,13 +235,19 @@ function chooseCandidates(capability: CapabilityDefinition, prompt: string) {
 
 export function buildSuperchargeRecommendation(prompt: string, preferredCapabilitySlug?: string): SuperchargeRecommendation | null {
   const directCapability = preferredCapabilitySlug ? getCapabilityBySlug(preferredCapabilitySlug) : null;
-  const directCliMatch = findDirectCliMatch(prompt);
+  const exact = findExactCli(prompt);
+  if (!exact && !directCapability && ambiguousPdf(prompt)) return null;
+  const taskSlug = exact ? undefined : toolForTask(prompt);
+  const taskCli = taskSlug ? clis.find(cli => cli.slug === taskSlug) : null;
+  const directCliMatch = exact ?? (taskCli ? null : findDirectCliMatch(prompt));
   const detectedCapability = detectCapabilityMatches(prompt)[0]?.capability;
+  if (!directCliMatch && !taskCli && !directCapability && !detectedCapability) return null;
   const matchType = directCliMatch ? "direct" : "intent";
-  const capability = directCliMatch
+  const taskCapability = taskCli && getCapabilityBySlug(taskCli.slug === "duckdb" ? "spreadsheets" : taskCli.slug === "hexyl" ? "knowledge-files" : "documents");
+  const capability = taskCapability || (directCliMatch
     ? getDefaultCapabilityForCli(directCliMatch)
-    : detectedCapability ?? directCapability ?? capabilityDefinitions[0];
-  const candidates = directCliMatch
+    : detectedCapability ?? directCapability ?? capabilityDefinitions[0]);
+  const candidates = taskCli ? [taskCli] : directCliMatch
     ? [
         directCliMatch,
         ...searchClis(prompt).filter(
@@ -261,12 +272,14 @@ export function buildSuperchargeRecommendation(prompt: string, preferredCapabili
 
   return {
     matchType,
-    capability: { slug: capability.slug, label: capability.label },
+    firstCommand: exampleFor(primary.slug)?.command ?? verify.command,
+    commandHint: exampleFor(primary.slug)?.hint ?? verify.signal,
+    capability: { slug: capability.slug, label: exact || taskCli ? primary.category : capability.label },
     primary: summarizeCli(primary),
     alternatives,
-    stack: buildStack(capability, candidates),
-    rationale: buildRationale(primary, capability),
-    whyReasons: buildWhyReasons(primary, capability),
+    stack: exact || taskCli ? [] : buildStack(capability, candidates),
+    rationale: exact || taskCli ? primary.tagline : buildRationale(primary, capability),
+    whyReasons: exact || taskCli ? [primary.tagline] : buildWhyReasons(primary, capability),
     watchouts: buildWatchouts(primary),
     verifyCommand: verify.command,
     verifySignal: verify.signal,

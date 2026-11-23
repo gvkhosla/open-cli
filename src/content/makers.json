@@ -1101,5 +1101,239 @@
     "type": "small-team",
     "url": "https://ast-grep.github.io",
     "featuredBuilder": true
+  },
+  {
+    "slug": "qpdf",
+    "name": "QPDF",
+    "type": "small-team",
+    "url": "https://github.com/qpdf"
+  },
+  {
+    "slug": "phiresky",
+    "name": "phiresky",
+    "type": "small-team",
+    "url": "https://github.com/phiresky"
+  },
+  {
+    "slug": "tomwright",
+    "name": "TomWright",
+    "type": "individual",
+    "url": "https://github.com/TomWright"
+  },
+  {
+    "slug": "tomnomnom",
+    "name": "tomnomnom",
+    "type": "individual",
+    "url": "https://github.com/tomnomnom"
+  },
+  {
+    "slug": "pauljuliusmartinez",
+    "name": "PaulJuliusMartinez",
+    "type": "individual",
+    "url": "https://github.com/PaulJuliusMartinez"
+  },
+  {
+    "slug": "kellyjonbrazil",
+    "name": "kellyjonbrazil",
+    "type": "individual",
+    "url": "https://github.com/kellyjonbrazil"
+  },
+  {
+    "slug": "dathere",
+    "name": "dathere",
+    "type": "org",
+    "url": "https://github.com/dathere"
+  },
+  {
+    "slug": "ys-l",
+    "name": "YS-L",
+    "type": "individual",
+    "url": "https://github.com/YS-L"
+  },
+  {
+    "slug": "jpmens",
+    "name": "jpmens",
+    "type": "individual",
+    "url": "https://github.com/jpmens"
+  },
+  {
+    "slug": "darold",
+    "name": "darold",
+    "type": "individual",
+    "url": "https://github.com/darold"
+  },
+  {
+    "slug": "rust-lang",
+    "name": "rust-lang",
+    "type": "org",
+    "url": "https://github.com/rust-lang"
+  },
+  {
+    "slug": "typst",
+    "name": "typst",
+    "type": "org",
+    "url": "https://github.com/typst"
+  },
+  {
+    "slug": "asciidoctor",
+    "name": "asciidoctor",
+    "type": "org",
+    "url": "https://github.com/asciidoctor"
+  },
+  {
+    "slug": "d2lang",
+    "name": "d2lang",
+    "type": "org",
+    "url": "https://github.com/d2lang"
+  },
+  {
+    "slug": "libvips",
+    "name": "libvips",
+    "type": "org",
+    "url": "https://github.com/libvips"
+  },
+  {
+    "slug": "imagemagick",
+    "name": "ImageMagick",
+    "type": "org",
+    "url": "https://github.com/ImageMagick"
+  },
+  {
+    "slug": "oxipng",
+    "name": "oxipng",
+    "type": "org",
+    "url": "https://github.com/oxipng"
+  },
+  {
+    "slug": "linebender",
+    "name": "linebender",
+    "type": "org",
+    "url": "https://github.com/linebender"
+  },
+  {
+    "slug": "kyu08",
+    "name": "kyu08",
+    "type": "individual",
+    "url": "https://github.com/kyu08"
+  },
+  {
+    "slug": "xampprocky",
+    "name": "XAMPPRocky",
+    "type": "individual",
+    "url": "https://github.com/XAMPPRocky"
+  },
+  {
+    "slug": "boyter",
+    "name": "boyter",
+    "type": "individual",
+    "url": "https://github.com/boyter"
+  },
+  {
+    "slug": "aldanial",
+    "name": "AlDanial",
+    "type": "individual",
+    "url": "https://github.com/AlDanial"
+  },
+  {
+    "slug": "old-man-programmer",
+    "name": "Old-Man-Programmer",
+    "type": "individual",
+    "url": "https://github.com/Old-Man-Programmer"
+  },
+  {
+    "slug": "solidiquis",
+    "name": "solidiquis",
+    "type": "individual",
+    "url": "https://github.com/solidiquis"
+  },
+  {
+    "slug": "byron",
+    "name": "Byron",
+    "type": "individual",
+    "url": "https://github.com/Byron"
+  },
+  {
+    "slug": "facebook",
+    "name": "facebook",
+    "type": "org",
+    "url": "https://github.com/facebook"
+  },
+  {
+    "slug": "lz4",
+    "name": "lz4",
+    "type": "org",
+    "url": "https://github.com/lz4"
+  },
+  {
+    "slug": "ouch-org",
+    "name": "ouch-org",
+    "type": "org",
+    "url": "https://github.com/ouch-org"
+  },
+  {
+    "slug": "jonas",
+    "name": "jonas",
+    "type": "individual",
+    "url": "https://github.com/jonas"
+  },
+  {
+    "slug": "orhun",
+    "name": "orhun",
+    "type": "individual",
+    "url": "https://github.com/orhun"
+  },
+  {
+    "slug": "tummychow",
+    "name": "tummychow",
+    "type": "individual",
+    "url": "https://github.com/tummychow"
+  },
+  {
+    "slug": "gitleaks",
+    "name": "gitleaks",
+    "type": "org",
+    "url": "https://github.com/gitleaks"
+  },
+  {
+    "slug": "simonmichael",
+    "name": "simonmichael",
+    "type": "individual",
+    "url": "https://github.com/simonmichael"
+  },
+  {
+    "slug": "gothenburgbitfactory",
+    "name": "GothenburgBitFactory",
+    "type": "org",
+    "url": "https://github.com/GothenburgBitFactory"
+  },
+  {
+    "slug": "asciinema",
+    "name": "asciinema",
+    "type": "org",
+    "url": "https://github.com/asciinema"
+  },
+  {
+    "slug": "tstack",
+    "name": "tstack",
+    "type": "individual",
+    "url": "https://github.com/tstack"
+  },
+  {
+    "slug": "hadolint",
+    "name": "hadolint",
+    "type": "org",
+    "url": "https://github.com/hadolint"
+  },
+  {
+    "slug": "kubernetes-sigs",
+    "name": "kubernetes-sigs",
+    "type": "org",
+    "url": "https://github.com/kubernetes-sigs"
+  },
+  {
+    "slug": "yannh",
+    "name": "yannh",
+    "type": "individual",
+    "url": "https://github.com/yannh"
   }
 ]

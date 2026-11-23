@@ -6,10 +6,8 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const navItems: { href: string; label: string }[] = [
-  { href: "/recommend", label: "Recommend" },
   { href: "/for/research", label: "Use cases" },
   { href: "/agent", label: "Agents" },
-  { href: "/radar", label: "Radar" },
 ];
 
 export function SiteHeader() {
@@ -54,7 +52,8 @@ export function SiteHeader() {
             <span className="text-[15px] font-medium tracking-[-0.012em] text-white">Open CLI</span>
           </Link>
 
-          <nav className="hidden items-center gap-4 sm:flex">
+          <div className="flex items-center gap-2 sm:gap-6">
+          <nav aria-label="Primary" className="hidden items-center gap-4 sm:flex">
             {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
@@ -72,6 +71,9 @@ export function SiteHeader() {
             })}
           </nav>
 
+          <Link href="/submit" onClick={() => setMobileOpen(false)} className="inline-flex min-h-11 items-center gap-1.5 px-1 text-sm font-medium text-white focus-visible:outline-2 focus-visible:outline-[#217EFF]">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#FAFAFA] px-3.5 py-1.5 text-[#121212] transition-colors hover:bg-white"><span aria-hidden="true">+</span> Submit a CLI</span>
+          </Link>
           {/* Mobile hamburger */}
           <button
             type="button"
@@ -94,6 +96,7 @@ export function SiteHeader() {
               />
             </div>
           </button>
+          </div>
         </div>
       </header>
 

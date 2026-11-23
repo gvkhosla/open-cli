@@ -7066,5 +7066,1193 @@
       "sg scan"
     ],
     "brewFormula": "ast-grep"
+  },
+  {
+    "slug": "qpdf",
+    "name": "qpdf",
+    "shortName": "qpdf",
+    "maker": "qpdf",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install qpdf",
+    "quickStart": "qpdf --version",
+    "githubRepo": "qpdf/qpdf",
+    "website": "https://github.com/qpdf/qpdf",
+    "docs": "https://github.com/qpdf/qpdf#readme",
+    "tagline": "Check a PDF’s structure and inspect its pages without changing the file.",
+    "bestFor": "PDF validation and PDF page count",
+    "useCases": [
+      "PDF validation",
+      "PDF page count"
+    ],
+    "aliases": [],
+    "keywords": [
+      "PDF validation",
+      "PDF page count"
+    ],
+    "tags": [
+      "local-first"
+    ],
+    "featured": false,
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresNetwork": false,
+    "localFirst": true,
+    "ciFriendly": true,
+    "destructivePotential": "medium",
+    "exampleWorkflow": [
+      "qpdf --check report.pdf",
+      "qpdf --show-npages report.pdf"
+    ],
+    "brewFormula": "qpdf"
+  },
+  {
+    "slug": "ripgrep-all",
+    "name": "ripgrep-all",
+    "shortName": "rga",
+    "maker": "phiresky",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install ripgrep-all",
+    "quickStart": "rga --version",
+    "githubRepo": "phiresky/ripgrep-all",
+    "website": "https://github.com/phiresky/ripgrep-all",
+    "docs": "https://github.com/phiresky/ripgrep-all#readme",
+    "tagline": "Search text inside PDFs, office documents, and archives with one command.",
+    "bestFor": "Document search and Archive search",
+    "useCases": [
+      "Document search",
+      "Archive search"
+    ],
+    "aliases": [
+      "rga"
+    ],
+    "keywords": [
+      "Document search",
+      "Archive search"
+    ],
+    "tags": [
+      "local-first"
+    ],
+    "featured": false,
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresNetwork": false,
+    "localFirst": true,
+    "ciFriendly": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "rga --list-adapters",
+      "rga -l invoice ./documents"
+    ],
+    "brewFormula": "ripgrep-all"
+  },
+  {
+    "slug": "hexyl",
+    "name": "hexyl",
+    "shortName": "hexyl",
+    "maker": "sharkdp",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install hexyl",
+    "quickStart": "hexyl --version",
+    "githubRepo": "sharkdp/hexyl",
+    "website": "https://github.com/sharkdp/hexyl",
+    "docs": "https://github.com/sharkdp/hexyl#readme",
+    "tagline": "Inspect file headers and binary data in a color-coded hex view.",
+    "bestFor": "File headers and Binary inspection",
+    "useCases": [
+      "File headers",
+      "Binary inspection"
+    ],
+    "aliases": [],
+    "keywords": [
+      "File headers",
+      "Binary inspection"
+    ],
+    "tags": [
+      "local-first"
+    ],
+    "featured": false,
+    "agentFriendly": true,
+    "supportsNonInteractive": true,
+    "requiresNetwork": false,
+    "localFirst": true,
+    "ciFriendly": true,
+    "destructivePotential": "low",
+    "exampleWorkflow": [
+      "hexyl -n 64 sample.bin",
+      "printf 'hello' | hexyl"
+    ],
+    "brewFormula": "hexyl"
+  },
+  {
+    "slug": "dasel",
+    "name": "dasel",
+    "shortName": "dasel",
+    "maker": "tomwright",
+    "category": "Data",
+    "installWith": "brew",
+    "installCommand": "brew install dasel",
+    "quickStart": "dasel --help",
+    "githubRepo": "TomWright/dasel",
+    "website": "https://daseldocs.tomwright.me",
+    "docs": "https://github.com/TomWright/dasel#readme",
+    "tagline": "JSON, YAML, TOML, XML, and CSV query and modification tool.",
+    "bestFor": "Query structured configuration files.",
+    "useCases": [
+      "Query structured configuration files"
+    ],
+    "aliases": [],
+    "keywords": [
+      "query",
+      "structured",
+      "configuration",
+      "files"
+    ],
+    "tags": [],
+    "brewFormula": "dasel"
+  },
+  {
+    "slug": "gron",
+    "name": "gron",
+    "shortName": "gron",
+    "maker": "tomnomnom",
+    "category": "Data",
+    "installWith": "brew",
+    "installCommand": "brew install gron",
+    "quickStart": "printf '{\"a\":1}' | gron",
+    "githubRepo": "tomnomnom/gron",
+    "website": "https://github.com/tomnomnom/gron",
+    "docs": "https://github.com/tomnomnom/gron#readme",
+    "tagline": "Make JSON greppable.",
+    "bestFor": "Flatten JSON into searchable paths.",
+    "useCases": [
+      "Flatten JSON into searchable paths"
+    ],
+    "aliases": [],
+    "keywords": [
+      "flatten",
+      "json",
+      "into",
+      "searchable",
+      "paths"
+    ],
+    "tags": [],
+    "brewFormula": "gron"
+  },
+  {
+    "slug": "jless",
+    "name": "jless",
+    "shortName": "jless",
+    "maker": "pauljuliusmartinez",
+    "category": "Data",
+    "installWith": "brew",
+    "installCommand": "brew install jless",
+    "quickStart": "jless sample.json",
+    "githubRepo": "PaulJuliusMartinez/jless",
+    "website": "https://jless.io/",
+    "docs": "https://github.com/PaulJuliusMartinez/jless#readme",
+    "tagline": "Command-line pager for JSON data.",
+    "bestFor": "Explore nested JSON interactively.",
+    "useCases": [
+      "Explore nested JSON interactively"
+    ],
+    "aliases": [],
+    "keywords": [
+      "explore",
+      "nested",
+      "json",
+      "interactively"
+    ],
+    "tags": [],
+    "brewFormula": "jless"
+  },
+  {
+    "slug": "jc",
+    "name": "jc",
+    "shortName": "jc",
+    "maker": "kellyjonbrazil",
+    "category": "Data",
+    "installWith": "brew",
+    "installCommand": "brew install jc",
+    "quickStart": "jc --parsers",
+    "githubRepo": "kellyjonbrazil/jc",
+    "website": "https://github.com/kellyjonbrazil/jc",
+    "docs": "https://github.com/kellyjonbrazil/jc#readme",
+    "tagline": "Serializes the output of command-line tools to structured JSON output.",
+    "bestFor": "Convert command output into JSON.",
+    "useCases": [
+      "Convert command output into JSON"
+    ],
+    "aliases": [],
+    "keywords": [
+      "convert",
+      "command",
+      "output",
+      "into",
+      "json"
+    ],
+    "tags": [],
+    "brewFormula": "jc"
+  },
+  {
+    "slug": "qsv",
+    "name": "qsv",
+    "shortName": "qsv",
+    "maker": "dathere",
+    "category": "Data",
+    "installWith": "brew",
+    "installCommand": "brew install qsv",
+    "quickStart": "qsv headers sales.csv",
+    "githubRepo": "dathere/qsv",
+    "website": "https://qsv.dathere.com/",
+    "docs": "https://github.com/dathere/qsv#readme",
+    "tagline": "Ultra-fast CSV data-wrangling toolkit.",
+    "bestFor": "Inspect CSV column names.",
+    "useCases": [
+      "Inspect CSV column names"
+    ],
+    "aliases": [],
+    "keywords": [
+      "inspect",
+      "csv",
+      "column",
+      "names"
+    ],
+    "tags": [],
+    "brewFormula": "qsv"
+  },
+  {
+    "slug": "csvlens",
+    "name": "csvlens",
+    "shortName": "csvlens",
+    "maker": "ys-l",
+    "category": "Data",
+    "installWith": "brew",
+    "installCommand": "brew install csvlens",
+    "quickStart": "csvlens sales.csv",
+    "githubRepo": "YS-L/csvlens",
+    "website": "https://github.com/YS-L/csvlens",
+    "docs": "https://github.com/YS-L/csvlens#readme",
+    "tagline": "Command-line csv viewer.",
+    "bestFor": "Browse large spreadsheets locally.",
+    "useCases": [
+      "Browse large spreadsheets locally"
+    ],
+    "aliases": [],
+    "keywords": [
+      "browse",
+      "large",
+      "spreadsheets",
+      "locally"
+    ],
+    "tags": [],
+    "brewFormula": "csvlens"
+  },
+  {
+    "slug": "jo",
+    "name": "jo",
+    "shortName": "jo",
+    "maker": "jpmens",
+    "category": "Data",
+    "installWith": "brew",
+    "installCommand": "brew install jo",
+    "quickStart": "jo name=example",
+    "githubRepo": "jpmens/jo",
+    "website": "https://github.com/jpmens/jo",
+    "docs": "https://github.com/jpmens/jo#readme",
+    "tagline": "JSON output from a shell.",
+    "bestFor": "Generate JSON from shell arguments.",
+    "useCases": [
+      "Generate JSON from shell arguments"
+    ],
+    "aliases": [],
+    "keywords": [
+      "generate",
+      "json",
+      "from",
+      "shell",
+      "arguments"
+    ],
+    "tags": [],
+    "brewFormula": "jo"
+  },
+  {
+    "slug": "pgformatter",
+    "name": "pgformatter",
+    "shortName": "pg_format",
+    "maker": "darold",
+    "category": "Database",
+    "installWith": "brew",
+    "installCommand": "brew install pgformatter",
+    "quickStart": "pg_format --version",
+    "githubRepo": "darold/pgFormatter",
+    "website": "https://sqlformat.darold.net/",
+    "docs": "https://github.com/darold/pgFormatter#readme",
+    "tagline": "PostgreSQL syntax beautifier.",
+    "bestFor": "Format PostgreSQL queries.",
+    "useCases": [
+      "Format PostgreSQL queries"
+    ],
+    "aliases": [],
+    "keywords": [
+      "format",
+      "postgresql",
+      "queries"
+    ],
+    "tags": [],
+    "brewFormula": "pgformatter"
+  },
+  {
+    "slug": "mdbook",
+    "name": "mdbook",
+    "shortName": "mdbook",
+    "maker": "rust-lang",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install mdbook",
+    "quickStart": "mdbook --version",
+    "githubRepo": "rust-lang/mdBook",
+    "website": "https://rust-lang.github.io/mdBook/",
+    "docs": "https://github.com/rust-lang/mdBook#readme",
+    "tagline": "Create modern online books from Markdown files.",
+    "bestFor": "Build a book from Markdown chapters.",
+    "useCases": [
+      "Build a book from Markdown chapters"
+    ],
+    "aliases": [],
+    "keywords": [
+      "build",
+      "a",
+      "book",
+      "from",
+      "markdown",
+      "chapters"
+    ],
+    "tags": [],
+    "brewFormula": "mdbook"
+  },
+  {
+    "slug": "typst",
+    "name": "typst",
+    "shortName": "typst",
+    "maker": "typst",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install typst",
+    "quickStart": "typst fonts",
+    "githubRepo": "typst/typst",
+    "website": "https://typst.app/",
+    "docs": "https://github.com/typst/typst#readme",
+    "tagline": "Markup-based typesetting system.",
+    "bestFor": "List fonts for typesetting documents.",
+    "useCases": [
+      "List fonts for typesetting documents"
+    ],
+    "aliases": [],
+    "keywords": [
+      "list",
+      "fonts",
+      "for",
+      "typesetting",
+      "documents"
+    ],
+    "tags": [],
+    "brewFormula": "typst"
+  },
+  {
+    "slug": "asciidoctor",
+    "name": "asciidoctor",
+    "shortName": "asciidoctor",
+    "maker": "asciidoctor",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install asciidoctor",
+    "quickStart": "asciidoctor --version",
+    "githubRepo": "asciidoctor/asciidoctor",
+    "website": "https://asciidoctor.org/",
+    "docs": "https://github.com/asciidoctor/asciidoctor#readme",
+    "tagline": "Text processor and publishing toolchain for AsciiDoc.",
+    "bestFor": "Render AsciiDoc documentation.",
+    "useCases": [
+      "Render AsciiDoc documentation"
+    ],
+    "aliases": [],
+    "keywords": [
+      "render",
+      "asciidoc",
+      "documentation"
+    ],
+    "tags": [],
+    "brewFormula": "asciidoctor"
+  },
+  {
+    "slug": "d2",
+    "name": "d2",
+    "shortName": "d2",
+    "maker": "d2lang",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install d2",
+    "quickStart": "d2 --version",
+    "githubRepo": "d2lang/d2",
+    "website": "https://d2lang.com/",
+    "docs": "https://github.com/d2lang/d2#readme",
+    "tagline": "Modern diagram scripting language that turns text to diagrams.",
+    "bestFor": "Generate diagrams from text.",
+    "useCases": [
+      "Generate diagrams from text"
+    ],
+    "aliases": [],
+    "keywords": [
+      "generate",
+      "diagrams",
+      "from",
+      "text"
+    ],
+    "tags": [],
+    "brewFormula": "d2"
+  },
+  {
+    "slug": "vips",
+    "name": "vips",
+    "shortName": "vips",
+    "maker": "libvips",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install vips",
+    "quickStart": "vipsheader photo.jpg",
+    "githubRepo": "libvips/libvips",
+    "website": "https://github.com/libvips/libvips",
+    "docs": "https://github.com/libvips/libvips#readme",
+    "tagline": "Image processing library.",
+    "bestFor": "Inspect image dimensions and format.",
+    "useCases": [
+      "Inspect image dimensions and format"
+    ],
+    "aliases": [
+      "vipsheader"
+    ],
+    "keywords": [
+      "inspect",
+      "image",
+      "dimensions",
+      "and",
+      "format"
+    ],
+    "tags": [],
+    "brewFormula": "vips"
+  },
+  {
+    "slug": "imagemagick",
+    "name": "imagemagick",
+    "shortName": "magick",
+    "maker": "imagemagick",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install imagemagick",
+    "quickStart": "magick identify photo.jpg",
+    "githubRepo": "ImageMagick/ImageMagick",
+    "website": "https://imagemagick.org",
+    "docs": "https://github.com/ImageMagick/ImageMagick#readme",
+    "tagline": "Tools and libraries to manipulate images in select formats.",
+    "bestFor": "Read image dimensions and metadata.",
+    "useCases": [
+      "Read image dimensions and metadata"
+    ],
+    "aliases": [],
+    "keywords": [
+      "read",
+      "image",
+      "dimensions",
+      "and",
+      "metadata"
+    ],
+    "tags": [],
+    "brewFormula": "imagemagick"
+  },
+  {
+    "slug": "oxipng",
+    "name": "oxipng",
+    "shortName": "oxipng",
+    "maker": "oxipng",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install oxipng",
+    "quickStart": "oxipng --help",
+    "githubRepo": "oxipng/oxipng",
+    "website": "https://github.com/oxipng/oxipng",
+    "docs": "https://github.com/oxipng/oxipng#readme",
+    "tagline": "Multithreaded PNG optimizer written in Rust.",
+    "bestFor": "Optimize PNG assets.",
+    "useCases": [
+      "Optimize PNG assets"
+    ],
+    "aliases": [],
+    "keywords": [
+      "optimize",
+      "png",
+      "assets"
+    ],
+    "tags": [],
+    "brewFormula": "oxipng"
+  },
+  {
+    "slug": "resvg",
+    "name": "resvg",
+    "shortName": "resvg",
+    "maker": "linebender",
+    "category": "Docs / Content",
+    "installWith": "brew",
+    "installCommand": "brew install resvg",
+    "quickStart": "resvg --help",
+    "githubRepo": "linebender/resvg",
+    "website": "https://github.com/linebender/resvg",
+    "docs": "https://github.com/linebender/resvg#readme",
+    "tagline": "SVG rendering tool and library.",
+    "bestFor": "Render SVG illustrations.",
+    "useCases": [
+      "Render SVG illustrations"
+    ],
+    "aliases": [],
+    "keywords": [
+      "render",
+      "svg",
+      "illustrations"
+    ],
+    "tags": [],
+    "brewFormula": "resvg"
+  },
+  {
+    "slug": "fzf-make",
+    "name": "fzf-make",
+    "shortName": "fzf-make",
+    "maker": "kyu08",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install fzf-make",
+    "quickStart": "fzf-make --help",
+    "githubRepo": "kyu08/fzf-make",
+    "website": "https://github.com/kyu08/fzf-make",
+    "docs": "https://github.com/kyu08/fzf-make#readme",
+    "tagline": "Fuzzy finder with preview window for various command runners including make.",
+    "bestFor": "Browse Makefile targets.",
+    "useCases": [
+      "Browse Makefile targets"
+    ],
+    "aliases": [],
+    "keywords": [
+      "browse",
+      "makefile",
+      "targets"
+    ],
+    "tags": [],
+    "brewFormula": "fzf-make"
+  },
+  {
+    "slug": "tokei",
+    "name": "tokei",
+    "shortName": "tokei",
+    "maker": "xampprocky",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install tokei",
+    "quickStart": "tokei .",
+    "githubRepo": "XAMPPRocky/tokei",
+    "website": "https://github.com/XAMPPRocky/tokei",
+    "docs": "https://github.com/XAMPPRocky/tokei#readme",
+    "tagline": "Program that allows you to count code, quickly.",
+    "bestFor": "Count source lines by language.",
+    "useCases": [
+      "Count source lines by language"
+    ],
+    "aliases": [],
+    "keywords": [
+      "count",
+      "source",
+      "lines",
+      "by",
+      "language"
+    ],
+    "tags": [],
+    "brewFormula": "tokei"
+  },
+  {
+    "slug": "scc",
+    "name": "scc",
+    "shortName": "scc",
+    "maker": "boyter",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install scc",
+    "quickStart": "scc .",
+    "githubRepo": "boyter/scc",
+    "website": "https://github.com/boyter/scc/",
+    "docs": "https://github.com/boyter/scc#readme",
+    "tagline": "Fast and accurate code counter with complexity and COCOMO estimates.",
+    "bestFor": "Summarize codebase size and complexity.",
+    "useCases": [
+      "Summarize codebase size and complexity"
+    ],
+    "aliases": [],
+    "keywords": [
+      "summarize",
+      "codebase",
+      "size",
+      "and",
+      "complexity"
+    ],
+    "tags": [],
+    "brewFormula": "scc"
+  },
+  {
+    "slug": "cloc",
+    "name": "cloc",
+    "shortName": "cloc",
+    "maker": "aldanial",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install cloc",
+    "quickStart": "cloc .",
+    "githubRepo": "AlDanial/cloc",
+    "website": "https://github.com/AlDanial/cloc/",
+    "docs": "https://github.com/AlDanial/cloc#readme",
+    "tagline": "Statistics utility to count lines of code.",
+    "bestFor": "Count comments and code by language.",
+    "useCases": [
+      "Count comments and code by language"
+    ],
+    "aliases": [],
+    "keywords": [
+      "count",
+      "comments",
+      "and",
+      "code",
+      "by",
+      "language"
+    ],
+    "tags": [],
+    "brewFormula": "cloc"
+  },
+  {
+    "slug": "tree",
+    "name": "tree",
+    "shortName": "tree",
+    "maker": "old-man-programmer",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install tree",
+    "quickStart": "tree -L 2",
+    "githubRepo": "Old-Man-Programmer/tree",
+    "website": "https://oldmanprogrammer.net/source.php?dir=projects/tree",
+    "docs": "https://github.com/Old-Man-Programmer/tree#readme",
+    "tagline": "Display directories as trees (with optional color/HTML output).",
+    "bestFor": "Preview a directory tree.",
+    "useCases": [
+      "Preview a directory tree"
+    ],
+    "aliases": [],
+    "keywords": [
+      "preview",
+      "a",
+      "directory",
+      "tree"
+    ],
+    "tags": [],
+    "brewFormula": "tree"
+  },
+  {
+    "slug": "erdtree",
+    "name": "erdtree",
+    "shortName": "erd",
+    "maker": "solidiquis",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install erdtree",
+    "quickStart": "erd --help",
+    "githubRepo": "solidiquis/erdtree",
+    "website": "https://github.com/solidiquis/erdtree",
+    "docs": "https://github.com/solidiquis/erdtree#readme",
+    "tagline": "Multi-threaded file-tree visualizer and disk usage analyzer.",
+    "bestFor": "Explore directory sizes as a tree.",
+    "useCases": [
+      "Explore directory sizes as a tree"
+    ],
+    "aliases": [],
+    "keywords": [
+      "explore",
+      "directory",
+      "sizes",
+      "as",
+      "a",
+      "tree"
+    ],
+    "tags": [],
+    "brewFormula": "erdtree"
+  },
+  {
+    "slug": "dua-cli",
+    "name": "dua-cli",
+    "shortName": "dua",
+    "maker": "byron",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install dua-cli",
+    "quickStart": "dua --help",
+    "githubRepo": "Byron/dua-cli",
+    "website": "https://lib.rs/crates/dua-cli",
+    "docs": "https://github.com/Byron/dua-cli#readme",
+    "tagline": "View disk space usage and delete unwanted data, fast.",
+    "bestFor": "Investigate disk usage interactively.",
+    "useCases": [
+      "Investigate disk usage interactively"
+    ],
+    "aliases": [],
+    "keywords": [
+      "investigate",
+      "disk",
+      "usage",
+      "interactively"
+    ],
+    "tags": [],
+    "brewFormula": "dua-cli"
+  },
+  {
+    "slug": "zstd",
+    "name": "zstd",
+    "shortName": "zstd",
+    "maker": "facebook",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install zstd",
+    "quickStart": "zstd -l archive.zst",
+    "githubRepo": "facebook/zstd",
+    "website": "https://facebook.github.io/zstd/",
+    "docs": "https://github.com/facebook/zstd#readme",
+    "tagline": "Zstandard is a real-time compression algorithm.",
+    "bestFor": "Inspect compressed archive details.",
+    "useCases": [
+      "Inspect compressed archive details"
+    ],
+    "aliases": [],
+    "keywords": [
+      "inspect",
+      "compressed",
+      "archive",
+      "details"
+    ],
+    "tags": [],
+    "brewFormula": "zstd"
+  },
+  {
+    "slug": "lz4",
+    "name": "lz4",
+    "shortName": "lz4",
+    "maker": "lz4",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install lz4",
+    "quickStart": "lz4 --version",
+    "githubRepo": "lz4/lz4",
+    "website": "https://lz4.github.io/lz4/",
+    "docs": "https://github.com/lz4/lz4#readme",
+    "tagline": "Extremely Fast Compression algorithm.",
+    "bestFor": "Compress and decompress LZ4 files.",
+    "useCases": [
+      "Compress and decompress LZ4 files"
+    ],
+    "aliases": [],
+    "keywords": [
+      "compress",
+      "and",
+      "decompress",
+      "lz4",
+      "files"
+    ],
+    "tags": [],
+    "brewFormula": "lz4"
+  },
+  {
+    "slug": "ouch",
+    "name": "ouch",
+    "shortName": "ouch",
+    "maker": "ouch-org",
+    "category": "Shell Utilities",
+    "installWith": "brew",
+    "installCommand": "brew install ouch",
+    "quickStart": "ouch list archive.zip",
+    "githubRepo": "ouch-org/ouch",
+    "website": "https://github.com/ouch-org/ouch",
+    "docs": "https://github.com/ouch-org/ouch#readme",
+    "tagline": "Painless compression and decompression for your terminal.",
+    "bestFor": "List archive contents.",
+    "useCases": [
+      "List archive contents"
+    ],
+    "aliases": [],
+    "keywords": [
+      "list",
+      "archive",
+      "contents"
+    ],
+    "tags": [],
+    "brewFormula": "ouch"
+  },
+  {
+    "slug": "tig",
+    "name": "tig",
+    "shortName": "tig",
+    "maker": "jonas",
+    "category": "Git",
+    "installWith": "brew",
+    "installCommand": "brew install tig",
+    "quickStart": "tig status",
+    "githubRepo": "jonas/tig",
+    "website": "https://jonas.github.io/tig/",
+    "docs": "https://github.com/jonas/tig#readme",
+    "tagline": "Text interface for Git repositories.",
+    "bestFor": "Browse repository status interactively.",
+    "useCases": [
+      "Browse repository status interactively"
+    ],
+    "aliases": [],
+    "keywords": [
+      "browse",
+      "repository",
+      "status",
+      "interactively"
+    ],
+    "tags": [],
+    "brewFormula": "tig"
+  },
+  {
+    "slug": "git-cliff",
+    "name": "git-cliff",
+    "shortName": "git-cliff",
+    "maker": "orhun",
+    "category": "Git",
+    "installWith": "brew",
+    "installCommand": "brew install git-cliff",
+    "quickStart": "git cliff --help",
+    "githubRepo": "orhun/git-cliff",
+    "website": "https://git-cliff.org/",
+    "docs": "https://github.com/orhun/git-cliff#readme",
+    "tagline": "Highly customizable changelog generator.",
+    "bestFor": "Build changelogs from commits.",
+    "useCases": [
+      "Build changelogs from commits"
+    ],
+    "aliases": [],
+    "keywords": [
+      "build",
+      "changelogs",
+      "from",
+      "commits"
+    ],
+    "tags": [],
+    "brewFormula": "git-cliff"
+  },
+  {
+    "slug": "git-absorb",
+    "name": "git-absorb",
+    "shortName": "git-absorb",
+    "maker": "tummychow",
+    "category": "Git",
+    "installWith": "brew",
+    "installCommand": "brew install git-absorb",
+    "quickStart": "git absorb --help",
+    "githubRepo": "tummychow/git-absorb",
+    "website": "https://github.com/tummychow/git-absorb",
+    "docs": "https://github.com/tummychow/git-absorb#readme",
+    "tagline": "Automatic git commit --fixup.",
+    "bestFor": "Organize fixups for local commits.",
+    "useCases": [
+      "Organize fixups for local commits"
+    ],
+    "aliases": [],
+    "keywords": [
+      "organize",
+      "fixups",
+      "for",
+      "local",
+      "commits"
+    ],
+    "tags": [],
+    "brewFormula": "git-absorb"
+  },
+  {
+    "slug": "git-sizer",
+    "name": "git-sizer",
+    "shortName": "git-sizer",
+    "maker": "github",
+    "category": "Git",
+    "installWith": "brew",
+    "installCommand": "brew install git-sizer",
+    "quickStart": "git-sizer --verbose",
+    "githubRepo": "github/git-sizer",
+    "website": "https://github.com/github/git-sizer",
+    "docs": "https://github.com/github/git-sizer#readme",
+    "tagline": "Compute various size metrics for a Git repository.",
+    "bestFor": "Measure repository size and object counts.",
+    "useCases": [
+      "Measure repository size and object counts"
+    ],
+    "aliases": [],
+    "keywords": [
+      "measure",
+      "repository",
+      "size",
+      "and",
+      "object",
+      "counts"
+    ],
+    "tags": [],
+    "brewFormula": "git-sizer"
+  },
+  {
+    "slug": "gitleaks",
+    "name": "gitleaks",
+    "shortName": "gitleaks",
+    "maker": "gitleaks",
+    "category": "Security",
+    "installWith": "brew",
+    "installCommand": "brew install gitleaks",
+    "quickStart": "gitleaks version",
+    "githubRepo": "gitleaks/gitleaks",
+    "website": "https://gitleaks.io/",
+    "docs": "https://github.com/gitleaks/gitleaks#readme",
+    "tagline": "Audit git repos for secrets.",
+    "bestFor": "Check local history for exposed credentials.",
+    "useCases": [
+      "Check local history for exposed credentials"
+    ],
+    "aliases": [],
+    "keywords": [
+      "check",
+      "local",
+      "history",
+      "for",
+      "exposed",
+      "credentials"
+    ],
+    "tags": [],
+    "brewFormula": "gitleaks"
+  },
+  {
+    "slug": "hledger",
+    "name": "hledger",
+    "shortName": "hledger",
+    "maker": "simonmichael",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install hledger",
+    "quickStart": "hledger -f journal.dat balance",
+    "githubRepo": "simonmichael/hledger",
+    "website": "https://hledger.org/",
+    "docs": "https://github.com/simonmichael/hledger#readme",
+    "tagline": "Easy plain text accounting with command-line, terminal and web UIs.",
+    "bestFor": "Summarize a plain-text ledger.",
+    "useCases": [
+      "Summarize a plain-text ledger"
+    ],
+    "aliases": [],
+    "keywords": [
+      "summarize",
+      "a",
+      "plain-text",
+      "ledger"
+    ],
+    "tags": [],
+    "brewFormula": "hledger"
+  },
+  {
+    "slug": "timewarrior",
+    "name": "timewarrior",
+    "shortName": "timew",
+    "maker": "gothenburgbitfactory",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install timewarrior",
+    "quickStart": "timew summary",
+    "githubRepo": "GothenburgBitFactory/timewarrior",
+    "website": "https://timewarrior.net/",
+    "docs": "https://github.com/GothenburgBitFactory/timewarrior#readme",
+    "tagline": "Command-line time tracking application.",
+    "bestFor": "Summarize tracked work time.",
+    "useCases": [
+      "Summarize tracked work time"
+    ],
+    "aliases": [],
+    "keywords": [
+      "summarize",
+      "tracked",
+      "work",
+      "time"
+    ],
+    "tags": [],
+    "brewFormula": "timewarrior"
+  },
+  {
+    "slug": "asciinema",
+    "name": "asciinema",
+    "shortName": "asciinema",
+    "maker": "asciinema",
+    "category": "Productivity",
+    "installWith": "brew",
+    "installCommand": "brew install asciinema",
+    "quickStart": "asciinema --version",
+    "githubRepo": "asciinema/asciinema",
+    "website": "https://asciinema.org",
+    "docs": "https://github.com/asciinema/asciinema#readme",
+    "tagline": "Record and share terminal sessions.",
+    "bestFor": "Record reproducible terminal sessions.",
+    "useCases": [
+      "Record reproducible terminal sessions"
+    ],
+    "aliases": [],
+    "keywords": [
+      "record",
+      "reproducible",
+      "terminal",
+      "sessions"
+    ],
+    "tags": [],
+    "brewFormula": "asciinema"
+  },
+  {
+    "slug": "lnav",
+    "name": "lnav",
+    "shortName": "lnav",
+    "maker": "tstack",
+    "category": "Observability",
+    "installWith": "brew",
+    "installCommand": "brew install lnav",
+    "quickStart": "lnav app.log",
+    "githubRepo": "tstack/lnav",
+    "website": "https://lnav.org/",
+    "docs": "https://github.com/tstack/lnav#readme",
+    "tagline": "Curses-based tool for viewing and analyzing log files.",
+    "bestFor": "Explore application logs.",
+    "useCases": [
+      "Explore application logs"
+    ],
+    "aliases": [],
+    "keywords": [
+      "explore",
+      "application",
+      "logs"
+    ],
+    "tags": [],
+    "brewFormula": "lnav"
+  },
+  {
+    "slug": "hadolint",
+    "name": "hadolint",
+    "shortName": "hadolint",
+    "maker": "hadolint",
+    "category": "Containers / Infra",
+    "installWith": "brew",
+    "installCommand": "brew install hadolint",
+    "quickStart": "hadolint Dockerfile",
+    "githubRepo": "hadolint/hadolint",
+    "website": "https://github.com/hadolint/hadolint",
+    "docs": "https://github.com/hadolint/hadolint#readme",
+    "tagline": "Smarter Dockerfile linter to validate best practices.",
+    "bestFor": "Lint a Dockerfile before building.",
+    "useCases": [
+      "Lint a Dockerfile before building"
+    ],
+    "aliases": [],
+    "keywords": [
+      "lint",
+      "a",
+      "dockerfile",
+      "before",
+      "building"
+    ],
+    "tags": [],
+    "brewFormula": "hadolint"
+  },
+  {
+    "slug": "kustomize",
+    "name": "kustomize",
+    "shortName": "kustomize",
+    "maker": "kubernetes-sigs",
+    "category": "Containers / Infra",
+    "installWith": "brew",
+    "installCommand": "brew install kustomize",
+    "quickStart": "kustomize build ./overlays/dev",
+    "githubRepo": "kubernetes-sigs/kustomize",
+    "website": "https://github.com/kubernetes-sigs/kustomize",
+    "docs": "https://github.com/kubernetes-sigs/kustomize#readme",
+    "tagline": "Template-free customization of Kubernetes YAML manifests.",
+    "bestFor": "Preview rendered Kubernetes manifests.",
+    "useCases": [
+      "Preview rendered Kubernetes manifests"
+    ],
+    "aliases": [],
+    "keywords": [
+      "preview",
+      "rendered",
+      "kubernetes",
+      "manifests"
+    ],
+    "tags": [],
+    "brewFormula": "kustomize"
+  },
+  {
+    "slug": "kubeconform",
+    "name": "kubeconform",
+    "shortName": "kubeconform",
+    "maker": "yannh",
+    "category": "Containers / Infra",
+    "installWith": "brew",
+    "installCommand": "brew install kubeconform",
+    "quickStart": "kubeconform manifest.yaml",
+    "githubRepo": "yannh/kubeconform",
+    "website": "https://github.com/yannh/kubeconform",
+    "docs": "https://github.com/yannh/kubeconform#readme",
+    "tagline": "FAST Kubernetes manifests validator, with support for Custom Resources!.",
+    "bestFor": "Validate Kubernetes manifest schemas.",
+    "useCases": [
+      "Validate Kubernetes manifest schemas"
+    ],
+    "aliases": [],
+    "keywords": [
+      "validate",
+      "kubernetes",
+      "manifest",
+      "schemas"
+    ],
+    "tags": [],
+    "brewFormula": "kubeconform"
+  },
+  {
+    "slug": "pipenv",
+    "name": "pipenv",
+    "shortName": "pipenv",
+    "maker": "pypa",
+    "category": "Package Management",
+    "installWith": "brew",
+    "installCommand": "brew install pipenv",
+    "quickStart": "pipenv --version",
+    "githubRepo": "pypa/pipenv",
+    "website": "https://github.com/pypa/pipenv",
+    "docs": "https://github.com/pypa/pipenv#readme",
+    "tagline": "Python dependency management tool.",
+    "bestFor": "Manage Python project environments.",
+    "useCases": [
+      "Manage Python project environments"
+    ],
+    "aliases": [],
+    "keywords": [
+      "manage",
+      "python",
+      "project",
+      "environments"
+    ],
+    "tags": [],
+    "brewFormula": "pipenv"
   }
 ]

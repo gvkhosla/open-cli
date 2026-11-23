@@ -82,7 +82,7 @@ export default async function ForCapabilityPage({ params }: ForPageProps) {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto w-full max-w-6xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+      <main className="guide-page mx-auto w-full max-w-6xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
         <div className="space-y-10">
           <nav className="flex items-center gap-1.5 font-mono text-sm text-white/46">
             <Link href="/" className="transition hover:text-white">open-cli</Link>
@@ -110,7 +110,7 @@ export default async function ForCapabilityPage({ params }: ForPageProps) {
                 {intents.map((intent) => (
                   <Link
                     key={intent}
-                    href={`/recommend?q=${encodeURIComponent(intent)}`}
+                    href={`/?q=${encodeURIComponent(intent)}#directory`}
                     className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 text-sm text-white/58 transition hover:border-white/18 hover:bg-white/[0.06] hover:text-white"
                   >
                     {intent} →
@@ -126,7 +126,7 @@ export default async function ForCapabilityPage({ params }: ForPageProps) {
               <div className="mt-4 grid gap-2">
                 <CopyButton value={runbook} label="Copy runbook" />
                 <CopyButton value={recommendation.primary.installCommand} label="Copy primary install" />
-                <Link href={`/recommend?q=${encodeURIComponent(capability.samplePrompt)}`} className="inline-flex h-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm text-white/62 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white">
+                <Link href={`/?q=${encodeURIComponent(capability.samplePrompt)}#directory`} className="inline-flex h-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm text-white/62 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white">
                   Share recommendation
                 </Link>
               </div>

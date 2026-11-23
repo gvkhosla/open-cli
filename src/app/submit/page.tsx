@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description: "Submit a new CLI launch, generate the JSON payload, and open a prefilled GitHub issue.",
 };
 
-export default function SubmitPage() {
-  return <SubmitView />;
+export default async function SubmitPage({ searchParams }: { searchParams: Promise<{ task?: string }> }) {
+  const { task } = await searchParams;
+  return <SubmitView task={typeof task === "string" ? task.slice(0, 300) : ""} />;
 }

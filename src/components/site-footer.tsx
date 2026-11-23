@@ -3,8 +3,6 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site";
 
 const productLinks = [
-  { href: "/recommend", label: "Recommend" },
-  { href: "/radar", label: "Radar" },
   { href: "/agent", label: "Agents" },
   { href: "/submit", label: "Submit" },
 ] as const;
@@ -69,7 +67,7 @@ export function SiteFooter() {
         <div className="mt-8 flex flex-col gap-3 border-t border-white/8 pt-5 text-xs text-white/42 sm:flex-row sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} Open CLI</span>
           <span className="font-mono">
-            Press <kbd className="kbd">/</kbd> to search anywhere
+            Press <kbd className="kbd">/</kbd> to search on the homepage
           </span>
         </div>
       </div>

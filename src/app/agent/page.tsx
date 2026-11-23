@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { AgentMarks } from "@/components/agent-marks";
 import { CopyButton } from "@/components/copy-button";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
-  title: "Agent guide • Open CLI",
+  title: "Agent guide",
   description: "A simple handoff for using OpenCLI with Claude Code, Pi, Codex, Cursor, and other agents.",
 };
 
@@ -29,24 +30,21 @@ export default function AgentGuidePage() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto w-full max-w-4xl px-4 pb-16 pt-12 sm:px-6 lg:px-8">
+      <main className="guide-page mx-auto w-full max-w-4xl px-4 pb-16 pt-12 sm:px-6 lg:px-8">
         <section className="space-y-8 text-center">
-          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#1E1E1D] px-3 py-1.5 text-sm text-[#868684]">
-            <span className="size-1.5 rounded-full bg-[#217EFF]" />
-            For Claude Code, Pi, Codex, Cursor, and other agents
-          </div>
+          <p className="ui-label">Agent guide</p>
           <div className="space-y-5">
             <h1 className="mx-auto max-w-[12ch] text-balance text-5xl font-medium tracking-[-0.03em] text-white sm:text-6xl">
-              How agents should use OpenCLI.
+              Use Open CLI with your agent.
             </h1>
             <p className="mx-auto max-w-[64ch] text-pretty text-base leading-7 text-[#868684] sm:text-[19px] sm:leading-8">
-              OpenCLI is a router from work to command-line capability. Paste the prompt below into your agent, then give it an OpenCLI page or task.
+              Copy the prompt into your agent. Give it a task, and it will use the directory to find a tool and verify the first command.
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <CopyButton value={agentPrompt} label="Copy agent prompt" />
             <Link href="/#directory" className="inline-flex h-10 items-center rounded border border-[#217EFF]/70 bg-[#217EFF] px-3 text-sm font-medium text-white transition hover:bg-[#217EFF]/85">
-              Try the router
+              Find a tool
             </Link>
             <a href="/llms.txt" className="inline-flex h-10 items-center rounded border border-white/10 bg-white/[0.04] px-3 text-sm font-medium text-white/72 transition hover:text-white">
               llms.txt
@@ -54,6 +52,7 @@ export default function AgentGuidePage() {
           </div>
         </section>
 
+        <AgentMarks />
         <section className="mt-12 grid gap-3 sm:grid-cols-3">
           {steps.map(([number, title, body]) => (
             <div key={number} className="rounded-lg border border-white/10 bg-[#1E1E1D] p-4">

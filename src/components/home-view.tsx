@@ -1,33 +1,25 @@
 "use client";
 
 import Link from "next/link";
+import "./workbench.css";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
-import { CliLogoMarquee } from "@/components/cli-logo-marquee";
+import { CommandKey } from "@/components/command-key";
+import { ambiguousPdf } from "@/lib/task-intents";
+import { AgentMarks } from "@/components/agent-marks";
 import { CopyButton } from "@/components/copy-button";
-import { SuperchargeAgent } from "@/components/supercharge-agent";
+
 import { categoryOrder, packageManagers } from "@/data/clis";
 import type { DirectorySearchResponse, DirectoryStats } from "@/lib/directory";
 import { formatCompactNumber, formatMetric } from "@/lib/format";
-import type { RadarCandidate } from "@/lib/radar";
 import type { SuperchargeRecommendation } from "@/lib/supercharge";
 
-const promptSuggestions = [
-  "research a topic",
-  "process PDFs",
-  "clean CSV spreadsheet",
-  "search email and calendar",
-  "search notes",
-  "transcribe meeting audio",
-  "review pull requests",
-] as const;
-
-const toolSuggestions = ["pi", "amp", "claude", "codex", "pandoc", "duckdb", "rg", "gh"] as const;
+const promptSuggestions = ["Clean CSV", "Process PDFs", "Review PRs"] as const;
 
 const categoryChips = ["All", ...categoryOrder] as const;
 const packageManagerChips = ["All", ...packageManagers] as const;
-const agentTargets = ["Claude Code", "Pi", "Codex", "Amp", "OpenCode"] as const;
+
 
 const homepageAgentInstructions = `Use OpenCLI to choose and safely operate command-line tools for this work.
 
@@ -43,30 +35,16 @@ How to use it:
 5. Install a CLI only if it is missing, then run the pack's verify command before real work.
 6. Start with read-only or safe commands, summarize findings, and cite files/URLs/IDs when useful.
 7. Ask before destructive, paid, deploy, merge, delete, publish, transfer, send-email, calendar-edit, or secret-exposing actions.
-8. If the directory has no fit, open https://opencli.co/radar for try-now candidates with a first command.`;
+8. If the directory has no fit, say so.`;
 
 type HomeViewProps = {
   initialDirectory: DirectorySearchResponse;
   directoryStats: DirectoryStats;
-  radarPreview?: RadarCandidate[];
 };
 
 type RecommendationPayload = {
   recommendation: SuperchargeRecommendation | null;
 };
-
-/*
- * HOMEPAGE STORYBOARD
- *
- *   0ms  hero settles in
- *  70ms  search surface appears
- * 140ms  recommendation fades up after a query
- */
-const HOME_REVEAL = {
-  hero: 0,
-  search: 0.07,
-  recommendation: 0.14,
-} as const;
 
 const PANEL_STAGGER = {
   container: {
@@ -221,19 +199,14 @@ function downloadTextFile(filename: string, contents: string) {
   URL.revokeObjectURL(url);
 }
 
-function RecommendationPanel({
-  recommendation,
-  isLoading,
-  revealY,
-  glow,
-  transition,
-}: {
-  recommendation: SuperchargeRecommendation | null;
-  isLoading: boolean;
-  revealY: number;
-  glow: number;
-  transition: { type: "spring"; visualDuration: number; bounce: number };
-}) {
+function ResultCommand({ label, command }: { label: string; command: string }) {
+  return <div className="wb-terminal">
+    <div><span>{label}</span><CopyButton compact value={command} label="Copy command" /></div>
+    <pre><code><em aria-hidden="true">$ </em>{command}</code></pre>
+  </div>;
+}
+
+function RecommendationPanel({ recommendation }: { recommendation: SuperchargeRecommendation | null }) {
   if (!recommendation) return null;
 
   const primaryMetric =
@@ -254,43 +227,15 @@ function RecommendationPanel({
   const skillMarkdown = buildSkillMarkdown(recommendation);
 
   return (
-    <motion.section
-      key={recommendation.primary.slug}
-      initial={{ opacity: 0, y: 18, scale: 0.985 }}
-      animate={{ opacity: 1, y: revealY, scale: 1 }}
-      exit={{ opacity: 0, y: 10, scale: 0.99 }}
-      transition={{ ...transition, delay: HOME_REVEAL.recommendation }}
-      className="ui-panel relative overflow-hidden rounded-[30px] p-5 sm:p-7"
-      style={{ boxShadow: `0 0 0 1px rgba(255,255,255,0.03), 0 16px 42px rgba(0,0,0,${0.12 + glow * 0.1})` }}
-    >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/14" />
-      <motion.div
-        variants={PANEL_STAGGER.container}
-        initial="hidden"
-        animate="visible"
-        transition={transition}
-        className="relative space-y-5 sm:space-y-6"
-      >
-        <motion.div variants={PANEL_STAGGER.item} className="space-y-3">
-          <div className="space-y-1">
-            <div className="ui-label">{matchLabel}</div>
-            <p className="text-xs leading-5 text-white/42">{matchDescription}</p>
-          </div>
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <h2 className="text-3xl font-semibold tracking-[-0.05em] text-white sm:text-[2.7rem] sm:leading-none">
-              {recommendation.primary.shortName}
-            </h2>
-            <div className="flex flex-wrap items-center gap-2 text-[12px] text-white/46 sm:text-sm">
-              <span>{recommendation.capability.label}</span>
-              {primaryMetric ? <span className="text-white/34">• {primaryMetric}</span> : null}
-              {isLoading ? <span className="text-white/34">• updating</span> : null}
-            </div>
-          </div>
-          <p className="max-w-2xl text-[15px] leading-7 text-white/72 sm:text-[17px] sm:leading-8">
-            {recommendation.rationale}
-          </p>
-        </motion.div>
-
+    <section className="wb-preview">
+      <div className="wb-label">{matchLabel}</div>
+      <h2>{recommendation.primary.name} <span className="wb-tag">{recommendation.capability.label}</span></h2>
+      <p>{recommendation.primary.tagline}</p>
+      <ResultCommand label="First command" command={recommendation.firstCommand} />
+      <small>{recommendation.commandHint}</small>
+        <details className="min-w-0">
+          <summary className="cursor-pointer py-3 font-medium text-white/85">Setup, agent instructions and alternatives</summary>
+          <div className="space-y-4">
         <motion.div variants={PANEL_STAGGER.item} className="grid gap-3 sm:grid-cols-3">
           {[
             { label: "Fit", value: recommendation.capability.label, detail: matchDescription },
@@ -440,8 +385,9 @@ function RecommendationPanel({
             </RecommendationDetail>
           ) : null}
         </motion.div>
-      </motion.div>
-    </motion.section>
+          </div>
+        </details>
+    </section>
   );
 }
 
@@ -467,7 +413,7 @@ function CommandRow({
     >
       <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/38">{label}</div>
       <div className="mt-2 flex items-center gap-2">
-        <code className="flex-1 overflow-x-auto rounded-2xl border border-white/10 bg-white/[0.045] px-3 py-3.5 font-mono text-sm text-white/88 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+        <code className="min-w-0 flex-1 overflow-x-auto whitespace-nowrap rounded-2xl border border-white/10 bg-white/[0.045] px-3 py-3.5 font-mono text-sm text-white/88 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
           <span className="select-none text-white/20">$ </span>
           {command}
         </code>
@@ -478,83 +424,76 @@ function CommandRow({
   );
 }
 
-export function HomeView({ initialDirectory, directoryStats, radarPreview = [] }: HomeViewProps) {
+export function HomeView({ initialDirectory, directoryStats }: HomeViewProps) {
   const [search, setSearch] = useState(initialDirectory.query);
+  const [settledQuery, setSettledQuery] = useState("");
+  const [lookupError, setLookupError] = useState(false);
+  const query = search.trim();
+  const pending = Boolean(query && query !== settledQuery);
+  const reducedMotion = useReducedMotion();
+  const outputRef = useRef<HTMLDivElement>(null);
+  const [outputHeight, setOutputHeight] = useState<number>();
+  useEffect(() => {
+    const node = outputRef.current;
+    if (!node) return;
+    const observer = new ResizeObserver(() => setOutputHeight(Math.ceil(node.getBoundingClientRect().height)));
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
   const [directory, setDirectory] = useState(initialDirectory);
   const [recommendation, setRecommendation] = useState<SuperchargeRecommendation | null>(null);
   const [limit, setLimit] = useState(initialDirectory.results.length || 125);
   const [activeCategory, setActiveCategory] = useState<(typeof categoryChips)[number]>("All");
   const [activePackageManager, setActivePackageManager] = useState<(typeof packageManagerChips)[number]>("All");
   const [isLoading, setIsLoading] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
   const [showCatalog, setShowCatalog] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const polish = {
-    hero: {
-      y: 0,
-      scale: 1,
-    },
-    search: {
-      y: 0,
-      radius: 26,
-    },
-    recommendation: {
-      y: 0,
-      glow: 0.08,
-    },
-    motion: {
-      duration: 0.34,
-      bounce: 0.08,
-    },
-  } as const;
-
-  const motionTransition = {
-    type: "spring" as const,
-    visualDuration: polish.motion.duration,
-    bounce: polish.motion.bounce,
-  };
-
   useEffect(() => {
-    let cancelled = false;
-
+    const controller = new AbortController();
     const timeout = window.setTimeout(async () => {
       setIsLoading(true);
-
-      const searchParams = new URLSearchParams({ q: search, limit: String(limit), category: activeCategory, pm: activePackageManager });
-      const recommendationParams = new URLSearchParams({ q: search });
-
       try {
-        const [directoryResponse, recommendationResponse] = await Promise.all([
-          fetch(`/api/search?${searchParams.toString()}`),
-          search.trim() ? fetch(`/api/supercharge?${recommendationParams.toString()}`) : Promise.resolve(null),
-        ]);
-
-        if (!cancelled && directoryResponse.ok) {
-          const payload = (await directoryResponse.json()) as DirectorySearchResponse;
-          setDirectory(payload);
+        const params = new URLSearchParams({ q: query, limit: String(limit), category: activeCategory, pm: activePackageManager });
+        const response = await fetch(`/api/search?${params}`, { signal: controller.signal });
+        if (response.ok) {
+          const next = await response.json() as DirectorySearchResponse;
+          if (!controller.signal.aborted) setDirectory(next);
         }
+      } catch { /* Retain the previous directory on transient connection errors. */ }
+      finally { if (!controller.signal.aborted) setIsLoading(false); }
+    }, 120);
+    return () => { controller.abort(); window.clearTimeout(timeout); };
+  }, [query, limit, activeCategory, activePackageManager]);
 
-        if (!cancelled) {
-          if (!search.trim()) {
-            setRecommendation(null);
-          } else if (recommendationResponse?.ok) {
-            const payload = (await recommendationResponse.json()) as RecommendationPayload;
-            setRecommendation(payload.recommendation);
-          }
+  useEffect(() => {
+    if (!query) return;
+    const controller = new AbortController();
+    const timeout = window.setTimeout(async () => {
+      try {
+        const response = await fetch(`/api/supercharge?${new URLSearchParams({ q: query })}`, { signal: controller.signal });
+        if (!response.ok) throw new Error("Lookup failed");
+        const next = await response.json() as RecommendationPayload;
+        if (!controller.signal.aborted) {
+          setRecommendation(next.recommendation);
+          setLookupError(false);
+          setSettledQuery(query);
         }
-      } finally {
-        if (!cancelled) {
-          setIsLoading(false);
+      } catch {
+        if (!controller.signal.aborted) {
+          setLookupError(true);
+          setRecommendation(null);
+          setSettledQuery(query);
         }
       }
-    }, 140);
+    }, 110);
+    return () => { controller.abort(); window.clearTimeout(timeout); };
+  }, [query]);
 
-    return () => {
-      cancelled = true;
-      window.clearTimeout(timeout);
-    };
-  }, [activeCategory, activePackageManager, limit, search]);
+  useEffect(() => {
+    const shared = new URLSearchParams(window.location.search).get("q");
+    if (shared?.trim()) setSearch(shared.trim());
+  }, []);
 
   function handleSuggestion(value: string) {
     setSearch(value);
@@ -562,13 +501,12 @@ export function HomeView({ initialDirectory, directoryStats, radarPreview = [] }
     setActiveCategory("All");
     setActivePackageManager("All");
     setShowCatalog(false);
-    document.getElementById("directory")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.setTimeout(() => inputRef.current?.focus(), 250);
   }
 
   function handleClearSearch() {
     setSearch("");
-    setLimit(125);
+    setSettledQuery("");
+    setLimit(24);
     setActiveCategory("All");
     setActivePackageManager("All");
     setRecommendation(null);
@@ -582,7 +520,8 @@ export function HomeView({ initialDirectory, directoryStats, radarPreview = [] }
       }
       if (event.key === "Escape" && document.activeElement === inputRef.current) {
         setSearch("");
-        setLimit(125);
+        setSettledQuery("");
+        setLimit(24);
         setActiveCategory("All");
         setActivePackageManager("All");
         setRecommendation(null);
@@ -600,62 +539,47 @@ export function HomeView({ initialDirectory, directoryStats, radarPreview = [] }
     : `Browse ${formatCompactNumber(directoryStats.total)} tools`;
 
   return (
-    <div className="relative mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 pb-16 pt-4 sm:px-6 lg:px-8">
+    <div className="workbench relative mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 pb-16 pt-4 sm:px-6 lg:px-8">
 
-      <motion.div
-        initial={{ opacity: 0, y: 14, scale: 0.99 }}
-        animate={{ opacity: 1, y: polish.hero.y, scale: polish.hero.scale }}
-        transition={{ ...motionTransition, delay: HOME_REVEAL.hero }}
-      >
-        <SuperchargeAgent stats={directoryStats} onSelectWork={handleSuggestion} />
-      </motion.div>
+      <header className="wb-hero">
+        <div className="wb-intro">
+        <h1><span className="phone-heading">Find the right<br />CLI tool.</span><span className="wide-heading">Find the right CLI<br />for the job.</span></h1>
+        <p className="wb-deck">Open CLI is a directory of {directoryStats.total} command-line tools. Search by task to see what to use and which command to run first.</p>
+        </div>
+        <CommandKey />
+      </header>
 
       <section id="directory" className="scroll-mt-20 space-y-5">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: polish.search.y }}
-          transition={{ ...motionTransition, delay: HOME_REVEAL.search }}
-          className={`overflow-hidden rounded-lg bg-[#1E1E1D] ring-1 ring-white/10 transition-all duration-300 ${
-            isFocused ? "shadow-[var(--shadow-xl)] ring-[#217EFF]/60" : ""
-          }`}
-          style={{ borderRadius: polish.search.radius }}
-        >
-          <div className="border-b border-white/6 px-5 pb-3 pt-4 sm:px-6">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <div className="text-sm font-medium text-white">Work router</div>
-                <p className="mt-1 text-base leading-7 text-[#868684] sm:text-sm sm:leading-6">Say what you want done. Get a CLI stack, verify steps, and agent guardrails.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-3 sm:p-4">
-            <div
-              className={`relative rounded-lg border border-white/10 bg-[#121212] transition-all duration-300 ${
-                isFocused ? "border-[#217EFF]" : ""
-              }`}
-            >
-              <span className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center pl-5 text-[#868684] sm:pl-6">
-                <SearchIcon className="h-[15px] w-[15px]" />
-              </span>
+        <div className="finder">
+          <div role="search" aria-label="CLI directory">
+            <label className="sr-only" htmlFor="workbench-task">Search for a tool or task</label>
+            <div className="finder-field">
+              <SearchIcon className="size-5 text-white/55" />
               <input
+                id="workbench-task"
                 ref={inputRef}
                 value={search}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
                 onChange={(event) => {
                   setSearch(event.target.value);
-                  setLimit(event.target.value.trim() ? 40 : 125);
+                  if (!event.target.value.trim()) { setRecommendation(null); setSettledQuery(""); }
+                  setLimit(event.target.value.trim() ? 40 : 24);
                 }}
-                placeholder="search email, plan week, process PDFs, clean CSV…"
-                className="h-16 w-full rounded-lg border border-transparent bg-transparent pl-12 pr-28 text-base text-white outline-none placeholder:text-[#868684] sm:pl-14 sm:pr-32 sm:text-[17px]"
+                enterKeyHint="search"
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" && !event.nativeEvent.isComposing && window.matchMedia("(pointer: coarse)").matches) {
+                    event.currentTarget.blur();
+                  }
+                }}
+                aria-label="Describe your task"
+                placeholder="Search tools or tasks"
+                className="h-16 min-w-0 w-full border-0 bg-transparent text-base text-white outline-none placeholder:text-[#868684]"
               />
-              <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-5 sm:pr-6">
-                {isLoading && <div className="spinner" />}
+              <div className="flex items-center gap-2">
+                {pending && <div className="spinner" aria-hidden="true" />}
                 {hasQuery ? (
                   <button
                     type="button"
-                    onClick={handleClearSearch}
+                    onClick={() => { handleClearSearch(); inputRef.current?.focus(); }}
                     className="rounded-full border border-white/10 px-2.5 py-1 text-[11px] text-white/52 transition hover:border-white/16 hover:bg-white/[0.06] hover:text-white"
                   >
                     Clear
@@ -667,37 +591,58 @@ export function HomeView({ initialDirectory, directoryStats, radarPreview = [] }
             </div>
           </div>
 
-          <div className="border-t border-white/6 px-5 py-3 sm:px-6">
-            {!hasQuery ? (
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/50">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-[#6F839F]">Try</span>
-                  {promptSuggestions.map((suggestion) => (
-                    <button
-                      key={suggestion}
-                      type="button"
-                      onClick={() => handleSuggestion(suggestion)}
-                      className="rounded-full px-2.5 py-1 transition hover:bg-white/[0.05] hover:text-white"
-                    >
-                      {suggestion}
-                    </button>
-                  ))}
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/28">Tools</span>
-                  {toolSuggestions.map((suggestion) => (
-                    <button
-                      key={suggestion}
-                      type="button"
-                      onClick={() => handleSuggestion(suggestion)}
-                      className="rounded-full border border-white/8 bg-white/[0.03] px-2.5 py-1 font-mono text-[12px] text-white/56 transition hover:border-white/14 hover:bg-white/[0.06] hover:text-white"
-                    >
-                      {suggestion}
-                    </button>
-                  ))}
-                </div>
+          <div className="finder-meta">
+            <div className="finder-examples"><span>Try</span>{promptSuggestions.map(suggestion => <button key={suggestion} type="button" aria-pressed={search === suggestion} onClick={() => handleSuggestion(suggestion)}>{suggestion}</button>)}</div>
+            <a href="#catalog" onClick={() => setShowCatalog(true)}>Browse all {directoryStats.total} ↗</a>
+          </div>
+        <p role="status" className="sr-only">{pending ? "Searching for a CLI" : hasQuery && recommendation ? `Recommended: ${recommendation.primary.name}` : ""}</p>
+        <div className="wb-output" aria-busy={pending} style={{ height: outputHeight }}><div ref={outputRef} className="wb-output-content">
+        {hasQuery && !pending && !recommendation && <div className="wb-preview">{lookupError ? <p role="status">Could not reach the directory. Try another search.</p> : ambiguousPdf(query) ? <><p>What do you want to do with the PDF?</p><div className="finder-examples">{["Check a PDF for errors", "Extract text from a PDF", "Search inside PDFs"].map(task => <button key={task} onClick={() => handleSuggestion(task)}>{task}</button>)}</div></> : <><p>No recommended tool for this task yet.</p><Link className="underline" href={`/submit?task=${encodeURIComponent(query)}`}>Suggest a tool for this task</Link></>}</div>}
+        <motion.div key={recommendation?.primary.slug ?? "idle"} initial={reducedMotion ? false : { opacity: 0.7 }} animate={{ opacity: 1 }} transition={{ duration: 0.16 }}>
+          {hasQuery ? (
+            <RecommendationPanel
+              recommendation={recommendation}
+            />
+          ) : null}
+        </motion.div></div></div>
+        </div>
+
+        <section className="wb-chapter wb-handoff"><div className="wb-label">01 — Agent handoff</div>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="space-y-3">
+              <div>
+                <h2>One brief.<br />Any agent.</h2>
+                <p className="mt-1 text-base leading-7 text-[#868684] sm:text-sm sm:leading-6">Give your coding agent the directory, verification steps, and permission boundaries in one prompt.</p>
               </div>
+              <AgentMarks />
+            </div>
+            <div className="wb-file"><div className="wb-filebar"><span>handoff.md</span><CopyButton compact value={homepageAgentInstructions} label="Copy agent prompt" /></div><pre tabIndex={0} aria-label="Agent prompt preview">{homepageAgentInstructions}</pre></div>
+          </div>
+        </section>
+
+        <div id="catalog" className="flex scroll-mt-20 items-center justify-between gap-3 border-t border-white/10 pt-6">
+          <div className="flex items-center gap-2 text-sm text-white/44">
+            {hasQuery ? (
+              <>
+                <span className="inline-flex h-1.5 w-1.5 rounded-full bg-cyan-400/60" />
+                {directory.total} tool{directory.total !== 1 ? "s" : ""} for this work
+              </>
             ) : (
+              "Directory index"
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={() => setShowCatalog((current) => !current)}
+            className="inline-flex items-center gap-2 text-sm text-white/54 transition hover:text-white"
+          >
+            {showCatalog ? "Hide catalog" : catalogLabel}
+            <ChevronIcon className={`h-3.5 w-3.5 transition-transform ${showCatalog ? "rotate-180" : ""}`} />
+          </button>
+        </div>
+
+        {showCatalog ? (
+          <div className="space-y-3">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="mr-1 text-[11px] uppercase tracking-[0.14em] text-white/28">Category</span>
@@ -746,100 +691,12 @@ export function HomeView({ initialDirectory, directoryStats, radarPreview = [] }
                   })}
                 </div>
               </div>
-            )}
-          </div>
-        </motion.div>
-
-
-        <AnimatePresence mode="wait">
-          {hasQuery ? (
-            <RecommendationPanel
-              recommendation={recommendation}
-              isLoading={isLoading}
-              revealY={polish.recommendation.y}
-              glow={polish.recommendation.glow}
-              transition={motionTransition}
-            />
-          ) : null}
-        </AnimatePresence>
-
-        <div className="rounded-lg border border-white/10 bg-[#1E1E1D] p-4">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="space-y-3">
-              <div>
-                <div className="text-sm font-medium text-white">Using an agent?</div>
-                <p className="mt-1 text-base leading-7 text-[#868684] sm:text-sm sm:leading-6">Copy this tiny handoff into your agent.</p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {agentTargets.map((agent) => (
-                  <span key={agent} className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.035] px-2.5 py-1 text-sm text-[#afaeac]">
-                    {agent}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <CopyButton compact value={homepageAgentInstructions} label="Copy agent prompt" />
-          </div>
-        </div>
-
-        {!hasQuery && radarPreview.length > 0 ? (
-          <div className="rounded-lg border border-white/10 bg-[#1E1E1D] p-4">
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <div className="text-sm font-medium text-white">On radar</div>
-                <p className="mt-1 text-sm leading-6 text-[#868684]">New CLIs that are not in the directory yet. Each one has a first command.</p>
-              </div>
-              <Link href="/radar" className="shrink-0 text-sm text-white/54 transition hover:text-white">See all →</Link>
-            </div>
-            <div className="mt-4 grid gap-2 sm:grid-cols-3">
-              {radarPreview.map((candidate) => (
-                <Link
-                  key={candidate.slug}
-                  href="/radar"
-                  className="rounded-xl border border-white/8 bg-white/[0.03] px-3 py-3 transition hover:border-white/14 hover:bg-white/[0.05]"
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-sm font-medium text-white">{candidate.name}</span>
-                    <span className="rounded-full bg-emerald-300/90 px-1.5 py-0.5 text-[10px] text-black">Try</span>
-                  </div>
-                  <p className="mt-1 line-clamp-2 text-xs leading-5 text-white/48">{candidate.description}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        ) : null}
-
-        {!hasQuery ? <CliLogoMarquee /> : null}
-
-        <div className="flex items-center justify-between gap-3 px-1 pt-2">
-          <div className="flex items-center gap-2 text-sm text-white/44">
-            {hasQuery ? (
-              <>
-                <span className="inline-flex h-1.5 w-1.5 rounded-full bg-cyan-400/60" />
-                {directory.total} tool{directory.total !== 1 ? "s" : ""} for this work
-              </>
-            ) : (
-              "Pick a work pattern above or describe your own."
-            )}
-          </div>
-          <button
-            type="button"
-            onClick={() => setShowCatalog((current) => !current)}
-            className="inline-flex items-center gap-2 text-sm text-white/54 transition hover:text-white"
-          >
-            {showCatalog ? "Hide catalog" : catalogLabel}
-            <ChevronIcon className={`h-3.5 w-3.5 transition-transform ${showCatalog ? "rotate-180" : ""}`} />
-          </button>
-        </div>
-
-        {showCatalog ? (
-          <div className="space-y-3">
             <div className="ui-panel-faint overflow-hidden rounded-[22px]">
               {directory.results.length === 0 ? (
                 <div className="flex flex-col items-center justify-center px-5 py-16 text-center">
                   <SearchIcon className="h-6 w-6 text-white/18" />
                   <p className="mt-4 text-sm text-white/64">No CLIs match that description.</p>
-                  <p className="mt-1 text-xs text-white/42">Try a different phrase, or check <Link href="/radar" className="text-white/70 underline-offset-2 hover:text-white hover:underline">Radar</Link> for tools that have not landed in the directory yet.</p>
+                  <p className="mt-1 text-sm text-white/60">Try a tool name or a different task.</p>
                 </div>
               ) : (
                 <>

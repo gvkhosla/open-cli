@@ -38,3 +38,10 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Check search recommendations
+        run: |
+          npm start > /tmp/opencli-test.log 2>&1 &
+          trap 'kill $! || true' EXIT
+          curl --retry 15 --retry-connrefused --retry-delay 1 -fsS http://localhost:3000/ -o /dev/null
+          node scripts/test-search.mjs

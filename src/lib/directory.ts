@@ -1,4 +1,4 @@
-import { builderClis, clis, getSearchHighlights, officialClis, searchClis, type CliEntry } from "@/data/clis";
+import { builderClis, clis, findExactCli, getSearchHighlights, officialClis, searchClis, type CliEntry } from "@/data/clis";
 
 export type DirectoryCliResult = {
   slug: string;
@@ -72,7 +72,8 @@ export function getDirectoryResults(query: string, limit = 24, options: Director
   const normalizedCategory = options.category?.trim() || "All";
   const categoryFilter = normalizedCategory === "All" ? "All" : normalizedCategory;
   const pmFilter = options.packageManager?.trim() || "All";
-  const matches = trimmed
+  const exact = findExactCli(trimmed);
+  const matches = exact ? [exact].filter(cli => categoryFilter === "All" || cli.category === categoryFilter) : trimmed
     ? searchClis(trimmed, { mode: "all", category: categoryFilter as CliEntry["category"] | "All" })
     : [...clis]
         .filter((cli) => (categoryFilter === "All" ? true : cli.category === categoryFilter))

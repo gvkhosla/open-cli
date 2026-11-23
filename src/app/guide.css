@@ -1,0 +1,16 @@
+/* Shared editorial system for directory, guides, results, forms and error pages. */
+.guide-page { --guide-line:rgb(255 255 255 / .12); padding-top:clamp(2rem,5vw,4.5rem); }
+.guide-page h1 { letter-spacing:-.052em; font-weight:540; line-height:1.04; font-size:clamp(2.1rem,4.4vw,4.1rem); overflow-wrap:anywhere; }
+.guide-page h2 { letter-spacing:-.032em; line-height:1.16; }
+.guide-page :is(.ui-panel,.ui-panel-soft,.ui-panel-faint,.panel-texture) {background:var(--color-graphite-surface);border-color:var(--guide-line);box-shadow:none; border-radius:10px;}
+.guide-page :is(article,aside,section,div,a)[class*='rounded-['] { border-radius:10px;box-shadow:none; }
+.guide-page .ui-label {letter-spacing:.095em;color:rgb(255 255 255 / .6)}
+.guide-page pre {max-width:100%;overflow-x:auto}.guide-page :is(article,aside,section,.grid>*) {min-width:0}
+.guide-page :is(.animate-fade-in-up,.stagger-children>*) {animation:none}
+:where(main,header,footer) :focus-visible {outline:2px solid var(--color-accent-blue);outline-offset:3px}
+.agent-marks { display:flex;flex-wrap:wrap;align-items:center;gap:1.1rem 1.35rem;padding:1rem 0;list-style:none; }
+.agent-marks li { display:flex;align-items:center;gap:.35rem;height:26px;font-size:.9rem;font-weight:550;letter-spacing:-.025em;color:var(--color-subtle-cream) }
+.agent-marks img {filter:brightness(0) invert(.85)}.agent-marks img[src$='hermes.webp'] {filter:grayscale(1)}
+.guide-page>.agent-marks {justify-content:center;margin-top:2rem;border-block:1px solid var(--guide-line)}
+@media(max-width:40rem){.guide-page {padding-top:1.5rem}.agent-marks{gap:.75rem 1rem}.guide-page pre {overflow-wrap:anywhere}.guide-page h1 {max-width:100%}}
+@media(prefers-reduced-motion:reduce){ html {scroll-behavior:auto} .guide-page * {animation-duration:.01ms!important;transition-duration:.01ms!important} }
